@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/settings_game" >
+        <ListPreference
+            android:defaultValue="1500"
+            android:entries="@array/intervale_count"
+            android:entryValues="@array/intervale_count_values"
+            android:key="interval"
+            android:title="@string/interval" />
+        <ListPreference
+            android:defaultValue="100"
+            android:entries="@array/mode_game"
+            android:entryValues="@array/mode_game_values"
+            android:key="mode"
+            android:title="@string/mode" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/settings_sound" >
+        <ListPreference
+            android:defaultValue="2131099659"
+            android:entries="@array/time_sounds"
+            android:entryValues="@array/time_sounds_values"
+            android:key="time_sounds"
+            android:title="@string/sounds_stones" />
+        <ListPreference
+            android:defaultValue="2131099661"
+            android:entries="@array/gong_sounds"
+            android:entryValues="@array/gong_sounds_values"
+            android:key="gong_sounds"
+            android:title="@string/sounds_gong" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
