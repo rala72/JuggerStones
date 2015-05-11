@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="contador.piedras.jugger"
     android:installLocation="preferExternal"
-    android:versionCode="27"
+    android:versionCode="28"
     android:versionName="3.0" >
 
     <uses-sdk

@@ -97,10 +97,13 @@ public class MainActivity extends ActionBarActivity {
 		stop.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				play.setBackgroundResource(R.drawable.play);
-				counter.setStoped(true);
-				isPaused = true;
-				Counter.setText("0");
+				if (!isPaused) {
+					play.setBackgroundResource(R.drawable.play);
+					counter.setStoped(true);
+					isPaused = true;
+					Counter.setText("0");
+				}
+				
 			}
 		});
 		plust1.setOnClickListener(new OnClickListener() {
