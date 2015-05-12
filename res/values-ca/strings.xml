@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">JuggerStones</string>
+    <string name="action_settings">Configuració</string>
+    <string name="cero">0</string>
+    <string name="team1">Equip 1</string>
+    <string name="team2">Equip 2</string>
+    <string name="team1ini">Inicials de l\'Equip 1</string>
+    <string name="team2ini">Inicials de l\'Equip 2</string>
+    <string name="rename_teams">Renanomenar equips</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="accept">Acceptar</string>
+    <string name="cancel">Cancel·lar</string>
+    <string name="warning_initials">Per conveniència usar només les inicials de cadascun dels 
+        equips, per favor (5 MAX)</string>
+    <string name="interval">Interval de pedres</string>
+    <string name="mode">Mode de joc</string>
+    <string name="mode_normal">Mode Normal (100 pedres per part)</string>
+    <string name="mode_extension">Mode Extensión (50 pedres per part)</string>
+    <string name="mode_infinite">Mode Infinite (Solament pedres)</string>
+    <string name="sounds_stones">So de les pedres</string>
+    <string name="alan">Gos de Alan Prairie</string>
+    <string name="cash_reg">Registrador d\'efectiu</string>
+    <string name="censure">Censura</string>
+    <string name="crow">Corb</string>
+    <string name="doh">D\'oh d\'Homer</string>
+    <string name="fb_noti">Notificació Fb</string>
+    <string name="achievement">Èxit</string>
+    <string name="metal_gear">Engranatge de metal</string>
+    <string name="duck">Ànec</string>
+    <string name="pan">Cassola</string>
+    <string name="drum">Tambor</string>
+    <string name="sounds_gong">Sons de gongs</string>
+    <string name="gong">Gong</string>
+    <string name="vuvucela">Vuvucela</string>
+    <string name="stone">Pedra</string>
+    <string name="msg_assit">Aquesta aplicació està programada al 100% per CristianCV, espere  
+que siga molt profitable! \n\nS\'accepta qualsevol sugerència per a millorar(especialment les 
+traduccions), pots posarte en contacte amb mi pulsant el botó en aquesta pantalla.</string>
+    <string name="msg_button">Enviar  missatge</string>
+    <string name="asssit">Ajuda i contancte</string>
+    <string name="up_improv">Millores en procés: \n-Poder afegir i gravar sons personalitzats \n-Multillenguatge</string>
+    <string name="settings_sound">So</string>
+    <string name="settings_game">Joc</string>
+
+</resources>

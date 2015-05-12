@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="intervale_count">
+        <item>1</item>
+        <item>1.3</item>
+        <item>1.5</item>
+        <item>1.7</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="intervale_count_values">
+        <item>1000</item>
+        <item>1300</item>
+        <item>1500</item>
+        <item>1700</item>
+        <item>2000</item>
+    </string-array>
+    <string-array name="mode_game">
+        <item>@string/mode_normal</item>
+        <item>@string/mode_extension</item>
+        <item>@string/mode_infinite</item>
+    </string-array>
+    <string-array name="mode_game_values">
+        <item>100</item>
+        <item>50</item>
+        <item>1000</item>
+    </string-array>
+    <string-array name="time_sounds">
+        <item>@string/alan</item>
+        <item>@string/cash_reg</item>
+        <item>@string/censure</item>
+        <item>@string/crow</item>
+        <item>@string/doh</item>
+        <item>@string/fb_noti</item>
+        <item>@string/achievement</item>
+        <item>@string/metal_gear</item>
+        <item>@string/duck</item>
+        <item>@string/pan</item>
+        <item>@string/drum</item>
+        <item>@string/stone</item>
+        
+    </string-array>
+   <string-array name="time_sounds_values">
+        <item>2131099648</item> <!-- Alan -->
+        <item>2131099649</item> <!-- Registradora -->
+        <item>2131099650</item> <!-- Censura -->
+        <item>2131099651</item> <!-- Cuervo -->
+        <item>2131099652</item> <!-- DOh -->
+        <item>2131099653</item> <!-- FB -->
+        <item>2131099655</item> <!-- logro -->
+        <item>2131099656</item> <!--metal gear  -->
+        <item>2131099657</item> <!-- pato -->
+        <item>2131099658</item><!-- sarten -->
+        <item>2131099660</item> <!-- tambor -->
+        <item>2131099659</item><!-- stone -->
+    </string-array>
+    <string-array name="gong_sounds">
+        <item>@string/gong</item>
+        <item>@string/vuvucela</item>
+    </string-array>
+    <string-array name="gong_sounds_values">
+        <item>2131099654</item> <!--  Gong -->
+        <item>2131099661</item> <!-- Vuvucela -->
+    </string-array>
+</resources>

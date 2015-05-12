@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JuggerStones</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="cero">0</string>
+    <string name="team1">Equipo 1</string>
+    <string name="team2">Equipo 2</string>
+    <string name="team1ini">Equipo 1 initials</string>
+    <string name="team2ini">Equipo 2 initials</string>
+    <string name="rename_teams">Renombrar equipos</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="warning_initials">Por comodidad solo las iniciales (MAX 5)</string>
+    <string name="interval">Intervalo entre piedras</string>
+    <string name="mode">Modo de juego</string>
+    <string name="mode_normal">Modo normal (100 piedras cada parte)</string>
+    <string name="mode_extension">Modo prorroga mode (50 piedras cada parte)</string>
+    <string name="mode_infinite">Modo infinito(Solo piedras)</string>
+    <string name="sounds_stones">Sonido de piedras</string>
+    <string name="alan">Alan perro de la padrera</string>
+    <string name="cash_reg">Caja registradora</string>
+    <string name="censure">Censura</string>
+    <string name="crow">Cuervo</string>
+    <string name="doh">D\'oh de Homer</string>
+    <string name="fb_noti">Noticiacion de Fb</string>
+    <string name="achievement">Logro</string>
+    <string name="metal_gear">Metal gear</string>
+    <string name="duck">pato</string>
+    <string name="pan">Sarten</string>
+    <string name="drum">Tambor</string>
+    <string name="sounds_gong">Sonido de gong</string>
+    <string name="gong">Gong</string>
+    <string name="vuvucela">Vuvucela</string>
+    <string name="stone">Piedra</string>
+    <string name="msg_assit">Esta aplicación esta 100% programaca por CristianCV, ¡espero que te sea útil!\n\n Acepto propuestas de mejora (especialmente en las traducciones) puedes enviarme un email con el boton de abajo.</string>
+    <string name="msg_button">Enviar mensaje</string>
+    <string name="asssit">Soporte y contacto</string>
+    <string name="up_improv">Proximas mejoras: \n -Poder añadir sonidos y grabar personalizados \n-Multilenguaje</string>
+    <string name="settings_sound">Sonidos</string>
+    <string name="settings_game">Juego</string>
+    
+
+</resources>
