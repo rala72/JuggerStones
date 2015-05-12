@@ -12,6 +12,8 @@ int array gong_sounds 0x7f0e0006
 int array gong_sounds_values 0x7f0e0007
 int array intervale_count 0x7f0e0000
 int array intervale_count_values 0x7f0e0001
+int array lenguages_array 0x7f0e0008
+int array lenguages_array_values 0x7f0e0009
 int array mode_game 0x7f0e0002
 int array mode_game_values 0x7f0e0003
 int array time_sounds 0x7f0e0004
@@ -593,6 +595,7 @@ int string app_name 0x7f0c0011
 int string asssit 0x7f0c0035
 int string cancel 0x7f0c001c
 int string cash_reg 0x7f0c0025
+int string catalan 0x7f0c0041
 int string censure 0x7f0c0026
 int string cero 0x7f0c0013
 int string contact 0x7f0c003a
@@ -600,9 +603,13 @@ int string crow 0x7f0c0027
 int string doh 0x7f0c0028
 int string drum 0x7f0c002e
 int string duck 0x7f0c002c
+int string english 0x7f0c003f
 int string fb_noti 0x7f0c0029
+int string french 0x7f0c0043
+int string german 0x7f0c0042
 int string gong 0x7f0c0030
 int string interval 0x7f0c001e
+int string language 0x7f0c003e
 int string metal_gear 0x7f0c002b
 int string mode 0x7f0c001f
 int string mode_extension 0x7f0c0021
@@ -615,12 +622,14 @@ int string msg_rate 0x7f0c003c
 int string no 0x7f0c001a
 int string others 0x7f0c0039
 int string pan 0x7f0c002d
+int string portuguese 0x7f0c0044
 int string rate 0x7f0c003d
 int string rename_teams 0x7f0c0018
 int string settings_game 0x7f0c0038
 int string settings_sound 0x7f0c0037
 int string sounds_gong 0x7f0c002f
 int string sounds_stones 0x7f0c0023
+int string spanish 0x7f0c0040
 int string stone 0x7f0c0032
 int string team1 0x7f0c0014
 int string team1ini 0x7f0c0016

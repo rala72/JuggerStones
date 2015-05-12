@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">JuggerStones</string>
     <string name="action_settings">Ajustes</string>
     <string name="cero">0</string>
@@ -40,6 +41,18 @@
     <string name="up_improv">Proximas mejoras: \n -Poder añadir sonidos y grabar personalizados \n-Multilenguaje</string>
     <string name="settings_sound">Sonidos</string>
     <string name="settings_game">Juego</string>
-    
+    <string name="others">Otros</string>
+    <string name="contact">Contacto</string>
+    <string name="msg_contact">Enviar un mensaje al desarrollador</string>
+    <string name="msg_rate">Valorar la aplicación</string>
+    <string name="rate">Valorar</string>
+    <!-- Idiomas -->
+    <string name="language">Idioma</string>
+    <string name="english">Ingles</string>
+    <string name="spanish">Español</string>
+    <string name="catalan">Catalan</string>
+    <string name="german">Alemán</string>
+    <string name="french">Frances</string>
+    <string name="portuguese">Portugués</string>
 
 </resources>

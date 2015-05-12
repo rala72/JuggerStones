@@ -38,9 +38,8 @@
         <item>@string/pan</item>
         <item>@string/drum</item>
         <item>@string/stone</item>
-        
     </string-array>
-   <string-array name="time_sounds_values">
+    <string-array name="time_sounds_values">
         <item>2131099648</item> <!-- Alan -->
         <item>2131099649</item> <!-- Registradora -->
         <item>2131099650</item> <!-- Censura -->
@@ -48,18 +47,35 @@
         <item>2131099652</item> <!-- DOh -->
         <item>2131099653</item> <!-- FB -->
         <item>2131099655</item> <!-- logro -->
-        <item>2131099656</item> <!--metal gear  -->
+        <item>2131099656</item> <!-- metal gear -->
         <item>2131099657</item> <!-- pato -->
-        <item>2131099658</item><!-- sarten -->
+        <item>2131099658</item> <!-- sarten -->
         <item>2131099660</item> <!-- tambor -->
-        <item>2131099659</item><!-- stone -->
+        <item>2131099659</item> <!-- stone -->
     </string-array>
     <string-array name="gong_sounds">
         <item>@string/gong</item>
         <item>@string/vuvucela</item>
     </string-array>
     <string-array name="gong_sounds_values">
-        <item>2131099654</item> <!--  Gong -->
+        <item>2131099654</item> <!-- Gong -->
         <item>2131099661</item> <!-- Vuvucela -->
+    </string-array>
+    <string-array name="lenguages_array">
+        <item>@string/english</item>
+        <item>@string/spanish</item>
+        <item>@string/catalan</item>
+        <item>@string/german</item>
+        <item>@string/french</item>
+        <item>@string/portuguese</item>
+    </string-array>
+
+    <string-array name="lenguages_array_values">
+        <item>US</item>
+        <item>ES</item>
+        <item>CA</item>
+        <item>DE</item>
+        <item>FR</item>
+        <item>PT</item>
     </string-array>
 </resources>

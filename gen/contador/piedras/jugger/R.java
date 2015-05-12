@@ -29,6 +29,8 @@ public final class R {
         public static final int gong_sounds_values=0x7f0e0007;
         public static final int intervale_count=0x7f0e0000;
         public static final int intervale_count_values=0x7f0e0001;
+        public static final int lenguages_array=0x7f0e0008;
+        public static final int lenguages_array_values=0x7f0e0009;
         public static final int mode_game=0x7f0e0002;
         public static final int mode_game_values=0x7f0e0003;
         public static final int time_sounds=0x7f0e0004;
@@ -2181,6 +2183,7 @@ containing a value of this type.
         public static final int asssit=0x7f0c0035;
         public static final int cancel=0x7f0c001c;
         public static final int cash_reg=0x7f0c0025;
+        public static final int catalan=0x7f0c0041;
         public static final int censure=0x7f0c0026;
         public static final int cero=0x7f0c0013;
         public static final int contact=0x7f0c003a;
@@ -2188,9 +2191,17 @@ containing a value of this type.
         public static final int doh=0x7f0c0028;
         public static final int drum=0x7f0c002e;
         public static final int duck=0x7f0c002c;
+        public static final int english=0x7f0c003f;
         public static final int fb_noti=0x7f0c0029;
+        public static final int french=0x7f0c0043;
+        public static final int german=0x7f0c0042;
         public static final int gong=0x7f0c0030;
         public static final int interval=0x7f0c001e;
+        /**  Idiomas 
+ Idiomas 
+ Idiomas 
+         */
+        public static final int language=0x7f0c003e;
         public static final int metal_gear=0x7f0c002b;
         public static final int mode=0x7f0c001f;
         public static final int mode_extension=0x7f0c0021;
@@ -2201,16 +2212,16 @@ containing a value of this type.
         public static final int msg_contact=0x7f0c003b;
         public static final int msg_rate=0x7f0c003c;
         public static final int no=0x7f0c001a;
-        /**  nuevos 
-         */
         public static final int others=0x7f0c0039;
         public static final int pan=0x7f0c002d;
+        public static final int portuguese=0x7f0c0044;
         public static final int rate=0x7f0c003d;
         public static final int rename_teams=0x7f0c0018;
         public static final int settings_game=0x7f0c0038;
         public static final int settings_sound=0x7f0c0037;
         public static final int sounds_gong=0x7f0c002f;
         public static final int sounds_stones=0x7f0c0023;
+        public static final int spanish=0x7f0c0040;
         public static final int stone=0x7f0c0032;
         public static final int team1=0x7f0c0014;
         public static final int team1ini=0x7f0c0016;

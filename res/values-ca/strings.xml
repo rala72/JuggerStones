@@ -44,5 +44,18 @@ traduccions), pots posarte en contacte amb mi pulsant el botó en aquesta pantal
     <string name="up_improv">Millores en procés: \n-Poder afegir i gravar sons personalitzats \n-Multillenguatge</string>
     <string name="settings_sound">So</string>
     <string name="settings_game">Joc</string>
+    <string name="others">Altres</string>
+    <string name="contact">Contacte</string>
+    <string name="msg_contact">Enviar un missatge al desenvolupador</string>
+    <string name="msg_rate">Votar l\'app</string>
+    <string name="rate">Votar</string>
+    <!-- Idiomas -->
+    <string name="language">Idioma</string>
+    <string name="english">Ingles</string>
+    <string name="spanish">Espanyol</string>
+    <string name="catalan">Català</string>
+    <string name="german">Alemany</string>
+    <string name="french">Frances</string>
+    <string name="portuguese">Portuguès</string>
 
 </resources>
