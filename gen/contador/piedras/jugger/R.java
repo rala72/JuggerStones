@@ -23,6 +23,8 @@ public final class R {
     public static final class array {
         public static final int gong_sounds=0x7f0e0006;
         /**  Vuvucela 
+ Vuvucela 
+ Vuvucela 
          */
         public static final int gong_sounds_values=0x7f0e0007;
         public static final int intervale_count=0x7f0e0000;
@@ -31,6 +33,8 @@ public final class R {
         public static final int mode_game_values=0x7f0e0003;
         public static final int time_sounds=0x7f0e0004;
         /**  stone 
+ stone 
+ stone 
          */
         public static final int time_sounds_values=0x7f0e0005;
     }
@@ -1821,6 +1825,8 @@ containing a value of this type.
          (such as screen margins) for screens with more than 820dp of available width. This
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
+ Default screen margins, per the Android Design guidelines. 
+ Default screen margins, per the Android Design guidelines. 
          */
         public static final int activity_horizontal_margin=0x7f090042;
         public static final int activity_vertical_margin=0x7f090043;
@@ -2177,6 +2183,7 @@ containing a value of this type.
         public static final int cash_reg=0x7f0c0025;
         public static final int censure=0x7f0c0026;
         public static final int cero=0x7f0c0013;
+        public static final int contact=0x7f0c003a;
         public static final int crow=0x7f0c0027;
         public static final int doh=0x7f0c0028;
         public static final int drum=0x7f0c002e;
@@ -2191,8 +2198,14 @@ containing a value of this type.
         public static final int mode_normal=0x7f0c0020;
         public static final int msg_assit=0x7f0c0033;
         public static final int msg_button=0x7f0c0034;
+        public static final int msg_contact=0x7f0c003b;
+        public static final int msg_rate=0x7f0c003c;
         public static final int no=0x7f0c001a;
+        /**  nuevos 
+         */
+        public static final int others=0x7f0c0039;
         public static final int pan=0x7f0c002d;
+        public static final int rate=0x7f0c003d;
         public static final int rename_teams=0x7f0c0018;
         public static final int settings_game=0x7f0c0038;
         public static final int settings_sound=0x7f0c0037;
@@ -2222,9 +2235,31 @@ containing a value of this type.
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         
+
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
+
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
          */
         public static final int AppBaseTheme=0x7f0d011b;
         /**  Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+ Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+ Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f0d011c;

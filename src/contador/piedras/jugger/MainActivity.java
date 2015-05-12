@@ -69,7 +69,7 @@ public class MainActivity extends ActionBarActivity {
 
 			@Override
 			public void onClick(View v) {
-				
+
 				int mode = Integer.parseInt(SP.getString("mode", "100"));
 				int interval = Integer.parseInt(SP
 						.getString("interval", "1500"));
@@ -87,7 +87,7 @@ public class MainActivity extends ActionBarActivity {
 							.getText().toString()), mode, interval, s);
 
 					counter.start();
-				} else {// Reanudar el contador	
+				} else {// Reanudar el contador
 					play.setBackgroundResource(R.drawable.play);
 					isPaused = true;
 					counter.setStoped(true);
@@ -102,8 +102,10 @@ public class MainActivity extends ActionBarActivity {
 					counter.setStoped(true);
 					isPaused = true;
 					Counter.setText("0");
+				} else {
+					Counter.setText("0");
 				}
-				
+
 			}
 		});
 		plust1.setOnClickListener(new OnClickListener() {

@@ -595,6 +595,7 @@ int string cancel 0x7f0c001c
 int string cash_reg 0x7f0c0025
 int string censure 0x7f0c0026
 int string cero 0x7f0c0013
+int string contact 0x7f0c003a
 int string crow 0x7f0c0027
 int string doh 0x7f0c0028
 int string drum 0x7f0c002e
@@ -609,8 +610,12 @@ int string mode_infinite 0x7f0c0022
 int string mode_normal 0x7f0c0020
 int string msg_assit 0x7f0c0033
 int string msg_button 0x7f0c0034
+int string msg_contact 0x7f0c003b
+int string msg_rate 0x7f0c003c
 int string no 0x7f0c001a
+int string others 0x7f0c0039
 int string pan 0x7f0c002d
+int string rate 0x7f0c003d
 int string rename_teams 0x7f0c0018
 int string settings_game 0x7f0c0038
 int string settings_sound 0x7f0c0037

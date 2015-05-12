@@ -41,5 +41,11 @@
     <string name="settings_sound">Sounds</string>
     <string name="settings_game">Game</string>
     
+    <!-- nuevos -->
+    <string name="others">Others</string>
+    <string name="contact">Contact</string>
+    <string name="msg_contact">Send a message to the developer</string>
+    <string name="msg_rate">Rate the app</string>
+    <string name="rate">Rate</string>
 
 </resources>

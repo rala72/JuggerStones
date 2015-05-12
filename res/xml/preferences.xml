@@ -29,5 +29,27 @@
             android:key="gong_sounds"
             android:title="@string/sounds_gong" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/others" >
+        <Preference
+            android:summary="@string/msg_contact"
+            android:title="@string/contact" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="mailto:cristiancvacas@gmail.com" >
+                <extra
+                    android:name="android.intent.extra.SUBJECT"
+                    android:value="Jugger Stones message" />
+            </intent>
+        </Preference>
+        <Preference android:summary="@string/msg_rate"
+            android:title="@string/rate" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://play.google.com/store/apps/details?id=contador.piedras.jugger" >
+            </intent>
+            
+        </Preference>
+        
+    </PreferenceCategory>
 
 </PreferenceScreen>
