@@ -45,6 +45,7 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
 		SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
 		Counter = (TextView) findViewById(R.id.TV_cero);
@@ -64,6 +65,21 @@ public class MainActivity extends ActionBarActivity {
 		T2Name = (TextView) findViewById(R.id.TV_nameT2);
 
 		audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+		try {
+			Bundle extras = getIntent().getExtras();
+
+			Counter.setText(extras.getString("Counter"));
+
+			if (!extras.getString("Team 1").equals("")) {
+				T1Name.setText(extras.getString("Team 1"));
+				T2Name.setText(extras.getString("Team 2"));
+			} else {
+				T1Name.setText(getResources().getString(R.string.team1));
+				T2Name.setText(getResources().getString(R.string.team2));
+			}
+		} catch (Exception e) {
+		}
 
 		play.setOnClickListener(new OnClickListener() {
 
@@ -149,9 +165,6 @@ public class MainActivity extends ActionBarActivity {
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	/**
-	 * Listener of the context menu items
-	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -159,7 +172,26 @@ public class MainActivity extends ActionBarActivity {
 			RenameTeams();
 			return true;
 		case R.id.action_settings:
-			startActivity(new Intent(this, AppPreferences.class));
+			play.setBackgroundResource(R.drawable.play);
+			isPaused = true;
+			if (counter != null) {
+				counter.setStoped(true);
+			}
+			Intent i = new Intent(this, AppPreferences.class);
+
+			i.putExtra("Counter", Counter.getText().toString());
+			if (T1Name.getText().toString() != getResources().getString(
+					R.string.team1)) {
+				i.putExtra("Team 1", T1Name.getText().toString());
+				i.putExtra("Team 2", T2Name.getText().toString());
+			} else {
+				i.putExtra("Team 1", "");
+				i.putExtra("Team 2", "");
+			}
+
+			startActivity(i);
+			finish();
+
 			return true;
 		case R.id.Assit:
 			startActivity(new Intent(this, Assit.class));
