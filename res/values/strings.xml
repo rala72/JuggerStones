@@ -38,7 +38,7 @@
     <string name="msg_assit">This application is 100% programmed CristianCV, I hope this will be very helpful! \n\nI accept any suggestions for improvement (especially in the translations), you can get in touch with me using the button on this screen.</string>
     <string name="msg_button">Send message</string>
     <string name="asssit">Support and contact</string>
-    <string name="up_improv">Upcoming improvements: \n-Can add and record custom sounds \n-Multilanguage</string>
+    <string name="up_improv">Upcoming improvements: \n-Can add and record custom sounds</string>
     <string name="settings_sound">Sounds</string>
     <string name="settings_game">Game</string>
     <string name="others">Others</string>

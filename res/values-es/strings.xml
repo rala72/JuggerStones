@@ -38,7 +38,7 @@
     <string name="msg_assit">Esta aplicación esta 100% programaca por CristianCV, ¡espero que te sea útil!\n\n Acepto propuestas de mejora (especialmente en las traducciones) puedes enviarme un email con el boton de abajo.</string>
     <string name="msg_button">Enviar mensaje</string>
     <string name="asssit">Soporte y contacto</string>
-    <string name="up_improv">Proximas mejoras: \n -Poder añadir sonidos y grabar personalizados \n-Multilenguaje</string>
+    <string name="up_improv">Proximas mejoras: \n -Poder añadir sonidos y grabar personalizados</string>
     <string name="settings_sound">Sonidos</string>
     <string name="settings_game">Juego</string>
     <string name="others">Otros</string>
