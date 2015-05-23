@@ -23,9 +23,6 @@ public final class R {
     public static final class array {
         public static final int gong_sounds=0x7f0e0006;
         /**  Vuvucela 
- Vuvucela 
- Vuvucela 
- Vuvucela 
          */
         public static final int gong_sounds_values=0x7f0e0007;
         public static final int intervale_count=0x7f0e0000;
@@ -36,9 +33,6 @@ public final class R {
         public static final int mode_game_values=0x7f0e0003;
         public static final int time_sounds=0x7f0e0004;
         /**  stone 
- stone 
- stone 
- stone 
          */
         public static final int time_sounds_values=0x7f0e0005;
     }
@@ -1829,9 +1823,6 @@ containing a value of this type.
          (such as screen margins) for screens with more than 820dp of available width. This
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
- Default screen margins, per the Android Design guidelines. 
- Default screen margins, per the Android Design guidelines. 
- Default screen margins, per the Android Design guidelines. 
          */
         public static final int activity_horizontal_margin=0x7f090042;
         public static final int activity_vertical_margin=0x7f090043;
@@ -2204,6 +2195,8 @@ containing a value of this type.
  Idiomas 
  Idiomas 
  Idiomas 
+ Idiomas 
+ Idiomas 
          */
         public static final int language=0x7f0c003e;
         public static final int metal_gear=0x7f0c002b;
@@ -2250,42 +2243,9 @@ containing a value of this type.
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         
-
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
-
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
-
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
          */
         public static final int AppBaseTheme=0x7f0d011b;
         /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
- Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
- Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
- Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f0d011c;
