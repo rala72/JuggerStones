@@ -55,10 +55,10 @@
         android:id="@+id/b_mint1"
         android:layout_width="50dp"
         android:layout_height="10dp"
-        android:layout_alignBaseline="@+id/b_mast1"
-        android:layout_alignBottom="@+id/b_mast1"
+        android:background="@drawable/min"
+        android:layout_alignTop="@+id/b_mast1"
         android:layout_toRightOf="@+id/TV_pointT1"
-        android:background="@drawable/min" />
+        android:layout_toEndOf="@+id/TV_pointT1" />
 
     <Button
         android:id="@+id/b_stop"
@@ -88,13 +88,31 @@
         android:textSize="100sp" />
 
     <Button
+        android:id="@+id/inc_stones"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/max" />
+
+    <Button
+        android:id="@+id/dec_stones"
+        android:layout_width="50dp"
+        android:layout_height="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/min" />
+
+    <Button
         android:id="@+id/b_mint2"
         android:layout_width="50dp"
         android:layout_height="10dp"
-        android:layout_alignBaseline="@+id/b_mint1"
-        android:layout_alignBottom="@+id/b_mint1"
+        android:background="@drawable/min"
+        android:layout_below="@+id/b_mint1"
         android:layout_toRightOf="@+id/TV_pointT2"
-        android:background="@drawable/min" />
+        android:layout_toEndOf="@+id/TV_pointT2" />
 
     <TextView
         android:id="@+id/TV_pointT2"
@@ -112,8 +130,9 @@
         android:id="@+id/b_mast2"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:background="@drawable/max"
         android:layout_below="@+id/TV_pointT2"
-        android:layout_toRightOf="@+id/TV_cero"
-        android:background="@drawable/max" />
+        android:layout_alignLeft="@+id/TV_nameT2"
+        android:layout_alignStart="@+id/TV_nameT2" />
 
 </RelativeLayout>
