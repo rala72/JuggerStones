@@ -9,6 +9,7 @@
     <string name="team1ini">Team 1 initials</string>
     <string name="team2ini">Team 2 initials</string>
     <string name="rename_teams">Rename teams</string>
+    <string name="set_counter">set_counter</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="accept">Accept</string>
