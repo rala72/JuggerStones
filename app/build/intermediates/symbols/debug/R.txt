@@ -356,9 +356,9 @@ int drawable stop 0x7f020038
 int id Assit 0x7f0e0054
 int id B_msg 0x7f0e003f
 int id TV_cero 0x7f0e004b
-int id TV_nameT1 0x7f0e0044
-int id TV_nameT2 0x7f0e0045
-int id TV_pointT1 0x7f0e0046
+int id TV_nameT1 0x7f0e0043
+int id TV_nameT2 0x7f0e0044
+int id TV_pointT1 0x7f0e0045
 int id TV_pointT2 0x7f0e004f
 int id action_bar 0x7f0e0031
 int id action_bar_activity_content 0x7f0e0000
@@ -376,10 +376,10 @@ int id action_mode_close_button 0x7f0e0020
 int id action_settings 0x7f0e0051
 int id activity_chooser_view_content 0x7f0e0021
 int id always 0x7f0e0016
-int id b_mast1 0x7f0e0047
+int id b_mast1 0x7f0e0046
 int id b_mast2 0x7f0e0050
-int id b_mint1 0x7f0e0048
-int id b_mint2 0x7f0e004e
+int id b_mint1 0x7f0e0047
+int id b_mint2 0x7f0e0048
 int id b_start 0x7f0e004a
 int id b_stop 0x7f0e0049
 int id beginning 0x7f0e0013
@@ -391,6 +391,7 @@ int id default_activity_button 0x7f0e0024
 int id dialog 0x7f0e001b
 int id disableHome 0x7f0e000c
 int id dropdown 0x7f0e001c
+int id dummy 0x7f0e004e
 int id edit_query 0x7f0e0033
 int id end 0x7f0e0014
 int id expand_activities_button 0x7f0e0022
@@ -403,7 +404,7 @@ int id image 0x7f0e0023
 int id inc_stones 0x7f0e004c
 int id listMode 0x7f0e0009
 int id list_item 0x7f0e0025
-int id main_activity 0x7f0e0043
+int id main_activity 0x7f0e0042
 int id middle 0x7f0e0015
 int id never 0x7f0e0019
 int id none 0x7f0e000e
@@ -430,9 +431,8 @@ int id showTitle 0x7f0e0011
 int id split_action_bar 0x7f0e0007
 int id submit_area 0x7f0e003c
 int id tabMode 0x7f0e000b
-int id textView1 0x7f0e0041
-int id textView2 0x7f0e0042
-int id textView3 0x7f0e0040
+int id textView1 0x7f0e0040
+int id textView2 0x7f0e0041
 int id title 0x7f0e0027
 int id up 0x7f0e0008
 int id useLogo 0x7f0e0012

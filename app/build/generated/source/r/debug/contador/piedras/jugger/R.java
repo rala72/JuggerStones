@@ -1340,9 +1340,9 @@ containing a value of this type.
         public static final int Assit=0x7f0e0054;
         public static final int B_msg=0x7f0e003f;
         public static final int TV_cero=0x7f0e004b;
-        public static final int TV_nameT1=0x7f0e0044;
-        public static final int TV_nameT2=0x7f0e0045;
-        public static final int TV_pointT1=0x7f0e0046;
+        public static final int TV_nameT1=0x7f0e0043;
+        public static final int TV_nameT2=0x7f0e0044;
+        public static final int TV_pointT1=0x7f0e0045;
         public static final int TV_pointT2=0x7f0e004f;
         public static final int action_bar=0x7f0e0031;
         public static final int action_bar_activity_content=0x7f0e0000;
@@ -1360,10 +1360,10 @@ containing a value of this type.
         public static final int action_settings=0x7f0e0051;
         public static final int activity_chooser_view_content=0x7f0e0021;
         public static final int always=0x7f0e0016;
-        public static final int b_mast1=0x7f0e0047;
+        public static final int b_mast1=0x7f0e0046;
         public static final int b_mast2=0x7f0e0050;
-        public static final int b_mint1=0x7f0e0048;
-        public static final int b_mint2=0x7f0e004e;
+        public static final int b_mint1=0x7f0e0047;
+        public static final int b_mint2=0x7f0e0048;
         public static final int b_start=0x7f0e004a;
         public static final int b_stop=0x7f0e0049;
         public static final int beginning=0x7f0e0013;
@@ -1375,6 +1375,7 @@ containing a value of this type.
         public static final int dialog=0x7f0e001b;
         public static final int disableHome=0x7f0e000c;
         public static final int dropdown=0x7f0e001c;
+        public static final int dummy=0x7f0e004e;
         public static final int edit_query=0x7f0e0033;
         public static final int end=0x7f0e0014;
         public static final int expand_activities_button=0x7f0e0022;
@@ -1387,7 +1388,7 @@ containing a value of this type.
         public static final int inc_stones=0x7f0e004c;
         public static final int listMode=0x7f0e0009;
         public static final int list_item=0x7f0e0025;
-        public static final int main_activity=0x7f0e0043;
+        public static final int main_activity=0x7f0e0042;
         public static final int middle=0x7f0e0015;
         public static final int never=0x7f0e0019;
         public static final int none=0x7f0e000e;
@@ -1414,9 +1415,8 @@ containing a value of this type.
         public static final int split_action_bar=0x7f0e0007;
         public static final int submit_area=0x7f0e003c;
         public static final int tabMode=0x7f0e000b;
-        public static final int textView1=0x7f0e0041;
-        public static final int textView2=0x7f0e0042;
-        public static final int textView3=0x7f0e0040;
+        public static final int textView1=0x7f0e0040;
+        public static final int textView2=0x7f0e0041;
         public static final int title=0x7f0e0027;
         public static final int up=0x7f0e0008;
         public static final int useLogo=0x7f0e0012;

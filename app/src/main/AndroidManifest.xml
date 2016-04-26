@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="contador.piedras.jugger"
     android:installLocation="preferExternal"
-    android:versionCode="33"
-    android:versionName="3.3" >
+    android:versionCode="34"
+    android:versionName="4.0" >
 
     <uses-sdk
         android:minSdkVersion="11"

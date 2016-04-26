@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.media.AudioManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
@@ -37,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
 
 	TextView T1Score, T2Score;
 	TextView T1Name, T2Name;
-	TextView Counter;
+	TextView tv_counter;
 	private AudioManager audio;
 
 	boolean isPaused = true;
@@ -54,7 +53,7 @@ public class MainActivity extends ActionBarActivity {
 
 		SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-		Counter = (TextView) findViewById(R.id.TV_cero);
+        tv_counter = (TextView) findViewById(R.id.TV_cero);
 
 		play = (Button) findViewById(R.id.b_start);
 		stop = (Button) findViewById(R.id.b_stop);
@@ -78,9 +77,7 @@ public class MainActivity extends ActionBarActivity {
 
 		try {
 			Bundle extras = getIntent().getExtras();
-
-			Counter.setText(extras.getString("Counter"));
-
+            tv_counter.setText(extras.getString("Counter"));
 			if (!extras.getString("Team 1").equals("")) {
 				T1Name.setText(extras.getString("Team 1"));
 				T2Name.setText(extras.getString("Team 2"));
@@ -109,7 +106,7 @@ public class MainActivity extends ActionBarActivity {
 				if (isPaused) {// Pausar el contador
 					play.setBackgroundResource(R.drawable.pause);
 					isPaused = false;
-					counter = new Counter(Counter, Integer.parseInt(Counter
+					counter = new Counter(tv_counter, Integer.parseInt(tv_counter
 							.getText().toString()), mode, interval, s);
 
 					counter.start();
@@ -127,9 +124,9 @@ public class MainActivity extends ActionBarActivity {
 					play.setBackgroundResource(R.drawable.play);
 					counter.setStoped(true);
 					isPaused = true;
-					Counter.setText("0");
+                    tv_counter.setText("0");
 				} else {
-					Counter.setText("0");
+                    tv_counter.setText("0");
 				}
 
 			}
@@ -167,7 +164,7 @@ public class MainActivity extends ActionBarActivity {
 			}
 		});
 
-		Counter.setOnLongClickListener(new View.OnLongClickListener() {
+        tv_counter.setOnLongClickListener(new View.OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View v) {
 				SetCounter();
@@ -192,16 +189,16 @@ public class MainActivity extends ActionBarActivity {
 		incStones.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				int num = Integer.parseInt(Counter.getText().toString());
-				Counter.setText((num + 1) + "");
+				int num = Integer.parseInt(tv_counter.getText().toString());
+                tv_counter.setText((num + 1) + "");
 			}
 		});
 		decStones.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (0 < Integer.parseInt(Counter.getText().toString())) {
-					int num = Integer.parseInt(Counter.getText().toString());
-					Counter.setText((num - 1) + "");
+				if (0 < Integer.parseInt(tv_counter.getText().toString())) {
+					int num = Integer.parseInt(tv_counter.getText().toString());
+                    tv_counter.setText((num - 1) + "");
 				}
 			}
 		});
@@ -244,7 +241,7 @@ public class MainActivity extends ActionBarActivity {
 			}
 			Intent i = new Intent(this, AppPreferences.class);
 
-			i.putExtra("Counter", Counter.getText().toString());
+			i.putExtra("Counter", tv_counter.getText().toString());
 			if (T1Name.getText().toString() != getResources().getString(
 					R.string.team1)) {
 				i.putExtra("Team 1", T1Name.getText().toString());
@@ -288,10 +285,10 @@ public class MainActivity extends ActionBarActivity {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						try{
 							int num = Integer.parseInt(counterEdit.getText().toString());
-							Counter.setText(num + "");
+                            tv_counter.setText(num + "");
 						}
 						catch(Exception e){
-							Counter.setText(0+"");
+                            tv_counter.setText(0+"");
 						}
 					}
 				});
@@ -366,6 +363,9 @@ public class MainActivity extends ActionBarActivity {
 		}
 	}
 
-
+	protected void onStart() {
+		super.onStart();
+        tv_counter.setText("0");
+	}
 
 }
