@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="gong_sounds">
+        <item>@string/gong</item>
+        <item>@string/vuvucela</item>
+    </string-array>
+    <string-array name="gong_sounds_values">
+        <item>2131099654</item> <!-- Gong -->
+        <item>2131099661</item> <!-- Vuvucela -->
+    </string-array>
+    <string-array name="intervale_count">
+        <item>1</item>
+        <item>1.3</item>
+        <item>1.5</item>
+        <item>1.7</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="intervale_count_values">
+        <item>1000</item>
+        <item>1300</item>
+        <item>1500</item>
+        <item>1700</item>
+        <item>2000</item>
+    </string-array>
+    <string-array name="lenguages_array">
+        <item>@string/english</item>
+        <item>@string/spanish</item>
+        <item>@string/catalan</item>
+        <item>@string/german</item>
+        <item>@string/french</item>
+        <item>@string/portuguese</item>
+    </string-array>
+    <string-array name="lenguages_array_values">
+        <item>US</item>
+        <item>ES</item>
+        <item>CA</item>
+        <item>DE</item>
+        <item>FR</item>
+        <item>PT</item>
+    </string-array>
+    <string-array name="mode_game">
+        <item>@string/mode_normal</item>
+        <item>@string/mode_extension</item>
+        <item>@string/mode_infinite</item>
+    </string-array>
+    <string-array name="mode_game_values">
+        <item>100</item>
+        <item>50</item>
+        <item>1000</item>
+    </string-array>
+    <string-array name="time_sounds">
+        <item>@string/alan</item>
+        <item>@string/cash_reg</item>
+        <item>@string/censure</item>
+        <item>@string/crow</item>
+        <item>@string/doh</item>
+        <item>@string/fb_noti</item>
+        <item>@string/achievement</item>
+        <item>@string/metal_gear</item>
+        <item>@string/duck</item>
+        <item>@string/pan</item>
+        <item>@string/drum</item>
+        <item>@string/stone</item>
+    </string-array>
+    <string-array name="time_sounds_values">
+        <item>2131099648</item> <!-- Alan -->
+        <item>2131099649</item> <!-- Registradora -->
+        <item>2131099650</item> <!-- Censura -->
+        <item>2131099651</item> <!-- Cuervo -->
+        <item>2131099652</item> <!-- DOh -->
+        <item>2131099653</item> <!-- FB -->
+        <item>2131099655</item> <!-- logro -->
+        <item>2131099656</item> <!-- metal gear -->
+        <item>2131099657</item> <!-- pato -->
+        <item>2131099658</item> <!-- sarten -->
+        <item>2131099660</item> <!-- tambor -->
+        <item>2131099659</item> <!-- stone -->
+    </string-array>
+    <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Ir a la pantalla de inicio"</string>
+    <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"%1$s, %2$s"</string>
+    <string msgid="6623331958280229229" name="abc_action_bar_home_subtitle_description_format">"%1$s, %2$s, %3$s"</string>
+    <string msgid="1594238315039666878" name="abc_action_bar_up_description">"Desplazarse hacia arriba"</string>
+    <string msgid="3588849162933574182" name="abc_action_menu_overflow_description">"Más opciones"</string>
+    <string msgid="4076576682505996667" name="abc_action_mode_done">"Listo"</string>
+    <string msgid="7468859129482906941" name="abc_activity_chooser_view_see_all">"Ver todo"</string>
+    <string msgid="2031811694353399454" name="abc_activitychooserview_choose_application">"Seleccionar una aplicación"</string>
+    <string msgid="3691816814315814921" name="abc_searchview_description_clear">"Borrar consulta"</string>
+    <string msgid="2550479030709304392" name="abc_searchview_description_query">"Consulta"</string>
+    <string msgid="8264924765203268293" name="abc_searchview_description_search">"Buscar"</string>
+    <string msgid="8928215447528550784" name="abc_searchview_description_submit">"Enviar consulta"</string>
+    <string msgid="893419373245838918" name="abc_searchview_description_voice">"Búsqueda por voz"</string>
+    <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Compartir con"</string>
+    <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Compartir con %s"</string>
+    <string name="accept">Aceptar</string>
+    <string name="achievement">Logro</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="alan">Alan perro de la padrera</string>
+    <string name="app_name">JuggerStones</string>
+    <string name="asssit">Soporte y contacto</string>
+    <string name="cancel">Cancelar</string>
+    <string name="cash_reg">Caja registradora</string>
+    <string name="catalan">Catalan</string>
+    <string name="censure">Censura</string>
+    <string name="cero">0</string>
+    <string name="contact">Contacto</string>
+    <string name="crow">Cuervo</string>
+    <string name="doh">D\'oh de Homer</string>
+    <string name="drum">Tambor</string>
+    <string name="duck">pato</string>
+    <string name="english">Ingles</string>
+    <string name="fb_noti">Noticiacion de Fb</string>
+    <string name="french">Frances</string>
+    <string name="german">Alemán</string>
+    <string name="gong">Gong</string>
+    <string name="interval">Intervalo entre piedras</string>
+    <string name="language">Idioma</string>
+    <string name="metal_gear">Metal gear</string>
+    <string name="mode">Modo de juego</string>
+    <string name="mode_extension">Modo prorroga mode (50 piedras cada parte)</string>
+    <string name="mode_infinite">Modo infinito(Solo piedras)</string>
+    <string name="mode_normal">Modo normal (100 piedras cada parte)</string>
+    <string name="msg_assit">Esta aplicación esta 100% programada por CristianCV, ¡espero que te sea útil!\n\n Acepto propuestas de mejora (especialmente en las traducciones) puedes enviarme un email con el boton de abajo.</string>
+    <string name="msg_button">Enviar mensaje</string>
+    <string name="msg_contact">Enviar un mensaje al desarrollador</string>
+    <string name="msg_rate">Valorar la aplicación</string>
+    <string name="no">No</string>
+    <string name="others">Otros</string>
+    <string name="pan">Sarten</string>
+    <string name="portuguese">Portugués</string>
+    <string name="rate">Valorar</string>
+    <string name="rename_teams">Renombrar equipos</string>
+    <string name="set_counter">Establecer contador</string>
+    <string name="settings_game">Juego</string>
+    <string name="settings_sound">Sonidos</string>
+    <string name="sounds_gong">Sonido de gong</string>
+    <string name="sounds_stones">Sonido de piedras</string>
+    <string name="spanish">Español</string>
+    <string name="stone">Piedra</string>
+    <string name="team1">Equipo 1</string>
+    <string name="team1ini">Equipo 1 initials</string>
+    <string name="team2">Equipo 2</string>
+    <string name="team2ini">Equipo 2 initials</string>
+    <string name="up_improv">Proximas mejoras: \n -Poder añadir sonidos y grabar personalizados</string>
+    <string name="vuvucela">Vuvucela</string>
+    <string name="warning_initials">Por comodidad solo las iniciales (MAX 5)</string>
+    <string name="yes">Si</string>
+</resources>

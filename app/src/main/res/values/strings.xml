@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">JuggerStones</string>
+    <string name="action_settings">Settings</string>
+    <string name="cero">0</string>
+    <string name="team1">Team 1</string>
+    <string name="team2">Team 2</string>
+    <string name="team1ini">Team 1 initials</string>
+    <string name="team2ini">Team 2 initials</string>
+    <string name="rename_teams">Rename teams</string>
+    <string name="set_counter">set_counter</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
+    <string name="warning_initials">For convenience only the initials of each team please (5 MAX)</string>
+    <string name="interval">Stone\'s interval</string>
+    <string name="mode">Game mode</string>
+    <string name="mode_normal">Normal mode (100 stones each part)</string>
+    <string name="mode_extension">Extension mode (50 stones each part)</string>
+    <string name="mode_infinite">Infinite mode (Only stones)</string>
+    <string name="sounds_stones">Sounds of stones</string>
+    <string name="alan">Alan Prairie dog</string>
+    <string name="cash_reg">Cash register</string>
+    <string name="censure">Censure</string>
+    <string name="crow">Crow</string>
+    <string name="doh">Homer\'s D\'oh</string>
+    <string name="fb_noti">Fb notification</string>
+    <string name="achievement">Achievement</string>
+    <string name="metal_gear">Metal gear</string>
+    <string name="duck">Duck</string>
+    <string name="pan">Pan</string>
+    <string name="drum">Drum</string>
+    <string name="sounds_gong">Sounds of gongs</string>
+    <string name="gong">Gong</string>
+    <string name="vuvucela">Vuvucela</string>
+    <string name="stone">Stone</string>
+    <string name="msg_assit">This application is 100% programmed CristianCV, I hope this will be very helpful! \n\nI accept any suggestions for improvement (especially in the translations), you can get in touch with me using the button on this screen.</string>
+    <string name="msg_button">Send message</string>
+    <string name="asssit">Support and contact</string>
+    <string name="up_improv">Upcoming improvements: \n-Can add and record custom sounds</string>
+    <string name="settings_sound">Sounds</string>
+    <string name="settings_game">Game</string>
+    <string name="others">Others</string>
+    <string name="contact">Contact</string>
+    <string name="msg_contact">Send a message to the developer</string>
+    <string name="msg_rate">Rate the app</string>
+    <string name="rate">Rate</string>
+    <!-- Idiomas -->
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="spanish">Spanish</string>
+    <string name="catalan">Catalan</string>
+    <string name="german">German</string>
+    <string name="french">French</string>
+    <string name="portuguese">Portuguese</string>
+
+</resources>

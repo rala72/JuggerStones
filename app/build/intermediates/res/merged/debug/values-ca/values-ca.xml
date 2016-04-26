@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="gong_sounds">
+        <item>@string/gong</item>
+        <item>@string/vuvucela</item>
+    </string-array>
+    <string-array name="gong_sounds_values">
+        <item>2131099654</item> <!-- Gong -->
+        <item>2131099661</item> <!-- Vuvucela -->
+    </string-array>
+    <string-array name="intervale_count">
+        <item>1</item>
+        <item>1.3</item>
+        <item>1.5</item>
+        <item>1.7</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="intervale_count_values">
+        <item>1000</item>
+        <item>1300</item>
+        <item>1500</item>
+        <item>1700</item>
+        <item>2000</item>
+    </string-array>
+    <string-array name="lenguages_array">
+        <item>@string/english</item>
+        <item>@string/spanish</item>
+        <item>@string/catalan</item>
+        <item>@string/german</item>
+        <item>@string/french</item>
+        <item>@string/portuguese</item>
+    </string-array>
+    <string-array name="lenguages_array_values">
+        <item>US</item>
+        <item>ES</item>
+        <item>CA</item>
+        <item>DE</item>
+        <item>FR</item>
+        <item>PT</item>
+    </string-array>
+    <string-array name="mode_game">
+        <item>@string/mode_normal</item>
+        <item>@string/mode_extension</item>
+        <item>@string/mode_infinite</item>
+    </string-array>
+    <string-array name="mode_game_values">
+        <item>100</item>
+        <item>50</item>
+        <item>1000</item>
+    </string-array>
+    <string-array name="time_sounds">
+        <item>@string/alan</item>
+        <item>@string/cash_reg</item>
+        <item>@string/censure</item>
+        <item>@string/crow</item>
+        <item>@string/doh</item>
+        <item>@string/fb_noti</item>
+        <item>@string/achievement</item>
+        <item>@string/metal_gear</item>
+        <item>@string/duck</item>
+        <item>@string/pan</item>
+        <item>@string/drum</item>
+        <item>@string/stone</item>
+    </string-array>
+    <string-array name="time_sounds_values">
+        <item>2131099648</item> <!-- Alan -->
+        <item>2131099649</item> <!-- Registradora -->
+        <item>2131099650</item> <!-- Censura -->
+        <item>2131099651</item> <!-- Cuervo -->
+        <item>2131099652</item> <!-- DOh -->
+        <item>2131099653</item> <!-- FB -->
+        <item>2131099655</item> <!-- logro -->
+        <item>2131099656</item> <!-- metal gear -->
+        <item>2131099657</item> <!-- pato -->
+        <item>2131099658</item> <!-- sarten -->
+        <item>2131099660</item> <!-- tambor -->
+        <item>2131099659</item> <!-- stone -->
+    </string-array>
+    <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Navega a la pàgina d\'inici"</string>
+    <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"%1$s, %2$s"</string>
+    <string msgid="6623331958280229229" name="abc_action_bar_home_subtitle_description_format">"%1$s, %2$s, %3$s"</string>
+    <string msgid="1594238315039666878" name="abc_action_bar_up_description">"Navega cap a dalt"</string>
+    <string msgid="3588849162933574182" name="abc_action_menu_overflow_description">"Més opcions"</string>
+    <string msgid="4076576682505996667" name="abc_action_mode_done">"Fet"</string>
+    <string msgid="7468859129482906941" name="abc_activity_chooser_view_see_all">"Mostra\'ls tots"</string>
+    <string msgid="2031811694353399454" name="abc_activitychooserview_choose_application">"Selecciona una aplicació"</string>
+    <string msgid="3691816814315814921" name="abc_searchview_description_clear">"Esborra la consulta"</string>
+    <string msgid="2550479030709304392" name="abc_searchview_description_query">"Consulta de cerca"</string>
+    <string msgid="8264924765203268293" name="abc_searchview_description_search">"Cerca"</string>
+    <string msgid="8928215447528550784" name="abc_searchview_description_submit">"Envia la consulta"</string>
+    <string msgid="893419373245838918" name="abc_searchview_description_voice">"Cerca per veu"</string>
+    <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Comparteix amb"</string>
+    <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Comparteix amb %s"</string>
+    <string name="accept">Acceptar</string>
+    <string name="achievement">Èxit</string>
+    <string name="action_settings">Configuració</string>
+    <string name="alan">Gos de Alan Prairie</string>
+    <string name="app_name">JuggerStones</string>
+    <string name="asssit">Ajuda i contancte</string>
+    <string name="cancel">Cancel·lar</string>
+    <string name="cash_reg">Registrador d\'efectiu</string>
+    <string name="catalan">Català</string>
+    <string name="censure">Censura</string>
+    <string name="cero">0</string>
+    <string name="contact">Contacte</string>
+    <string name="crow">Corb</string>
+    <string name="doh">D\'oh d\'Homer</string>
+    <string name="drum">Tambor</string>
+    <string name="duck">Ànec</string>
+    <string name="english">Ingles</string>
+    <string name="fb_noti">Notificació Fb</string>
+    <string name="french">Frances</string>
+    <string name="german">Alemany</string>
+    <string name="gong">Gong</string>
+    <string name="interval">Interval de pedres</string>
+    <string name="language">Idioma</string>
+    <string name="metal_gear">Engranatge de metal</string>
+    <string name="mode">Mode de joc</string>
+    <string name="mode_extension">Mode Extensión (50 pedres per part)</string>
+    <string name="mode_infinite">Mode Infinite (Solament pedres)</string>
+    <string name="mode_normal">Mode Normal (100 pedres per part)</string>
+    <string name="msg_assit">Aquesta aplicació està programada al 100% per CristianCV, espere  
+que siga molt profitable! \n\nS\'accepta qualsevol sugerència per a millorar(especialment les 
+traduccions), pots posarte en contacte amb mi pulsant el botó en aquesta pantalla.</string>
+    <string name="msg_button">Enviar  missatge</string>
+    <string name="msg_contact">Enviar un missatge al desenvolupador</string>
+    <string name="msg_rate">Votar l\'app</string>
+    <string name="no">No</string>
+    <string name="others">Altres</string>
+    <string name="pan">Cassola</string>
+    <string name="portuguese">Portuguès</string>
+    <string name="rate">Votar</string>
+    <string name="rename_teams">Renanomenar equips</string>
+    <string name="set_counter">Establir comptador</string>
+    <string name="settings_game">Joc</string>
+    <string name="settings_sound">So</string>
+    <string name="sounds_gong">Sons de gongs</string>
+    <string name="sounds_stones">So de les pedres</string>
+    <string name="spanish">Espanyol</string>
+    <string name="stone">Pedra</string>
+    <string name="team1">Equip 1</string>
+    <string name="team1ini">Inicials de l\'Equip 1</string>
+    <string name="team2">Equip 2</string>
+    <string name="team2ini">Inicials de l\'Equip 2</string>
+    <string name="up_improv">Millores en procés: \n-Poder afegir i gravar sons personalitzats</string>
+    <string name="vuvucela">Vuvucela</string>
+    <string name="warning_initials">Per conveniència usar només les inicials de cadascun dels 
+        equips, per favor (5 MAX)</string>
+    <string name="yes">Si</string>
+</resources>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">JuggerStones</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="cero">0</string>
+    <string name="team1">Équipe 1</string>
+    <string name="team2">Équipe 2</string>
+    <string name="team1ini">Équipe 1 initiales</string>
+    <string name="team2ini">Équipe 2 initiales</string>
+    <string name="rename_teams">Renommer équipes</string>
+    <string name="set_counter">Mettre le compteur</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="accept">Accepter</string>
+    <string name="cancel">Annuler</string>
+    <string name="warning_initials">Pour plus de commodité seulement les initiales de chaque équipe s\'il vous plaît (5 max)</string>
+    <string name="interval">D\'intervalle pierre</string>
+    <string name="mode">Mode de jeu</string>
+    <string name="mode_normal">Mode normal (100 pierres de chaque partie)</string>
+    <string name="mode_extension">Mode d\'extension (50 pierres chaque partie)</string>
+    <string name="mode_infinite">Mode Infini (Seuls les pierres)</string>
+    <string name="sounds_stones">Sons de pierres</string>
+    <string name="alan">Chien Alan prairie</string>
+    <string name="cash_reg">Caisse</string>
+    <string name="censure">Censure</string>
+    <string name="crow">Corneille</string>
+    <string name="doh">Homere D\'oh</string>
+    <string name="fb_noti">Fb notification</string>
+    <string name="achievement">Réalisation</string>
+    <string name="metal_gear">Metal gear</string>
+    <string name="duck">Canard</string>
+    <string name="pan">Pan</string>
+    <string name="drum">Tambour</string>
+    <string name="sounds_gong">Des sons de gongs</string>
+    <string name="gong">Gong</string>
+    <string name="vuvucela">Vuvucela</string>
+    <string name="stone">Pierre</string>
+    <string name="msg_assit">Cette application est 100% programmeé par CristianCV, j\'espère que cela va être très utile! \n\nJ\'accepte toute suggestion d\'amélioration (en particulier dans les traductions), vous pouvez entrer en contact avec moi en utilisant le bouton sur votre écran. </string>
+    <string name="msg_button">Envoyer le message</string>
+    <string name="asssit">Support et contact</string>
+    <string name="up_improv">Améliorations à venir: -Pouvez ajouter et enregistrer des sons personnalisés</string>
+    <string name="settings_sound">Sons</string>
+    <string name="settings_game">Jeu</string>
+    <string name="others">D\'autres</string>
+    <string name="contact">Contact</string>
+    <string name="msg_contact">Envoyer un message à son développeur</string>
+    <string name="msg_rate">Évaluer l\'application</string>
+    <string name="rate">Évaluer</string>
+    <!-- Idiomas -->
+    <string name="language">Langue</string>
+    <string name="english">Anglais</string>
+    <string name="spanish">Espagnol</string>
+    <string name="catalan">Catalan</string>
+    <string name="german">Allemand</string>
+    <string name="french">Français</string>
+    <string name="portuguese">Portugais</string>
+
+    <string-array name="intervale_count">
+        <item>1</item>
+        <item>1.3</item>
+        <item>1.5</item>
+        <item>1.7</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="intervale_count_values">
+        <item>1000</item>
+        <item>1300</item>
+        <item>1500</item>
+        <item>1700</item>
+        <item>2000</item>
+    </string-array>
+    <string-array name="mode_game">
+        <item>@string/mode_normal</item>
+        <item>@string/mode_extension</item>
+        <item>@string/mode_infinite</item>
+    </string-array>
+    <string-array name="mode_game_values">
+        <item>100</item>
+        <item>50</item>
+        <item>1000</item>
+    </string-array>
+    <string-array name="time_sounds">
+        <item>@string/alan</item>
+        <item>@string/cash_reg</item>
+        <item>@string/censure</item>
+        <item>@string/crow</item>
+        <item>@string/doh</item>
+        <item>@string/fb_noti</item>
+        <item>@string/achievement</item>
+        <item>@string/metal_gear</item>
+        <item>@string/duck</item>
+        <item>@string/pan</item>
+        <item>@string/drum</item>
+        <item>@string/stone</item>
+    </string-array>
+    <string-array name="time_sounds_values">
+        <item>2131099648</item> <!-- Alan -->
+        <item>2131099649</item> <!-- Registradora -->
+        <item>2131099650</item> <!-- Censura -->
+        <item>2131099651</item> <!-- Cuervo -->
+        <item>2131099652</item> <!-- DOh -->
+        <item>2131099653</item> <!-- FB -->
+        <item>2131099655</item> <!-- logro -->
+        <item>2131099656</item> <!-- metal gear -->
+        <item>2131099657</item> <!-- pato -->
+        <item>2131099658</item> <!-- sarten -->
+        <item>2131099660</item> <!-- tambor -->
+        <item>2131099659</item> <!-- stone -->
+    </string-array>
+    <string-array name="gong_sounds">
+        <item>@string/gong</item>
+        <item>@string/vuvucela</item>
+    </string-array>
+    <string-array name="gong_sounds_values">
+        <item>2131099654</item> <!-- Gong -->
+        <item>2131099661</item> <!-- Vuvucela -->
+    </string-array>
+    <string-array name="lenguages_array">
+        <item>@string/english</item>
+        <item>@string/spanish</item>
+        <item>@string/catalan</item>
+        <item>@string/german</item>
+        <item>@string/french</item>
+        <item>@string/portuguese</item>
+    </string-array>
+
+    <string-array name="lenguages_array_values">
+        <item>US</item>
+        <item>ES</item>
+        <item>CA</item>
+        <item>DE</item>
+        <item>FR</item>
+        <item>PT</item>
+    </string-array>
+</resources>
