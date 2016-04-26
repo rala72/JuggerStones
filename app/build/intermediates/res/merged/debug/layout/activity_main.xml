@@ -98,7 +98,7 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/TV_cero"
         android:layout_toEndOf="@+id/TV_cero"
-        android:layout_marginLeft="25dp" />
+        android:layout_marginLeft="18dp" />
 
     <Button
         android:id="@+id/dec_stones"
@@ -110,7 +110,7 @@
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/TV_cero"
         android:layout_toStartOf="@+id/TV_cero"
-        android:layout_marginRight="25dp" />
+        android:layout_marginRight="18dp" />
 
     <Button
         android:id="@+id/b_mint2"

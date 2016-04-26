@@ -51,6 +51,7 @@ public class AppPreferences extends PreferenceActivity {
 		refresh.putExtra("Counter", extras.getString("Counter"));
 		refresh.putExtra("Team 1", extras.getString("Team 1"));
 		refresh.putExtra("Team 2", extras.getString("Team 2"));
+		refresh.putExtra("count",extras.getString("count"));
 		startActivity(refresh);
 		finish();
 
@@ -73,6 +74,7 @@ public class AppPreferences extends PreferenceActivity {
 			a.putExtra("Counter", extras.getString("Counter"));
 			a.putExtra("Team 1", extras.getString("Team 1"));
 			a.putExtra("Team 2", extras.getString("Team 2"));
+			a.putExtra("count",extras.getString("count"));
 			startActivity(a);
 			finish();
 			return true;
