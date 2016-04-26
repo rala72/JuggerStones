@@ -8,10 +8,12 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
 
 public class AppPreferences extends PreferenceActivity {
@@ -40,7 +42,9 @@ public class AppPreferences extends PreferenceActivity {
 				});
 	}
 
-	private void changeLanguage(String lenguage) {
+
+
+    private void changeLanguage(String lenguage) {
 		Locale newLocale = new Locale(lenguage.toLowerCase(Locale.US), lenguage);
 		Resources res = getResources();
 		DisplayMetrics dm = res.getDisplayMetrics();

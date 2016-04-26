@@ -14,12 +14,12 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 110,
+                        "startLine": 113,
                         "startColumn": 4,
-                        "startOffset": 4809,
-                        "endLine": 113,
+                        "startOffset": 4967,
+                        "endLine": 116,
                         "endColumn": 19,
-                        "endOffset": 4934
+                        "endOffset": 5092
                     }
                 }
             },
@@ -35,12 +35,12 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 114,
+                        "startLine": 117,
                         "startColumn": 4,
-                        "startOffset": 4939,
-                        "endLine": 117,
+                        "startOffset": 5097,
+                        "endLine": 120,
                         "endColumn": 19,
-                        "endOffset": 5095
+                        "endOffset": 5253
                     }
                 }
             },
@@ -56,12 +56,12 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 58,
+                        "startLine": 61,
                         "startColumn": 4,
-                        "startOffset": 2978,
-                        "endLine": 64,
+                        "startOffset": 3136,
+                        "endLine": 67,
                         "endColumn": 19,
-                        "endOffset": 3156
+                        "endOffset": 3314
                     }
                 }
             },
@@ -77,12 +77,12 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 65,
+                        "startLine": 68,
                         "startColumn": 4,
-                        "startOffset": 3161,
-                        "endLine": 71,
+                        "startOffset": 3319,
+                        "endLine": 74,
                         "endColumn": 19,
-                        "endOffset": 3355
+                        "endOffset": 3513
                     }
                 }
             },
@@ -98,12 +98,12 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 118,
+                        "startLine": 121,
                         "startColumn": 4,
-                        "startOffset": 5100,
-                        "endLine": 125,
+                        "startOffset": 5258,
+                        "endLine": 128,
                         "endColumn": 19,
-                        "endOffset": 5380
+                        "endOffset": 5538
                     }
                 }
             },
@@ -119,12 +119,12 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 127,
+                        "startLine": 130,
                         "startColumn": 4,
-                        "startOffset": 5386,
-                        "endLine": 134,
+                        "startOffset": 5544,
+                        "endLine": 137,
                         "endColumn": 19,
-                        "endOffset": 5594
+                        "endOffset": 5752
                     }
                 }
             },
@@ -140,12 +140,12 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 72,
+                        "startLine": 75,
                         "startColumn": 4,
-                        "startOffset": 3360,
-                        "endLine": 76,
+                        "startOffset": 3518,
+                        "endLine": 79,
                         "endColumn": 19,
-                        "endOffset": 3539
+                        "endOffset": 3697
                     }
                 }
             },
@@ -161,12 +161,12 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 77,
+                        "startLine": 80,
                         "startColumn": 4,
-                        "startOffset": 3544,
-                        "endLine": 81,
+                        "startOffset": 3702,
+                        "endLine": 84,
                         "endColumn": 19,
-                        "endOffset": 3677
+                        "endOffset": 3835
                     }
                 }
             },
@@ -182,12 +182,12 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 82,
+                        "startLine": 85,
                         "startColumn": 4,
-                        "startOffset": 3682,
-                        "endLine": 95,
+                        "startOffset": 3840,
+                        "endLine": 98,
                         "endColumn": 19,
-                        "endOffset": 4165
+                        "endOffset": 4323
                     }
                 }
             },
@@ -203,12 +203,12 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 96,
+                        "startLine": 99,
                         "startColumn": 4,
-                        "startOffset": 4170,
-                        "endLine": 109,
+                        "startOffset": 4328,
+                        "endLine": 112,
                         "endColumn": 19,
-                        "endOffset": 4804
+                        "endOffset": 4962
                     }
                 }
             },
@@ -660,11 +660,11 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 53,
+                        "startLine": 56,
                         "startColumn": 4,
-                        "startOffset": 2799,
+                        "startOffset": 2957,
                         "endColumn": 43,
-                        "endOffset": 2838
+                        "endOffset": 2996
                     }
                 }
             },
@@ -812,11 +812,11 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 51,
+                        "startLine": 54,
                         "startColumn": 4,
-                        "startOffset": 2712,
+                        "startOffset": 2870,
                         "endColumn": 42,
-                        "endOffset": 2750
+                        "endOffset": 2908
                     }
                 }
             },
@@ -850,11 +850,11 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 55,
+                        "startLine": 58,
                         "startColumn": 4,
-                        "startOffset": 2885,
+                        "startOffset": 3043,
                         "endColumn": 42,
-                        "endOffset": 2923
+                        "endOffset": 3081
                     }
                 }
             },
@@ -869,11 +869,11 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 54,
+                        "startLine": 57,
                         "startColumn": 4,
-                        "startOffset": 2843,
+                        "startOffset": 3001,
                         "endColumn": 41,
-                        "endOffset": 2880
+                        "endOffset": 3038
                     }
                 }
             },
@@ -926,11 +926,11 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 50,
+                        "startLine": 53,
                         "startColumn": 4,
-                        "startOffset": 2668,
+                        "startOffset": 2826,
                         "endColumn": 43,
-                        "endOffset": 2707
+                        "endOffset": 2865
                     }
                 }
             },
@@ -1173,11 +1173,11 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 56,
+                        "startLine": 59,
                         "startColumn": 4,
-                        "startOffset": 2928,
+                        "startOffset": 3086,
                         "endColumn": 48,
-                        "endOffset": 2972
+                        "endOffset": 3130
                     }
                 }
             },
@@ -1325,11 +1325,11 @@
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
                     "position": {
-                        "startLine": 52,
+                        "startLine": 55,
                         "startColumn": 4,
-                        "startOffset": 2755,
+                        "startOffset": 2913,
                         "endColumn": 43,
-                        "endOffset": 2794
+                        "endOffset": 2952
                     }
                 }
             },
@@ -1357,8 +1357,46 @@
                     "startLine": 138,
                     "startColumn": 4,
                     "startOffset": 6740,
+                    "endColumn": 77,
+                    "endOffset": 6813
+                },
+                "from": {
+                    "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
+                    "position": {
+                        "startLine": 50,
+                        "startColumn": 4,
+                        "startOffset": 2726,
+                        "endColumn": 77,
+                        "endOffset": 2799
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 139,
+                    "startColumn": 4,
+                    "startOffset": 6818,
+                    "endColumn": 78,
+                    "endOffset": 6892
+                },
+                "from": {
+                    "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
+                    "position": {
+                        "startLine": 49,
+                        "startColumn": 4,
+                        "startOffset": 2647,
+                        "endColumn": 78,
+                        "endOffset": 2721
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 140,
+                    "startColumn": 4,
+                    "startOffset": 6897,
                     "endColumn": 42,
-                    "endOffset": 6778
+                    "endOffset": 6935
                 },
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
@@ -1373,11 +1411,11 @@
             },
             {
                 "to": {
-                    "startLine": 139,
+                    "startLine": 141,
                     "startColumn": 4,
-                    "startOffset": 6783,
+                    "startOffset": 6940,
                     "endColumn": 54,
-                    "endOffset": 6833
+                    "endOffset": 6990
                 },
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
@@ -1392,11 +1430,11 @@
             },
             {
                 "to": {
-                    "startLine": 140,
+                    "startLine": 142,
                     "startColumn": 4,
-                    "startOffset": 6838,
+                    "startOffset": 6995,
                     "endColumn": 42,
-                    "endOffset": 6876
+                    "endOffset": 7033
                 },
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
@@ -1411,11 +1449,11 @@
             },
             {
                 "to": {
-                    "startLine": 141,
+                    "startLine": 143,
                     "startColumn": 4,
-                    "startOffset": 6881,
+                    "startOffset": 7038,
                     "endColumn": 54,
-                    "endOffset": 6931
+                    "endOffset": 7088
                 },
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
@@ -1430,11 +1468,11 @@
             },
             {
                 "to": {
-                    "startLine": 142,
+                    "startLine": 144,
                     "startColumn": 4,
-                    "startOffset": 6936,
+                    "startOffset": 7093,
                     "endColumn": 104,
-                    "endOffset": 7036
+                    "endOffset": 7193
                 },
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
@@ -1449,11 +1487,11 @@
             },
             {
                 "to": {
-                    "startLine": 143,
+                    "startLine": 145,
                     "startColumn": 4,
-                    "startOffset": 7041,
+                    "startOffset": 7198,
                     "endColumn": 45,
-                    "endOffset": 7082
+                    "endOffset": 7239
                 },
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
@@ -1468,11 +1506,11 @@
             },
             {
                 "to": {
-                    "startLine": 144,
+                    "startLine": 146,
                     "startColumn": 4,
-                    "startOffset": 7087,
+                    "startOffset": 7244,
                     "endColumn": 85,
-                    "endOffset": 7168
+                    "endOffset": 7325
                 },
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",
@@ -1487,11 +1525,11 @@
             },
             {
                 "to": {
-                    "startLine": 145,
+                    "startLine": 147,
                     "startColumn": 4,
-                    "startOffset": 7173,
+                    "startOffset": 7330,
                     "endColumn": 34,
-                    "endOffset": 7203
+                    "endOffset": 7360
                 },
                 "from": {
                     "file": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\src\\main\\res\\values-es\\strings.xml",

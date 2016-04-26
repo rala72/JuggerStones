@@ -136,6 +136,8 @@
     <string name="sounds_stones">Sonido de piedras</string>
     <string name="spanish">Español</string>
     <string name="stone">Piedra</string>
+    <string name="stop_after_gong">Detener contador despues de aviso</string>
+    <string name="stop_after_point">Detener contador despues de punto</string>
     <string name="team1">Equipo 1</string>
     <string name="team1ini">Equipo 1 initials</string>
     <string name="team2">Equipo 2</string>

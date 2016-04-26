@@ -495,7 +495,7 @@ int string abc_searchview_description_submit 0x7f07000b
 int string abc_searchview_description_voice 0x7f07000c
 int string abc_shareactionprovider_share_with 0x7f07000d
 int string abc_shareactionprovider_share_with_application 0x7f07000e
-int string abc_toolbar_collapse_description 0x7f070044
+int string abc_toolbar_collapse_description 0x7f070046
 int string accept 0x7f07000f
 int string achievement 0x7f070010
 int string action_settings 0x7f070011
@@ -541,6 +541,8 @@ int string sounds_gong 0x7f070038
 int string sounds_stones 0x7f070039
 int string spanish 0x7f07003a
 int string stone 0x7f07003b
+int string stop_after_gong 0x7f070044
+int string stop_after_point 0x7f070045
 int string team1 0x7f07003c
 int string team1ini 0x7f07003d
 int string team2 0x7f07003e

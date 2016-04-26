@@ -47,6 +47,9 @@
     <string name="msg_contact">Enviar un mensaje al desarrollador</string>
     <string name="msg_rate">Valorar la aplicación</string>
     <string name="rate">Valorar</string>
+    <string name="stop_after_point">Detener contador despues de punto</string>
+    <string name="stop_after_gong">Detener contador despues de aviso</string>
+
     <!-- Idiomas -->
     <string name="language">Idioma</string>
     <string name="english">Ingles</string>

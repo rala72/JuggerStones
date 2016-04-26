@@ -14,6 +14,17 @@
             android:entryValues="@array/mode_game_values"
             android:key="mode"
             android:title="@string/mode" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:summary="@string/stop_after_point"
+            android:key="stop_after_point" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:summary="@string/stop_after_gong"
+            android:key="stop_after_gong" />
+
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/settings_sound" >
         <ListPreference

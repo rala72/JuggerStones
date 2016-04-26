@@ -1489,7 +1489,7 @@ containing a value of this type.
         public static final int abc_searchview_description_voice=0x7f07000c;
         public static final int abc_shareactionprovider_share_with=0x7f07000d;
         public static final int abc_shareactionprovider_share_with_application=0x7f07000e;
-        public static final int abc_toolbar_collapse_description=0x7f070044;
+        public static final int abc_toolbar_collapse_description=0x7f070046;
         public static final int accept=0x7f07000f;
         public static final int achievement=0x7f070010;
         public static final int action_settings=0x7f070011;
@@ -1535,6 +1535,8 @@ containing a value of this type.
         public static final int sounds_stones=0x7f070039;
         public static final int spanish=0x7f07003a;
         public static final int stone=0x7f07003b;
+        public static final int stop_after_gong=0x7f070044;
+        public static final int stop_after_point=0x7f070045;
         public static final int team1=0x7f07003c;
         public static final int team1ini=0x7f07003d;
         public static final int team2=0x7f07003e;

@@ -46,7 +46,7 @@
     <string-array name="mode_game_values">
         <item>100</item>
         <item>50</item>
-        <item>1000</item>
+        <item>9999</item>
     </string-array>
     <string-array name="time_sounds">
         <item>@string/alan</item>

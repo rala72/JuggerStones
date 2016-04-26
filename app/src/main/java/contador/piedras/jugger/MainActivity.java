@@ -246,15 +246,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
                 Intent i = new Intent(this, AppPreferences.class);
                 i.putExtra("Counter", tv_counter.getText().toString());
-                if (!T1Name.getText().toString().equals(getResources().getString(R.string.team1))) {
-                    i.putExtra("Team 1", T1Name.getText().toString());
-                    i.putExtra("Team 2", T2Name.getText().toString());
-                    i.putExtra("count", tv_counter.getText().toString());
-                } else {
-                    i.putExtra("Team 1", "");
-                    i.putExtra("Team 2", "");
-                    i.putExtra("count", tv_counter.getText().toString());
-                }
+                i.putExtra("Team 1", T1Name.getText().toString());
+                i.putExtra("Team 2", T2Name.getText().toString());
+                i.putExtra("count", tv_counter.getText().toString());
                 startActivity(i);
                 finish();
 
