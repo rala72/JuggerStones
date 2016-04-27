@@ -28,12 +28,12 @@
         "source": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\21.0.3\\res\\drawable-xhdpi\\abc_textfield_search_activated_mtrl_alpha.9.png"
     },
     {
-        "merged": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_list_pressed_holo_dark.9.png",
-        "source": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\21.0.3\\res\\drawable-xhdpi\\abc_list_pressed_holo_dark.9.png"
-    },
-    {
         "merged": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_switch_track_mtrl_alpha.9.png",
         "source": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\21.0.3\\res\\drawable-xhdpi\\abc_switch_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_list_pressed_holo_dark.9.png",
+        "source": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\21.0.3\\res\\drawable-xhdpi\\abc_list_pressed_holo_dark.9.png"
     },
     {
         "merged": "C:\\Users\\Cristian\\Documents\\Programacion\\Workspace\\JuggerStones\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png",
