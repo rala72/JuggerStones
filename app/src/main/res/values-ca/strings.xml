@@ -51,7 +51,7 @@ traduccions), pots posarte en contacte amb mi pulsant el botó en aquesta pantal
     <string name="msg_rate">Votar l\'app</string>
     <string name="rate">Votar</string>
     <string name="stop_after_point">Parada el comptador, després del punt</string>
-    <string name="stop_after_gong">Parada el comptador després de l'advertiment</string>
+    <string name="stop_after_gong">Parada el comptador després de l\'advertiment</string>
     <!-- Idiomas -->
     <string name="language">Idioma</string>
     <string name="english">Ingles</string>
