@@ -151,7 +151,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                     play.setBackgroundResource(R.drawable.pause);
                     isPaused = false;
                     counter = new Counter(tv_counter, Integer.parseInt(tv_counter
-                            .getText().toString()), mode, interval, s);
+                            .getText().toString()), mode, interval, s,getApplicationContext(),play);
                     counter.start();
                 } else {// Reanudar el contador
                     play.setBackgroundResource(R.drawable.play);
@@ -172,11 +172,19 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             case R.id.b_mast1:
                 num = Integer.parseInt(T1Score.getText().toString());
                 T1Score.setText(String.valueOf(num + 1));
+                if(SP.getBoolean("stop_after_point", false)){
+                    play.setBackgroundResource(R.drawable.play);
+                    counter.setStoped(true);
+                }
                 break;
 
             case R.id.b_mast2:
                 num = Integer.parseInt(T2Score.getText().toString());
                 T2Score.setText(String.valueOf(num + 1));
+                if(SP.getBoolean("stop_after_point", false)){
+                    play.setBackgroundResource(R.drawable.play);
+                    counter.setStoped(true);
+                }
                 break;
 
             case R.id.b_mint1:

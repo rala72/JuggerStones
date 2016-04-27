@@ -1,5 +1,9 @@
 package contador.piedras.jugger;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class Counter extends Thread {
@@ -10,17 +14,20 @@ public class Counter extends Thread {
 	int interval = 1500;
 	Sounds sounds;
 	Hand handler;
+    SharedPreferences SP;
+    Button play;
 
 
-	public Counter(TextView t, int stones, int mode, int interval, Sounds s) {
+    public Counter(TextView t, int stones, int mode, int interval, Sounds s, Context context, Button play) {
 
 		this.stones = stones; // iguala las variables
 		this.handler = new Hand(t);
 		this.mode = mode;
 		this.interval = interval;
 		this.sounds = s;
-
-	}
+        SP = PreferenceManager.getDefaultSharedPreferences(context);
+        this.play =play;
+    }
 
 	@SuppressWarnings("static-access")
 	public void run() {
@@ -34,8 +41,10 @@ public class Counter extends Thread {
 			handler.setHcron(stones + "");
 			handler.act();
 			try {
-				if (stones + 1 == mode || stones + 1 == (mode * 2)) {
+				if (stones == mode || stones == (mode * 2)) { //si llega a modo o modo*2 (2º parte) suena gong
 					sounds.ActivateGong();
+                    setStoped(SP.getBoolean("stop_after_gong", false));
+                    play.setBackgroundResource(R.drawable.play);
 				} else {
 					sounds.ActivateStone();
 				}
@@ -46,9 +55,6 @@ public class Counter extends Thread {
 		}
 	}
 
-	public boolean isStoped() {
-		return stoped;
-	}
 
 	public void setStoped(boolean stoped) {
 		this.stoped = stoped;

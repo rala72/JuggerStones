@@ -47,6 +47,10 @@
     <string name="msg_contact">Send a message to the developer</string>
     <string name="msg_rate">Rate the app</string>
     <string name="rate">Rate</string>
+
+    <string name="stop_after_point">Stop counter after point</string>
+    <string name="stop_after_gong">Stop counter after warning</string>
+
     <!-- Idiomas -->
     <string name="language">Language</string>
     <string name="english">English</string>

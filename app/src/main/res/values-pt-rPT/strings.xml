@@ -46,6 +46,10 @@
     <string name="msg_contact">Envie uma mensagem para o desenvolvedor</string>
     <string name="msg_rate">Classifique o app</string>
     <string name="rate">Pontuar</string>
+
+    <string name="stop_after_point">Pare de balcão após o ponto</string>
+    <string name="stop_after_gong">Parar contador depois de aviso</string>
+
     <!-- Idiomas -->
     <string name="language">Língua</string>
     <string name="english">Inglês</string>

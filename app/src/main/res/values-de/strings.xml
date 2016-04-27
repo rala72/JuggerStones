@@ -47,6 +47,9 @@
     <string name="msg_contact">Eine frage an die entwickler</string>
     <string name="msg_rate">Bewerten Sie die App</string>
     <string name="rate">Rate</string>
+
+    <string name="stop_after_point">Stop-Zähler nach Punkt</string>
+    <string name="stop_after_gong">Stop-Zähler nach Warnung</string>
     <!-- Idiomas -->
     <string name="language">Sprache</string>
     <string name="english">Englisch</string>
