@@ -88,9 +88,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            tv_counter.setText(extras.getString(AppPreferences.KEY_COUNTER));
-            T1Name.setText(extras.getString(AppPreferences.KEY_TEAM1));
-            T2Name.setText(extras.getString(AppPreferences.KEY_TEAM2));
+            tv_counter.setText(extras.getString(AppPreferences.KEY_COUNTER, "0"));
+            T1Name.setText(extras.getString(AppPreferences.KEY_TEAM1, getResources().getString(R.string.team1)));
+            T2Name.setText(extras.getString(AppPreferences.KEY_TEAM2, getResources().getString(R.string.team2)));
         } else {
             tv_counter.setText("0");
             T1Name.setText(getResources().getString(R.string.team1));
@@ -148,8 +148,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (isPaused) {// Pausar el contador
                     play.setBackgroundResource(R.drawable.pause);
                     isPaused = false;
-                    counter = new Counter(tv_counter, Integer.parseInt(tv_counter
-                            .getText().toString()), mode, interval, s, getApplicationContext(), play);
+                    counter = new Counter(tv_counter, Integer.parseInt(tv_counter.getText().toString()), mode, interval, s, getApplicationContext(), play);
                     counter.start();
                 } else {// Reanudar el contador
                     play.setBackgroundResource(R.drawable.play);
