@@ -16,7 +16,7 @@ public class Sounds {
         this.con = con;
     }
 
-    public void ActivateStone() {
+    public void activateStone() {
         MediaPlayer auxStone = MediaPlayer.create(con, stone);
         auxStone.start();
         auxStone.setOnCompletionListener(new OnCompletionListener() {
@@ -27,7 +27,7 @@ public class Sounds {
         });
     }
 
-    public void ActivateGong() {
+    public void activateGong() {
         MediaPlayer auxGong = MediaPlayer.create(con, gong);
         auxGong.start();
         auxGong.setOnCompletionListener(new OnCompletionListener() {

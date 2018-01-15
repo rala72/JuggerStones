@@ -86,18 +86,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         enlargeAreas();
 
-        try {
-            Bundle extras = getIntent().getExtras();
-            String auxCounter = extras.getString("Counter");
-            tv_counter.setText(auxCounter);
-            T1Name.setText(extras.getString("Team 1"));
-            T2Name.setText(extras.getString("Team 2"));
-        } catch (Exception e) {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            tv_counter.setText(extras.getString(AppPreferences.KEY_COUNTER));
+            T1Name.setText(extras.getString(AppPreferences.KEY_TEAM1));
+            T2Name.setText(extras.getString(AppPreferences.KEY_TEAM2));
+        } else {
             tv_counter.setText("0");
             T1Name.setText(getResources().getString(R.string.team1));
             T2Name.setText(getResources().getString(R.string.team2));
         }
-
     }
 
     public void enlargeAreas() { //TODO no funciona, comprobar
@@ -212,21 +210,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     tv_counter.setText(String.valueOf(num - 1));
                 }
                 break;
-
-
         }
     }
 
     public boolean onLongClick(View v) {
         switch (v.getId()) {
             case R.id.TV_nameT1:
-                RenameTeams();
+                renameTeams();
                 break;
             case R.id.TV_nameT2:
-                RenameTeams();
+                renameTeams();
                 break;
             case R.id.TV_cero:
-                SetCounter();
+                setCounter();
                 break;
         }
         return true;
@@ -243,26 +239,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.rename_teams:
-                RenameTeams();
+                renameTeams();
                 return true;
             case R.id.action_settings:
                 play.setBackgroundResource(R.drawable.play);
                 isPaused = true;
-                if (counter != null) {
-                    counter.setStopped(true);
-                }
+                if (counter != null) counter.setStopped(true);
 
                 Intent i = new Intent(this, AppPreferences.class);
-                i.putExtra("Counter", tv_counter.getText().toString());
-                i.putExtra("Team 1", T1Name.getText().toString());
-                i.putExtra("Team 2", T2Name.getText().toString());
-                i.putExtra("count", tv_counter.getText().toString());
+                i.putExtra(AppPreferences.KEY_COUNTER, tv_counter.getText().toString());
+                i.putExtra(AppPreferences.KEY_TEAM1, T1Name.getText().toString());
+                i.putExtra(AppPreferences.KEY_TEAM2, T2Name.getText().toString());
+                i.putExtra(AppPreferences.KEY_COUNT, tv_counter.getText().toString());
                 startActivity(i);
                 finish();
 
                 return true;
             case R.id.set_counter:
-                SetCounter();
+                setCounter();
                 return true;
             case R.id.Assit:
                 startActivity(new Intent(this, Assit.class));
@@ -271,10 +265,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void SetCounter() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(
-                MainActivity.this);
-
+    private void setCounter() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         alertDialog.setTitle(R.string.set_counter);
         final EditText counterEdit = new EditText(MainActivity.this);
         counterEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -285,18 +277,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ll.addView(counterEdit);
         alertDialog.setView(ll);
 
-        alertDialog.setPositiveButton(R.string.accept,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        try {
-                            int num = Integer.parseInt(counterEdit.getText().toString());
-                            tv_counter.setText(String.valueOf(num + ""));
-                        } catch (Exception e) {
-                            tv_counter.setText(String.valueOf(0));
-                        }
-                    }
-                });
+        alertDialog.setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int whichButton) {
+                try {
+                    int num = Integer.parseInt(counterEdit.getText().toString());
+                    tv_counter.setText(String.valueOf(num + ""));
+                } catch (Exception e) {
+                    tv_counter.setText(String.valueOf(0));
+                }
+            }
+        });
 
         alertDialog.setNegativeButton(R.string.cancel, null);
 
@@ -304,9 +295,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alert.show();
     }
 
-    private void RenameTeams() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(
-                MainActivity.this);
+    private void renameTeams() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
 
         alertDialog.setTitle(R.string.rename_teams);
         final EditText NameT1 = new EditText(MainActivity.this);
@@ -323,23 +313,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ll.addView(NameT2);
         alertDialog.setView(ll);
 
-        alertDialog.setPositiveButton(R.string.accept,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        if (NameT1.getText().toString().trim().length() > 5
-                                || NameT1.getText().toString().trim().length() == 0
-                                || NameT2.getText().toString().trim().length() > 5
-                                || NameT2.getText().toString().trim().length() == 0) {
-                            Toast.makeText(MainActivity.this,
-                                    R.string.warning_initials,
-                                    Toast.LENGTH_LONG).show();
-                        } else {
-                            T1Name.setText(NameT1.getText().toString());
-                            T2Name.setText(NameT2.getText().toString());
-                        }
-                    }
-                });
+        alertDialog.setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int whichButton) {
+                if (NameT1.getText().toString().trim().length() > 5
+                        || NameT1.getText().toString().trim().length() == 0
+                        || NameT2.getText().toString().trim().length() > 5
+                        || NameT2.getText().toString().trim().length() == 0) {
+                    Toast.makeText(MainActivity.this,
+                            R.string.warning_initials,
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    T1Name.setText(NameT1.getText().toString());
+                    T2Name.setText(NameT2.getText().toString());
+                }
+            }
+        });
 
         alertDialog.setNegativeButton(R.string.cancel, null);
 

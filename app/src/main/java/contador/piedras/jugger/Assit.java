@@ -20,18 +20,14 @@ public class Assit extends Activity {
         audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         Button b_msg = findViewById(R.id.B_msg);
-
         b_msg.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
                 Intent itSend = new Intent(Intent.ACTION_SEND);
                 itSend.setType("plain/text");
-                itSend.putExtra(Intent.EXTRA_EMAIL,
-                        new String[]{"cristiancvacas@gmail.com"});
-                itSend.putExtra(Intent.EXTRA_SUBJECT,
-                        "Jugger Stones message");
+                itSend.putExtra(Intent.EXTRA_EMAIL, new String[]{"cristiancvacas@gmail.com"});
+                itSend.putExtra(Intent.EXTRA_SUBJECT, "Jugger Stones message");
                 startActivity(itSend);
             }
         });
@@ -42,12 +38,10 @@ public class Assit extends Activity {
         switch (keyCode) {
             // Para controlar el volumen
             case KeyEvent.KEYCODE_VOLUME_UP:
-                audio.adjustStreamVolume(AudioManager.STREAM_MUSIC,
-                        AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
+                audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
                 return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
-                audio.adjustStreamVolume(AudioManager.STREAM_MUSIC,
-                        AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
+                audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
                 return true;
             case KeyEvent.KEYCODE_BACK:
                 finish();

@@ -37,9 +37,9 @@ public class CustomPreferenceList extends ListPreference implements OnClickListe
                 Sounds s = new Sounds(context, rawSound, rawSound);
 
                 if (getKey().equals("time_sounds"))
-                    s.ActivateStone();
+                    s.activateStone();
                 else if (getKey().equals("gong_sounds"))
-                    s.ActivateGong();
+                    s.activateGong();
             }
         });
         System.out.println(getEntry() + " " + this.getEntries()[0]);

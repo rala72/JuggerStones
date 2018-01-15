@@ -40,19 +40,16 @@ public class Counter extends Thread {
             handler.act();
             try {
                 if (stones == mode || stones == (mode * 2)) { //si llega a modo o modo*2 (2º parte) suena gong
-                    sounds.ActivateGong();
+                    sounds.activateGong();
                     setStopped(SP.getBoolean("stop_after_gong", false));
                     play.setBackgroundResource(R.drawable.play);
-                } else {
-                    sounds.ActivateStone();
-                }
+                } else sounds.activateStone();
                 this.sleep(interval);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
-
 
     void setStopped(boolean stopped) {
         this.stopped = stopped;

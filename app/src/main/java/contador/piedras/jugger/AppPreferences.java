@@ -15,6 +15,10 @@ import android.view.KeyEvent;
 import java.util.Locale;
 
 public class AppPreferences extends PreferenceActivity {
+    public static final String KEY_COUNTER = "Counter";
+    public static final String KEY_TEAM1 = "Team 1";
+    public static final String KEY_TEAM2 = "Team 2";
+    public static final String KEY_COUNT = "count";
 
     private AudioManager audio;
     Bundle extras;
@@ -28,15 +32,13 @@ public class AppPreferences extends PreferenceActivity {
         extras = getIntent().getExtras();
 
         final ListPreference prefListLanguage = (ListPreference) findPreference("pref_language");
-
-        prefListLanguage
-                .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                    public boolean onPreferenceChange(Preference preference,
-                                                      Object newValue) {
-                        changeLanguage(newValue.toString());
-                        return true;
-                    }
-                });
+        prefListLanguage.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            public boolean onPreferenceChange(Preference preference,
+                                              Object newValue) {
+                changeLanguage(newValue.toString());
+                return true;
+            }
+        });
     }
 
     private void changeLanguage(String language) {
@@ -47,10 +49,10 @@ public class AppPreferences extends PreferenceActivity {
         conf.locale = newLocale;
         res.updateConfiguration(conf, dm);
         Intent refresh = new Intent(this, AppPreferences.class);
-        refresh.putExtra("Counter", extras.getString("Counter"));
-        refresh.putExtra("Team 1", extras.getString("Team 1"));
-        refresh.putExtra("Team 2", extras.getString("Team 2"));
-        refresh.putExtra("count", extras.getString("count"));
+        refresh.putExtra(KEY_COUNTER, extras.getString(KEY_COUNTER));
+        refresh.putExtra(KEY_TEAM1, extras.getString(KEY_TEAM1));
+        refresh.putExtra(KEY_TEAM2, extras.getString(KEY_TEAM2));
+        refresh.putExtra(KEY_COUNT, extras.getString(KEY_COUNT));
         startActivity(refresh);
         finish();
     }
@@ -69,10 +71,10 @@ public class AppPreferences extends PreferenceActivity {
                 return true;
             case KeyEvent.KEYCODE_BACK:
                 Intent a = new Intent(AppPreferences.this, MainActivity.class);
-                a.putExtra("Counter", extras.getString("Counter"));
-                a.putExtra("Team 1", extras.getString("Team 1"));
-                a.putExtra("Team 2", extras.getString("Team 2"));
-                a.putExtra("count", extras.getString("count"));
+                a.putExtra(KEY_COUNTER, extras.getString(KEY_COUNTER));
+                a.putExtra(KEY_TEAM1, extras.getString(KEY_TEAM1));
+                a.putExtra(KEY_TEAM2, extras.getString(KEY_TEAM2));
+                a.putExtra(KEY_COUNT, extras.getString(KEY_COUNT));
                 startActivity(a);
                 finish();
                 return true;
