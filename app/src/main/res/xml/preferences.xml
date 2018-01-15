@@ -28,14 +28,14 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/settings_sound">
         <contador.piedras.jugger.items.CustomPreferenceList
-            android:defaultValue="2131099659"
+            android:defaultValue="stone"
             android:entries="@array/time_sounds"
             android:entryValues="@array/time_sounds_values"
             android:key="time_sounds"
             android:title="@string/sounds_stones" />
 
         <contador.piedras.jugger.items.CustomPreferenceList
-            android:defaultValue="2131099661"
+            android:defaultValue="gong"
             android:entries="@array/gong_sounds"
             android:entryValues="@array/gong_sounds_values"
             android:key="gong_sounds"

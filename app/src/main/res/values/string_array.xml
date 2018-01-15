@@ -39,26 +39,29 @@
         <item>@string/stone</item>
     </string-array>
     <string-array name="time_sounds_values">
-        <item>2131099648</item> <!-- Alan -->
-        <item>2131099649</item> <!-- Registradora -->
-        <item>2131099650</item> <!-- Censura -->
-        <item>2131099651</item> <!-- Cuervo -->
-        <item>2131099652</item> <!-- DOh -->
-        <item>2131099653</item> <!-- FB -->
-        <item>2131099655</item> <!-- logro -->
-        <item>2131099656</item> <!-- metal gear -->
-        <item>2131099657</item> <!-- pato -->
-        <item>2131099658</item> <!-- sarten -->
-        <item>2131099660</item> <!-- tambor -->
-        <item>2131099659</item> <!-- stone -->
+        <item>alan</item>
+        <item>cajaregistradora</item>
+        <item>censura</item>
+        <item>cuervo</item>
+        <item>doh</item>
+        <item>fb</item>
+        <item>gong</item>
+        <item>logroxbox</item>
+        <item>metalgear</item>
+        <item>pato</item>
+        <item>sarten</item>
+        <item>stone</item>
+        <item>tambor</item>
+        <item>vuvucela</item>
+
     </string-array>
     <string-array name="gong_sounds">
         <item>@string/gong</item>
         <item>@string/vuvucela</item>
     </string-array>
     <string-array name="gong_sounds_values">
-        <item>2131099654</item> <!-- Gong -->
-        <item>2131099661</item> <!-- Vuvucela -->
+        <item>gong</item>
+        <item>vuvucela</item>
     </string-array>
     <string-array name="languages_array">
         <item>@string/english</item>

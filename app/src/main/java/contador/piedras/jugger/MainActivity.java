@@ -141,8 +141,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.b_start:
                 int mode = Integer.parseInt(SP.getString("mode", "100"));
                 int interval = Integer.parseInt(SP.getString("interval", "1500"));
-                int soundStone = Integer.parseInt(SP.getString("time_sounds", R.raw.stone + ""));
-                int soundGong = Integer.parseInt(SP.getString("gong_sounds", R.raw.vuvucela + ""));
+                String soundStone = SP.getString("time_sounds", "stone");
+                String soundGong = SP.getString("gong_sounds", "vuvucela");
                 Sounds s = new Sounds(getApplicationContext(), soundStone, soundGong);
 
                 if (isPaused) {// Pausar el contador

@@ -33,8 +33,8 @@ public class CustomPreferenceList extends ListPreference implements OnClickListe
         builder.setSingleChoiceItems(this.getEntries(), mClickedDialogEntryIndex, new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 mClickedDialogEntryIndex = which;
-                int rawSound = Integer.parseInt((getEntryValues()[which]).toString());
-                Sounds s = new Sounds(context, rawSound, rawSound);
+                String value = (getEntryValues()[which]).toString();
+                Sounds s = new Sounds(context, value, value);
 
                 if (getKey().equals("time_sounds"))
                     s.activateStone();
