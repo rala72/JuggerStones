@@ -29,7 +29,7 @@ public class customPreferenceList extends ListPreference implements OnClickListe
         super.onPrepareDialogBuilder(builder);
 
         mClickedDialogEntryIndex = getValueIndex();
-        builder.setSingleChoiceItems(this.getEntries(), mClickedDialogEntryIndex, new DialogInterface.OnClickListener() {
+        builder.setSingleChoiceItems(this.getEntries(), mClickedDialogEntryIndex, new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 mClickedDialogEntryIndex = which;
                 int rawsound = Integer.parseInt((getEntryValues()[which]).toString());

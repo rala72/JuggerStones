@@ -26,11 +26,11 @@ public class Assit extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				Intent itSend = new Intent(android.content.Intent.ACTION_SEND);
+				Intent itSend = new Intent(Intent.ACTION_SEND);
 				itSend.setType("plain/text");
-				itSend.putExtra(android.content.Intent.EXTRA_EMAIL,
+				itSend.putExtra(Intent.EXTRA_EMAIL,
 						new String[] { "cristiancvacas@gmail.com" });
-				itSend.putExtra(android.content.Intent.EXTRA_SUBJECT,
+				itSend.putExtra(Intent.EXTRA_SUBJECT,
 						"Jugger Stones message");
 				startActivity(itSend);
 			}
