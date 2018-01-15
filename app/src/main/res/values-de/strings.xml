@@ -2,23 +2,23 @@
 <resources>
     <string name="action_settings">Einstellungen</string>
     <string name="zero">0</string>
-    <string name="team1">Spieler 1</string>
-    <string name="team2">Spieler 2</string>
-    <string name="team1ini">Spieler 1 initialen</string>
-    <string name="team2ini">Spieler 2 initialen</string>
-    <string name="rename_teams">Benennen teams</string>
+    <string name="team1">Team 1</string>
+    <string name="team2">Team 2</string>
+    <string name="team1ini">Team 1 initialen</string>
+    <string name="team2ini">Team 2 initialen</string>
+    <string name="rename_teams">Teams benennen</string>
     <string name="set_counter">Zähler setzen</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
     <string name="accept">Akzeptieren</string>
-    <string name="cancel">Stornieren</string>
-    <string name="warning_initials">Der Einfachheit halber nur die anfangsbuchstaben der einzelnen teams bitte (5 MAX)</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="warning_initials">Der Einfachheit halber nur die Anfangsbuchstaben der einzelnen Teams bitte (5 MAX)</string>
     <string name="interval">Steinintervall</string>
     <string name="mode">Spielmodus</string>
     <string name="mode_normal">Normal-modus (100 Steine jeder Teil)</string>
     <string name="mode_extension">Erweiterungsmodus (50 Steine jeder Teil)</string>
     <string name="mode_infinite">Unendlich-Modus (nur Steine)</string>
-    <string name="sounds_stones">Klingt der steine</string>
+    <string name="sounds_stones">Klang der Steine</string>
     <string name="alan">Alan Präriehund</string>
     <string name="cash_reg">Kasse</string>
     <string name="censure">Zensur</string>
@@ -30,7 +30,7 @@
     <string name="duck">Ente</string>
     <string name="pan">Pan</string>
     <string name="drum">Drum</string>
-    <string name="sounds_gong">Klingt der gongs</string>
+    <string name="sounds_gong">Klang des Gongs</string>
     <string name="gong">Gong</string>
     <string name="vuvucela">Vuvucela</string>
     <string name="stone">Stein</string>
@@ -47,7 +47,7 @@
     <string name="rate">Rate</string>
 
     <string name="stop_after_point">Stop-Zähler nach Punkt</string>
-    <string name="stop_after_gong">Stop-Zähler nach Warnung</string>
+    <string name="stop_after_gong">Stop-Zähler nach Gong</string>
     <!-- Idiomas -->
     <string name="language">Sprache</string>
     <string name="english">Englisch</string>

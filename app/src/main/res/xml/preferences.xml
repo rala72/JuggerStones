@@ -43,7 +43,7 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/language">
         <ListPreference
-            android:defaultValue="US"
+            android:defaultValue="en"
             android:entries="@array/languages_array"
             android:entryValues="@array/languages_array_values"
             android:key="pref_language"

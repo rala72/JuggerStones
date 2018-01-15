@@ -65,19 +65,19 @@
     </string-array>
     <string-array name="languages_array">
         <item>@string/english</item>
-        <item>@string/spanish</item>
         <item>@string/catalan</item>
         <item>@string/german</item>
+        <item>@string/spanish</item>
         <item>@string/french</item>
         <item>@string/portuguese</item>
     </string-array>
 
     <string-array name="languages_array_values">
-        <item>US</item>
-        <item>ES</item>
-        <item>CA</item>
-        <item>DE</item>
-        <item>FR</item>
-        <item>PT</item>
+        <item>en</item>
+        <item>ca</item>
+        <item>de</item>
+        <item>es</item>
+        <item>fr</item>
+        <item>pt</item>
     </string-array>
 </resources>

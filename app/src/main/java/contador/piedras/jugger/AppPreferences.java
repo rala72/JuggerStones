@@ -32,6 +32,7 @@ public class AppPreferences extends PreferenceActivity {
         extras = getIntent().getExtras();
 
         final ListPreference prefListLanguage = (ListPreference) findPreference("pref_language");
+        prefListLanguage.setDefaultValue(Locale.getDefault().getLanguage());
         prefListLanguage.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             public boolean onPreferenceChange(Preference preference,
                                               Object newValue) {
@@ -42,7 +43,7 @@ public class AppPreferences extends PreferenceActivity {
     }
 
     private void changeLanguage(String language) {
-        Locale newLocale = new Locale(language.toLowerCase(Locale.US), language);
+        Locale newLocale = new Locale(language.toLowerCase(Locale.ENGLISH), language);
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
