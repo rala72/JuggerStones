@@ -11,17 +11,18 @@ import contador.piedras.jugger.R;
 import contador.piedras.jugger.Sounds;
 
 
-public class customPreferenceList extends ListPreference implements OnClickListener{
+public class CustomPreferenceList extends ListPreference implements OnClickListener {
 
     private int mClickedDialogEntryIndex;
-    Context context;
-    public customPreferenceList(Context context, AttributeSet attrs) {
+    private Context context;
+
+    public CustomPreferenceList(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
     }
 
     private int getValueIndex() {
-        return findIndexOfValue(this.getValue() +"");
+        return findIndexOfValue(this.getValue() + "");
     }
 
     @Override
@@ -32,23 +33,20 @@ public class customPreferenceList extends ListPreference implements OnClickListe
         builder.setSingleChoiceItems(this.getEntries(), mClickedDialogEntryIndex, new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 mClickedDialogEntryIndex = which;
-                int rawsound = Integer.parseInt((getEntryValues()[which]).toString());
-                Sounds s = new Sounds(context, rawsound, rawsound);
+                int rawSound = Integer.parseInt((getEntryValues()[which]).toString());
+                Sounds s = new Sounds(context, rawSound, rawSound);
 
-                if(getKey().equals("time_sounds")){
+                if (getKey().equals("time_sounds"))
                     s.ActivateStone();
-                }else if(getKey().equals("gong_sounds")){
+                else if (getKey().equals("gong_sounds"))
                     s.ActivateGong();
-                }
             }
         });
         System.out.println(getEntry() + " " + this.getEntries()[0]);
         builder.setPositiveButton(R.string.accept, this);
     }
 
-    public  void onClick (DialogInterface dialog, int which)
-    {
-        this.setValue(this.getEntryValues()[mClickedDialogEntryIndex]+"");
+    public void onClick(DialogInterface dialog, int which) {
+        this.setValue(this.getEntryValues()[mClickedDialogEntryIndex] + "");
     }
-
 }

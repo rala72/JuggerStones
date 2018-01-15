@@ -51,24 +51,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-        tv_counter = (TextView) findViewById(R.id.TV_cero);
+        tv_counter = findViewById(R.id.TV_cero);
 
-        play = (Button) findViewById(R.id.b_start);
-        stop = (Button) findViewById(R.id.b_stop);
+        play = findViewById(R.id.b_start);
+        stop = findViewById(R.id.b_stop);
 
-        plust1 = (Button) findViewById(R.id.b_mast1);
-        plust2 = (Button) findViewById(R.id.b_mast2);
-        min1 = (Button) findViewById(R.id.b_mint1);
-        min2 = (Button) findViewById(R.id.b_mint2);
+        plust1 = findViewById(R.id.b_mast1);
+        plust2 = findViewById(R.id.b_mast2);
+        min1 = findViewById(R.id.b_mint1);
+        min2 = findViewById(R.id.b_mint2);
 
-        incStones = (Button) findViewById(R.id.inc_stones);
-        decStones = (Button) findViewById(R.id.dec_stones);
+        incStones = findViewById(R.id.inc_stones);
+        decStones = findViewById(R.id.dec_stones);
 
-        T1Score = (TextView) findViewById(R.id.TV_pointT1);
-        T2Score = (TextView) findViewById(R.id.TV_pointT2);
+        T1Score = findViewById(R.id.TV_pointT1);
+        T2Score = findViewById(R.id.TV_pointT2);
 
-        T1Name = (TextView) findViewById(R.id.TV_nameT1);
-        T2Name = (TextView) findViewById(R.id.TV_nameT2);
+        T1Name = findViewById(R.id.TV_nameT1);
+        T2Name = findViewById(R.id.TV_nameT2);
 
         audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -151,18 +151,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     play.setBackgroundResource(R.drawable.pause);
                     isPaused = false;
                     counter = new Counter(tv_counter, Integer.parseInt(tv_counter
-                            .getText().toString()), mode, interval, s,getApplicationContext(),play);
+                            .getText().toString()), mode, interval, s, getApplicationContext(), play);
                     counter.start();
                 } else {// Reanudar el contador
                     play.setBackgroundResource(R.drawable.play);
                     isPaused = true;
-                    counter.setStoped(true);
+                    counter.setStopped(true);
                 }
                 break;
             case R.id.b_stop:
                 if (!isPaused) {
                     play.setBackgroundResource(R.drawable.play);
-                    counter.setStoped(true);
+                    counter.setStopped(true);
                     isPaused = true;
                     tv_counter.setText("0");
                 } else {
@@ -172,18 +172,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.b_mast1:
                 num = Integer.parseInt(T1Score.getText().toString());
                 T1Score.setText(String.valueOf(num + 1));
-                if(SP.getBoolean("stop_after_point", false)){
+                if (SP.getBoolean("stop_after_point", false)) {
                     play.setBackgroundResource(R.drawable.play);
-                    counter.setStoped(true);
+                    counter.setStopped(true);
                 }
                 break;
 
             case R.id.b_mast2:
                 num = Integer.parseInt(T2Score.getText().toString());
                 T2Score.setText(String.valueOf(num + 1));
-                if(SP.getBoolean("stop_after_point", false)){
+                if (SP.getBoolean("stop_after_point", false)) {
                     play.setBackgroundResource(R.drawable.play);
-                    counter.setStoped(true);
+                    counter.setStopped(true);
                 }
                 break;
 
@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 play.setBackgroundResource(R.drawable.play);
                 isPaused = true;
                 if (counter != null) {
-                    counter.setStoped(true);
+                    counter.setStopped(true);
                 }
 
                 Intent i = new Intent(this, AppPreferences.class);
@@ -372,5 +372,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onStart();
         //tv_counter.setText("0");
     }
-
 }

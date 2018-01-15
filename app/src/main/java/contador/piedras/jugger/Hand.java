@@ -5,23 +5,22 @@ import android.os.Message;
 import android.widget.TextView;
 
 public class Hand extends Handler {
-	String hcron;
-	TextView tv_time;
+    private String hcron;
+    private TextView tv_time;
 
-	public Hand(TextView t) {
-		this.tv_time = t;
-	}
+    Hand(TextView t) {
+        this.tv_time = t;
+    }
 
-	public void handleMessage(Message msg) {
-		tv_time.setText(hcron);
-	}
+    public void handleMessage(Message msg) {
+        tv_time.setText(hcron);
+    }
 
-	public void setHcron(String hcron) {
-		this.hcron = hcron;
-	}
+    void setHcron(String hcron) {
+        this.hcron = hcron;
+    }
 
-	public void act() {
-		super.sendEmptyMessage(0);
-	}
-
+    void act() {
+        super.sendEmptyMessage(0);
+    }
 }
