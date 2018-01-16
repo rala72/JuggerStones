@@ -10,6 +10,6 @@
     <string name="support">Support und Kontakt</string>
     <string name="settings">Einstellungen</string>
 
-    <string name="toast_teamLength">Der Einfachheit halber nur die Anfangsbuchstaben der einzelnen Teams bitte (5 MAX)</string>
+    <string name="toast_teamLength">Der Einfachheit halber nur die Anfangsbuchstaben der einzelnen Teams bitte (%1$d MAX)</string>
     <string name="toast_infinity">ACHTUNG: Endlos-Modus ist ausgewählt!</string>
 </resources>

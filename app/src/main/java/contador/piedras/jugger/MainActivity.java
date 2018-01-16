@@ -30,6 +30,7 @@ import contador.piedras.jugger.model.Sound;
 import contador.piedras.jugger.preference.AppPreferences;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int limitTeamNameCharactersTo = 0;
 
     @BindView(R.id.button_playPause)
     protected AppCompatImageButton button_play;
@@ -66,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
             textView_team2.setText(extras.getString(AppPreferences.KEY_TEAM2, getResources().getString(R.string.team2)));
         } else {
             textView_stones.setText(String.valueOf(0));
-            textView_team1.setText(getResources().getString(R.string.team1));
-            textView_team2.setText(getResources().getString(R.string.team2));
+            textView_team1.setText(R.string.team1);
+            textView_team2.setText(R.string.team2);
         }
     }
 
@@ -165,8 +166,8 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
         alertDialogBuilder.setTitle(R.string.setStones);
         final EditText stonesEdit = new EditText(MainActivity.this);
+        stonesEdit.setHint(R.string.setStones);
         stonesEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
-        stonesEdit.requestFocus();
 
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -179,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     long number = Long.parseLong(stonesEdit.getText().toString());
                     textView_stones.setText(String.valueOf(number));
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException e) { // shouldn't be possible
                     textView_stones.setText(String.valueOf(0));
                 }
             }
@@ -189,17 +190,20 @@ public class MainActivity extends AppCompatActivity {
         alertDialogBuilder.create().show();
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void renameTeams() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
 
         alertDialogBuilder.setTitle(R.string.renameTeams);
         final EditText editText_name1 = new EditText(MainActivity.this);
         editText_name1.setHint(R.string.renameTeams_1);
-        editText_name1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(5)});
+        if (limitTeamNameCharactersTo > 0)
+            editText_name1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(limitTeamNameCharactersTo)});
 
         final EditText editText_name2 = new EditText(MainActivity.this);
         editText_name2.setHint(R.string.renameTeams_2);
-        editText_name2.setFilters(new InputFilter[]{new InputFilter.LengthFilter(5)});
+        if (limitTeamNameCharactersTo > 0)
+            editText_name2.setFilters(new InputFilter[]{new InputFilter.LengthFilter(limitTeamNameCharactersTo)});
 
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -210,13 +214,22 @@ public class MainActivity extends AppCompatActivity {
         alertDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
-                textView_team1.setText(editText_name1.getText().toString());
-                textView_team2.setText(editText_name2.getText().toString());
+                String name1 = editText_name1.getText().toString().trim();
+                String name2 = editText_name2.getText().toString().trim();
+                if (!name1.isEmpty()) textView_team1.setText(name1);
+                if (!name2.isEmpty()) textView_team2.setText(name2);
+                if (name1.isEmpty() && name2.isEmpty()) {
+                    textView_team1.setText(R.string.team1);
+                    textView_team2.setText(R.string.team2);
+                    textView_team1_points.setText("0");
+                    textView_team2_points.setText("0");
+                }
             }
         });
         alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
         alertDialogBuilder.create().show();
-        Toast.makeText(MainActivity.this, R.string.toast_teamLength, Toast.LENGTH_SHORT).show();
+        if (limitTeamNameCharactersTo > 0)
+            Toast.makeText(MainActivity.this, getString(R.string.toast_teamLength, 5), Toast.LENGTH_SHORT).show();
     }
 
     @Override
