@@ -12,8 +12,9 @@
         android:title="@string/set_counter"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_upport"
+        android:id="@+id/action_support"
         android:title="@string/support"
+        android:visible="false"
         app:showAsAction="never" />
 
     <item

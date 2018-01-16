@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.set_counter:
                 setCounter();
                 return true;
-            case R.id.action_upport:
+            case R.id.action_support:
                 startActivity(new Intent(this, Support.class));
             default:
                 return super.onOptionsItemSelected(item);
