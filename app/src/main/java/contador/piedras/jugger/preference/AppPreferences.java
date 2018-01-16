@@ -1,4 +1,4 @@
-package contador.piedras.jugger;
+package contador.piedras.jugger.preference;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,9 @@ import android.view.KeyEvent;
 
 import java.util.Locale;
 
+import contador.piedras.jugger.MainActivity;
+import contador.piedras.jugger.R;
+
 public class AppPreferences extends PreferenceActivity {
     public static final String KEY_COUNTER = "Counter";
     public static final String KEY_TEAM1 = "Team 1";
@@ -21,7 +24,7 @@ public class AppPreferences extends PreferenceActivity {
     public static final String KEY_COUNT = "count";
 
     private AudioManager audio;
-    Bundle extras;
+    private Bundle extras;
 
     @SuppressWarnings("deprecation")
     @Override
@@ -34,8 +37,7 @@ public class AppPreferences extends PreferenceActivity {
         final ListPreference prefListLanguage = (ListPreference) findPreference("pref_language");
         prefListLanguage.setDefaultValue(Locale.getDefault().getLanguage());
         prefListLanguage.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            public boolean onPreferenceChange(Preference preference,
-                                              Object newValue) {
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
                 changeLanguage(newValue.toString());
                 return true;
             }

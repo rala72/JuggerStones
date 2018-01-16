@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AppPreferences"
+            android:name=".preference.AppPreferences"
             android:configChanges="locale|orientation"
             android:label="@string/settings" />
         <activity

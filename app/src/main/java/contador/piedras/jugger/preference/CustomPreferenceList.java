@@ -1,4 +1,4 @@
-package contador.piedras.jugger.items;
+package contador.piedras.jugger.preference;
 
 import android.app.AlertDialog.Builder;
 import android.content.Context;
@@ -7,33 +7,26 @@ import android.content.DialogInterface.OnClickListener;
 import android.preference.ListPreference;
 import android.util.AttributeSet;
 
-import contador.piedras.jugger.Sounds;
+import contador.piedras.jugger.model.Sound;
 
 
 public class CustomPreferenceList extends ListPreference implements OnClickListener {
-
-    private int mClickedDialogEntryIndex;
-    private Context context;
+    private int currentEntryIndex;
 
     public CustomPreferenceList(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.context = context;
-    }
-
-    private int getValueIndex() {
-        return findIndexOfValue(this.getValue() + "");
     }
 
     @Override
     protected void onPrepareDialogBuilder(Builder builder) {
         super.onPrepareDialogBuilder(builder);
 
-        mClickedDialogEntryIndex = getValueIndex();
-        builder.setSingleChoiceItems(this.getEntries(), mClickedDialogEntryIndex, new OnClickListener() {
+        currentEntryIndex = findIndexOfValue(this.getValue());
+        builder.setSingleChoiceItems(this.getEntries(), currentEntryIndex, new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                mClickedDialogEntryIndex = which;
+                currentEntryIndex = which;
                 String value = (getEntryValues()[which]).toString();
-                Sounds s = new Sounds(context, value, value);
+                Sound s = new Sound(getContext(), value, value);
 
                 if (getKey().equals("time_sounds"))
                     s.activateStone();
@@ -46,6 +39,6 @@ public class CustomPreferenceList extends ListPreference implements OnClickListe
     }
 
     public void onClick(DialogInterface dialog, int which) {
-        this.setValue(this.getEntryValues()[mClickedDialogEntryIndex] + "");
+        this.setValue(this.getEntryValues()[currentEntryIndex] + "");
     }
 }
