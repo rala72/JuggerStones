@@ -2,18 +2,18 @@ package contador.piedras.jugger.model;
 
 import android.os.Handler;
 import android.os.Message;
-import android.widget.TextView;
+import android.support.v7.widget.AppCompatTextView;
 
 public class MyHandler extends Handler {
+    private AppCompatTextView textView;
     private String message;
-    private TextView tv_time;
 
-    MyHandler(TextView t) {
-        this.tv_time = t;
+    MyHandler(AppCompatTextView textView) {
+        this.textView = textView;
     }
 
-    public void handleMessage(Message msg) {
-        tv_time.setText(message);
+    public void handleMessage(Message m) {
+        this.textView.setText(this.message);
     }
 
     protected void setMessage(String message) {

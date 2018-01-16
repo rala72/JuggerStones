@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageButton;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.view.KeyEvent;
@@ -18,7 +19,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -34,15 +34,15 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.button_playPause)
     protected AppCompatImageButton button_play;
     @BindView(R.id.textView_team1)
-    protected TextView textView_team1;
+    protected AppCompatTextView textView_team1;
     @BindView(R.id.textView_team2)
-    protected TextView textView_team2;
+    protected AppCompatTextView textView_team2;
     @BindView(R.id.textView_team1_points)
-    protected TextView textView_team1_points;
+    protected AppCompatTextView textView_team1_points;
     @BindView(R.id.textView_team2_points)
-    protected TextView textView_team2_points;
-    @BindView(R.id.textView_counter)
-    protected TextView textView_counter;
+    protected AppCompatTextView textView_team2_points;
+    @BindView(R.id.textView_stones)
+    protected AppCompatTextView textView_stones;
 
     private AudioManager audio;
     private boolean isPaused = true;
@@ -61,17 +61,17 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            textView_counter.setText(String.valueOf(extras.getLong(AppPreferences.KEY_COUNTER, 0L)));
+            textView_stones.setText(String.valueOf(extras.getLong(AppPreferences.KEY_COUNTER, 0L)));
             textView_team1.setText(extras.getString(AppPreferences.KEY_TEAM1, getResources().getString(R.string.team1)));
             textView_team2.setText(extras.getString(AppPreferences.KEY_TEAM2, getResources().getString(R.string.team2)));
         } else {
-            textView_counter.setText(String.valueOf(0));
+            textView_stones.setText(String.valueOf(0));
             textView_team1.setText(getResources().getString(R.string.team1));
             textView_team2.setText(getResources().getString(R.string.team2));
         }
     }
 
-    @OnClick({R.id.button_team1_increase, R.id.button_team2_increase, R.id.button_counter_increase})
+    @OnClick({R.id.button_team1_increase, R.id.button_team2_increase, R.id.button_stones_increase})
     protected void onIncreaseClick(AppCompatImageButton button) {
         long number;
         switch (button.getId()) {
@@ -85,14 +85,14 @@ public class MainActivity extends AppCompatActivity {
                 textView_team2_points.setText(String.valueOf(number + 1));
                 checkIfStopAfterPoint();
                 break;
-            case R.id.button_counter_increase:
-                number = Long.parseLong(textView_counter.getText().toString());
-                textView_counter.setText(String.valueOf(number + 1));
+            case R.id.button_stones_increase:
+                number = Long.parseLong(textView_stones.getText().toString());
+                textView_stones.setText(String.valueOf(number + 1));
                 break;
         }
     }
 
-    @OnClick({R.id.button_team1_decrease, R.id.button_team2_decrease, R.id.button_counter_decrease})
+    @OnClick({R.id.button_team1_decrease, R.id.button_team2_decrease, R.id.button_stones_decrease})
     public void onDecreaseClick(AppCompatImageButton button) {
         long number;
         switch (button.getId()) {
@@ -104,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
                 number = Long.parseLong(textView_team2_points.getText().toString());
                 if (0 < number) textView_team2_points.setText(String.valueOf(number - 1));
                 break;
-            case R.id.button_counter_decrease:
-                number = Long.parseLong(textView_counter.getText().toString());
-                if (0 < number) textView_counter.setText(String.valueOf(number - 1));
+            case R.id.button_stones_decrease:
+                number = Long.parseLong(textView_stones.getText().toString());
+                if (0 < number) textView_stones.setText(String.valueOf(number - 1));
                 break;
         }
     }
@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPlayPauseStopClick(AppCompatImageButton button) {
         switch (button.getId()) {
             case R.id.button_playPause:
+                long stones = Long.parseLong(textView_stones.getText().toString().trim());
                 long mode = Long.parseLong(sharedPreferences.getString("mode", "100"));
                 long interval = Long.parseLong(sharedPreferences.getString("interval", "1500"));
                 String soundStone = sharedPreferences.getString("time_sounds", "stone");
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 button_play.setImageResource(isPaused ? R.drawable.play : R.drawable.pause);
                 if (isPaused) counter.setStopped(true);
                 else {
-                    counter = new Counter(getApplicationContext(), textView_counter, Long.parseLong(textView_counter.getText().toString().trim()), mode, interval, sound, button_play);
+                    counter = new Counter(getApplicationContext(), textView_stones, stones, mode, interval, sound, button_play);
                     counter.start();
                 }
                 break;
@@ -135,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                     button_play.setImageResource(R.drawable.play);
                     counter.setStopped(true);
                 }
-                textView_counter.setText("0");
+                textView_stones.setText("0");
                 break;
         }
     }
@@ -146,9 +147,9 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @OnLongClick(R.id.textView_counter)
+    @OnLongClick(R.id.textView_stones)
     protected boolean onCounterLongClick() {
-        setCounter();
+        setStones();
         return true;
     }
 
@@ -160,26 +161,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // dialogs
-    private void setCounter() {
+    private void setStones() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
-        alertDialogBuilder.setTitle(R.string.set_counter);
-        final EditText counterEdit = new EditText(MainActivity.this);
-        counterEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
-        counterEdit.requestFocus();
+        alertDialogBuilder.setTitle(R.string.setStones);
+        final EditText stonesEdit = new EditText(MainActivity.this);
+        stonesEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
+        stonesEdit.requestFocus();
 
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.addView(counterEdit);
+        linearLayout.addView(stonesEdit);
         alertDialogBuilder.setView(linearLayout);
 
         alertDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
                 try {
-                    long number = Long.parseLong(counterEdit.getText().toString());
-                    textView_counter.setText(String.valueOf(number));
+                    long number = Long.parseLong(stonesEdit.getText().toString());
+                    textView_stones.setText(String.valueOf(number));
                 } catch (NumberFormatException e) {
-                    textView_counter.setText(String.valueOf(0));
+                    textView_stones.setText(String.valueOf(0));
                 }
             }
         });
@@ -237,16 +238,16 @@ public class MainActivity extends AppCompatActivity {
                 if (counter != null) counter.setStopped(true);
 
                 Intent i = new Intent(this, AppPreferences.class);
-                i.putExtra(AppPreferences.KEY_COUNTER, textView_counter.getText().toString());
+                i.putExtra(AppPreferences.KEY_COUNTER, textView_stones.getText().toString());
                 i.putExtra(AppPreferences.KEY_TEAM1, textView_team1.getText().toString());
                 i.putExtra(AppPreferences.KEY_TEAM2, textView_team2.getText().toString());
-                i.putExtra(AppPreferences.KEY_COUNT, textView_counter.getText().toString());
+                i.putExtra(AppPreferences.KEY_COUNT, textView_stones.getText().toString());
                 startActivity(i);
                 finish();
 
                 return true;
-            case R.id.set_counter:
-                setCounter();
+            case R.id.set_stones:
+                setStones();
                 return true;
             case R.id.action_support:
                 startActivity(new Intent(this, SupportActivity.class));

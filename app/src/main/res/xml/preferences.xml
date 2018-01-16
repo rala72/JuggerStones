@@ -18,12 +18,12 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="stop_after_point"
-            android:summary="@string/stop_after_point" />
+            android:summary="@string/stop_stones_after_point" />
 
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="stop_after_gong"
-            android:summary="@string/stop_after_gong" />
+            android:summary="@string/stop_stones_after_gong" />
 
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/settings_category_sound">

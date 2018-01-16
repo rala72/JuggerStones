@@ -7,8 +7,8 @@
     <string name="mode_normal">Normal mode (100 stones each part)</string>
     <string name="mode_extension">Extension mode (50 stones each part)</string>
     <string name="mode_infinite">Infinite mode (Only stones)</string>
-    <string name="stop_after_point">Stop counter after point</string>
-    <string name="stop_after_gong">Stop counter after warning</string>
+    <string name="stop_stones_after_point">Stop stones after point</string>
+    <string name="stop_stones_after_gong">Stop stones after warning</string>
 
     <!-- settings: sounds -->
     <string name="settings_category_sound">Sounds</string>

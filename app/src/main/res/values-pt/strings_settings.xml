@@ -6,8 +6,8 @@
     <string name="mode_normal">Modo Normal (100 pedras cada parte)</string>
     <string name="mode_extension">Modo de Extensão (50 pedras cada parte)</string>
     <string name="mode_infinite">Infinite mode (Only stones)</string>
-    <string name="stop_after_point">Pare de balcão após o ponto</string>
-    <string name="stop_after_gong">Parar contador depois de aviso</string>
+    <string name="stop_stones_after_point">Pare de balcão após o ponto</string>
+    <string name="stop_stones_after_gong">Parar contador depois de aviso</string>
 
     <!-- settings: sounds -->
     <string name="settings_category_sound">Sounds</string>

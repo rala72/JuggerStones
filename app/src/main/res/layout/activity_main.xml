@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,27 +25,41 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="1">
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textView_team1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:maxLines="1"
+                android:maxWidth="@dimen/textSizeAuto_maxSmall"
+                android:minHeight="@dimen/textSizeAuto_minSmall"
+                android:minWidth="@dimen/textSizeAuto_minSmall"
                 android:text="@string/team1"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/red"
-                android:textSize="@dimen/textSize_teamDetails" />
+                android:textSize="@dimen/textSize_teamDetails"
+                app:autoSizeTextType="uniform" />
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textView_team1_points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView_team1"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:maxLines="1"
+                android:maxWidth="@dimen/textSizeAuto_maxSmall"
+                android:minHeight="@dimen/textSizeAuto_minSmall"
+                android:minWidth="@dimen/textSizeAuto_minSmall"
                 android:text="@string/zero"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/red"
-                android:textSize="@dimen/textSize_teamDetails" />
+                android:textSize="@dimen/textSize_teamDetails"
+                app:autoSizeTextType="uniform" />
 
             <GridLayout
                 android:layout_width="wrap_content"
@@ -84,27 +99,41 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="1">
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textView_team2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:maxLines="1"
+                android:maxWidth="@dimen/textSizeAuto_maxSmall"
+                android:minHeight="@dimen/textSizeAuto_minSmall"
+                android:minWidth="@dimen/textSizeAuto_minSmall"
                 android:text="@string/team2"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/green"
-                android:textSize="@dimen/textSize_teamDetails" />
+                android:textSize="@dimen/textSize_teamDetails"
+                app:autoSizeTextType="uniform" />
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/textView_team2_points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView_team2"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:maxLines="1"
+                android:maxWidth="@dimen/textSizeAuto_maxSmall"
+                android:minHeight="@dimen/textSizeAuto_minSmall"
+                android:minWidth="@dimen/textSizeAuto_minSmall"
                 android:text="@string/zero"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/green"
-                android:textSize="@dimen/textSize_teamDetails" />
+                android:textSize="@dimen/textSize_teamDetails"
+                app:autoSizeTextType="uniform" />
 
             <GridLayout
                 android:layout_width="wrap_content"
@@ -147,39 +176,46 @@
         android:layout_centerInParent="true">
 
         <android.support.v7.widget.AppCompatImageButton
-            android:id="@+id/button_counter_decrease"
+            android:id="@+id/button_stones_decrease"
             android:layout_width="@dimen/button_increaseDecrease_size"
             android:layout_height="@dimen/button_increaseDecrease_size"
             android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/button_increaseDecrease_margin_center"
             android:layout_marginRight="@dimen/button_increaseDecrease_margin_center"
-            android:layout_toLeftOf="@+id/textView_counter"
-            android:layout_toStartOf="@+id/textView_counter"
+            android:layout_toLeftOf="@+id/textView_stones"
+            android:layout_toStartOf="@+id/textView_stones"
             android:background="@android:color/transparent"
             android:contentDescription="@string/decrease"
             android:scaleType="fitCenter"
             android:src="@drawable/decrease" />
 
-        <TextView
-            android:id="@+id/textView_counter"
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/textView_stones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:gravity="center"
+            android:maxLines="1"
+            android:maxWidth="@dimen/textSizeAuto_maxLarge"
+            android:minHeight="@dimen/textSizeAuto_minLargeHeight"
+            android:minWidth="@dimen/textSizeAuto_minLargeWidth"
             android:text="@string/zero"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_stones" />
+            android:textSize="@dimen/textSize_stones"
+            app:autoSizeTextType="uniform" />
 
         <android.support.v7.widget.AppCompatImageButton
-            android:id="@+id/button_counter_increase"
+            android:id="@+id/button_stones_increase"
             android:layout_width="@dimen/button_increaseDecrease_size"
             android:layout_height="@dimen/button_increaseDecrease_size"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/button_increaseDecrease_margin_center"
             android:layout_marginStart="@dimen/button_increaseDecrease_margin_center"
-            android:layout_toEndOf="@+id/textView_counter"
-            android:layout_toRightOf="@+id/textView_counter"
+            android:layout_toEndOf="@+id/textView_stones"
+            android:layout_toRightOf="@+id/textView_stones"
             android:background="@android:color/transparent"
             android:contentDescription="@string/increase"
             android:scaleType="fitCenter"

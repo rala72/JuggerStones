@@ -23,7 +23,7 @@
     <string-array name="mode_game_values" translatable="false">
         <item>100</item>
         <item>50</item>
-        <item>9999</item>
+        <item>-1</item>
     </string-array>
     <string-array name="sounds_stone" translatable="false">
         <item>@string/achievement</item>

@@ -8,8 +8,8 @@
         android:title="@string/renameTeams"
         app:showAsAction="never" />
     <item
-        android:id="@+id/set_counter"
-        android:title="@string/set_counter"
+        android:id="@+id/set_stones"
+        android:title="@string/setStones"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_support"

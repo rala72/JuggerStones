@@ -7,8 +7,8 @@
     <string name="mode_normal">Modo normal (100 piedras cada parte)</string>
     <string name="mode_extension">Modo prorroga mode (50 piedras cada parte)</string>
     <string name="mode_infinite">Modo infinito(Solo piedras)</string>
-    <string name="stop_after_point">Detener contador después de punto</string>
-    <string name="stop_after_gong">Detener contador después de aviso</string>
+    <string name="stop_stones_after_point">Detener contador después de punto</string>
+    <string name="stop_stones_after_gong">Detener contador después de aviso</string>
 
     <!-- settings: sounds -->
     <string name="settings_category_sound">Sonidos</string>

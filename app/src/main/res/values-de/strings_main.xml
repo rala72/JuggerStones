@@ -3,12 +3,13 @@
     <string name="zero">0</string>
     <string name="team1">Team 1</string>
     <string name="team2">Team 2</string>
-    <string name="set_counter">Zähler setzen</string>
+    <string name="setStones">Steine ändern</string>
+    <string name="renameTeams">Teams benennen</string>
     <string name="renameTeams_1">Team 1 umbenennen</string>
     <string name="renameTeams_2">Team 2 umbenennen</string>
-    <string name="renameTeams">Teams benennen</string>
     <string name="support">Support und Kontakt</string>
     <string name="settings">Einstellungen</string>
 
     <string name="toast_teamLength">Der Einfachheit halber nur die Anfangsbuchstaben der einzelnen Teams bitte (5 MAX)</string>
+    <string name="toast_infinity">ACHTUNG: Endlos-Modus ist ausgewählt!</string>
 </resources>

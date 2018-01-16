@@ -7,8 +7,8 @@
     <string name="mode_normal">Mode normal (100 pierres de chaque partie)</string>
     <string name="mode_extension">Mode d\'extension (50 pierres chaque partie)</string>
     <string name="mode_infinite">Mode Infini (Seuls les pierres)</string>
-    <string name="stop_after_point">Arrêter compteur après le point</string>
-    <string name="stop_after_gong">Arrêter compteur après avertissement</string>
+    <string name="stop_stones_after_point">Arrêter compteur après le point</string>
+    <string name="stop_stones_after_gong">Arrêter compteur après avertissement</string>
 
     <!-- settings: sounds -->
     <string name="settings_category_sound">Sons</string>

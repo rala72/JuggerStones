@@ -3,7 +3,7 @@
     <string name="zero">0</string>
     <string name="team1">Equipe 1</string>
     <string name="team2">Equipe 2</string>
-    <string name="set_counter">Definir contador</string>
+    <string name="setStones">Colocar pedras</string>
     <string name="renameTeams">Rebatizar equipes</string>
     <string name="renameTeams_1">Equipe 1 iniciais</string>
     <string name="renameTeams_2">Equipe 2 iniciais</string>
@@ -11,4 +11,5 @@
     <string name="settings">Configurações</string>
 
     <string name="toast_teamLength">Por conveniência apenas as iniciais de cada equipe por favor (5 MAX)</string>
+    <string name="toast_infinity">AVISO: o modo infinito está selecionado</string>
 </resources>

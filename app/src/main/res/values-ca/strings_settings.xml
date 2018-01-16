@@ -7,8 +7,8 @@
     <string name="mode_normal">Mode Normal (100 pedres per part)</string>
     <string name="mode_extension">Mode Extensión (50 pedres per part)</string>
     <string name="mode_infinite">Mode Infinite (Solament pedres)</string>
-    <string name="stop_after_point">Parada el comptador, després del punt</string>
-    <string name="stop_after_gong">Parada el comptador després de l\'advertiment</string>
+    <string name="stop_stones_after_point">Parada el comptador, després del punt</string>
+    <string name="stop_stones_after_gong">Parada el comptador després de l\'advertiment</string>
 
     <!-- settings: sounds -->
     <string name="settings_category_sound">So</string>
