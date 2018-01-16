@@ -58,7 +58,7 @@
                 android:data="@string/email_mailto">
                 <extra
                     android:name="android.intent.extra.SUBJECT"
-                    android:value="Jugger Stones message" />
+                    android:value="JuggerStones+" />
             </intent>
         </Preference>
         <Preference
