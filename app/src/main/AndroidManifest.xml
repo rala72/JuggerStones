@@ -20,7 +20,7 @@
             android:configChanges="locale|orientation"
             android:label="@string/settings" />
         <activity
-            android:name=".Support"
+            android:name=".SupportActivity"
             android:configChanges="locale|orientation"
             android:label="@string/support" />
     </application>

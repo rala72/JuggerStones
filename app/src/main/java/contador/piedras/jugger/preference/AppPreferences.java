@@ -63,7 +63,6 @@ public class AppPreferences extends PreferenceActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
-            // Para controlar el volumen
             case KeyEvent.KEYCODE_VOLUME_UP:
                 audio.adjustStreamVolume(AudioManager.STREAM_MUSIC,
                         AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);

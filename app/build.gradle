@@ -1,8 +1,18 @@
 apply plugin: 'com.android.application'
+// retroLambda
+// apply plugin: 'me.tatarka.retrolambda' // DISABLED Java 8
 
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.3"
+
+    // retroLambda
+    /*
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    */
 
     defaultConfig {
         applicationId "contador.piedras.jugger.plus"
@@ -21,6 +31,20 @@ android {
 }
 
 dependencies {
+    // retroLambda
+    /*
+    compile 'com.annimon:stream:1.1.+'
+    compile 'org.apache.commons:commons-lang3:3.+'
+    */
+
+    // google
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:support-v4:26.1.0'
+
+    // design
+    compile 'com.jakewharton:butterknife:8.8.+'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.+'
+
+    // time
+    // compile 'joda-time:joda-time:2.9.+'
 }

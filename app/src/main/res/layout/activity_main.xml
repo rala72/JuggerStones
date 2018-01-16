@@ -147,21 +147,21 @@
         android:layout_centerInParent="true">
 
         <android.support.v7.widget.AppCompatImageButton
-            android:id="@+id/button_stones_decrease"
+            android:id="@+id/button_counter_decrease"
             android:layout_width="@dimen/button_increaseDecrease_size"
             android:layout_height="@dimen/button_increaseDecrease_size"
             android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/button_increaseDecrease_margin_center"
             android:layout_marginRight="@dimen/button_increaseDecrease_margin_center"
-            android:layout_toLeftOf="@+id/textView_stones"
-            android:layout_toStartOf="@+id/textView_stones"
+            android:layout_toLeftOf="@+id/textView_counter"
+            android:layout_toStartOf="@+id/textView_counter"
             android:background="@android:color/transparent"
             android:contentDescription="@string/decrease"
             android:scaleType="fitCenter"
             android:src="@drawable/decrease" />
 
         <TextView
-            android:id="@+id/textView_stones"
+            android:id="@+id/textView_counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -172,14 +172,14 @@
             android:textSize="@dimen/textSize_stones" />
 
         <android.support.v7.widget.AppCompatImageButton
-            android:id="@+id/button_stones_increase"
+            android:id="@+id/button_counter_increase"
             android:layout_width="@dimen/button_increaseDecrease_size"
             android:layout_height="@dimen/button_increaseDecrease_size"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/button_increaseDecrease_margin_center"
             android:layout_marginStart="@dimen/button_increaseDecrease_margin_center"
-            android:layout_toEndOf="@+id/textView_stones"
-            android:layout_toRightOf="@+id/textView_stones"
+            android:layout_toEndOf="@+id/textView_counter"
+            android:layout_toRightOf="@+id/textView_counter"
             android:background="@android:color/transparent"
             android:contentDescription="@string/increase"
             android:scaleType="fitCenter"
@@ -193,22 +193,26 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true">
 
-        <Button
-            android:id="@+id/button_play"
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/button_playPause"
             android:layout_width="@dimen/button_playStop_size"
             android:layout_height="@dimen/button_playStop_size"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:background="@drawable/play" />
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/button_playPause" />
 
-        <Button
+        <android.support.v7.widget.AppCompatImageButton
             android:id="@+id/button_stop"
             android:layout_width="@dimen/button_playStop_size"
             android:layout_height="@dimen/button_playStop_size"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/stop" />
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/stop" />
 
     </RelativeLayout>
 

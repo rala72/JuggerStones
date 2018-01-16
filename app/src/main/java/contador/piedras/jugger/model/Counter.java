@@ -3,30 +3,29 @@ package contador.piedras.jugger.model;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.widget.Button;
+import android.support.v7.widget.AppCompatImageButton;
 import android.widget.TextView;
 
 import contador.piedras.jugger.R;
 
 public class Counter extends Thread {
-    private int stones;
-    private int mode;
+    private long stones;
+    private long mode;
+    private long interval = 1500;
     private boolean stopped = false;
-
-    private int interval = 1500;
     private Sound sound;
     private MyHandler handler;
-    private SharedPreferences SP;
-    private Button play;
+    private SharedPreferences sharedPreferences;
+    private AppCompatImageButton button_playPause;
 
-    public Counter(TextView t, int stones, int mode, int interval, Sound s, Context context, Button play) {
-        this.stones = stones; // iguala las variables
-        this.handler = new MyHandler(t);
+    public Counter(Context context, TextView textView, long stones, long mode, long interval, Sound sound, AppCompatImageButton button_playPause) {
+        this.stones = stones;
         this.mode = mode;
         this.interval = interval;
-        this.sound = s;
-        this.SP = PreferenceManager.getDefaultSharedPreferences(context);
-        this.play = play;
+        this.sound = sound;
+        this.handler = new MyHandler(textView);
+        this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        this.button_playPause = button_playPause;
     }
 
     @SuppressWarnings("static-access")
@@ -41,10 +40,10 @@ public class Counter extends Thread {
             handler.setMessage(stones + "");
             handler.refresh();
             try {
-                if (stones == mode || stones == (mode * 2)) { //si llega a modo o modo*2 (2º parte) suena gong
+                if (stones == mode || stones == (mode * 2)) { // if it reaches mode or mode * 2 (2nd part) -> sounds gong
                     sound.activateGong();
-                    setStopped(SP.getBoolean("stop_after_gong", false));
-                    play.setBackgroundResource(R.drawable.play);
+                    setStopped(sharedPreferences.getBoolean("stop_after_gong", false));
+                    button_playPause.setBackgroundResource(R.drawable.play);
                 } else sound.activateStone();
                 this.sleep(interval);
             } catch (InterruptedException e) {
