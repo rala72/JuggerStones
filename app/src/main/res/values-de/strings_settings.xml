@@ -29,8 +29,6 @@
     <string name="gong">Gong</string>
     <string name="vuvuzela">Vuvucela</string>
 
-    <!-- settings: languages -->
-    <string name="settings_category_language">@string/language</string>
     <!-- settings: others -->
     <string name="settings_category_others">Andere</string>
     <string name="contact_title">Kontakt</string>

@@ -4,14 +4,14 @@
     <PreferenceCategory android:title="@string/settings_category_game">
         <ListPreference
             android:defaultValue="1500"
-            android:entries="@array/interval_count"
-            android:entryValues="@array/interval_count_values"
+            android:entries="@array/array_interval_count"
+            android:entryValues="@array/array_interval_count_values"
             android:key="interval"
             android:title="@string/stoneInterval" />
         <ListPreference
             android:defaultValue="100"
-            android:entries="@array/mode_game"
-            android:entryValues="@array/mode_game_values"
+            android:entries="@array/array_mode_game"
+            android:entryValues="@array/array_mode_game_values"
             android:key="mode"
             android:title="@string/mode" />
 
@@ -29,23 +29,23 @@
     <PreferenceCategory android:title="@string/settings_category_sound">
         <contador.piedras.jugger.preference.CustomPreferenceList
             android:defaultValue="stone"
-            android:entries="@array/sounds_stone"
-            android:entryValues="@array/sounds_stone_values"
+            android:entries="@array/array_sounds_stone"
+            android:entryValues="@array/array_sounds_stone_values"
             android:key="time_sounds"
             android:title="@string/sounds_stones" />
 
         <contador.piedras.jugger.preference.CustomPreferenceList
             android:defaultValue="gong"
-            android:entries="@array/sounds_gong"
-            android:entryValues="@array/sounds_gong_values"
+            android:entries="@array/array_sounds_gong"
+            android:entryValues="@array/array_sounds_gong_values"
             android:key="gong_sounds"
             android:title="@string/sounds_gong" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/settings_category_language">
         <ListPreference
             android:defaultValue="en"
-            android:entries="@array/languages_array"
-            android:entryValues="@array/languages_array_values"
+            android:entries="@array/array_languages_array"
+            android:entryValues="@array/array_languages_array_values"
             android:key="pref_language"
             android:title="@string/language" />
     </PreferenceCategory>

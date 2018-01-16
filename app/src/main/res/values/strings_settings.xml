@@ -30,7 +30,7 @@
     <string name="vuvuzela">Vuvucela</string>
 
     <!-- settings: languages -->
-    <string name="settings_category_language">@string/language</string>
+    <string name="settings_category_language" translatable="false">@string/language</string>
     <!-- settings: others -->
     <string name="settings_category_others">Others</string>
     <string name="contact_title">Contact</string>
