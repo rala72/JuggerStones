@@ -16,7 +16,7 @@ public class Sound {
         this.context = context;
     }
 
-    public void activateStone() {
+    public void playStone() {
         Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/raw/" + stone);
         MediaPlayer auxStone = MediaPlayer.create(context, uri);
         auxStone.start();
@@ -28,7 +28,7 @@ public class Sound {
         });
     }
 
-    public void activateGong() {
+    public void playGong() {
         Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/raw/" + gong);
         MediaPlayer auxGong = MediaPlayer.create(context, uri);
         auxGong.start();

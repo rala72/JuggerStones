@@ -29,7 +29,6 @@ import contador.piedras.jugger.model.Counter;
 import contador.piedras.jugger.model.Sound;
 import contador.piedras.jugger.preference.AppPreferences;
 
-
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.button_playPause)
@@ -120,24 +119,21 @@ public class MainActivity extends AppCompatActivity {
                 long interval = Long.parseLong(sharedPreferences.getString("interval", "1500"));
                 String soundStone = sharedPreferences.getString("time_sounds", "stone");
                 String soundGong = sharedPreferences.getString("gong_sounds", "vuvuzela");
-                Sound s = new Sound(getApplicationContext(), soundStone, soundGong);
+                Sound sound = new Sound(getApplicationContext(), soundStone, soundGong);
 
-                if (isPaused) {
-                    button_play.setImageResource(R.drawable.pause);
-                    isPaused = false;
-                    counter = new Counter(getApplicationContext(), textView_counter, Long.parseLong(textView_counter.getText().toString().trim()), mode, interval, s, button_play);
+                isPaused = !isPaused;
+                button_play.setImageResource(isPaused ? R.drawable.play : R.drawable.pause);
+                if (isPaused) counter.setStopped(true);
+                else {
+                    counter = new Counter(getApplicationContext(), textView_counter, Long.parseLong(textView_counter.getText().toString().trim()), mode, interval, sound, button_play);
                     counter.start();
-                } else {
-                    button_play.setImageResource(R.drawable.play);
-                    isPaused = true;
-                    counter.setStopped(true);
                 }
                 break;
             case R.id.button_stop:
                 if (!isPaused) {
+                    isPaused = true;
                     button_play.setImageResource(R.drawable.play);
                     counter.setStopped(true);
-                    isPaused = true;
                 }
                 textView_counter.setText("0");
                 break;
@@ -165,18 +161,18 @@ public class MainActivity extends AppCompatActivity {
 
     // dialogs
     private void setCounter() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-        alertDialog.setTitle(R.string.set_counter);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setTitle(R.string.set_counter);
         final EditText counterEdit = new EditText(MainActivity.this);
         counterEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
         counterEdit.requestFocus();
 
-        LinearLayout ll = new LinearLayout(this);
-        ll.setOrientation(LinearLayout.VERTICAL);
-        ll.addView(counterEdit);
-        alertDialog.setView(ll);
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.addView(counterEdit);
+        alertDialogBuilder.setView(linearLayout);
 
-        alertDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
                 try {
@@ -188,51 +184,38 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        alertDialog.setNegativeButton(android.R.string.cancel, null);
-
-        AlertDialog alert = alertDialog.create();
-        alert.show();
+        alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
+        alertDialogBuilder.create().show();
     }
 
     private void renameTeams() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
 
-        alertDialog.setTitle(R.string.renameTeams);
-        final EditText NameT1 = new EditText(MainActivity.this);
-        NameT1.setHint(R.string.renameTeams_1);
-        NameT1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(5)});
+        alertDialogBuilder.setTitle(R.string.renameTeams);
+        final EditText editText_name1 = new EditText(MainActivity.this);
+        editText_name1.setHint(R.string.renameTeams_1);
+        editText_name1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(5)});
 
-        final EditText NameT2 = new EditText(MainActivity.this);
-        NameT2.setHint(R.string.renameTeams_2);
-        NameT2.setFilters(new InputFilter[]{new InputFilter.LengthFilter(5)});
+        final EditText editText_name2 = new EditText(MainActivity.this);
+        editText_name2.setHint(R.string.renameTeams_2);
+        editText_name2.setFilters(new InputFilter[]{new InputFilter.LengthFilter(5)});
 
-        LinearLayout ll = new LinearLayout(this);
-        ll.setOrientation(LinearLayout.VERTICAL);
-        ll.addView(NameT1);
-        ll.addView(NameT2);
-        alertDialog.setView(ll);
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.addView(editText_name1);
+        linearLayout.addView(editText_name2);
+        alertDialogBuilder.setView(linearLayout);
 
-        alertDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
-                if (NameT1.getText().toString().trim().length() > 5
-                        || NameT1.getText().toString().trim().length() == 0
-                        || NameT2.getText().toString().trim().length() > 5
-                        || NameT2.getText().toString().trim().length() == 0) {
-                    Toast.makeText(MainActivity.this,
-                            R.string.toast_teamLength,
-                            Toast.LENGTH_LONG).show();
-                } else {
-                    textView_team1.setText(NameT1.getText().toString());
-                    textView_team2.setText(NameT2.getText().toString());
-                }
+                textView_team1.setText(editText_name1.getText().toString());
+                textView_team2.setText(editText_name2.getText().toString());
             }
         });
-
-        alertDialog.setNegativeButton(android.R.string.cancel, null);
-
-        AlertDialog alert = alertDialog.create();
-        alert.show();
+        alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
+        alertDialogBuilder.create().show();
+        Toast.makeText(MainActivity.this, R.string.toast_teamLength, Toast.LENGTH_SHORT).show();
     }
 
     @Override

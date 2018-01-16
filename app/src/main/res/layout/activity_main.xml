@@ -202,7 +202,7 @@
             android:layout_alignParentTop="true"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
-            android:src="@drawable/button_playPause" />
+            android:src="@drawable/play" />
 
         <android.support.v7.widget.AppCompatImageButton
             android:id="@+id/button_stop"
