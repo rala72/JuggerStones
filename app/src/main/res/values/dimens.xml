@@ -4,4 +4,12 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="textSize_teamDetails">35sp</dimen>
+    <dimen name="textSize_stones">100sp</dimen>
+
+    <dimen name="button_increaseDecrease_size">50dp</dimen>
+    <dimen name="button_increaseDecrease_margin">5dp</dimen>
+    <dimen name="button_increaseDecrease_margin_center">18dp</dimen>
+    <dimen name="button_playStop_size">100dp</dimen>
+
 </resources>

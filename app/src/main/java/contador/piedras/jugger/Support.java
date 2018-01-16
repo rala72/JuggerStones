@@ -1,16 +1,16 @@
 package contador.piedras.jugger;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class Support extends Activity {
+public class Support extends AppCompatActivity {
     private AudioManager audio;
 
     @Override
@@ -19,7 +19,7 @@ public class Support extends Activity {
         setContentView(R.layout.activity_support);
         audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
-        Button b_msg = findViewById(R.id.B_msg);
+        Button b_msg = findViewById(R.id.button);
         b_msg.setOnClickListener(new OnClickListener() {
 
             @Override

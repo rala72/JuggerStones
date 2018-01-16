@@ -5,18 +5,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Rect;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageButton;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.TouchDelegate;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,8 +31,8 @@ import contador.piedras.jugger.preference.AppPreferences;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
 
     private Button play, stop;
-    private Button min1, min2;
-    private Button incStones, decStones;
+    private AppCompatImageButton min1, min2;
+    private AppCompatImageButton incStones, decStones;
 
     private TextView T1Score, T2Score;
     private TextView T1Name, T2Name;
@@ -54,24 +53,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-        tv_counter = findViewById(R.id.TV_cero);
+        tv_counter = findViewById(R.id.textView_stones);
 
-        play = findViewById(R.id.b_start);
-        stop = findViewById(R.id.b_stop);
+        play = findViewById(R.id.button_play);
+        stop = findViewById(R.id.button_stop);
 
-        Button plust1 = findViewById(R.id.b_mast1);
-        Button plust2 = findViewById(R.id.b_mast2);
-        min1 = findViewById(R.id.b_mint1);
-        min2 = findViewById(R.id.b_mint2);
+        AppCompatImageButton plust1 = findViewById(R.id.button_team1_increase);
+        AppCompatImageButton plust2 = findViewById(R.id.button_team2_increase);
+        min1 = findViewById(R.id.button_team1_decrease);
+        min2 = findViewById(R.id.button_team2_decrease);
 
-        incStones = findViewById(R.id.inc_stones);
-        decStones = findViewById(R.id.dec_stones);
+        incStones = findViewById(R.id.button_stones_increase);
+        decStones = findViewById(R.id.button_stones_decrease);
 
-        T1Score = findViewById(R.id.TV_pointT1);
-        T2Score = findViewById(R.id.TV_pointT2);
+        T1Score = findViewById(R.id.textView_team1_points);
+        T2Score = findViewById(R.id.textView_team2_points);
 
-        T1Name = findViewById(R.id.TV_nameT1);
-        T2Name = findViewById(R.id.TV_nameT2);
+        T1Name = findViewById(R.id.textView_team1);
+        T2Name = findViewById(R.id.textView_team2);
 
         audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -87,8 +86,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         incStones.setOnClickListener(this);
         decStones.setOnClickListener(this);
 
-        enlargeAreas();
-
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             tv_counter.setText(extras.getString(AppPreferences.KEY_COUNTER, "0"));
@@ -101,47 +98,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void enlargeAreas() { //TODO no funciona, comprobar
-        final View parent = (View) decStones.getParent();  // button: the view you want to enlarge hit area
-        parent.post(new Runnable() {
-            public void run() {
-                Rect rect = new Rect();
-                decStones.getHitRect(rect);
-                rect.top -= 10000;    // increase top hit area
-                rect.left -= 10000;   // increase left hit area
-                rect.bottom += 10000; // increase bottom hit area
-                rect.right += 10000;  // increase right hit area
-                parent.setTouchDelegate(new TouchDelegate(rect, decStones));
-            }
-        });
-
-        final View auxminT1 = (View) min1.getParent();  // button: the view you want to enlarge hit area
-        auxminT1.post(new Runnable() {
-            public void run() {
-                Rect rect = new Rect();
-                min1.getHitRect(rect);
-                rect.top -= 10;    // increase top hit area
-                rect.bottom += 10; // increase bottom hit area
-                auxminT1.setTouchDelegate(new TouchDelegate(rect, min1));
-            }
-        });
-
-        final View auxminT2 = (View) min2.getParent();  // button: the view you want to enlarge hit area
-        auxminT2.post(new Runnable() {
-            public void run() {
-                Rect rect = new Rect();
-                min2.getHitRect(rect);
-                rect.top -= 10;    // increase top hit area
-                rect.bottom += 10; // increase bottom hit area
-                auxminT2.setTouchDelegate(new TouchDelegate(rect, min2));
-            }
-        });
-    }
-
     public void onClick(View v) {
         int num;
         switch (v.getId()) {
-            case R.id.b_start:
+            case R.id.button_play:
                 int mode = Integer.parseInt(sharedPreferences.getString("mode", "100"));
                 int interval = Integer.parseInt(sharedPreferences.getString("interval", "1500"));
                 String soundStone = sharedPreferences.getString("time_sounds", "stone");
@@ -159,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     counter.setStopped(true);
                 }
                 break;
-            case R.id.b_stop:
+            case R.id.button_stop:
                 if (!isPaused) {
                     play.setBackgroundResource(R.drawable.play);
                     counter.setStopped(true);
@@ -169,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     tv_counter.setText("0");
                 }
                 break;
-            case R.id.b_mast1:
+            case R.id.button_team1_increase:
                 num = Integer.parseInt(T1Score.getText().toString());
                 T1Score.setText(String.valueOf(num + 1));
                 if (sharedPreferences.getBoolean("stop_after_point", false)) {
@@ -178,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
 
-            case R.id.b_mast2:
+            case R.id.button_team2_increase:
                 num = Integer.parseInt(T2Score.getText().toString());
                 T2Score.setText(String.valueOf(num + 1));
                 if (sharedPreferences.getBoolean("stop_after_point", false)) {
@@ -187,26 +147,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
 
-            case R.id.b_mint1:
+            case R.id.button_team1_decrease:
                 if (0 < Integer.parseInt(T1Score.getText().toString())) {
                     num = Integer.parseInt(T1Score.getText().toString());
                     T1Score.setText(String.valueOf(num - 1));
                 }
                 break;
 
-            case R.id.b_mint2:
+            case R.id.button_team2_decrease:
                 if (0 < Integer.parseInt(T2Score.getText().toString())) {
                     num = Integer.parseInt(T2Score.getText().toString());
                     T2Score.setText(String.valueOf(num - 1));
                 }
                 break;
 
-            case R.id.inc_stones:
+            case R.id.button_stones_increase:
                 num = Integer.parseInt(tv_counter.getText().toString());
                 tv_counter.setText(String.valueOf(num + 1));
                 break;
 
-            case R.id.dec_stones:
+            case R.id.button_stones_decrease:
                 if (0 < Integer.parseInt(tv_counter.getText().toString())) {
                     num = Integer.parseInt(tv_counter.getText().toString());
                     tv_counter.setText(String.valueOf(num - 1));
@@ -217,13 +177,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public boolean onLongClick(View v) {
         switch (v.getId()) {
-            case R.id.TV_nameT1:
+            case R.id.textView_team1:
                 renameTeams();
                 break;
-            case R.id.TV_nameT2:
+            case R.id.textView_team2:
                 renameTeams();
                 break;
-            case R.id.TV_cero:
+            case R.id.textView_stones:
                 setCounter();
                 break;
         }
