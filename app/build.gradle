@@ -15,7 +15,7 @@ android {
     */
 
     defaultConfig {
-        applicationId "contador.piedras.jugger.plus"
+        applicationId "io.rala.jugger.plus" // "contador.piedras.jugger"
         minSdkVersion 14
         targetSdkVersion 26
         versionCode 10000 // 01.00.00
