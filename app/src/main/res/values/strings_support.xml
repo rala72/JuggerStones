@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="msg_support">This application is 100% programmed CristianCV, I hope this will be very helpful! \n\nI accept any suggestions for improvement (especially in the translations), you can get in touch with me using the button on this screen.</string>
+    <string name="msg_sendMessage">Send message</string>
+</resources>

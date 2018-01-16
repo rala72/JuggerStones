@@ -7,7 +7,6 @@ import android.content.DialogInterface.OnClickListener;
 import android.preference.ListPreference;
 import android.util.AttributeSet;
 
-import contador.piedras.jugger.R;
 import contador.piedras.jugger.Sounds;
 
 
@@ -43,7 +42,7 @@ public class CustomPreferenceList extends ListPreference implements OnClickListe
             }
         });
         System.out.println(getEntry() + " " + this.getEntries()[0]);
-        builder.setPositiveButton(R.string.accept, this);
+        builder.setPositiveButton(android.R.string.ok, this);
     }
 
     public void onClick(DialogInterface dialog, int which) {

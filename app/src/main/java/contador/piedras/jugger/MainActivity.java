@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int mode = Integer.parseInt(SP.getString("mode", "100"));
                 int interval = Integer.parseInt(SP.getString("interval", "1500"));
                 String soundStone = SP.getString("time_sounds", "stone");
-                String soundGong = SP.getString("gong_sounds", "vuvucela");
+                String soundGong = SP.getString("gong_sounds", "vuvuzela");
                 Sounds s = new Sounds(getApplicationContext(), soundStone, soundGong);
 
                 if (isPaused) {// Pausar el contador
@@ -257,8 +257,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.set_counter:
                 setCounter();
                 return true;
-            case R.id.Assit:
-                startActivity(new Intent(this, Assit.class));
+            case R.id.action_upport:
+                startActivity(new Intent(this, Support.class));
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ll.addView(counterEdit);
         alertDialog.setView(ll);
 
-        alertDialog.setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
                 try {
@@ -288,7 +288,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        alertDialog.setNegativeButton(R.string.cancel, null);
+        alertDialog.setNegativeButton(android.R.string.cancel, null);
 
         AlertDialog alert = alertDialog.create();
         alert.show();
@@ -297,13 +297,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void renameTeams() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
 
-        alertDialog.setTitle(R.string.rename_teams);
+        alertDialog.setTitle(R.string.renameTeams);
         final EditText NameT1 = new EditText(MainActivity.this);
-        NameT1.setHint(R.string.team1ini);
+        NameT1.setHint(R.string.renameTeams_1);
         NameT1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(5)});
 
         final EditText NameT2 = new EditText(MainActivity.this);
-        NameT2.setHint(R.string.team2ini);
+        NameT2.setHint(R.string.renameTeams_2);
         NameT2.setFilters(new InputFilter[]{new InputFilter.LengthFilter(5)});
 
         LinearLayout ll = new LinearLayout(this);
@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ll.addView(NameT2);
         alertDialog.setView(ll);
 
-        alertDialog.setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
                 if (NameT1.getText().toString().trim().length() > 5
@@ -320,7 +320,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         || NameT2.getText().toString().trim().length() > 5
                         || NameT2.getText().toString().trim().length() == 0) {
                     Toast.makeText(MainActivity.this,
-                            R.string.warning_initials,
+                            R.string.toast_teamLength,
                             Toast.LENGTH_LONG).show();
                 } else {
                     T1Name.setText(NameT1.getText().toString());
@@ -329,7 +329,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        alertDialog.setNegativeButton(R.string.cancel, null);
+        alertDialog.setNegativeButton(android.R.string.cancel, null);
 
         AlertDialog alert = alertDialog.create();
         alert.show();

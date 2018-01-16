@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><!-- files were in 'values-pt-rPT' -->
+    <!-- languages -->
+    <string name="language">Língua</string>
+    <string name="english">Inglês</string>
+    <string name="spanish">Espanhol</string>
+    <string name="catalan">Catalão</string>
+    <string name="german">Alemão</string>
+    <string name="french">Francês</string>
+    <string name="portuguese">Português</string>
+
+    <!-- other -->
+    <string name="up_improvements">Próximas melhorias: -É possível adicionar e gravar sons personalizados</string>
+</resources>

@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="intervale_count">
+    <string-array name="interval_count">
         <item>1</item>
         <item>1.3</item>
         <item>1.5</item>
         <item>1.7</item>
         <item>2</item>
     </string-array>
-    <string-array name="intervale_count_values">
+    <string-array name="interval_count_values">
         <item>1000</item>
         <item>1300</item>
         <item>1500</item>
         <item>1700</item>
         <item>2000</item>
     </string-array>
+
     <string-array name="mode_game">
         <item>@string/mode_normal</item>
         <item>@string/mode_extension</item>
@@ -24,45 +25,41 @@
         <item>50</item>
         <item>9999</item>
     </string-array>
-    <string-array name="time_sounds">
-        <item>@string/alan</item>
+    <string-array name="sounds_stone">
+        <item>@string/achievement</item>
         <item>@string/cash_reg</item>
         <item>@string/censure</item>
         <item>@string/crow</item>
         <item>@string/doh</item>
-        <item>@string/fb_noti</item>
-        <item>@string/achievement</item>
-        <item>@string/metal_gear</item>
-        <item>@string/duck</item>
-        <item>@string/pan</item>
         <item>@string/drum</item>
+        <item>@string/duck</item>
+        <item>@string/fb_notification</item>
+        <item>@string/metal_gear</item>
+        <item>@string/pan</item>
         <item>@string/stone</item>
     </string-array>
-    <string-array name="time_sounds_values">
-        <item>alan</item>
-        <item>cajaregistradora</item>
-        <item>censura</item>
-        <item>cuervo</item>
+    <string-array name="sounds_stone_values">
+        <item>achievement</item>
+        <item>cash_reg</item>
+        <item>censure</item>
+        <item>crow</item>
         <item>doh</item>
+        <item>drum</item>
+        <item>duck</item>
         <item>fb</item>
-        <item>gong</item>
-        <item>logroxbox</item>
-        <item>metalgear</item>
-        <item>pato</item>
-        <item>sarten</item>
+        <item>metal_gear</item>
+        <item>pan</item>
         <item>stone</item>
-        <item>tambor</item>
-        <item>vuvucela</item>
-
     </string-array>
-    <string-array name="gong_sounds">
+    <string-array name="sounds_gong">
         <item>@string/gong</item>
-        <item>@string/vuvucela</item>
+        <item>@string/vuvuzela</item>
     </string-array>
-    <string-array name="gong_sounds_values">
+    <string-array name="sounds_gong_values">
         <item>gong</item>
-        <item>vuvucela</item>
+        <item>vuvuzela</item>
     </string-array>
+
     <string-array name="languages_array">
         <item>@string/english</item>
         <item>@string/catalan</item>
@@ -71,7 +68,6 @@
         <item>@string/french</item>
         <item>@string/portuguese</item>
     </string-array>
-
     <string-array name="languages_array_values">
         <item>en</item>
         <item>ca</item>

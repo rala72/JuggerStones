@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><!-- settings: game -->
+    <string name="settings_category_game">Jogo</string>
+    <string name="stoneInterval">Iintervalo entre pedras</string>
+    <string name="mode">Modo de jogo</string>
+    <string name="mode_normal">Modo Normal (100 pedras cada parte)</string>
+    <string name="mode_extension">Modo de Extensão (50 pedras cada parte)</string>
+    <string name="mode_infinite">Infinite mode (Only stones)</string>
+    <string name="stop_after_point">Pare de balcão após o ponto</string>
+    <string name="stop_after_gong">Parar contador depois de aviso</string>
+
+    <!-- settings: sounds -->
+    <string name="settings_category_sound">Sounds</string>
+    <string name="sounds_stones">Modo infinito (Só pedras)</string>
+    <string name="cash_reg">Caixa registradora</string>
+    <string name="censure">Censura</string>
+    <string name="crow">Corvo</string>
+    <string name="doh">D\'oh de Homero</string>
+    <string name="fb_notification">Fb notificação</string>
+    <string name="achievement">Realização</string>
+    <string name="metal_gear">Metal gear</string>
+    <string name="duck">Pato</string>
+    <string name="pan">Panela</string>
+    <string name="drum">Tambor</string>
+    <string name="stone">Pedra</string>
+
+    <string name="sounds_gong">Soungs de gong</string>
+    <string name="gong">Gong</string>
+    <string name="vuvuzela">Vuvucela</string>
+
+    <!-- settings: languages -->
+    <string name="settings_category_language">@string/language</string>
+    <!-- settings: others -->
+    <string name="settings_category_others">Outros</string>
+    <string name="contact_title">Contato</string>
+    <string name="contact_description">Envie uma mensagem para o desenvolvedor</string>
+    <string name="rate_title">Pontuar</string>
+    <string name="rate_description">Classifique o app</string>
+</resources>

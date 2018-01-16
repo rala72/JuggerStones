@@ -12,7 +12,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="175dp"
-        android:text="@string/msg_button" />
+        android:text="@string/msg_sendMessage" />
 
     <TextView
         android:id="@+id/textView1"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/B_msg"
         android:layout_marginBottom="32dp"
-        android:text="@string/msg_assit"
+        android:text="@string/msg_support"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white"
         android:textSize="15sp" />
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/asssit"
+        android:text="@string/support"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white" />
 

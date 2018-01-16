@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/settings_game">
+    <PreferenceCategory android:title="@string/settings_category_game">
         <ListPreference
             android:defaultValue="1500"
-            android:entries="@array/intervale_count"
-            android:entryValues="@array/intervale_count_values"
+            android:entries="@array/interval_count"
+            android:entryValues="@array/interval_count_values"
             android:key="interval"
-            android:title="@string/interval" />
+            android:title="@string/stoneInterval" />
         <ListPreference
             android:defaultValue="100"
             android:entries="@array/mode_game"
@@ -26,22 +26,22 @@
             android:summary="@string/stop_after_gong" />
 
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/settings_sound">
+    <PreferenceCategory android:title="@string/settings_category_sound">
         <contador.piedras.jugger.items.CustomPreferenceList
             android:defaultValue="stone"
-            android:entries="@array/time_sounds"
-            android:entryValues="@array/time_sounds_values"
+            android:entries="@array/sounds_stone"
+            android:entryValues="@array/sounds_stone_values"
             android:key="time_sounds"
             android:title="@string/sounds_stones" />
 
         <contador.piedras.jugger.items.CustomPreferenceList
             android:defaultValue="gong"
-            android:entries="@array/gong_sounds"
-            android:entryValues="@array/gong_sounds_values"
+            android:entries="@array/sounds_gong"
+            android:entryValues="@array/sounds_gong_values"
             android:key="gong_sounds"
             android:title="@string/sounds_gong" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/language">
+    <PreferenceCategory android:title="@string/settings_category_language">
         <ListPreference
             android:defaultValue="en"
             android:entries="@array/languages_array"
@@ -49,21 +49,21 @@
             android:key="pref_language"
             android:title="@string/language" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/others">
+    <PreferenceCategory android:title="@string/settings_category_others">
         <Preference
-            android:summary="@string/msg_contact"
-            android:title="@string/contact">
+            android:summary="@string/contact_description"
+            android:title="@string/contact_title">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="mailto:cristiancvacas@gmail.com">
+                android:data="@string/email_mailto">
                 <extra
                     android:name="android.intent.extra.SUBJECT"
                     android:value="Jugger Stones message" />
             </intent>
         </Preference>
         <Preference
-            android:summary="@string/msg_rate"
-            android:title="@string/rate">
+            android:summary="@string/rate_description"
+            android:title="@string/rate_title">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://play.google.com/store/apps/details?id=contador.piedras.jugger" />

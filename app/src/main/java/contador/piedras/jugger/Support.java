@@ -10,13 +10,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class Assit extends Activity {
+public class Support extends Activity {
     private AudioManager audio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assit);
+        setContentView(R.layout.activity_support);
         audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         Button b_msg = findViewById(R.id.B_msg);
@@ -26,7 +26,7 @@ public class Assit extends Activity {
             public void onClick(View v) {
                 Intent itSend = new Intent(Intent.ACTION_SEND);
                 itSend.setType("plain/text");
-                itSend.putExtra(Intent.EXTRA_EMAIL, new String[]{"cristiancvacas@gmail.com"});
+                itSend.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.email_current)});
                 itSend.putExtra(Intent.EXTRA_SUBJECT, "Jugger Stones message");
                 startActivity(itSend);
             }

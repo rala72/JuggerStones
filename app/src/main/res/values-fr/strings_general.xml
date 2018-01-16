@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- languages -->
+    <string name="language">Langue</string>
+    <string name="english">Anglais</string>
+    <string name="spanish">Espagnol</string>
+    <string name="catalan">Catalan</string>
+    <string name="german">Allemand</string>
+    <string name="french">Français</string>
+    <string name="portuguese">Portugais</string>
+
+    <!-- other -->
+    <string name="up_improvements">Améliorations à venir: -Pouvez ajouter et enregistrer des sons personnalisés</string>
+</resources>
