@@ -8,31 +8,25 @@ import android.net.Uri;
 public class Sound {
     private String stone;
     private String gong;
-    private Context context;
 
-    public Sound(Context context, String stoneSound, String gongSound) {
+    public Sound(String stoneSound, String gongSound) {
         this.stone = stoneSound;
         this.gong = gongSound;
-        this.context = context;
     }
 
-    public void playStone() {
-        Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/raw/" + stone);
+    public void playStone(Context context) {
+        play(context, stone);
+    }
+
+    public void playGong(Context context) {
+        play(context, gong);
+    }
+
+    private void play(Context context, String name) {
+        Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/raw/" + name);
         MediaPlayer auxStone = MediaPlayer.create(context, uri);
         auxStone.start();
         auxStone.setOnCompletionListener(new OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                mp.release();
-            }
-        });
-    }
-
-    public void playGong() {
-        Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/raw/" + gong);
-        MediaPlayer auxGong = MediaPlayer.create(context, uri);
-        auxGong.start();
-        auxGong.setOnCompletionListener(new OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 mp.release();

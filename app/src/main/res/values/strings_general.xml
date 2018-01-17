@@ -9,6 +9,10 @@
     <string name="french">French</string>
     <string name="portuguese">Portuguese</string>
 
+    <!-- error -->
+    <string name="error">Error</string>
+    <string name="error_version_loading_failed">Version could not be loaded.</string>
+
     <!-- other -->
     <string name="up_improvements">Upcoming improvements: \n-Can add and record custom sounds</string>
 </resources>

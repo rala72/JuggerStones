@@ -1,4 +1,4 @@
-package contador.piedras.jugger.preference;
+package contador.piedras.jugger.model;
 
 import android.app.AlertDialog.Builder;
 import android.content.Context;
@@ -7,13 +7,13 @@ import android.content.DialogInterface.OnClickListener;
 import android.preference.ListPreference;
 import android.util.AttributeSet;
 
-import contador.piedras.jugger.model.Sound;
+import contador.piedras.jugger.JuggerStonesApplication;
 
 
-public class CustomPreferenceList extends ListPreference implements OnClickListener {
+public class SoundPreferenceList extends ListPreference implements OnClickListener {
     private int currentEntryIndex;
 
-    public CustomPreferenceList(Context context, AttributeSet attrs) {
+    public SoundPreferenceList(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -26,12 +26,12 @@ public class CustomPreferenceList extends ListPreference implements OnClickListe
             public void onClick(DialogInterface dialog, int which) {
                 currentEntryIndex = which;
                 String value = (getEntryValues()[which]).toString();
-                Sound s = new Sound(getContext(), value, value);
+                Sound s = new Sound(value, value);
 
-                if (getKey().equals("time_sounds"))
-                    s.playStone();
-                else if (getKey().equals("gong_sounds"))
-                    s.playGong();
+                if (getKey().equals(JuggerStonesApplication.PREFS.SOUND_STONE.toString()))
+                    s.playStone(getContext());
+                else if (getKey().equals(JuggerStonesApplication.PREFS.SOUND_GONG.toString()))
+                    s.playGong(getContext());
             }
         });
         System.out.println(getEntry() + " " + this.getEntries()[0]);

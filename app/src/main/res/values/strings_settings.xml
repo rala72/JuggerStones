@@ -12,12 +12,12 @@
 
     <!-- settings: sounds -->
     <string name="settings_category_sound">Sounds</string>
-    <string name="sounds_stones">Sounds of stones</string>
+    <string name="sounds_stones">Sound of stones</string>
     <string name="cash_reg">Cash register</string>
     <string name="censure">Censure</string>
     <string name="crow">Crow</string>
     <string name="doh">Homer\'s D\'oh</string>
-    <string name="fb_notification">Fb notification</string>
+    <string name="fb_notification">Facebook notification</string>
     <string name="achievement">Achievement</string>
     <string name="metal_gear">Metal gear</string>
     <string name="duck">Duck</string>
@@ -25,12 +25,10 @@
     <string name="drum">Drum</string>
     <string name="stone">Stone</string>
 
-    <string name="sounds_gong">Sounds of gongs</string>
+    <string name="sounds_gong">Sound of gongs</string>
     <string name="gong">Gong</string>
     <string name="vuvuzela">Vuvucela</string>
 
-    <!-- settings: languages -->
-    <string name="settings_category_language" translatable="false">@string/language</string>
     <!-- settings: others -->
     <string name="settings_category_others">Others</string>
     <string name="contact_title">Contact</string>

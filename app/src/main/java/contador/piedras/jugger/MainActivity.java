@@ -1,13 +1,9 @@
 package contador.piedras.jugger;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.media.AudioManager;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
@@ -26,12 +22,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
 import contador.piedras.jugger.model.Counter;
-import contador.piedras.jugger.model.Sound;
-import contador.piedras.jugger.preference.AppPreferences;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int limitTeamNameCharactersTo = 0;
+    public static final int REQUEST_CODE_APP_PREFERENCES = 0;
+    private static final int LIMIT_TEAM_NAME_CHARACTERS_TO = 0;
 
+    //region butterKnife
     @BindView(R.id.button_playPause)
     protected AppCompatImageButton button_play;
     @BindView(R.id.textView_team1)
@@ -44,27 +40,26 @@ public class MainActivity extends AppCompatActivity {
     protected AppCompatTextView textView_team2_points;
     @BindView(R.id.textView_stones)
     protected AppCompatTextView textView_stones;
+    //endregion
 
-    private AudioManager audio;
     private boolean isPaused = true;
     private Counter counter;
-    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        applyBundle(getIntent());
+    }
 
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
-        Bundle extras = getIntent().getExtras();
+    private void applyBundle(Intent intent) {
+        if (intent == null) intent = getIntent();
+        Bundle extras = intent.getExtras();
         if (extras != null) {
-            textView_stones.setText(String.valueOf(extras.getLong(AppPreferences.KEY_COUNTER, 0L)));
-            textView_team1.setText(extras.getString(AppPreferences.KEY_TEAM1, getResources().getString(R.string.team1)));
-            textView_team2.setText(extras.getString(AppPreferences.KEY_TEAM2, getResources().getString(R.string.team2)));
+            textView_stones.setText(String.valueOf(extras.getLong(MyPreferenceActivity.KEY_COUNTER, 0L)));
+            textView_team1.setText(extras.getString(MyPreferenceActivity.KEY_TEAM1, getResources().getString(R.string.team1)));
+            textView_team2.setText(extras.getString(MyPreferenceActivity.KEY_TEAM2, getResources().getString(R.string.team2)));
         } else {
             textView_stones.setText(String.valueOf(0));
             textView_team1.setText(R.string.team1);
@@ -72,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //region butterKnife:listeners
     @OnClick({R.id.button_team1_increase, R.id.button_team2_increase, R.id.button_stones_increase})
     protected void onIncreaseClick(AppCompatImageButton button) {
         long number;
@@ -117,17 +113,14 @@ public class MainActivity extends AppCompatActivity {
         switch (button.getId()) {
             case R.id.button_playPause:
                 long stones = Long.parseLong(textView_stones.getText().toString().trim());
-                long mode = Long.parseLong(sharedPreferences.getString("mode", "100"));
-                long interval = Long.parseLong(sharedPreferences.getString("interval", "1500"));
-                String soundStone = sharedPreferences.getString("time_sounds", "stone");
-                String soundGong = sharedPreferences.getString("gong_sounds", "vuvuzela");
-                Sound sound = new Sound(getApplicationContext(), soundStone, soundGong);
+                long mode = JuggerStonesApplication.sharedPreferences.getLong(JuggerStonesApplication.PREFS.MODE.toString(), 100);
+                long interval = JuggerStonesApplication.sharedPreferences.getLong(JuggerStonesApplication.PREFS.INTERVAL.toString(), 1500);
 
                 isPaused = !isPaused;
                 button_play.setImageResource(isPaused ? R.drawable.play : R.drawable.pause);
                 if (isPaused) counter.setStopped(true);
                 else {
-                    counter = new Counter(getApplicationContext(), textView_stones, stones, mode, interval, sound, button_play);
+                    counter = new Counter(getApplicationContext(), textView_stones, stones, mode, interval, JuggerStonesApplication.sound, button_play);
                     counter.start();
                 }
                 break;
@@ -153,9 +146,10 @@ public class MainActivity extends AppCompatActivity {
         setStones();
         return true;
     }
+    //endregion
 
     private void checkIfStopAfterPoint() {
-        if (sharedPreferences.getBoolean("stop_after_point", false)) {
+        if (JuggerStonesApplication.sharedPreferences.getBoolean(JuggerStonesApplication.PREFS.STOP_AFTER_POINT.toString(), false)) {
             button_play.setImageResource(R.drawable.play);
             counter.setStopped(true);
         }
@@ -168,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText stonesEdit = new EditText(MainActivity.this);
         stonesEdit.setHint(R.string.setStones);
         stonesEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
+        stonesEdit.setText(textView_stones.getText());
 
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -197,13 +192,15 @@ public class MainActivity extends AppCompatActivity {
         alertDialogBuilder.setTitle(R.string.renameTeams);
         final EditText editText_name1 = new EditText(MainActivity.this);
         editText_name1.setHint(R.string.renameTeams_1);
-        if (limitTeamNameCharactersTo > 0)
-            editText_name1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(limitTeamNameCharactersTo)});
+        if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
+            editText_name1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(LIMIT_TEAM_NAME_CHARACTERS_TO)});
+        editText_name1.setText(textView_team1.getText());
 
         final EditText editText_name2 = new EditText(MainActivity.this);
         editText_name2.setHint(R.string.renameTeams_2);
-        if (limitTeamNameCharactersTo > 0)
-            editText_name2.setFilters(new InputFilter[]{new InputFilter.LengthFilter(limitTeamNameCharactersTo)});
+        if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
+            editText_name2.setFilters(new InputFilter[]{new InputFilter.LengthFilter(LIMIT_TEAM_NAME_CHARACTERS_TO)});
+        editText_name2.setText(textView_team2.getText());
 
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -228,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
         });
         alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
         alertDialogBuilder.create().show();
-        if (limitTeamNameCharactersTo > 0)
+        if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
             Toast.makeText(MainActivity.this, getString(R.string.toast_teamLength, 5), Toast.LENGTH_SHORT).show();
     }
 
@@ -249,21 +246,20 @@ public class MainActivity extends AppCompatActivity {
                 button_play.setImageResource(R.drawable.play);
                 isPaused = true;
                 if (counter != null) counter.setStopped(true);
-
-                Intent i = new Intent(this, AppPreferences.class);
-                i.putExtra(AppPreferences.KEY_COUNTER, textView_stones.getText().toString());
-                i.putExtra(AppPreferences.KEY_TEAM1, textView_team1.getText().toString());
-                i.putExtra(AppPreferences.KEY_TEAM2, textView_team2.getText().toString());
-                i.putExtra(AppPreferences.KEY_COUNT, textView_stones.getText().toString());
-                startActivity(i);
-                finish();
-
+                Intent intent = new Intent(this, MyPreferenceActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putLong(MyPreferenceActivity.KEY_COUNTER, Long.parseLong(textView_stones.getText().toString()));
+                bundle.putString(MyPreferenceActivity.KEY_TEAM1, textView_team1.getText().toString());
+                bundle.putString(MyPreferenceActivity.KEY_TEAM2, textView_team2.getText().toString());
+                intent.putExtras(bundle);
+                startActivityForResult(intent, 0);
                 return true;
             case R.id.set_stones:
                 setStones();
                 return true;
             case R.id.action_support:
                 startActivity(new Intent(this, SupportActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -273,10 +269,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
-                audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
+                JuggerStonesApplication.increaseVolume();
                 return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
-                audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
+                JuggerStonesApplication.decreaseVolume();
                 return true;
             case KeyEvent.KEYCODE_BACK:
                 finish();

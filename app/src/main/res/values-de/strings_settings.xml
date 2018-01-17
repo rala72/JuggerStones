@@ -4,9 +4,9 @@
     <string name="settings_category_game">Spiel</string>
     <string name="stoneInterval">Steinintervall</string>
     <string name="mode">Spielmodus</string>
-    <string name="mode_normal">Normal-modus (100 Steine jeder Teil)</string>
+    <string name="mode_normal">Normalmodus (100 Steine jeder Teil)</string>
     <string name="mode_extension">Erweiterungsmodus (50 Steine jeder Teil)</string>
-    <string name="mode_infinite">Unendlich-Modus (nur Steine)</string>
+    <string name="mode_infinite">Unendlichmodus (nur Steine)</string>
     <string name="stop_stones_after_point">Stoppe Zähler nach Punkt</string>
     <string name="stop_stones_after_gong">Stoppe Zähler nach Gong</string>
 
@@ -17,7 +17,7 @@
     <string name="censure">Zensur</string>
     <string name="crow">Krähe</string>
     <string name="doh">Homers D\'oh</string>
-    <string name="fb_notification">Fb Benachrichtigung</string>
+    <string name="fb_notification">Facebook Benachrichtigung</string>
     <string name="achievement">Errungenschaft</string>
     <string name="metal_gear">Metal Gear</string>
     <string name="duck">Ente</string>

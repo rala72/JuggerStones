@@ -7,6 +7,7 @@ import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.widget.Toast;
 
+import contador.piedras.jugger.JuggerStonesApplication;
 import contador.piedras.jugger.R;
 
 public class Counter extends Thread {
@@ -47,8 +48,8 @@ public class Counter extends Thread {
             try {
                 if (mode != -1 && (stones == mode || stones == (mode * 2))) {
                     // if it reaches mode or mode * 2 (2nd part) -> play gong
-                    sound.playGong();
-                    setStopped(sharedPreferences.getBoolean("stop_after_gong", false));
+                    sound.playGong(context);
+                    setStopped(sharedPreferences.getBoolean(JuggerStonesApplication.PREFS.STOP_AFTER_GONG.toString(), false));
                     button_playPause.setBackgroundResource(R.drawable.play);
                 } else {
                     if (mode == -1 && stones % 100 == 0) {
@@ -59,7 +60,7 @@ public class Counter extends Thread {
                             }
                         });
                     }
-                    sound.playStone();
+                    sound.playStone(context);
                 }
                 this.sleep(interval);
             } catch (InterruptedException e) {

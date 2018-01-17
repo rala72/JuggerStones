@@ -9,6 +9,10 @@
     <string name="french">Frances</string>
     <string name="portuguese">Portuguès</string>
 
+    <!-- error -->
+    <string name="error">Error</string>
+    <string name="error_version_loading_failed">No s\'ha pogut carregar la versió.</string>
+
     <!-- other -->
     <string name="up_improvements">Millores en procés: \n-Poder afegir i gravar sons personalitzats</string>
 </resources>

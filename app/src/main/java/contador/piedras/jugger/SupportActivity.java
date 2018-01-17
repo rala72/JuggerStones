@@ -1,7 +1,5 @@
 package contador.piedras.jugger;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,13 +16,7 @@ public class SupportActivity extends AppCompatActivity {
         button_sendMessage.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_SENDTO);
-                //noinspection SpellCheckingInspection
-                intent.setData(Uri.parse("mailto:"));
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.email_current)});
-                intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-                intent.putExtra(Intent.EXTRA_TEXT, "");
-                startActivity(intent);
+                JuggerStonesApplication.sendEmail(getApplicationContext());
             }
         });
     }
