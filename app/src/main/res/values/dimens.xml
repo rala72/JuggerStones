@@ -6,11 +6,12 @@
     <dimen name="textSize_teamDetails">35sp</dimen>
     <dimen name="textSize_stones">100sp</dimen>
 
-    <dimen name="textSizeAuto_minSmall">50sp</dimen>
-    <dimen name="textSizeAuto_maxSmall">100sp</dimen>
-    <dimen name="textSizeAuto_minLargeWidth">100sp</dimen>
-    <dimen name="textSizeAuto_minLargeHeight">200sp</dimen>
-    <dimen name="textSizeAuto_maxLarge">200sp</dimen>
+    <dimen name="textSizeAuto_smallMinWidth">150sp</dimen>
+    <dimen name="textSizeAuto_smallMinHeight">50sp</dimen>
+    <dimen name="textSizeAuto_smallMaxWidth">@dimen/textSizeAuto_smallMinWidth</dimen>
+    <dimen name="textSizeAuto_largeMinWidth">100sp</dimen>
+    <dimen name="textSizeAuto_largeMinHeight">200sp</dimen>
+    <dimen name="textSizeAuto_largeMaxWidth">@dimen/textSizeAuto_largeMinHeight</dimen>
 
     <dimen name="button_increaseDecrease_size">50dp</dimen>
     <dimen name="button_increaseDecrease_margin">5dp</dimen>
