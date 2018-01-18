@@ -18,6 +18,9 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
     public static AudioManager audioManager;
     public static Sound sound;
 
+    public static final long DEFAULT_MODE = 100;
+    public static final long DEFAULT_INTERVAL = 1500;
+
     public enum PREFS { // see also preference.xml // some of them are only for findPreference
         MODE("mode"), INTERVAL("interval"),
         STOP_AFTER_POINT("stop_after_point"), STOP_AFTER_GONG("stop_after_gong"),

@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
 
+@SuppressWarnings("WeakerAccess")
 public class Sound {
     private String stone;
     private String gong;

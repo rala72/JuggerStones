@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
@@ -17,19 +18,20 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.util.Timer;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
-import contador.piedras.jugger.model.Counter;
+import contador.piedras.jugger.model.CounterTask;
 
-public class MainActivity extends AppCompatActivity {
-    public static final int REQUEST_CODE_APP_PREFERENCES = 0;
+public class MainActivity extends AppCompatActivity implements CounterTask.CounterTaskCallback {
     private static final int LIMIT_TEAM_NAME_CHARACTERS_TO = 0;
 
     //region butterKnife
     @BindView(R.id.button_playPause)
-    protected AppCompatImageButton button_play;
+    protected AppCompatImageButton button_playPause;
     @BindView(R.id.textView_team1)
     protected AppCompatTextView textView_team1;
     @BindView(R.id.textView_team2)
@@ -42,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
     protected AppCompatTextView textView_stones;
     //endregion
 
-    private boolean isPaused = true;
-    private Counter counter;
+    private Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,15 +57,12 @@ public class MainActivity extends AppCompatActivity {
     private void applyBundle(Intent intent) {
         if (intent == null) intent = getIntent();
         Bundle extras = intent.getExtras();
-        if (extras != null) {
-            textView_stones.setText(String.valueOf(extras.getLong(MyPreferenceActivity.KEY_COUNTER, 0L)));
-            textView_team1.setText(extras.getString(MyPreferenceActivity.KEY_TEAM1, getResources().getString(R.string.team1)));
-            textView_team2.setText(extras.getString(MyPreferenceActivity.KEY_TEAM2, getResources().getString(R.string.team2)));
-        } else {
-            textView_stones.setText(String.valueOf(0));
-            textView_team1.setText(R.string.team1);
-            textView_team2.setText(R.string.team2);
-        }
+        final long stones = extras != null ? extras.getLong(MyPreferenceActivity.KEY_COUNTER, 0L) : 0;
+        final String team1 = extras != null ? extras.getString(MyPreferenceActivity.KEY_TEAM1, getResources().getString(R.string.team1)) : getString(R.string.team1);
+        final String team2 = extras != null ? extras.getString(MyPreferenceActivity.KEY_TEAM2, getResources().getString(R.string.team2)) : getString(R.string.team2);
+        textView_stones.setText(String.valueOf(stones));
+        textView_team1.setText(team1);
+        textView_team2.setText(team2);
     }
 
     //region butterKnife:listeners
@@ -83,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 checkIfStopAfterPoint();
                 break;
             case R.id.button_stones_increase:
+                if (isTimerRunning()) return;
                 number = Long.parseLong(textView_stones.getText().toString());
                 textView_stones.setText(String.valueOf(number + 1));
                 break;
@@ -102,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 if (0 < number) textView_team2_points.setText(String.valueOf(number - 1));
                 break;
             case R.id.button_stones_decrease:
+                if (isTimerRunning()) return;
                 number = Long.parseLong(textView_stones.getText().toString());
                 if (0 < number) textView_stones.setText(String.valueOf(number - 1));
                 break;
@@ -112,25 +112,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onPlayPauseStopClick(AppCompatImageButton button) {
         switch (button.getId()) {
             case R.id.button_playPause:
-                long stones = Long.parseLong(textView_stones.getText().toString().trim());
-                long mode = JuggerStonesApplication.sharedPreferences.getLong(JuggerStonesApplication.PREFS.MODE.toString(), 100);
-                long interval = JuggerStonesApplication.sharedPreferences.getLong(JuggerStonesApplication.PREFS.INTERVAL.toString(), 1500);
-
-                isPaused = !isPaused;
-                button_play.setImageResource(isPaused ? R.drawable.play : R.drawable.pause);
-                if (isPaused) counter.setStopped(true);
-                else {
-                    counter = new Counter(getApplicationContext(), textView_stones, stones, mode, interval, JuggerStonesApplication.sound, button_play);
-                    counter.start();
-                }
+                toggleTimer();
                 break;
             case R.id.button_stop:
-                if (!isPaused) {
-                    isPaused = true;
-                    button_play.setImageResource(R.drawable.play);
-                    counter.setStopped(true);
-                }
-                textView_stones.setText("0");
+                stopTimer();
                 break;
         }
     }
@@ -149,14 +134,13 @@ public class MainActivity extends AppCompatActivity {
     //endregion
 
     private void checkIfStopAfterPoint() {
-        if (JuggerStonesApplication.sharedPreferences.getBoolean(JuggerStonesApplication.PREFS.STOP_AFTER_POINT.toString(), false)) {
-            button_play.setImageResource(R.drawable.play);
-            counter.setStopped(true);
-        }
+        if (JuggerStonesApplication.sharedPreferences.getBoolean(JuggerStonesApplication.PREFS.STOP_AFTER_POINT.toString(), false))
+            stopTimer();
     }
 
-    // dialogs
+    //region dialogs
     private void setStones() {
+        if (isTimerRunning()) return;
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
         alertDialogBuilder.setTitle(R.string.setStones);
         final EditText stonesEdit = new EditText(MainActivity.this);
@@ -172,12 +156,8 @@ public class MainActivity extends AppCompatActivity {
         alertDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
-                try {
-                    long number = Long.parseLong(stonesEdit.getText().toString());
-                    textView_stones.setText(String.valueOf(number));
-                } catch (NumberFormatException e) { // shouldn't be possible
-                    textView_stones.setText(String.valueOf(0));
-                }
+                final long stones = Long.parseLong(stonesEdit.getText().toString());
+                textView_stones.setText(String.valueOf(stones));
             }
         });
 
@@ -228,6 +208,66 @@ public class MainActivity extends AppCompatActivity {
         if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
             Toast.makeText(MainActivity.this, getString(R.string.toast_teamLength, 5), Toast.LENGTH_SHORT).show();
     }
+    //endregion
+
+    //region timer
+    protected void startTimer() {
+        button_playPause.setImageResource(R.drawable.pause);
+        if (isTimerRunning()) return;
+        final long stones = Long.parseLong(textView_stones.getText().toString().trim());
+        final long mode = Long.parseLong(JuggerStonesApplication.sharedPreferences.getString(JuggerStonesApplication.PREFS.MODE.toString(), String.valueOf(JuggerStonesApplication.DEFAULT_MODE)));
+        final long interval = Long.parseLong(JuggerStonesApplication.sharedPreferences.getString(JuggerStonesApplication.PREFS.INTERVAL.toString(), String.valueOf(JuggerStonesApplication.DEFAULT_INTERVAL)));
+        final CounterTask counterTask = new CounterTask(this, stones, mode, JuggerStonesApplication.sound, this);
+        timer = new Timer();
+        timer.scheduleAtFixedRate(counterTask, 0, interval);
+    }
+
+    protected void pauseTimer() {
+        button_playPause.setImageResource(R.drawable.play);
+        if (!isTimerRunning()) return;
+        timer.cancel();
+        timer = null;
+    }
+
+    protected void toggleTimer() {
+        if (!isTimerRunning()) startTimer();
+        else pauseTimer();
+    }
+
+    protected void stopTimer() {
+        pauseTimer();
+        onStonesChanged(0);
+    }
+
+    protected boolean isTimerRunning() {
+        return timer != null;
+    }
+
+    @Override
+    public void onStonesChanged(final long stones) {
+        final long mode = Long.parseLong(JuggerStonesApplication.sharedPreferences.getString(JuggerStonesApplication.PREFS.MODE.toString(), String.valueOf(JuggerStonesApplication.DEFAULT_MODE)));
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                textView_stones.setText(String.valueOf(stones));
+                if (mode == -1 && stones % 100 == 0)
+                    Toast.makeText(getApplicationContext(), R.string.toast_infinity, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Override
+    public void onGongPlayed(final long stones) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                boolean pauseAfterGong = PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+                        .getBoolean(JuggerStonesApplication.PREFS.STOP_AFTER_GONG.toString(), false);
+                if (pauseAfterGong) pauseTimer();
+            }
+        });
+    }
+    //endregion
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -243,9 +283,7 @@ public class MainActivity extends AppCompatActivity {
                 renameTeams();
                 return true;
             case R.id.action_settings:
-                button_play.setImageResource(R.drawable.play);
-                isPaused = true;
-                if (counter != null) counter.setStopped(true);
+                pauseTimer();
                 Intent intent = new Intent(this, MyPreferenceActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putLong(MyPreferenceActivity.KEY_COUNTER, Long.parseLong(textView_stones.getText().toString()));

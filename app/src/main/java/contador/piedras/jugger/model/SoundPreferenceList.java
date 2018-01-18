@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 
 import contador.piedras.jugger.JuggerStonesApplication;
 
-
+// note: values are stored as String
 public class SoundPreferenceList extends ListPreference implements OnClickListener {
     private int currentEntryIndex;
 
