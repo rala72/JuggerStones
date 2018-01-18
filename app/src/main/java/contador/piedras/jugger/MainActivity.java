@@ -1,6 +1,7 @@
 package contador.piedras.jugger;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -154,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         stonesEdit.setLayoutParams(layoutParams);
         stonesEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
         stonesEdit.setText(textView_stones.getText());
+        stonesEdit.requestFocus();
 
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -169,12 +172,14 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         });
 
         alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
-        alertDialogBuilder.create().show();
+        Dialog dialog = alertDialogBuilder.create();
+        //noinspection ConstantConditions // why!?
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        dialog.show();
     }
 
     @SuppressWarnings("ConstantConditions")
     private void renameTeams() {
-        // TODO: because of neutral button the margin on bottom is larger than it should - no fix found right now
         final int margin_dp = 25;
         final int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics());
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
@@ -188,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
             editText_name1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(LIMIT_TEAM_NAME_CHARACTERS_TO)});
         editText_name1.setText(textView_team1.getText());
+        editText_name1.requestFocus();
 
         final EditText editText_name2 = new EditText(MainActivity.this);
         editText_name2.setLayoutParams(layoutParams);
@@ -221,7 +227,9 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             }
         });
         alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
-        alertDialogBuilder.create().show();
+        Dialog dialog = alertDialogBuilder.create();
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        dialog.show();
         if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
             Toast.makeText(MainActivity.this, getString(R.string.toast_teamLength, 5), Toast.LENGTH_SHORT).show();
     }
