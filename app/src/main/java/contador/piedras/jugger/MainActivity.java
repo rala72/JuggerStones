@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             @Override
             public void run() {
                 textView_stones.setText(String.valueOf(stones));
-                if (mode == -1 && stones % 100 == 0)
+                if (mode == -1 && stones > 0 && stones % 100 == 0)
                     Toast.makeText(getApplicationContext(), R.string.toast_infinity, Toast.LENGTH_LONG).show();
             }
         });
