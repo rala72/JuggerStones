@@ -103,8 +103,10 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
                 return true;
             case KeyEvent.KEYCODE_BACK:
                 Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 if (getIntent().getExtras() != null) intent.putExtras(getIntent().getExtras());
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
                 return true;
             default:

@@ -278,25 +278,31 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.rename_teams:
                 renameTeams();
                 return true;
             case R.id.action_settings:
                 pauseTimer();
-                Intent intent = new Intent(this, MyPreferenceActivity.class);
+                intent = new Intent(this, MyPreferenceActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 Bundle bundle = new Bundle();
                 bundle.putLong(MyPreferenceActivity.KEY_COUNTER, Long.parseLong(textView_stones.getText().toString()));
                 bundle.putString(MyPreferenceActivity.KEY_TEAM1, textView_team1.getText().toString());
                 bundle.putString(MyPreferenceActivity.KEY_TEAM2, textView_team2.getText().toString());
                 intent.putExtras(bundle);
                 startActivityForResult(intent, 0);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 return true;
             case R.id.set_stones:
                 setStones();
                 return true;
             case R.id.action_support:
-                startActivity(new Intent(this, SupportActivity.class));
+                intent = new Intent(this, SupportActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
