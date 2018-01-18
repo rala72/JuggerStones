@@ -10,6 +10,7 @@ import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -141,10 +142,16 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     //region dialogs
     private void setStones() {
         if (isTimerRunning()) return;
+        final int margin_dp = 25;
+        final int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics());
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
         alertDialogBuilder.setTitle(R.string.setStones);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        layoutParams.setMargins(margin_px, 0, margin_px, 0);
+
         final EditText stonesEdit = new EditText(MainActivity.this);
         stonesEdit.setHint(R.string.setStones);
+        stonesEdit.setLayoutParams(layoutParams);
         stonesEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
         stonesEdit.setText(textView_stones.getText());
 
@@ -167,16 +174,23 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     @SuppressWarnings("ConstantConditions")
     private void renameTeams() {
+        // TODO: because of neutral button the margin on bottom is larger than it should - no fix found right now
+        final int margin_dp = 25;
+        final int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics());
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
-
         alertDialogBuilder.setTitle(R.string.renameTeams);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        layoutParams.setMargins(margin_px, 0, margin_px, 0);
+
         final EditText editText_name1 = new EditText(MainActivity.this);
+        editText_name1.setLayoutParams(layoutParams);
         editText_name1.setHint(R.string.renameTeams_1);
         if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
             editText_name1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(LIMIT_TEAM_NAME_CHARACTERS_TO)});
         editText_name1.setText(textView_team1.getText());
 
         final EditText editText_name2 = new EditText(MainActivity.this);
+        editText_name2.setLayoutParams(layoutParams);
         editText_name2.setHint(R.string.renameTeams_2);
         if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
             editText_name2.setFilters(new InputFilter[]{new InputFilter.LengthFilter(LIMIT_TEAM_NAME_CHARACTERS_TO)});
@@ -195,12 +209,15 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 String name2 = editText_name2.getText().toString().trim();
                 if (!name1.isEmpty()) textView_team1.setText(name1);
                 if (!name2.isEmpty()) textView_team2.setText(name2);
-                if (name1.isEmpty() && name2.isEmpty()) {
-                    textView_team1.setText(R.string.team1);
-                    textView_team2.setText(R.string.team2);
-                    textView_team1_points.setText("0");
-                    textView_team2_points.setText("0");
-                }
+            }
+        });
+        alertDialogBuilder.setNeutralButton(R.string.renameTeams_reset, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                textView_team1.setText(R.string.team1);
+                textView_team2.setText(R.string.team2);
+                textView_team1_points.setText("0");
+                textView_team2_points.setText("0");
             }
         });
         alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
