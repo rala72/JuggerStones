@@ -277,7 +277,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     //region timer
     protected void startTimer() {
-        button_playPause.setImageResource(R.drawable.pause);
+        button_playPause.setImageResource(R.drawable.button_pause);
         if (isTimerRunning()) return;
         final long stones = Long.parseLong(textView_stones.getText().toString().trim());
         final long mode = Long.parseLong(JuggerStonesApplication.sharedPreferences.getString(JuggerStonesApplication.PREFS.MODE.toString(), String.valueOf(JuggerStonesApplication.DEFAULT_MODE)));
@@ -288,7 +288,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
 
     protected void pauseTimer() {
-        button_playPause.setImageResource(R.drawable.play);
+        button_playPause.setImageResource(R.drawable.button_play);
         if (!isTimerRunning()) return;
         timer.cancel();
         timer = null;
