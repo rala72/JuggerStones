@@ -1,4 +1,4 @@
-package contador.piedras.jugger;
+package contador.piedras.jugger.activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -27,6 +27,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
+import contador.piedras.jugger.JuggerStonesApplication;
+import contador.piedras.jugger.R;
 import contador.piedras.jugger.model.CounterTask;
 
 public class MainActivity extends AppCompatActivity implements CounterTask.CounterTaskCallback {

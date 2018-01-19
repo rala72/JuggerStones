@@ -1,10 +1,13 @@
-package contador.piedras.jugger;
+package contador.piedras.jugger.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
+import contador.piedras.jugger.JuggerStonesApplication;
+import contador.piedras.jugger.R;
 
 public class SupportActivity extends AppCompatActivity {
     @Override

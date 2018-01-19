@@ -1,4 +1,4 @@
-package contador.piedras.jugger;
+package contador.piedras.jugger.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +12,8 @@ import android.view.KeyEvent;
 
 import java.util.Locale;
 
+import contador.piedras.jugger.JuggerStonesApplication;
+import contador.piedras.jugger.R;
 import contador.piedras.jugger.model.SoundPreferenceList;
 
 public class MyPreferenceActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
