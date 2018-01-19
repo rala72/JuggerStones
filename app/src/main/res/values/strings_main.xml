@@ -3,11 +3,11 @@
     <string name="zero">0</string>
     <string name="team1">Team 1</string>
     <string name="team2">Team 2</string>
-    <string name="setStones">Set stones</string>
     <string name="renameTeams">Rename teams</string>
     <string name="renameTeams_1">Rename Team 1</string>
     <string name="renameTeams_2">Rename Team 2</string>
     <string name="renameTeams_reset">Reset</string>
+    <string name="setStones">Set stones</string>
     <string name="support">Support and contact</string>
     <string name="settings">Settings</string>
 

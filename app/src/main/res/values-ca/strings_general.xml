@@ -2,12 +2,12 @@
 <resources>
     <!-- languages -->
     <string name="language">Idioma</string>
-    <string name="english">Ingles</string>
-    <string name="spanish">Espanyol</string>
-    <string name="catalan">Català</string>
-    <string name="german">Alemany</string>
-    <string name="french">Frances</string>
-    <string name="portuguese">Portuguès</string>
+    <string name="language_english">Ingles</string>
+    <string name="language_spanish">Espanyol</string>
+    <string name="language_catalan">Català</string>
+    <string name="language_german">Alemany</string>
+    <string name="language_french">Frances</string>
+    <string name="language_portuguese">Portuguès</string>
 
     <!-- error -->
     <string name="error">Error</string>

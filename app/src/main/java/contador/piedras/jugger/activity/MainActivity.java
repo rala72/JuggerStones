@@ -144,42 +144,6 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
 
     //region dialogs
-    private void setStones() {
-        if (isTimerRunning()) return;
-        final int margin_dp = 25;
-        final int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics());
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
-        alertDialogBuilder.setTitle(R.string.setStones);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        layoutParams.setMargins(margin_px, 0, margin_px, 0);
-
-        final EditText stonesEdit = new EditText(MainActivity.this);
-        stonesEdit.setHint(R.string.setStones);
-        stonesEdit.setLayoutParams(layoutParams);
-        stonesEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
-        stonesEdit.setText(textView_stones.getText());
-        stonesEdit.requestFocus();
-
-        LinearLayout linearLayout = new LinearLayout(this);
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.addView(stonesEdit);
-        alertDialogBuilder.setView(linearLayout);
-
-        alertDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                final long stones = Long.parseLong(stonesEdit.getText().toString());
-                textView_stones.setText(String.valueOf(stones));
-            }
-        });
-
-        alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
-        Dialog dialog = alertDialogBuilder.create();
-        //noinspection ConstantConditions // why!?
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        dialog.show();
-    }
-
     @SuppressWarnings("ConstantConditions")
     private void renameTeams() {
         final int margin_dp = 25;
@@ -234,6 +198,42 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         dialog.show();
         if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
             Toast.makeText(MainActivity.this, getString(R.string.toast_teamLength, 5), Toast.LENGTH_SHORT).show();
+    }
+
+    private void setStones() {
+        if (isTimerRunning()) return;
+        final int margin_dp = 25;
+        final int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics());
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setTitle(R.string.setStones);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        layoutParams.setMargins(margin_px, 0, margin_px, 0);
+
+        final EditText stonesEdit = new EditText(MainActivity.this);
+        stonesEdit.setHint(R.string.setStones);
+        stonesEdit.setLayoutParams(layoutParams);
+        stonesEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
+        stonesEdit.setText(textView_stones.getText());
+        stonesEdit.requestFocus();
+
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.addView(stonesEdit);
+        alertDialogBuilder.setView(linearLayout);
+
+        alertDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int whichButton) {
+                final long stones = Long.parseLong(stonesEdit.getText().toString());
+                textView_stones.setText(String.valueOf(stones));
+            }
+        });
+
+        alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
+        Dialog dialog = alertDialogBuilder.create();
+        //noinspection ConstantConditions // why!?
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        dialog.show();
     }
     //endregion
 
@@ -310,6 +310,9 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             case R.id.rename_teams:
                 renameTeams();
                 return true;
+            case R.id.set_stones:
+                setStones();
+                return true;
             case R.id.action_settings:
                 pauseTimer();
                 intent = new Intent(this, MyPreferenceActivity.class);
@@ -321,9 +324,6 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 intent.putExtras(bundle);
                 startActivityForResult(intent, 0);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                return true;
-            case R.id.set_stones:
-                setStones();
                 return true;
             case R.id.action_support:
                 intent = new Intent(this, SupportActivity.class);

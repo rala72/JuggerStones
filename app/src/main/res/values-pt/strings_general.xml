@@ -2,12 +2,12 @@
 <resources><!-- files were in 'values-pt-rPT' -->
     <!-- languages -->
     <string name="language">Língua</string>
-    <string name="english">Inglês</string>
-    <string name="spanish">Espanhol</string>
-    <string name="catalan">Catalão</string>
-    <string name="german">Alemão</string>
-    <string name="french">Francês</string>
-    <string name="portuguese">Português</string>
+    <string name="language_english">Inglês</string>
+    <string name="language_spanish">Espanhol</string>
+    <string name="language_catalan">Catalão</string>
+    <string name="language_german">Alemão</string>
+    <string name="language_french">Francês</string>
+    <string name="language_portuguese">Português</string>
 
     <!-- error -->
     <string name="error">Erro</string>
