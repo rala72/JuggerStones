@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+
+import java.util.Locale;
 
 import contador.piedras.jugger.model.Sound;
 
@@ -46,8 +49,26 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        changeLanguageIfNotDefault();
         updateSound();
     }
+
+    //region changeLanguage
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        LocaleUtils.updateConfig(this, newConfig);
+    }
+
+    private void changeLanguageIfNotDefault() {
+        final String language_default = Locale.getDefault().getLanguage();
+        final String language_pref = sharedPreferences.getString(PREFS.LANGUAGE.toString(), language_default);
+        if (!language_pref.equals(new Locale(language_default).getLanguage())) {
+            LocaleUtils.setLocale(new Locale(language_pref));
+            LocaleUtils.updateConfig(this, getResources().getConfiguration());
+        }
+    }
+    //endregion
 
     //region sound & volume
     public static void updateSound() {

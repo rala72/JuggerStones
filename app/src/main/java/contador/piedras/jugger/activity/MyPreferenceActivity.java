@@ -2,7 +2,6 @@ package contador.piedras.jugger.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -13,6 +12,7 @@ import android.view.KeyEvent;
 import java.util.Locale;
 
 import contador.piedras.jugger.JuggerStonesApplication;
+import contador.piedras.jugger.LocaleUtils;
 import contador.piedras.jugger.R;
 import contador.piedras.jugger.model.SoundPreferenceList;
 
@@ -20,6 +20,10 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
     public static final String KEY_COUNTER = "counter";
     public static final String KEY_TEAM1 = "team1";
     public static final String KEY_TEAM2 = "team2";
+
+    public MyPreferenceActivity() {
+        LocaleUtils.updateConfig(this);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,8 +37,8 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
         JuggerStonesApplication.sharedPreferences.registerOnSharedPreferenceChangeListener(this);
         //region section:other
         final ListPreference pref_language = (ListPreference) findPreference(JuggerStonesApplication.PREFS.LANGUAGE.toString());
-        pref_language.setDefaultValue(Locale.getDefault().getLanguage());
-        pref_language.setValue(getResources().getConfiguration().locale.getLanguage());
+        pref_language.setDefaultValue(LocaleUtils.DEFAULT_LOCALE.getLanguage());
+        pref_language.setValue(LocaleUtils.getLocale().getLanguage());
         pref_language.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 changeLanguage(newValue.toString());
@@ -84,12 +88,10 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
         pref_language.setSummary(pref_language.getEntry());
     }
 
-    // TODO: use language on app launch
     private void changeLanguage(String language) {
-        Configuration configuration = getResources().getConfiguration();
-        configuration.locale = new Locale(language.toLowerCase());
-        getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
-        Intent intent = new Intent(getApplicationContext(), MyPreferenceActivity.class);
+        LocaleUtils.setLocale(new Locale(language));
+        LocaleUtils.updateConfig(getApplication(), getResources().getConfiguration());
+        Intent intent = new Intent(this, MyPreferenceActivity.class);
         if (getIntent().getExtras() != null) intent.putExtras(getIntent().getExtras());
         startActivity(intent);
         finish();

@@ -7,9 +7,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import contador.piedras.jugger.JuggerStonesApplication;
+import contador.piedras.jugger.LocaleUtils;
 import contador.piedras.jugger.R;
 
 public class SupportActivity extends AppCompatActivity {
+    public SupportActivity() {
+        LocaleUtils.updateConfig(this);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

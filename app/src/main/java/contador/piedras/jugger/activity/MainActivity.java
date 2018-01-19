@@ -32,6 +32,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
 import contador.piedras.jugger.JuggerStonesApplication;
+import contador.piedras.jugger.LocaleUtils;
 import contador.piedras.jugger.R;
 import contador.piedras.jugger.model.CounterTask;
 
@@ -56,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     private Timer timer;
 
     private enum TEAM {TEAM1, TEAM2}
+
+    public MainActivity() {
+        LocaleUtils.updateConfig(this);
+    }
 
     //region onCreate
     @Override
@@ -152,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
 
     //region dialogs
-    // TODO [onHold] use https://github.com/afollestad/material-dialogs
+    // TODO [onHold]: use https://github.com/afollestad/material-dialogs
     @SuppressWarnings("ConstantConditions")
     private void renameTeams() {
         final int margin_dp = 25;
