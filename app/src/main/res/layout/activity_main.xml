@@ -39,7 +39,7 @@
                 android:minWidth="@dimen/textSizeAuto_smallMinWidth"
                 android:text="@string/team1"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/red"
+                android:textColor="@color/default_team1"
                 android:textSize="@dimen/textSize_teamDetails"
                 app:autoSizeTextType="uniform" />
 
@@ -57,7 +57,7 @@
                 android:minWidth="@dimen/textSizeAuto_smallMinWidth"
                 android:text="@string/zero"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/red"
+                android:textColor="@color/default_team1"
                 android:textSize="@dimen/textSize_teamDetails"
                 app:autoSizeTextType="uniform" />
 
@@ -113,7 +113,7 @@
                 android:minWidth="@dimen/textSizeAuto_smallMinWidth"
                 android:text="@string/team2"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/green"
+                android:textColor="@color/default_team2"
                 android:textSize="@dimen/textSize_teamDetails"
                 app:autoSizeTextType="uniform" />
 
@@ -131,7 +131,7 @@
                 android:minWidth="@dimen/textSizeAuto_smallMinWidth"
                 android:text="@string/zero"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/green"
+                android:textColor="@color/default_team2"
                 android:textSize="@dimen/textSize_teamDetails"
                 app:autoSizeTextType="uniform" />
 

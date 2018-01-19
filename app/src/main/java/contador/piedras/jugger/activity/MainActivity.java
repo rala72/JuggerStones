@@ -240,13 +240,13 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     private void resetTeams() {
         textView_team1.setText(R.string.team1);
-        textView_team1.setTextColor(getResources().getColor(R.color.red));
+        textView_team1.setTextColor(getResources().getColor(R.color.default_team1));
         textView_team1_points.setText("0");
-        textView_team1_points.setTextColor(getResources().getColor(R.color.red));
+        textView_team1_points.setTextColor(getResources().getColor(R.color.default_team1));
         textView_team2.setText(R.string.team2);
-        textView_team2.setTextColor(getResources().getColor(R.color.green));
+        textView_team2.setTextColor(getResources().getColor(R.color.default_team2));
         textView_team2_points.setText("0");
-        textView_team2_points.setTextColor(getResources().getColor(R.color.green));
+        textView_team2_points.setTextColor(getResources().getColor(R.color.default_team2));
     }
 
     private void setStones() {
