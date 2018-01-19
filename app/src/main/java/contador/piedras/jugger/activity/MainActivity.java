@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
 
     //region dialogs
+    // TODO [onHold] use https://github.com/afollestad/material-dialogs
     @SuppressWarnings("ConstantConditions")
     private void renameTeams() {
         final int margin_dp = 25;
