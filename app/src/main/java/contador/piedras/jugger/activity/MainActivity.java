@@ -17,11 +17,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.util.Map;
 import java.util.Timer;
+import java.util.TreeMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     //endregion
 
     private Timer timer;
+
+    private enum TEAM {TEAM1, TEAM2}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,6 +205,39 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             Toast.makeText(MainActivity.this, getString(R.string.toast_teamLength, 5), Toast.LENGTH_SHORT).show();
     }
 
+    private void changeTeamColors(final TEAM team) {
+        final Map<String, Integer> colors = new TreeMap<>();
+        colors.put(getString(R.string.color_green), getResources().getColor(R.color.green));
+        colors.put(getString(R.string.color_red), getResources().getColor(R.color.red));
+        colors.put(getString(R.string.color_yellow), getResources().getColor(R.color.yellow));
+
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+        builderSingle.setTitle(R.string.changeColor);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_item, getResources().getStringArray(R.array.array_colors));
+        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int color = colors.get(arrayAdapter.getItem(which));
+                if (team.equals(TEAM.TEAM1)) {
+                    textView_team1.setTextColor(color);
+                    textView_team1_points.setTextColor(color);
+                } else if (team.equals(TEAM.TEAM2)) {
+                    textView_team2.setTextColor(color);
+                    textView_team2_points.setTextColor(color);
+                }
+                dialog.dismiss();
+            }
+        });
+        builderSingle.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builderSingle.create().show();
+    }
+
     private void setStones() {
         if (isTimerRunning()) return;
         final int margin_dp = 25;
@@ -309,6 +347,12 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         switch (item.getItemId()) {
             case R.id.rename_teams:
                 renameTeams();
+                return true;
+            case R.id.changeColor_1:
+                changeTeamColors(TEAM.TEAM1);
+                return true;
+            case R.id.changeColor_2:
+                changeTeamColors(TEAM.TEAM2);
                 return true;
             case R.id.set_stones:
                 setStones();

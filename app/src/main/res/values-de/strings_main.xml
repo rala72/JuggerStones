@@ -7,6 +7,9 @@
     <string name="renameTeams_1">Team 1 umbenennen</string>
     <string name="renameTeams_2">Team 2 umbenennen</string>
     <string name="renameTeams_reset">Zurücksetzen</string>
+    <string name="changeColor">Farbe ändern</string>
+    <string name="changeColor_1">Team 1 Farbe ändern</string>
+    <string name="changeColor_2">Team 2 Farbe ändern</string>
     <string name="setStones">Steine ändern</string>
     <string name="support">Support und Kontakt</string>
     <string name="settings">Einstellungen</string>

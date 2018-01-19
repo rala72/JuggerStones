@@ -7,6 +7,9 @@
     <string name="renameTeams_1">Canvia el nom de l\'equip 1</string>
     <string name="renameTeams_2">Canvia el nom de l\'equip 2</string>
     <string name="renameTeams_reset">Restablir</string>
+    <string name="changeColor">Canvia el color</string>
+    <string name="changeColor_1">Equip 1 Canvi de Color</string>
+    <string name="changeColor_2">Equip 2 Canvi de Color</string>
     <string name="setStones">Establir pedres</string>
     <string name="support">Ajuda i contancte</string>
     <string name="settings">Configuració</string>

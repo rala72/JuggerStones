@@ -6,6 +6,14 @@
         android:title="@string/renameTeams"
         app:showAsAction="never" />
     <item
+        android:id="@+id/changeColor_1"
+        android:title="@string/changeColor_1"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/changeColor_2"
+        android:title="@string/changeColor_2"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/set_stones"
         android:title="@string/setStones"
         app:showAsAction="never" />

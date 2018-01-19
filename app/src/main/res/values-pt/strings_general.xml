@@ -9,6 +9,11 @@
     <string name="language_french">Francês</string>
     <string name="language_portuguese">Português</string>
 
+    <!-- colors -->
+    <string name="color_green">Verde</string>
+    <string name="color_red">Vermelho</string>
+    <string name="color_yellow">Amarelo</string>
+
     <!-- error -->
     <string name="error">Erro</string>
     <string name="error_version_loading_failed">A versão não pôde ser carregada.</string>
