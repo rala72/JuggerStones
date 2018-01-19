@@ -84,6 +84,7 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
         pref_language.setSummary(pref_language.getEntry());
     }
 
+    // TODO: use language on app launch
     private void changeLanguage(String language) {
         Configuration configuration = getResources().getConfiguration();
         configuration.locale = new Locale(language.toLowerCase());
