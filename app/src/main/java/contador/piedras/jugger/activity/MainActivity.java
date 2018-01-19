@@ -188,13 +188,11 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 if (!name2.isEmpty()) textView_team2.setText(name2);
             }
         });
-        alertDialogBuilder.setNeutralButton(R.string.renameTeams_reset, new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setNeutralButton(R.string.reset, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 textView_team1.setText(R.string.team1);
                 textView_team2.setText(R.string.team2);
-                textView_team1_points.setText("0");
-                textView_team2_points.setText("0");
             }
         });
         alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
@@ -213,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
         AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
         builderSingle.setTitle(R.string.changeColor);
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_item, getResources().getStringArray(R.array.array_colors));
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.array_colors));
         builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -236,6 +234,17 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         });
 
         builderSingle.create().show();
+    }
+
+    private void resetTeams() {
+        textView_team1.setText(R.string.team1);
+        textView_team1.setTextColor(getResources().getColor(R.color.red));
+        textView_team1_points.setText("0");
+        textView_team1_points.setTextColor(getResources().getColor(R.color.red));
+        textView_team2.setText(R.string.team2);
+        textView_team2.setTextColor(getResources().getColor(R.color.green));
+        textView_team2_points.setText("0");
+        textView_team2_points.setTextColor(getResources().getColor(R.color.green));
     }
 
     private void setStones() {
@@ -262,8 +271,14 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         alertDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
-                final long stones = Long.parseLong(stonesEdit.getText().toString());
+                final long stones = !stonesEdit.getText().toString().isEmpty() ? Long.parseLong(stonesEdit.getText().toString()) : 0;
                 textView_stones.setText(String.valueOf(stones));
+            }
+        });
+        alertDialogBuilder.setNeutralButton(R.string.reset, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                textView_stones.setText("0");
             }
         });
 
@@ -345,17 +360,26 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
         switch (item.getItemId()) {
-            case R.id.rename_teams:
+            case R.id.teams_rename:
                 renameTeams();
                 return true;
-            case R.id.changeColor_1:
+            case R.id.teams_changeColor_1:
                 changeTeamColors(TEAM.TEAM1);
                 return true;
-            case R.id.changeColor_2:
+            case R.id.teams_changeColor_2:
                 changeTeamColors(TEAM.TEAM2);
                 return true;
-            case R.id.set_stones:
+            case R.id.teams_reset:
+                resetTeams();
+                return true;
+            case R.id.editStones:
                 setStones();
+                return true;
+            case R.id.action_support:
+                intent = new Intent(this, SupportActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 return true;
             case R.id.action_settings:
                 pauseTimer();
@@ -367,12 +391,6 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 bundle.putString(MyPreferenceActivity.KEY_TEAM2, textView_team2.getText().toString());
                 intent.putExtras(bundle);
                 startActivityForResult(intent, 0);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                return true;
-            case R.id.action_support:
-                intent = new Intent(this, SupportActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 return true;
             default:

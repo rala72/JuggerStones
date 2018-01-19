@@ -3,10 +3,10 @@
     <string name="zero">0</string>
     <string name="team1">Team 1</string>
     <string name="team2">Team 2</string>
+    <string name="editTeams">Teams bearbeiten</string>
     <string name="renameTeams">Teams umbenennen</string>
     <string name="renameTeams_1">Team 1 umbenennen</string>
     <string name="renameTeams_2">Team 2 umbenennen</string>
-    <string name="renameTeams_reset">Zurücksetzen</string>
     <string name="changeColor">Farbe ändern</string>
     <string name="changeColor_1">Team 1 Farbe ändern</string>
     <string name="changeColor_2">Team 2 Farbe ändern</string>

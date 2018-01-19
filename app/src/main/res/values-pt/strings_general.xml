@@ -19,5 +19,6 @@
     <string name="error_version_loading_failed">A versão não pôde ser carregada.</string>
 
     <!-- other -->
+    <string name="reset">Restabelecer</string>
     <string name="up_improvements">Próximas melhorias: -É possível adicionar e gravar sons personalizados</string>
 </resources>

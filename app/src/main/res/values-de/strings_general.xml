@@ -19,5 +19,6 @@
     <string name="error_version_loading_failed">Version konnte nicht geladen werden.</string>
 
     <!-- other -->
+    <string name="reset">Zurücksetzen</string>
     <string name="up_improvements">Die nächsten Verbesserungen: Kann hinzuzufügen und notieren individuelle sounds</string>
 </resources>
