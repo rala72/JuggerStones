@@ -4,7 +4,6 @@ import android.content.Context;
 
 import java.util.TimerTask;
 
-@SuppressWarnings("WeakerAccess")
 public class CounterTask extends TimerTask {
     private Context context;
     private long stones;
@@ -30,16 +29,6 @@ public class CounterTask extends TimerTask {
             callback.onGongPlayed(stones);
         } else sound.playStone(context);
     }
-
-    //region update
-    public void updateStones(long stones) {
-        this.stones = stones;
-    }
-
-    public void updateMode(long mode) {
-        this.mode = mode;
-    }
-    //endregion
 
     public interface CounterTaskCallback {
         void onStonesChanged(long stones);
