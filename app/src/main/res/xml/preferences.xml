@@ -16,11 +16,11 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="stop_after_point"
-            android:title="@string/stop_stones_after_point" />
+            android:title="@string/stop_after_point" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="stop_after_gong"
-            android:title="@string/stop_stones_after_gong" />
+            android:title="@string/stop_after_gong" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/settings_category_sound">
         <contador.piedras.jugger.model.SoundPreferenceList
@@ -49,7 +49,7 @@
             android:title="@string/contact_title" />
         <Preference
             android:key="playStore"
-            android:summary="@string/rate_description"
-            android:title="@string/rate_title" />
+            android:summary="@string/playStore_description"
+            android:title="@string/playStore_title" />
     </PreferenceCategory>
 </PreferenceScreen>

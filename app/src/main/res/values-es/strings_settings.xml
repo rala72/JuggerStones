@@ -4,35 +4,34 @@
     <string name="settings_category_game">Juego</string>
     <string name="stoneInterval">Intervalo entre piedras</string>
     <string name="mode">Modo de juego</string>
-    <string name="mode_normal">Modo normal (100 piedras cada parte)</string>
-    <string name="mode_extension">Modo prorroga mode (50 piedras cada parte)</string>
+    <string name="mode_normal">Modo normal (100 piezas por sección)</string>
+    <string name="mode_extension">Modo de expansión (50 fichas por sección)</string>
     <string name="mode_infinite">Modo infinito(Solo piedras)</string>
-    <string name="stop_stones_after_point">Detener contador después de punto</string>
-    <string name="stop_stones_after_gong">Detener contador después de aviso</string>
+    <string name="stop_after_point">Detener después del punto</string>
+    <string name="stop_after_gong">Parar después de gong</string>
 
     <!-- settings: sounds -->
     <string name="settings_category_sound">Sonidos</string>
-    <string name="sounds_stones">Sonido de piedras</string>
+    <string name="sounds_stones">Piedras</string>
+    <string name="achievement">Logro</string>
     <string name="cash_reg">Caja registradora</string>
     <string name="censure">Censura</string>
     <string name="crow">Cuervo</string>
     <string name="doh">D\'oh de Homer</string>
-    <string name="fb_notification">Noticiacion de Facebook</string>
-    <string name="achievement">Logro</string>
-    <string name="metal_gear">Metal gear</string>
-    <string name="duck">pato</string>
-    <string name="pan">Sarten</string>
     <string name="drum">Tambor</string>
+    <string name="duck">pato</string>
+    <string name="fb_notification">Noticiacion de Facebook</string>
+    <string name="metal_gear">Metal gear</string>
+    <string name="pan">Sarten</string>
     <string name="stone">Piedra</string>
 
-    <string name="sounds_gong">Sonido de gong</string>
+    <string name="sounds_gong">Gong</string>
     <string name="gong">Gong</string>
     <string name="vuvuzela">Vuvucela</string>
 
     <!-- settings: others -->
-    <string name="settings_category_others">Otros</string>
+    <string name="settings_category_others">Otro</string>
     <string name="contact_title">Contacto</string>
-    <string name="contact_description">Enviar un mensaje al desarrollador</string>
-    <string name="rate_title">Valorar</string>
-    <string name="rate_description">Valorar la aplicación</string>
+    <string name="contact_description">Enviar un correo electrónico al desarrollador</string>
+    <string name="playStore_description">Califica la aplicación</string>
 </resources>

@@ -4,9 +4,9 @@
     <string name="team1">Equipe 1</string>
     <string name="team2">Equipe 2</string>
     <string name="setStones">Colocar pedras</string>
-    <string name="renameTeams">Rebatizar equipes</string>
-    <string name="renameTeams_1">Equipe 1 iniciais</string>
-    <string name="renameTeams_2">Equipe 2 iniciais</string>
+    <string name="renameTeams">Renomeie equipes</string>
+    <string name="renameTeams_1">Renomeie equipe 1</string>
+    <string name="renameTeams_2">Renomeie equipe 2</string>
     <string name="renameTeams_reset">Restabelecer</string>
     <string name="support">Suporte e contato</string>
     <string name="settings">Configurações</string>

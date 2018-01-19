@@ -5,8 +5,8 @@
     <string name="team2">Equipo 2</string>
     <string name="setStones">Establecer piedras</string>
     <string name="renameTeams">Renombrar equipos</string>
-    <string name="renameTeams_1">Equipo 1 initials</string>
-    <string name="renameTeams_2">Equipo 2 initials</string>
+    <string name="renameTeams_1">Cambiar el nombre del equipo 1</string>
+    <string name="renameTeams_2">Cambiar el nombre del equipo 2</string>
     <string name="renameTeams_reset">Reiniciar</string>
     <string name="support">Soporte y contacto</string>
     <string name="settings">Ajustes</string>

@@ -6,8 +6,10 @@
     <string name="email_current" translatable="false">code@rala.io</string>
     <string name="email_original" translatable="false">cristiancvacas@gmail.com</string>
     <string name="email_mailto" translatable="false">mailto:code@rala.io</string>
+    <string name="playStore" translatable="false">Play Store</string>
     <string name="playStore_original" translatable="false">https://play.google.com/store/apps/details?id=contador.piedras.jugger</string>
 
     <string name="increase" translatable="false">+</string>
     <string name="decrease" translatable="false">-</string>
+
 </resources>

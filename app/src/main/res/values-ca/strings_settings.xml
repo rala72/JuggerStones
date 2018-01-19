@@ -4,35 +4,34 @@
     <string name="settings_category_game">Joc</string>
     <string name="stoneInterval">Interval de pedres</string>
     <string name="mode">Mode de joc</string>
-    <string name="mode_normal">Mode Normal (100 pedres per part)</string>
-    <string name="mode_extension">Mode Extensión (50 pedres per part)</string>
+    <string name="mode_normal">Mode normal (100 peces per secció)</string>
+    <string name="mode_extension">Mode d\'expansió (50 fitxes per secció)</string>
     <string name="mode_infinite">Mode Infinite (Solament pedres)</string>
-    <string name="stop_stones_after_point">Parada el comptador, després del punt</string>
-    <string name="stop_stones_after_gong">Parada el comptador després de l\'advertiment</string>
+    <string name="stop_after_point">Parada després de punt</string>
+    <string name="stop_after_gong">Atura\'t després del gong</string>
 
     <!-- settings: sounds -->
-    <string name="settings_category_sound">So</string>
-    <string name="sounds_stones">So de les pedres</string>
+    <string name="settings_category_sound">Sons</string>
+    <string name="sounds_stones">Pedres</string>
+    <string name="achievement">Èxit</string>
     <string name="cash_reg">Registrador d\'efectiu</string>
     <string name="censure">Censura</string>
     <string name="crow">Corb</string>
     <string name="doh">D\'oh d\'Homer</string>
-    <string name="fb_notification">Notificació Facebook</string>
-    <string name="achievement">Èxit</string>
-    <string name="metal_gear">Engranatge de metal</string>
-    <string name="duck">Ànec</string>
-    <string name="pan">Cassola</string>
     <string name="drum">Tambor</string>
+    <string name="duck">Ànec</string>
+    <string name="fb_notification">Notificació Facebook</string>
+    <string name="metal_gear">Engranatge de metal</string>
+    <string name="pan">Cassola</string>
     <string name="stone">Pedra</string>
 
-    <string name="sounds_gong">Sons de gongs</string>
+    <string name="sounds_gong">Gong</string>
     <string name="gong">Gong</string>
     <string name="vuvuzela">Vuvucela</string>
 
     <!-- settings: others -->
-    <string name="settings_category_others">Altres</string>
+    <string name="settings_category_others">Altre</string>
     <string name="contact_title">Contacte</string>
-    <string name="contact_description">Enviar un missatge al desenvolupador</string>
-    <string name="rate_title">Votar</string>
-    <string name="rate_description">Votar l\'app</string>
+    <string name="contact_description">Enviar correu electrònic al desenvolupador</string>
+    <string name="playStore_description">Valoreu l\'aplicació</string>
 </resources>

@@ -4,35 +4,34 @@
     <string name="settings_category_game">Spiel</string>
     <string name="stoneInterval">Steinintervall</string>
     <string name="mode">Spielmodus</string>
-    <string name="mode_normal">Normalmodus (100 Steine jeder Teil)</string>
-    <string name="mode_extension">Erweiterungsmodus (50 Steine jeder Teil)</string>
+    <string name="mode_normal">Normalmodus (100 Steine je Abschnitt)</string>
+    <string name="mode_extension">Erweiterungsmodus (50 Steine je Abschnitt)</string>
     <string name="mode_infinite">Unendlichmodus (nur Steine)</string>
-    <string name="stop_stones_after_point">Stoppe Zähler nach Punkt</string>
-    <string name="stop_stones_after_gong">Stoppe Zähler nach Gong</string>
+    <string name="stop_after_point">Stoppe nach Punkt</string>
+    <string name="stop_after_gong">Stoppe nach Gong</string>
 
     <!-- settings: sounds -->
     <string name="settings_category_sound">Klänge</string>
-    <string name="sounds_stones">Klang der Steine</string>
+    <string name="sounds_stones">Steine</string>
+    <string name="achievement">Errungenschaft</string>
     <string name="cash_reg">Kasse</string>
     <string name="censure">Zensur</string>
     <string name="crow">Krähe</string>
     <string name="doh">Homers D\'oh</string>
-    <string name="fb_notification">Facebook Benachrichtigung</string>
-    <string name="achievement">Errungenschaft</string>
-    <string name="metal_gear">Metal Gear</string>
-    <string name="duck">Ente</string>
-    <string name="pan">Pan</string>
     <string name="drum">Drum</string>
+    <string name="duck">Ente</string>
+    <string name="fb_notification">Facebook Benachrichtigung</string>
+    <string name="metal_gear">Metal Gear</string>
+    <string name="pan">Pan</string>
     <string name="stone">Stein</string>
 
-    <string name="sounds_gong">Klang des Gongs</string>
+    <string name="sounds_gong">Gong</string>
     <string name="gong">Gong</string>
     <string name="vuvuzela">Vuvucela</string>
 
     <!-- settings: others -->
-    <string name="settings_category_others">Andere</string>
+    <string name="settings_category_others">Anderes</string>
     <string name="contact_title">Kontakt</string>
-    <string name="contact_description">Eine Frage an die Entwickler stellen</string>
-    <string name="rate_title">Bewertung</string>
-    <string name="rate_description">Bewerte die App</string>
+    <string name="contact_description">E-Mail an Entwickler senden</string>
+    <string name="playStore_description">Bewerte die App</string>
 </resources>

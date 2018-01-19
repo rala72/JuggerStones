@@ -4,7 +4,7 @@
     <string name="team1">Team 1</string>
     <string name="team2">Team 2</string>
     <string name="setStones">Steine ändern</string>
-    <string name="renameTeams">Teams benennen</string>
+    <string name="renameTeams">Teams umbenennen</string>
     <string name="renameTeams_1">Team 1 umbenennen</string>
     <string name="renameTeams_2">Team 2 umbenennen</string>
     <string name="renameTeams_reset">Zurücksetzen</string>
