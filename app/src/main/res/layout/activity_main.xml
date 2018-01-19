@@ -77,7 +77,7 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/decrease"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/button_decrease" />
+                    app:srcCompat="@drawable/ic_minus" />
 
                 <android.support.v7.widget.AppCompatImageButton
                     android:id="@+id/button_team1_increase"
@@ -88,7 +88,7 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/increase"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/button_increase" />
+                    app:srcCompat="@drawable/ic_plus" />
             </GridLayout>
 
         </RelativeLayout>
@@ -151,7 +151,7 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/decrease"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/button_decrease" />
+                    app:srcCompat="@drawable/ic_minus" />
 
                 <android.support.v7.widget.AppCompatImageButton
                     android:id="@+id/button_team2_increase"
@@ -162,7 +162,7 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/increase"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/button_increase" />
+                    app:srcCompat="@drawable/ic_plus" />
             </GridLayout>
 
         </RelativeLayout>
@@ -187,7 +187,7 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/decrease"
             android:scaleType="fitCenter"
-            android:src="@drawable/button_decrease" />
+            app:srcCompat="@drawable/ic_minus" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/textView_stones"
@@ -219,7 +219,7 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/increase"
             android:scaleType="fitCenter"
-            android:src="@drawable/button_increase" />
+            app:srcCompat="@drawable/ic_plus" />
 
     </RelativeLayout>
 
@@ -238,7 +238,7 @@
             android:layout_alignParentTop="true"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
-            android:src="@drawable/button_play" />
+            app:srcCompat="@drawable/ic_play_circle" />
 
         <android.support.v7.widget.AppCompatImageButton
             android:id="@+id/button_stop"
@@ -248,7 +248,7 @@
             android:layout_alignParentRight="true"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
-            android:src="@drawable/button_stop" />
+            app:srcCompat="@drawable/ic_stop_circle" />
 
     </RelativeLayout>
 

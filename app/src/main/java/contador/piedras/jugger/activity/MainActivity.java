@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.InputFilter;
@@ -296,7 +297,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     //region timer
     protected void startTimer() {
-        button_playPause.setImageResource(R.drawable.button_pause);
+        button_playPause.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_pause_circle));
         if (isTimerRunning()) return;
         final long stones = Long.parseLong(textView_stones.getText().toString().trim());
         final long mode = Long.parseLong(JuggerStonesApplication.sharedPreferences.getString(JuggerStonesApplication.PREFS.MODE.toString(), String.valueOf(JuggerStonesApplication.DEFAULT_MODE)));
@@ -307,7 +308,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
 
     protected void pauseTimer() {
-        button_playPause.setImageResource(R.drawable.button_play);
+        button_playPause.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_play_circle));
         if (!isTimerRunning()) return;
         timer.cancel();
         timer = null;

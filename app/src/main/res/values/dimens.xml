@@ -13,8 +13,8 @@
     <dimen name="textSizeAuto_largeMinHeight">200sp</dimen>
     <dimen name="textSizeAuto_largeMaxWidth">@dimen/textSizeAuto_largeMinHeight</dimen>
 
-    <dimen name="button_increaseDecrease_size">50dp</dimen>
+    <dimen name="button_increaseDecrease_size">65dp</dimen>
     <dimen name="button_increaseDecrease_margin">5dp</dimen>
     <dimen name="button_increaseDecrease_margin_center">18dp</dimen>
-    <dimen name="button_playStop_size">100dp</dimen>
+    <dimen name="button_playStop_size">115dp</dimen>
 </resources>
