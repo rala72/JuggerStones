@@ -10,6 +10,7 @@
     <string name="language_portuguese">Portuguès</string>
 
     <!-- colors -->
+    <string name="color_gray">Gris</string>
     <string name="color_green">Verd</string>
     <string name="color_red">Vermell</string>
     <string name="color_yellow">Groc</string>

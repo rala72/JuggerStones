@@ -207,6 +207,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     private void changeTeamColors(final TEAM team) {
         final Map<String, Integer> colors = new TreeMap<>();
+        colors.put(getString(R.string.color_gray), getResources().getColor(R.color.gray));
         colors.put(getString(R.string.color_green), getResources().getColor(R.color.green));
         colors.put(getString(R.string.color_red), getResources().getColor(R.color.red));
         colors.put(getString(R.string.color_yellow), getResources().getColor(R.color.yellow));

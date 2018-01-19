@@ -19,6 +19,7 @@
     </string-array>
 
     <string-array name="array_colors" translateable="false">
+        <item>@string/color_gray</item>
         <item>@string/color_green</item>
         <item>@string/color_red</item>
         <item>@string/color_yellow</item>
