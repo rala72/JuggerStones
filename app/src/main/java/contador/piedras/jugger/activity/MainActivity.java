@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     private enum TEAM {TEAM1, TEAM2}
 
+    //region onCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         textView_team1.setText(team1);
         textView_team2.setText(team2);
     }
+    //endregion
 
     //region butterKnife:listeners
     @OnClick({R.id.button_team1_increase, R.id.button_team2_increase, R.id.button_stones_increase})
@@ -349,6 +351,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
     //endregion
 
+    //region @Override
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -414,4 +417,5 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 return true;
         }
     }
+    //endregion
 }
