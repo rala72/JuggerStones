@@ -23,8 +23,7 @@ public class CounterTask extends TimerTask {
         if (stones == Long.MAX_VALUE) return;
         stones += 1;
         callback.onStonesChanged(stones);
-        if (mode != -1 && (stones == mode || stones == (mode * 2))) {
-            // if it reaches mode or mode * 2 (2nd part) -> play gong
+        if (mode != -1 && stones % mode == 0) {
             sound.playGong(context);
             callback.onGongPlayed(stones);
         } else sound.playStone(context);
