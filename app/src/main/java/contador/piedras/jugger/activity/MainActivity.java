@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.AppCompatImageButton;
@@ -362,7 +361,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             public void run() {
                 textView_stones.setText(String.valueOf(stones));
                 if (mode == -1 && stones > 0 && stones % 100 == 0)
-                    Toast.makeText(getApplicationContext(), R.string.toast_infinity, Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, R.string.toast_infinity, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -372,7 +371,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                boolean pauseAfterGong = PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+                boolean pauseAfterGong = JuggerStonesApplication.sharedPreferences
                         .getBoolean(JuggerStonesApplication.PREFS.STOP_AFTER_GONG.toString(), false);
                 if (pauseAfterGong) pauseTimer();
             }

@@ -24,7 +24,7 @@ public class SupportActivity extends AppCompatActivity {
         button_sendMessage.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                JuggerStonesApplication.sendEmail(getApplicationContext());
+                JuggerStonesApplication.sendEmail(SupportActivity.this);
             }
         });
     }

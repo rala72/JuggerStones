@@ -50,7 +50,7 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
         pref_contact.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                JuggerStonesApplication.sendEmail(getApplicationContext());
+                JuggerStonesApplication.sendEmail(MyPreferenceActivity.this);
                 return true;
             }
         });
