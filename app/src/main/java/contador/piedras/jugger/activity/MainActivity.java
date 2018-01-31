@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
 
     @OnClick({R.id.button_team1_decrease, R.id.button_team2_decrease, R.id.button_stones_decrease})
-    public void onDecreaseClick(AppCompatImageButton button) {
+    protected void onDecreaseClick(AppCompatImageButton button) {
         long number;
         switch (button.getId()) {
             case R.id.button_team1_decrease:
@@ -124,6 +124,27 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 if (0 < number) textView_stones.setText(String.valueOf(number - 1));
                 break;
         }
+    }
+
+    @OnLongClick({R.id.button_team1_decrease, R.id.button_team2_decrease, R.id.button_stones_decrease})
+    protected boolean onDecreaseLongClick(AppCompatImageButton button) {
+        long number;
+        switch (button.getId()) {
+            case R.id.button_team1_decrease:
+                number = Long.parseLong(textView_team1_points.getText().toString());
+                if (0 < number) textView_team1_points.setText(String.valueOf(0));
+                break;
+            case R.id.button_team2_decrease:
+                number = Long.parseLong(textView_team2_points.getText().toString());
+                if (0 < number) textView_team2_points.setText(String.valueOf(0));
+                break;
+            case R.id.button_stones_decrease:
+                if (isTimerRunning()) return true;
+                number = Long.parseLong(textView_stones.getText().toString());
+                if (0 < number) textView_stones.setText(String.valueOf(0));
+                break;
+        }
+        return true;
     }
 
     @OnClick({R.id.button_playPause, R.id.button_stop})
