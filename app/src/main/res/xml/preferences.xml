@@ -36,6 +36,7 @@
             android:key="sound_gong"
             android:title="@string/sounds_gong" />
     </PreferenceCategory>
+    <!-- TODO: improve settings-other category (like untis) -->
     <PreferenceCategory android:title="@string/settings_category_others">
         <ListPreference
             android:entries="@array/array_languages_array"
