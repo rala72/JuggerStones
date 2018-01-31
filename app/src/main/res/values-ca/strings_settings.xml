@@ -7,8 +7,8 @@
     <string name="mode_normal">Mode normal (100 peces per secció)</string>
     <string name="mode_extension">Mode d\'expansió (50 fitxes per secció)</string>
     <string name="mode_infinite">Mode Infinite (Solament pedres)</string>
-    <string name="stop_after_point">Parada després de punt</string>
-    <string name="stop_after_gong">Atura\'t després del gong</string>
+    <string name="stop_after_point">Pausa després del punt</string>
+    <string name="stop_after_gong">Fer una pausa després gong</string>
 
     <!-- settings: sounds -->
     <string name="settings_category_sound">Sons</string>

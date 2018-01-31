@@ -6,8 +6,8 @@
     <string name="mode_normal">Modo normal (100 peças por seção)</string>
     <string name="mode_extension">Modo de expansão (50 telas por seção)</string>
     <string name="mode_infinite">Infinite mode (Only stones)</string>
-    <string name="stop_after_point">Parar após o ponto</string>
-    <string name="stop_after_gong">Pare após o gong</string>
+    <string name="stop_after_point">Pausa após o ponto</string>
+    <string name="stop_after_gong">Pausa após gong</string>
 
     <!-- settings: sounds -->
     <string name="settings_category_sound">Sons</string>

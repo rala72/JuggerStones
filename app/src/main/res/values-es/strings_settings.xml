@@ -7,8 +7,8 @@
     <string name="mode_normal">Modo normal (100 piezas por sección)</string>
     <string name="mode_extension">Modo de expansión (50 fichas por sección)</string>
     <string name="mode_infinite">Modo infinito(Solo piedras)</string>
-    <string name="stop_after_point">Detener después del punto</string>
-    <string name="stop_after_gong">Parar después de gong</string>
+    <string name="stop_after_point">Pausa después del punto</string>
+    <string name="stop_after_gong">Hacer una pausa después gong</string>
 
     <!-- settings: sounds -->
     <string name="settings_category_sound">Sonidos</string>

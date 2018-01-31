@@ -7,8 +7,8 @@
     <string name="mode_normal">Mode normal (100 pièces par section)</string>
     <string name="mode_extension">Mode d\'expansion (50 tuiles par section)</string>
     <string name="mode_infinite">Mode Infini (Seuls les pierres)</string>
-    <string name="stop_after_point">Stop après point</string>
-    <string name="stop_after_gong">Arrêtez après le gong</string>
+    <string name="stop_after_point">Pause après le point</string>
+    <string name="stop_after_gong">Pause après gong</string>
 
     <!-- settings: sounds -->
     <string name="settings_category_sound">Sons</string>

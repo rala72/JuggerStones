@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     private void checkIfStopAfterPoint() {
         if (JuggerStonesApplication.sharedPreferences.getBoolean(JuggerStonesApplication.PREFS.STOP_AFTER_POINT.toString(), false))
-            stopTimer();
+            pauseTimer();
     }
 
     //region dialogs

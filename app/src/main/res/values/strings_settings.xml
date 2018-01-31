@@ -7,8 +7,8 @@
     <string name="mode_normal">Normal mode (100 stones per section)</string>
     <string name="mode_extension">Expansion mode (50 tiles per section)</string>
     <string name="mode_infinite">Infinite mode (Only stones)</string>
-    <string name="stop_after_point">Stop after point</string>
-    <string name="stop_after_gong">Stop after gong</string>
+    <string name="stop_after_point">Pause after point</string>
+    <string name="stop_after_gong">Pause after Gong</string>
 
     <!-- settings: sounds -->
     <string name="settings_category_sound">Sounds</string>

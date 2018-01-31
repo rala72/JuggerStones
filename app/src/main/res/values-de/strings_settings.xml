@@ -7,8 +7,8 @@
     <string name="mode_normal">Normalmodus (100 Steine je Abschnitt)</string>
     <string name="mode_extension">Erweiterungsmodus (50 Steine je Abschnitt)</string>
     <string name="mode_infinite">Unendlichmodus (nur Steine)</string>
-    <string name="stop_after_point">Stoppe nach Punkt</string>
-    <string name="stop_after_gong">Stoppe nach Gong</string>
+    <string name="stop_after_point">Pausiere nach Punkt</string>
+    <string name="stop_after_gong">Pausiere nach Gong</string>
 
     <!-- settings: sounds -->
     <string name="settings_category_sound">Klänge</string>
