@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -239,6 +240,16 @@
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_play_circle" />
+
+        <ImageView
+            android:id="@+id/imageView_info"
+            android:layout_width="@dimen/infoImage_size"
+            android:layout_height="@dimen/infoImage_size"
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter"
+            android:tint="@color/infoColor"
+            app:srcCompat="@drawable/ic_infinity"
+            tools:ignore="ContentDescription" />
 
         <android.support.v7.widget.AppCompatImageButton
             android:id="@+id/button_stop"

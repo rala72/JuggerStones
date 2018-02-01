@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.AppCompatImageButton;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -51,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     protected AppCompatTextView textView_team2_points;
     @BindView(R.id.textView_stones)
     protected AppCompatTextView textView_stones;
+
+    @BindView(R.id.imageView_info)
+    protected AppCompatImageView imageView_info;
     //endregion
 
     private Timer timer;
@@ -79,6 +83,10 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         initStonesView(stones);
         textView_team1.setText(team1);
         textView_team2.setText(team2);
+        final int res = JuggerStonesApplication.CounterPreference.isInfinityMode() ?
+                R.drawable.ic_infinity : JuggerStonesApplication.CounterPreference.isReverse() ?
+                R.drawable.ic_sort_descending : R.drawable.ic_sort_ascending_modified;
+        imageView_info.setImageDrawable(AppCompatResources.getDrawable(this, res));
     }
     //endregion
 
