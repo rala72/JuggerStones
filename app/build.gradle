@@ -18,7 +18,7 @@ android {
         applicationId "io.rala.jugger" // "contador.piedras.jugger"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 1010003 // 01.01.00-03
+        versionCode 1010004 // 01.01.00-04
         versionName "1.1.0"
         vectorDrawables.useSupportLibrary = true
     }
