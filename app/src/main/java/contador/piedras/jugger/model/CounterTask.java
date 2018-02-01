@@ -4,6 +4,8 @@ import android.content.Context;
 
 import java.util.TimerTask;
 
+import contador.piedras.jugger.JuggerStonesApplication;
+
 public class CounterTask extends TimerTask {
     private Context context;
     private long stones;
@@ -23,7 +25,7 @@ public class CounterTask extends TimerTask {
         if (stones == Long.MAX_VALUE) return;
         stones += 1;
         callback.onStonesChanged(stones);
-        if (mode != -1 && stones % mode == 0) {
+        if (!JuggerStonesApplication.CounterPreference.isInfinityMode() && stones % mode == 0) {
             sound.playGong(context);
             callback.onGongPlayed(stones);
         } else sound.playStone(context);

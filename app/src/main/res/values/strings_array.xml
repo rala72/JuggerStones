@@ -30,11 +30,13 @@
         <item>@string/mode_normal</item>
         <item>@string/mode_extension</item>
         <item>@string/mode_infinite</item>
+        <item>@string/mode_custom</item>
     </string-array>
     <string-array name="array_mode_game_values" translatable="false">
         <item>100</item>
         <item>50</item>
         <item>-1</item>
+        <item>0</item>
     </string-array>
 
     <string-array name="array_interval_count" translatable="false">
@@ -43,6 +45,7 @@
         <item>1.5</item>
         <item>1.7</item>
         <item>2</item>
+        <item>@string/interval_custom</item>
     </string-array>
     <string-array name="array_interval_count_values" translatable="false">
         <item>1000</item>
@@ -50,6 +53,7 @@
         <item>1500</item>
         <item>1700</item>
         <item>2000</item>
+        <item>0</item>
     </string-array>
 
     <string-array name="array_sounds_stone" translatable="false">

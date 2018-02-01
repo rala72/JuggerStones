@@ -7,12 +7,28 @@
             android:entryValues="@array/array_mode_game_values"
             android:key="mode"
             android:title="@string/mode" />
+        <EditTextPreference
+            android:defaultValue="100"
+            android:inputType="number|numberDecimal"
+            android:key="mode_custom"
+            android:title="@string/mode_custom" />
         <ListPreference
             android:defaultValue="1500"
             android:entries="@array/array_interval_count"
             android:entryValues="@array/array_interval_count_values"
             android:key="interval"
             android:title="@string/stoneInterval" />
+        <EditTextPreference
+            android:defaultValue="1.5"
+            android:inputType="number|numberDecimal"
+            android:key="interval_custom"
+            android:title="@string/interval_custom" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="reverse"
+            android:summary="@string/reverse_summary"
+            android:title="@string/reverse"
+            android:visibility="gone" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="stop_after_point"

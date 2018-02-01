@@ -7,6 +7,10 @@
     <string name="mode_normal">Normalmente (100 piezas por sección)</string>
     <string name="mode_extension">Extendido (50 fichas por sección)</string>
     <string name="mode_infinite">Infinitamente (Solo piedras)</string>
+    <string name="mode_custom">Modo personalizado</string>
+    <string name="interval_custom">Intervalo personalizado</string>
+    <string name="reverse">La cuenta atrás</string>
+    <string name="reverse_summary">Nota: no funciona en infinity modo</string>
     <string name="pause_after_point">Pausa después del punto</string>
     <string name="pause_after_gong">Hacer una pausa después gong</string>
 

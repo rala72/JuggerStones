@@ -7,6 +7,10 @@
     <string name="mode_normal">Normalment (100 peces per secció)</string>
     <string name="mode_extension">Estès (50 fitxes per secció)</string>
     <string name="mode_infinite">Infinitament (Solament pedres)</string>
+    <string name="mode_custom">Mode personalitzat</string>
+    <string name="interval_custom">Interval personalitzat</string>
+    <string name="reverse">El compte enrere</string>
+    <string name="reverse_summary">Nota: no funciona a infinity mode</string>
     <string name="pause_after_point">Pausa després del punt</string>
     <string name="pause_after_gong">Fer una pausa després gong</string>
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -30,7 +31,8 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
         setListener();
-        updateSumTexts();
+        updatePreferencesEnabled(null);
+        updateSumTexts(null);
     }
 
     private void setListener() {
@@ -72,21 +74,54 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        updateSumTexts(); // reduce to only required prefs
+        updatePreferencesEnabled(key);
+        updateSumTexts(key);
     }
 
-    private void updateSumTexts() {
-        ListPreference preference_mode = (ListPreference) findPreference(JuggerStonesApplication.PREFS.MODE.toString());
-        preference_mode.setSummary(preference_mode.getEntry());
-        ListPreference preference_interval = (ListPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL.toString());
-        preference_interval.setSummary(preference_interval.getEntry());
-        SoundPreferenceList preference_sound = (SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_STONE.toString());
-        preference_sound.setSummary(preference_sound.getEntry());
-        SoundPreferenceList preference_gong = (SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_GONG.toString());
-        preference_gong.setSummary(preference_gong.getEntry());
-        ListPreference pref_language = (ListPreference) findPreference(JuggerStonesApplication.PREFS.LANGUAGE.toString());
-        pref_language.setSummary(pref_language.getEntry());
+    //region updatePrefs
+    private void updatePreferencesEnabled(final String key) {
+        if (key == null || key.equals(JuggerStonesApplication.PREFS.MODE.toString())) {
+            ListPreference listPreference = (ListPreference) findPreference(JuggerStonesApplication.PREFS.MODE.toString());
+            findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString()).setEnabled(listPreference.getValue().equals("0"));
+            findPreference(JuggerStonesApplication.PREFS.REVERSE.toString()).setEnabled(!listPreference.getValue().equals("-1"));
+        }
+        if (key == null || key.equals(JuggerStonesApplication.PREFS.INTERVAL.toString())) {
+            ListPreference listPreference = (ListPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL.toString());
+            findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString()).setEnabled(listPreference.getValue().equals("0"));
+        }
     }
+
+    private void updateSumTexts(final String key) {
+        if (key == null || key.equals(JuggerStonesApplication.PREFS.MODE.toString())) {
+            ListPreference preference_mode = (ListPreference) findPreference(JuggerStonesApplication.PREFS.MODE.toString());
+            preference_mode.setSummary(preference_mode.getEntry());
+        }
+        if (key == null || key.equals(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString())) {
+            EditTextPreference preference_mode_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
+            preference_mode_custom.setSummary(preference_mode_custom.getText());
+        }
+        if (key == null || key.equals(JuggerStonesApplication.PREFS.INTERVAL.toString())) {
+            ListPreference preference_interval = (ListPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL.toString());
+            preference_interval.setSummary(preference_interval.getEntry());
+        }
+        if (key == null || key.equals(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString())) {
+            EditTextPreference preference_interval_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
+            preference_interval_custom.setSummary(preference_interval_custom.getText());
+        }
+        if (key == null || key.equals(JuggerStonesApplication.PREFS.SOUND_STONE.toString())) {
+            SoundPreferenceList preference_sound = (SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_STONE.toString());
+            preference_sound.setSummary(preference_sound.getEntry());
+        }
+        if (key == null || key.equals(JuggerStonesApplication.PREFS.SOUND_GONG.toString())) {
+            SoundPreferenceList preference_gong = (SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_GONG.toString());
+            preference_gong.setSummary(preference_gong.getEntry());
+        }
+        if (key == null || key.equals(JuggerStonesApplication.PREFS.LANGUAGE.toString())) {
+            ListPreference pref_language = (ListPreference) findPreference(JuggerStonesApplication.PREFS.LANGUAGE.toString());
+            pref_language.setSummary(pref_language.getEntry());
+        }
+    }
+    //endregion
 
     private void changeLanguage(String language) {
         LocaleUtils.setLocale(new Locale(language));

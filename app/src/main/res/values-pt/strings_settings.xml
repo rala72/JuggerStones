@@ -6,6 +6,10 @@
     <string name="mode_normal">Normalmente (100 peças por seção)</string>
     <string name="mode_extension">Estendido (50 telas por seção)</string>
     <string name="mode_infinite">Infinitamente (Only stones)</string>
+    <string name="mode_custom">Modo personalizado</string>
+    <string name="interval_custom">Intervalo personalizado</string>
+    <string name="reverse">Contagem regressiva</string>
+    <string name="reverse_summary">Nota: não funciona em Infinity</string>
     <string name="pause_after_point">Pausa após o ponto</string>
     <string name="pause_after_gong">Pausa após gong</string>
 
