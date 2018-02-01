@@ -3,9 +3,9 @@
     <string name="settings_category_game">Jogo</string>
     <string name="stoneInterval">Iintervalo entre pedras</string>
     <string name="mode">Modo de jogo</string>
-    <string name="mode_normal">Modo normal (100 peças por seção)</string>
-    <string name="mode_extension">Modo de expansão (50 telas por seção)</string>
-    <string name="mode_infinite">Infinite mode (Only stones)</string>
+    <string name="mode_normal">Normalmente (100 peças por seção)</string>
+    <string name="mode_extension">Estendido (50 telas por seção)</string>
+    <string name="mode_infinite">Infinitamente (Only stones)</string>
     <string name="pause_after_point">Pausa após o ponto</string>
     <string name="pause_after_gong">Pausa após gong</string>
 

@@ -4,9 +4,9 @@
     <string name="settings_category_game">Jeu</string>
     <string name="stoneInterval">D\'intervalle pierre</string>
     <string name="mode">Mode de jeu</string>
-    <string name="mode_normal">Mode normal (100 pièces par section)</string>
-    <string name="mode_extension">Mode d\'expansion (50 tuiles par section)</string>
-    <string name="mode_infinite">Mode Infini (Seuls les pierres)</string>
+    <string name="mode_normal">Normalement (100 pièces par section)</string>
+    <string name="mode_extension">Prolongé (50 tuiles par section)</string>
+    <string name="mode_infinite">Infiniment (Seuls les pierres)</string>
     <string name="pause_after_point">Pause après le point</string>
     <string name="pause_after_gong">Pause après gong</string>
 
