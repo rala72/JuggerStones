@@ -18,14 +18,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import java.util.Map;
+import com.jaredrummler.android.colorpicker.ColorPickerDialog;
+import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
+
 import java.util.Timer;
-import java.util.TreeMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,7 +36,7 @@ import contador.piedras.jugger.LocaleUtils;
 import contador.piedras.jugger.R;
 import contador.piedras.jugger.model.CounterTask;
 
-public class MainActivity extends AppCompatActivity implements CounterTask.CounterTaskCallback {
+public class MainActivity extends AppCompatActivity implements CounterTask.CounterTaskCallback, ColorPickerDialogListener {
     private static final int LIMIT_TEAM_NAME_CHARACTERS_TO = 0;
 
     //region butterKnife
@@ -211,7 +211,6 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
 
     //region dialogs
-    // TODO [onHold]: use https://github.com/afollestad/material-dialogs
     @SuppressWarnings("ConstantConditions")
     private void renameTeams() {
         final int margin_dp = 25;
@@ -267,37 +266,29 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
 
     private void changeTeamColors(final TEAM team) {
-        final Map<String, Integer> colors = new TreeMap<>();
-        colors.put(getString(R.string.color_gray), getResources().getColor(R.color.gray));
-        colors.put(getString(R.string.color_green), getResources().getColor(R.color.green));
-        colors.put(getString(R.string.color_red), getResources().getColor(R.color.red));
-        colors.put(getString(R.string.color_yellow), getResources().getColor(R.color.yellow));
+        ColorPickerDialog.newBuilder()
+                .setDialogType(ColorPickerDialog.TYPE_PRESETS)
+                .setDialogId(team.equals(TEAM.TEAM1) ? 1 : 2)
+                .setColor(team.equals(TEAM.TEAM1) ? textView_team1.getCurrentTextColor() : textView_team2.getCurrentTextColor())
+                .setShowAlphaSlider(false)
+                .setAllowCustom(false)
+                .setSelectedButtonText(android.R.string.ok)
+                .show(this);
+    }
 
-        AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
-        builderSingle.setTitle(R.string.changeColor);
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.array_colors));
-        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                int color = colors.get(arrayAdapter.getItem(which));
-                if (team.equals(TEAM.TEAM1)) {
-                    textView_team1.setTextColor(color);
-                    textView_team1_points.setTextColor(color);
-                } else if (team.equals(TEAM.TEAM2)) {
-                    textView_team2.setTextColor(color);
-                    textView_team2_points.setTextColor(color);
-                }
-                dialog.dismiss();
-            }
-        });
-        builderSingle.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
+    @Override
+    public void onColorSelected(int dialogId, int color) {
+        if (dialogId == 1) {
+            textView_team1.setTextColor(color);
+            textView_team1_points.setTextColor(color);
+        } else if (dialogId == 2) {
+            textView_team2.setTextColor(color);
+            textView_team2_points.setTextColor(color);
+        }
+    }
 
-        builderSingle.create().show();
+    @Override
+    public void onDialogDismissed(int dialogId) {
     }
 
     private void resetTeams() {
