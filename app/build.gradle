@@ -46,6 +46,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.8.+'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.+'
 
-    // TODO [onHold]: material dialogs (support lib version mismatch) // https://github.com/afollestad/material-dialogs
+    // TO DO [onHold]: material dialogs (support lib version mismatch) // https://github.com/afollestad/material-dialogs
     compile 'com.jaredrummler:colorpicker:1.0.+' // https://github.com/jaredrummler/ColorPicker
 }
