@@ -8,13 +8,18 @@ import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.text.InputFilter;
 import android.view.KeyEvent;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Locale;
 
 import contador.piedras.jugger.JuggerStonesApplication;
 import contador.piedras.jugger.LocaleUtils;
 import contador.piedras.jugger.R;
+import contador.piedras.jugger.model.InputFilterMinMaxDecimal;
+import contador.piedras.jugger.model.InputFilterMinMaxInteger;
 import contador.piedras.jugger.model.SoundPreferenceList;
 
 public class MyPreferenceActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -30,9 +35,17 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
+        setFilter();
         setListener();
         updatePreferencesEnabled(null);
         updateSumTexts(null);
+    }
+
+    private void setFilter() {
+        EditTextPreference editTextPreference_mode_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
+        editTextPreference_mode_custom.getEditText().setFilters(new InputFilter[]{new InputFilterMinMaxInteger(BigInteger.valueOf(0))});
+        EditTextPreference editTextPreference_interval_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
+        editTextPreference_interval_custom.getEditText().setFilters(new InputFilter[]{new InputFilterMinMaxDecimal(BigDecimal.valueOf(0))});
     }
 
     private void setListener() {
@@ -74,11 +87,29 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        validatePreferences(key);
         updatePreferencesEnabled(key);
         updateSumTexts(key);
     }
 
     //region updatePrefs
+    private void validatePreferences(final String key) {
+        if (key.equals(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString())) {
+            long min = 1;
+            EditTextPreference editTextPreference = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
+            long value = editTextPreference.getText().trim().isEmpty() ? min : Long.parseLong(editTextPreference.getText().trim());
+            if (value == 0) value = min;
+            editTextPreference.setText(String.valueOf(value));
+        }
+        if (key.equals(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString())) {
+            double min = 0.001;
+            EditTextPreference editTextPreference = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
+            double value = editTextPreference.getText().trim().isEmpty() ? min : Double.parseDouble(editTextPreference.getText().trim());
+            if (value == 0) value = min;
+            editTextPreference.setText(String.valueOf(value));
+        }
+    }
+
     private void updatePreferencesEnabled(final String key) {
         if (key == null || key.equals(JuggerStonesApplication.PREFS.MODE.toString())) {
             ListPreference listPreference = (ListPreference) findPreference(JuggerStonesApplication.PREFS.MODE.toString());

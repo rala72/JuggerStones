@@ -9,7 +9,7 @@
             android:title="@string/mode" />
         <EditTextPreference
             android:defaultValue="100"
-            android:inputType="number|numberDecimal"
+            android:inputType="number"
             android:key="mode_custom"
             android:title="@string/mode_custom" />
         <ListPreference
