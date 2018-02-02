@@ -11,6 +11,7 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 
+import java.math.BigDecimal;
 import java.util.Locale;
 
 import contador.piedras.jugger.model.Sound;
@@ -155,8 +156,8 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
         public static long getInterval() {
             long interval = Long.parseLong(JuggerStonesApplication.sharedPreferences.getString(JuggerStonesApplication.PREFS.INTERVAL.toString(), String.valueOf(JuggerStonesApplication.DEFAULT_INTERVAL)));
             if (interval == 0) {
-                interval = Long.parseLong(JuggerStonesApplication.sharedPreferences.getString(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString(), String.valueOf(JuggerStonesApplication.DEFAULT_INTERVAL)));
-                if (interval != JuggerStonesApplication.DEFAULT_INTERVAL) interval *= 1000;
+                interval = new BigDecimal(JuggerStonesApplication.sharedPreferences.getString(PREFS.INTERVAL_CUSTOM.toString(), String.valueOf(JuggerStonesApplication.DEFAULT_INTERVAL)))
+                        .multiply(BigDecimal.valueOf(1000)).longValue();
             }
             return interval;
         }

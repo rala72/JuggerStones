@@ -98,15 +98,13 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
             long min = 1;
             EditTextPreference editTextPreference = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
             long value = editTextPreference.getText().trim().isEmpty() ? min : Long.parseLong(editTextPreference.getText().trim());
-            if (value == 0) value = min;
-            editTextPreference.setText(String.valueOf(value));
+            if (value == 0 || value == min) editTextPreference.setText(String.valueOf(value));
         }
         if (key.equals(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString())) {
             double min = 0.001;
             EditTextPreference editTextPreference = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
             double value = editTextPreference.getText().trim().isEmpty() ? min : Double.parseDouble(editTextPreference.getText().trim());
-            if (value == 0) value = min;
-            editTextPreference.setText(String.valueOf(value));
+            if (value == 0 || value == min) editTextPreference.setText(String.valueOf(value));
         }
     }
 
