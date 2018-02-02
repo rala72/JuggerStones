@@ -6,8 +6,8 @@
     <color name="red">#FF0000</color>
     <color name="yellow">#FFFF00</color>
 
-    <color name="default_team1">@color/red</color>
-    <color name="default_team2">@color/green</color>
+    <color name="default_team1">@color/green</color>
+    <color name="default_team2">@color/red</color>
 
     <color name="infoColor">#ddd</color>
 </resources>
