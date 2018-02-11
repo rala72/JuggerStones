@@ -268,7 +268,8 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     private void changeTeamColors(final TEAM team) {
         ColorPickerDialog.newBuilder()
                 .setDialogType(ColorPickerDialog.TYPE_PRESETS)
-                .setDialogId(team.equals(TEAM.TEAM1) ? 1 : 2)
+                .setDialogId(team.equals(TEAM.TEAM1) ? 1 : team.equals(TEAM.TEAM2) ? 2 : 0)
+                .setDialogTitle(R.string.changeColor)
                 .setColor(team.equals(TEAM.TEAM1) ? textView_team1.getCurrentTextColor() : textView_team2.getCurrentTextColor())
                 .setShowAlphaSlider(false)
                 .setAllowCustom(false)
