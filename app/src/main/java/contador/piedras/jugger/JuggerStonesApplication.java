@@ -170,6 +170,14 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
         public static boolean isImmediateStart() {
             return sharedPreferences.getBoolean(PREFS.IMMEDIATE_START.toString(), false);
         }
+
+        public static boolean isStopAfterPoint() {
+            return sharedPreferences.getBoolean(PREFS.STOP_AFTER_POINT.toString(), false);
+        }
+
+        public static boolean isStopAfterGong() {
+            return sharedPreferences.getBoolean(PREFS.STOP_AFTER_GONG.toString(), false);
+        }
     }
     //endregion
 }

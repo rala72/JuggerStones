@@ -124,12 +124,12 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             case R.id.button_team1_increase:
                 number = Long.parseLong(textView_team1_points.getText().toString());
                 textView_team1_points.setText(String.valueOf(number + 1));
-                checkIfStopAfterPoint();
+                if (JuggerStonesApplication.CounterPreference.isStopAfterPoint()) pauseTimer();
                 break;
             case R.id.button_team2_increase:
                 number = Long.parseLong(textView_team2_points.getText().toString());
                 textView_team2_points.setText(String.valueOf(number + 1));
-                checkIfStopAfterPoint();
+                if (JuggerStonesApplication.CounterPreference.isStopAfterPoint()) pauseTimer();
                 break;
             case R.id.button_stones_increase:
                 if (isTimerRunning()) return;
@@ -137,6 +137,18 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 textView_stones.setText(String.valueOf(number + 1));
                 break;
         }
+    }
+
+    @OnLongClick(R.id.button_stones_increase)
+    protected boolean onIncreaseLongClick(AppCompatImageButton button) {
+        if (button.getId() == R.id.button_stones_increase) {
+            if (isTimerRunning()) return false;
+            if (!JuggerStonesApplication.CounterPreference.isInfinityMode() && JuggerStonesApplication.CounterPreference.isReverse()) {
+                textView_stones.setText(String.valueOf(JuggerStonesApplication.CounterPreference.getMode()));
+                return true;
+            } // other: increase by 10..?
+        }
+        return false;
     }
 
     @OnClick({R.id.button_team1_decrease, R.id.button_team2_decrease, R.id.button_stones_decrease})
@@ -166,18 +178,19 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             case R.id.button_team1_decrease:
                 number = Long.parseLong(textView_team1_points.getText().toString());
                 if (0 < number) textView_team1_points.setText(String.valueOf(0));
-                break;
+                return true;
             case R.id.button_team2_decrease:
                 number = Long.parseLong(textView_team2_points.getText().toString());
                 if (0 < number) textView_team2_points.setText(String.valueOf(0));
-                break;
+                return true;
             case R.id.button_stones_decrease:
-                if (isTimerRunning()) return true;
+                if (isTimerRunning()) return false;
                 number = Long.parseLong(textView_stones.getText().toString());
                 if (0 < number) textView_stones.setText(String.valueOf(0));
-                break;
+                return true;
+            default:
+                return false;
         }
-        return true;
     }
 
     @OnClick({R.id.button_playPause, R.id.button_stop})
@@ -204,11 +217,6 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         return true;
     }
     //endregion
-
-    private void checkIfStopAfterPoint() {
-        if (JuggerStonesApplication.sharedPreferences.getBoolean(JuggerStonesApplication.PREFS.STOP_AFTER_POINT.toString(), false))
-            pauseTimer();
-    }
 
     //region dialogs
     @SuppressWarnings("ConstantConditions")
@@ -396,14 +404,13 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     @Override
     public void onGongPlayed(final long stones) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                boolean pauseAfterGong = JuggerStonesApplication.sharedPreferences
-                        .getBoolean(JuggerStonesApplication.PREFS.STOP_AFTER_GONG.toString(), false);
-                if (pauseAfterGong) pauseTimer();
-            }
-        });
+        if (JuggerStonesApplication.CounterPreference.isStopAfterGong())
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    pauseTimer();
+                }
+            });
     }
     //endregion
 
