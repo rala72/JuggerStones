@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jaredrummler.android.colorpicker.ColorPickerDialog;
@@ -206,13 +207,21 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
 
     @OnLongClick({R.id.textView_team1, R.id.textView_team2})
-    protected boolean onTeamNameLongClick() {
-        renameTeams();
-        return true;
+    protected boolean onTeamNameLongClick(TextView textView) {
+        switch (textView.getId()) {
+            case R.id.textView_team1:
+                changeTeamColors(TEAM.TEAM1);
+                return true;
+            case R.id.textView_team2:
+                changeTeamColors(TEAM.TEAM2);
+                return true;
+            default:
+                return false;
+        }
     }
 
     @OnLongClick(R.id.textView_stones)
-    protected boolean onCounterLongClick() {
+    protected boolean onCounterLongClick(TextView textView) {
         setStones();
         return true;
     }
@@ -287,17 +296,21 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     @Override
     public void onColorSelected(int dialogId, int color) {
-        if (dialogId == 1) {
-            textView_team1.setTextColor(color);
-            textView_team1_points.setTextColor(color);
-        } else if (dialogId == 2) {
-            textView_team2.setTextColor(color);
-            textView_team2_points.setTextColor(color);
+        switch (dialogId) {
+            case 1:
+                textView_team1.setTextColor(color);
+                textView_team1_points.setTextColor(color);
+                break;
+            case 2:
+                textView_team2.setTextColor(color);
+                textView_team2_points.setTextColor(color);
+                break;
         }
     }
 
     @Override
     public void onDialogDismissed(int dialogId) {
+        // do nothing
     }
 
     private void resetTeams() {
