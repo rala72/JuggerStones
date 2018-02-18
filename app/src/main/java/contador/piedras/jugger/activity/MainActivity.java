@@ -120,6 +120,15 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                         mode * (1 + (l / mode)) - l : // regular mode: calc next number (don't go over mode)
                         l - mode * (l / mode); // input mode: decrease number so no redundant modes are available
     }
+
+    /**
+     * input mode
+     *
+     * @see #cleanStones(long, boolean)
+     */
+    private void cleanStonesView() {
+        textView_stones.setText(String.valueOf(cleanStones(Long.parseLong(textView_stones.getText().toString()), true)));
+    }
     //endregion
 
     //region butterKnife:listeners
@@ -235,11 +244,11 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     protected void onInfoViewClick(AppCompatImageView imageView) {
         if (isTimerRunning()) return;
         SharedPreferences.Editor editor = JuggerStonesApplication.sharedPreferences.edit();
-        final long mode = JuggerStonesApplication.CounterPreference.getMode();
         editor.putString(JuggerStonesApplication.PREFS.MODE.toString(), String.valueOf(JuggerStonesApplication.CounterPreference.getPreviousMode()));
-        editor.putString(JuggerStonesApplication.PREFS.MODE_PREVIOUS.toString(), String.valueOf(mode));
+        editor.putString(JuggerStonesApplication.PREFS.MODE_PREVIOUS.toString(), String.valueOf(JuggerStonesApplication.CounterPreference.getMode()));
         editor.apply();
         updateInfoView();
+        cleanStonesView();
     }
 
     @OnLongClick(R.id.imageView_info)
@@ -250,7 +259,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             editor.putBoolean(JuggerStonesApplication.PREFS.REVERSE.toString(), !JuggerStonesApplication.CounterPreference.isReverse());
             editor.apply();
             updateInfoView();
-            textView_stones.setText(String.valueOf(cleanStones(Long.parseLong(textView_stones.getText().toString()), true)));
+            cleanStonesView();
             return true;
         }
         return false;
