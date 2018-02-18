@@ -354,9 +354,10 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         stones = cleanStones(stones);
         final long mode = JuggerStonesApplication.CounterPreference.getMode();
         final long interval = JuggerStonesApplication.CounterPreference.getInterval();
+        final long delay = JuggerStonesApplication.CounterPreference.isImmediateStart() ? 0 : interval;
         final CounterTask counterTask = new CounterTask(this, stones, mode, JuggerStonesApplication.sound, this);
         timer = new Timer();
-        timer.scheduleAtFixedRate(counterTask, 0, interval);
+        timer.scheduleAtFixedRate(counterTask, delay, interval);
     }
 
     protected void pauseTimer() {

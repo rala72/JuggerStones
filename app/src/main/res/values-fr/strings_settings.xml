@@ -11,6 +11,7 @@
     <string name="interval_custom">Intervalle personnalisé</string>
     <string name="reverse">Compte à rebours</string>
     <string name="reverse_summary">Remarque: ne fonctionne pas dans l\'infini</string>
+    <string name="immediateStart">Commencer immédiatement</string>
     <string name="pause_after_point">Pause après le point</string>
     <string name="pause_after_gong">Pause après gong</string>
 

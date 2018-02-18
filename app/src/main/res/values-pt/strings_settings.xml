@@ -10,6 +10,7 @@
     <string name="interval_custom">Intervalo personalizado</string>
     <string name="reverse">Contagem regressiva</string>
     <string name="reverse_summary">Nota: não funciona em Infinity</string>
+    <string name="immediateStart">Começar imediatamente</string>
     <string name="pause_after_point">Pausa após o ponto</string>
     <string name="pause_after_gong">Pausa após gong</string>
 

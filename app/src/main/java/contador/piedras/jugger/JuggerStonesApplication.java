@@ -26,7 +26,8 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
     public static final long DEFAULT_INTERVAL = 1500;
 
     public enum PREFS { // see also preference.xml // some of them are only for findPreference
-        MODE("mode"), MODE_CUSTOM("mode_custom"), INTERVAL("interval"), INTERVAL_CUSTOM("interval_custom"), REVERSE("reverse"),
+        MODE("mode"), MODE_CUSTOM("mode_custom"), INTERVAL("interval"), INTERVAL_CUSTOM("interval_custom"),
+        REVERSE("reverse"), IMMEDIATE_START("immediateStart"),
         STOP_AFTER_POINT("stop_after_point"), STOP_AFTER_GONG("stop_after_gong"),
         SOUND_STONE("sound_stone"), SOUND_GONG("sound_gong"),
         LANGUAGE("language"), CONTACT("contact"), PLAY_STORE("playStore");
@@ -143,9 +144,9 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
 
     public static class CounterPreference {
         public static long getMode() {
-            long mode = Long.parseLong(JuggerStonesApplication.sharedPreferences.getString(JuggerStonesApplication.PREFS.MODE.toString(), String.valueOf(JuggerStonesApplication.DEFAULT_MODE)));
+            long mode = Long.parseLong(sharedPreferences.getString(PREFS.MODE.toString(), String.valueOf(DEFAULT_MODE)));
             if (mode == 0)
-                mode = Long.parseLong(JuggerStonesApplication.sharedPreferences.getString(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString(), String.valueOf(JuggerStonesApplication.DEFAULT_MODE)));
+                mode = Long.parseLong(sharedPreferences.getString(PREFS.MODE_CUSTOM.toString(), String.valueOf(DEFAULT_MODE)));
             return mode;
         }
 
@@ -154,17 +155,20 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
         }
 
         public static long getInterval() {
-            long interval = Long.parseLong(JuggerStonesApplication.sharedPreferences.getString(JuggerStonesApplication.PREFS.INTERVAL.toString(), String.valueOf(JuggerStonesApplication.DEFAULT_INTERVAL)));
-            if (interval == 0) {
-                interval = new BigDecimal(JuggerStonesApplication.sharedPreferences.getString(PREFS.INTERVAL_CUSTOM.toString(), String.valueOf(JuggerStonesApplication.DEFAULT_INTERVAL)))
+            long interval = Long.parseLong(sharedPreferences.getString(PREFS.INTERVAL.toString(), String.valueOf(DEFAULT_INTERVAL)));
+            if (interval == 0)
+                interval = new BigDecimal(sharedPreferences.getString(PREFS.INTERVAL_CUSTOM.toString(), String.valueOf(DEFAULT_INTERVAL)))
                         .multiply(BigDecimal.valueOf(1000)).longValue();
-            }
             return interval;
         }
 
         public static boolean isReverse() {
             return !sharedPreferences.getString(PREFS.MODE.toString(), String.valueOf(DEFAULT_MODE)).equals("-1") &&
                     sharedPreferences.getBoolean(PREFS.REVERSE.toString(), false);
+        }
+
+        public static boolean isImmediateStart() {
+            return sharedPreferences.getBoolean(PREFS.IMMEDIATE_START.toString(), false);
         }
     }
     //endregion

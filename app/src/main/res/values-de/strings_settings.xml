@@ -11,6 +11,7 @@
     <string name="interval_custom">Benutzerdefiniertes Intervall</string>
     <string name="reverse">Rückwärts zählen</string>
     <string name="reverse_summary">Achtung: funktioniert nicht im Unendlich-Modus</string>
+    <string name="immediateStart">Sofort starten</string>
     <string name="pause_after_point">Pausiere nach Punkt</string>
     <string name="pause_after_gong">Pausiere nach Gong</string>
 

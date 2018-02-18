@@ -11,6 +11,7 @@
     <string name="interval_custom">Intervalo personalizado</string>
     <string name="reverse">La cuenta atrás</string>
     <string name="reverse_summary">Nota: no funciona en infinity modo</string>
+    <string name="immediateStart">Comenzar de inmediato</string>
     <string name="pause_after_point">Pausa después del punto</string>
     <string name="pause_after_gong">Hacer una pausa después gong</string>
 

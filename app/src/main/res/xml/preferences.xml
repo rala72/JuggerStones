@@ -27,8 +27,11 @@
             android:defaultValue="false"
             android:key="reverse"
             android:summary="@string/reverse_summary"
-            android:title="@string/reverse"
-            android:visibility="gone" />
+            android:title="@string/reverse" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="immediateStart"
+            android:title="@string/immediateStart" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="stop_after_point"
