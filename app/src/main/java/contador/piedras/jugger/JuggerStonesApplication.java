@@ -26,7 +26,7 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
     public static final long DEFAULT_INTERVAL = 1500;
 
     public enum PREFS { // see also preference.xml // some of them are only for findPreference
-        MODE("mode"), MODE_CUSTOM("mode_custom"), INTERVAL("interval"), INTERVAL_CUSTOM("interval_custom"),
+        MODE("mode"), MODE_PREVIOUS("mode_previous"), MODE_CUSTOM("mode_custom"), INTERVAL("interval"), INTERVAL_CUSTOM("interval_custom"),
         REVERSE("reverse"), IMMEDIATE_START("immediateStart"),
         STOP_AFTER_POINT("stop_after_point"), STOP_AFTER_GONG("stop_after_gong"),
         SOUND_STONE("sound_stone"), SOUND_GONG("sound_gong"),
@@ -148,6 +148,15 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
             if (mode == 0)
                 mode = Long.parseLong(sharedPreferences.getString(PREFS.MODE_CUSTOM.toString(), String.valueOf(DEFAULT_MODE)));
             return mode;
+        }
+
+        // toggles between infinity and other mode
+        public static long getPreviousMode() {
+            long previous = Long.parseLong(sharedPreferences.getString(PREFS.MODE_PREVIOUS.toString(), String.valueOf(DEFAULT_MODE)));
+            if (previous == getMode() || (previous != -1 && !isInfinityMode()))
+                if (isInfinityMode()) previous = DEFAULT_MODE;
+                else previous = -1;
+            return previous;
         }
 
         public static boolean isInfinityMode() {

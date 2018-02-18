@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.content.res.AppCompatResources;
@@ -84,10 +85,14 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         initStonesView(stones);
         textView_team1.setText(team1);
         textView_team2.setText(team2);
-        final int res = JuggerStonesApplication.CounterPreference.isInfinityMode() ?
+        updateInfoView();
+    }
+
+    private void updateInfoView() {
+        final int resId = JuggerStonesApplication.CounterPreference.isInfinityMode() ?
                 R.drawable.ic_infinity : JuggerStonesApplication.CounterPreference.isReverse() ?
                 R.drawable.ic_sort_descending : R.drawable.ic_sort_ascending_modified;
-        imageView_info.setImageDrawable(AppCompatResources.getDrawable(this, res));
+        imageView_info.setImageDrawable(AppCompatResources.getDrawable(this, resId));
     }
     //endregion
 
@@ -224,6 +229,31 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     protected boolean onCounterLongClick(TextView textView) {
         setStones();
         return true;
+    }
+
+    @OnClick(R.id.imageView_info)
+    protected void onInfoViewClick(AppCompatImageView imageView) {
+        if (isTimerRunning()) return;
+        SharedPreferences.Editor editor = JuggerStonesApplication.sharedPreferences.edit();
+        final long mode = JuggerStonesApplication.CounterPreference.getMode();
+        editor.putString(JuggerStonesApplication.PREFS.MODE.toString(), String.valueOf(JuggerStonesApplication.CounterPreference.getPreviousMode()));
+        editor.putString(JuggerStonesApplication.PREFS.MODE_PREVIOUS.toString(), String.valueOf(mode));
+        editor.apply();
+        updateInfoView();
+    }
+
+    @OnLongClick(R.id.imageView_info)
+    protected boolean onInfoViewLongClick(AppCompatImageView imageView) {
+        if (isTimerRunning()) return false;
+        if (!JuggerStonesApplication.CounterPreference.isInfinityMode()) {
+            SharedPreferences.Editor editor = JuggerStonesApplication.sharedPreferences.edit();
+            editor.putBoolean(JuggerStonesApplication.PREFS.REVERSE.toString(), !JuggerStonesApplication.CounterPreference.isReverse());
+            editor.apply();
+            updateInfoView();
+            textView_stones.setText(String.valueOf(cleanStones(Long.parseLong(textView_stones.getText().toString()), true)));
+            return true;
+        }
+        return false;
     }
     //endregion
 
