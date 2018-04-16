@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="msg_support">Esta aplicação é de 100% programado CristianCV, espero que isso será muito útil!\n\nAceito sugestões para a melhoria (especialmente nas traduções), você pode entrar em contato comigo através do botão na tela.</string>
-    <string name="msg_sendMessage">Send message</string>
+    <string name="activity_support">Suporte e contato</string>
+    <string name="support_text">Esta aplicação é de 100% programado CristianCV, espero que isso será muito útil!\n\nAceito sugestões para a melhoria (especialmente nas traduções), você pode entrar em contato comigo através do botão na tela.</string>
+    <string name="support_sendMessage">Send message</string>
 </resources>

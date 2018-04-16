@@ -3,20 +3,20 @@
 
     <item
         android:icon="@drawable/ic_group_white_24dp"
-        android:title="@string/editTeams"
+        android:title="@string/main_editTeams"
         app:showAsAction="ifRoom">
         <menu>
             <item
                 android:id="@+id/teams_rename"
-                android:title="@string/renameTeams"
+                android:title="@string/main_renameTeams"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/teams_changeColor_1"
-                android:title="@string/changeColor_1"
+                android:title="@string/main_changeColor_1"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/teams_changeColor_2"
-                android:title="@string/changeColor_2"
+                android:title="@string/main_changeColor_2"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/teams_reset"
@@ -28,19 +28,19 @@
     <item
         android:id="@+id/editStones"
         android:icon="@drawable/ic_chinese_gong_white_24dp"
-        android:title="@string/setStones"
+        android:title="@string/main_setStones"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_support"
-        android:title="@string/support"
+        android:title="@string/activity_support"
         android:visible="false"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_settings_white_24dp"
-        android:title="@string/settings"
+        android:title="@string/activity_settings"
         app:showAsAction="ifRoom" />
 
 </menu>

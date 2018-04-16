@@ -27,10 +27,10 @@
 
     <!-- settings -->
     <string-array name="array_mode_game" translatable="false">
-        <item>@string/mode_normal</item>
-        <item>@string/mode_extension</item>
-        <item>@string/mode_infinite</item>
-        <item>@string/mode_custom</item>
+        <item>@string/pref_mode_normal</item>
+        <item>@string/pref_mode_extension</item>
+        <item>@string/pref_mode_infinite</item>
+        <item>@string/pref_mode_custom</item>
     </string-array>
     <string-array name="array_mode_game_values" translatable="false">
         <item>100</item>
@@ -45,7 +45,7 @@
         <item>1.5</item>
         <item>1.7</item>
         <item>2</item>
-        <item>@string/interval_custom</item>
+        <item>@string/pref_interval_custom</item>
     </string-array>
     <string-array name="array_interval_count_values" translatable="false">
         <item>1000</item>
@@ -57,17 +57,17 @@
     </string-array>
 
     <string-array name="array_sounds_stone" translatable="false">
-        <item>@string/achievement</item>
-        <item>@string/cash_reg</item>
-        <item>@string/censure</item>
-        <item>@string/crow</item>
-        <item>@string/doh</item>
-        <item>@string/drum</item>
-        <item>@string/duck</item>
-        <item>@string/fb_notification</item>
-        <item>@string/metal_gear</item>
-        <item>@string/pan</item>
-        <item>@string/stone</item>
+        <item>@string/pref_achievement</item>
+        <item>@string/pref_cash_reg</item>
+        <item>@string/pref_censure</item>
+        <item>@string/pref_crow</item>
+        <item>@string/pref_doh</item>
+        <item>@string/pref_drum</item>
+        <item>@string/pref_duck</item>
+        <item>@string/pref_fb</item>
+        <item>@string/pref_metal_gear</item>
+        <item>@string/pref_pan</item>
+        <item>@string/pref_stone</item>
     </string-array>
     <string-array name="array_sounds_stone_values" translatable="false">
         <item>achievement</item>
@@ -84,8 +84,8 @@
     </string-array>
 
     <string-array name="array_sounds_gong" translatable="false">
-        <item>@string/gong</item>
-        <item>@string/vuvuzela</item>
+        <item>@string/pref_gong</item>
+        <item>@string/pref_vuvuzela</item>
     </string-array>
     <string-array name="array_sounds_gong_values" translatable="false">
         <item>gong</item>

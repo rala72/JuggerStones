@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="activity_settings">Settings</string>
     <!-- settings: game -->
-    <string name="settings_category_game">Game</string>
-    <string name="stoneInterval">Stone\'s interval</string>
-    <string name="mode">Game mode</string>
-    <string name="mode_normal">Normal (100 stones per section)</string>
-    <string name="mode_extension">Expended (50 tiles per section)</string>
-    <string name="mode_infinite">Infinitely (Only stones)</string>
-    <string name="mode_custom">Custom mode</string>
-    <string name="interval_custom">Custom interval</string>
-    <string name="reverse">Count backwards</string>
-    <string name="reverse_summary">Note: does not work on Infinite mode</string>
-    <string name="immediateStart">Start immediately</string>
-    <string name="pause_after_point">Pause after point</string>
-    <string name="pause_after_gong">Pause after Gong</string>
+    <string name="pref_category_game">Game</string>
+    <string name="pref_stoneInterval">Stone\'s interval</string>
+    <string name="pref_mode">Game mode</string>
+    <string name="pref_mode_normal">Normal (100 stones per section)</string>
+    <string name="pref_mode_extension">Expended (50 tiles per section)</string>
+    <string name="pref_mode_infinite">Infinitely (Only stones)</string>
+    <string name="pref_mode_custom">Custom mode</string>
+    <string name="pref_interval_custom">Custom interval</string>
+    <string name="pref_reverse">Count backwards</string>
+    <string name="pref_reverse_summary">Note: does not work on Infinite mode</string>
+    <string name="pref_immediateStart">Start immediately</string>
+    <string name="pref_pause_after_point">Pause after point</string>
+    <string name="pref_pause_after_gong">Pause after Gong</string>
 
     <!-- settings: sounds -->
-    <string name="settings_category_sound">Sounds</string>
-    <string name="sounds_stones">Stones</string>
-    <string name="achievement">Achievement</string>
-    <string name="cash_reg">Cash register</string>
-    <string name="censure">Censure</string>
-    <string name="crow">Crow</string>
-    <string name="doh">Homer\'s D\'oh</string>
-    <string name="drum">Drum</string>
-    <string name="duck">Duck</string>
-    <string name="fb_notification">Facebook notification</string>
-    <string name="metal_gear">Metal gear</string>
-    <string name="pan">Pan</string>
-    <string name="stone">Stone</string>
+    <string name="pref_category_sound">Sounds</string>
+    <string name="pref_sounds_stones">Stones</string>
+    <string name="pref_achievement">Achievement</string>
+    <string name="pref_cash_reg">Cash register</string>
+    <string name="pref_censure">Censure</string>
+    <string name="pref_crow">Crow</string>
+    <string name="pref_doh">Homer\'s D\'oh</string>
+    <string name="pref_drum">Drum</string>
+    <string name="pref_duck">Duck</string>
+    <string name="pref_fb">Facebook notification</string>
+    <string name="pref_metal_gear">Metal gear</string>
+    <string name="pref_pan">Pan</string>
+    <string name="pref_stone">Stone</string>
 
-    <string name="sounds_gong">Gong</string>
-    <string name="gong">Gong</string>
-    <string name="vuvuzela">Vuvucela</string>
+    <string name="pref_sounds_gong">Gong</string>
+    <string name="pref_gong">Gong</string>
+    <string name="pref_vuvuzela">Vuvucela</string>
 
     <!-- settings: others -->
-    <string name="settings_category_others">Other</string>
-    <string name="email" translatable="false">E-Mail</string>
-    <string name="version">Version: %1$s</string>
+    <string name="pref_category_others">Other</string>
+    <string name="pref_email" translatable="false">E-Mail</string>
+    <string name="pref_version">Version: %1$s</string>
 </resources>

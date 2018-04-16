@@ -12,7 +12,7 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_centerVertical="true"
-        android:text="@string/msg_support"
+        android:text="@string/support_text"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
         android:textSize="15sp" />
@@ -25,6 +25,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:text="@string/msg_sendMessage" />
+        android:text="@string/support_sendMessage" />
 
 </RelativeLayout>

@@ -80,17 +80,17 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
     @SuppressWarnings("SameParameterValue")
     public static void updateSound(String soundStone, String soundGong) {
         if (soundStone == null)
-            soundStone = JuggerStonesApplication.sharedPreferences.getString(JuggerStonesApplication.PREFS.SOUND_STONE.toString(), "stone");
+            soundStone = sharedPreferences.getString(JuggerStonesApplication.PREFS.SOUND_STONE.toString(), "stone");
         if (soundGong == null)
-            soundGong = JuggerStonesApplication.sharedPreferences.getString(JuggerStonesApplication.PREFS.SOUND_GONG.toString(), "gong");
+            soundGong = sharedPreferences.getString(JuggerStonesApplication.PREFS.SOUND_GONG.toString(), "gong");
         sound = new Sound(soundStone, soundGong);
     }
 
-    public static void increaseVolume() {
+    public static void increaseMusicVolume() {
         audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
     }
 
-    public static void decreaseVolume() {
+    public static void decreaseMusicVolume() {
         audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
     }
     //endregion
@@ -108,7 +108,7 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
     public static String getVersionCode(Context context) {
         try {
             PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-            return pInfo.versionCode + "";
+            return String.valueOf(pInfo.versionCode);
         } catch (PackageManager.NameNotFoundException e) {
             return null;
         }

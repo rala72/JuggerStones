@@ -1,39 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><!-- settings: game -->
-    <string name="settings_category_game">Jogo</string>
-    <string name="stoneInterval">Iintervalo entre pedras</string>
-    <string name="mode">Modo de jogo</string>
-    <string name="mode_normal">Normalmente (100 peças por seção)</string>
-    <string name="mode_extension">Estendido (50 telas por seção)</string>
-    <string name="mode_infinite">Infinitamente (Only stones)</string>
-    <string name="mode_custom">Modo personalizado</string>
-    <string name="interval_custom">Intervalo personalizado</string>
-    <string name="reverse">Contagem regressiva</string>
-    <string name="reverse_summary">Nota: não funciona em Infinity</string>
-    <string name="immediateStart">Começar imediatamente</string>
-    <string name="pause_after_point">Pausa após o ponto</string>
-    <string name="pause_after_gong">Pausa após gong</string>
+<resources>
+    <string name="activity_settings">Configurações</string>
+    <!-- settings: game -->
+    <string name="pref_category_game">Jogo</string>
+    <string name="pref_stoneInterval">Iintervalo entre pedras</string>
+    <string name="pref_mode">Modo de jogo</string>
+    <string name="pref_mode_normal">Normalmente (100 peças por seção)</string>
+    <string name="pref_mode_extension">Estendido (50 telas por seção)</string>
+    <string name="pref_mode_infinite">Infinitamente (Only stones)</string>
+    <string name="pref_mode_custom">Modo personalizado</string>
+    <string name="pref_interval_custom">Intervalo personalizado</string>
+    <string name="pref_reverse">Contagem regressiva</string>
+    <string name="pref_reverse_summary">Nota: não funciona em Infinity</string>
+    <string name="pref_immediateStart">Começar imediatamente</string>
+    <string name="pref_pause_after_point">Pausa após o ponto</string>
+    <string name="pref_pause_after_gong">Pausa após gong</string>
 
     <!-- settings: sounds -->
-    <string name="settings_category_sound">Sons</string>
-    <string name="sounds_stones">Pedras</string>
-    <string name="achievement">Realização</string>
-    <string name="cash_reg">Caixa registradora</string>
-    <string name="censure">Censura</string>
-    <string name="crow">Corvo</string>
-    <string name="doh">D\'oh de Homero</string>
-    <string name="drum">Tambor</string>
-    <string name="duck">Pato</string>
-    <string name="fb_notification">Facebook notificação</string>
-    <string name="metal_gear">Metal gear</string>
-    <string name="pan">Panela</string>
-    <string name="stone">Pedra</string>
+    <string name="pref_category_sound">Sons</string>
+    <string name="pref_sounds_stones">Pedras</string>
+    <string name="pref_achievement">Realização</string>
+    <string name="pref_cash_reg">Caixa registradora</string>
+    <string name="pref_censure">Censura</string>
+    <string name="pref_crow">Corvo</string>
+    <string name="pref_doh">D\'oh de Homero</string>
+    <string name="pref_drum">Tambor</string>
+    <string name="pref_duck">Pato</string>
+    <string name="pref_fb">Facebook notificação</string>
+    <string name="pref_metal_gear">Metal gear</string>
+    <string name="pref_pan">Panela</string>
+    <string name="pref_stone">Pedra</string>
 
-    <string name="sounds_gong">Gongo</string>
-    <string name="gong">Gong</string>
-    <string name="vuvuzela">Vuvucela</string>
+    <string name="pref_sounds_gong">Gongo</string>
+    <string name="pref_gong">Gong</string>
+    <string name="pref_vuvuzela">Vuvucela</string>
 
     <!-- settings: others -->
-    <string name="settings_category_others">Outro</string>
-    <string name="version">Versão: %1$s</string>
+    <string name="pref_category_others">Outro</string>
+    <string name="pref_version">Versão: %1$s</string>
 </resources>

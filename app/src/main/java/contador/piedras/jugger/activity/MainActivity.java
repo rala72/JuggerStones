@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         if (intent == null) intent = getIntent();
         Bundle extras = intent.getExtras();
         final long stones = extras != null ? extras.getLong(MyPreferenceActivity.KEY_COUNTER, 0L) : 0;
-        final String team1 = extras != null ? extras.getString(MyPreferenceActivity.KEY_TEAM1, getResources().getString(R.string.team1)) : getString(R.string.team1);
-        final String team2 = extras != null ? extras.getString(MyPreferenceActivity.KEY_TEAM2, getResources().getString(R.string.team2)) : getString(R.string.team2);
+        final String team1 = extras != null ? extras.getString(MyPreferenceActivity.KEY_TEAM1, getResources().getString(R.string.main_team1)) : getString(R.string.main_team1);
+        final String team2 = extras != null ? extras.getString(MyPreferenceActivity.KEY_TEAM2, getResources().getString(R.string.main_team2)) : getString(R.string.main_team2);
         initStonesView(stones);
         textView_team1.setText(team1);
         textView_team2.setText(team2);
@@ -272,13 +272,13 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         final int margin_dp = 25;
         final int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics());
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
-        alertDialogBuilder.setTitle(R.string.renameTeams);
+        alertDialogBuilder.setTitle(R.string.main_renameTeams);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(margin_px, 0, margin_px, 0);
 
         final EditText editText_name1 = new EditText(MainActivity.this);
         editText_name1.setLayoutParams(layoutParams);
-        editText_name1.setHint(R.string.renameTeams_1);
+        editText_name1.setHint(R.string.main_renameTeams_1);
         if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
             editText_name1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(LIMIT_TEAM_NAME_CHARACTERS_TO)});
         editText_name1.setText(textView_team1.getText());
@@ -286,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
         final EditText editText_name2 = new EditText(MainActivity.this);
         editText_name2.setLayoutParams(layoutParams);
-        editText_name2.setHint(R.string.renameTeams_2);
+        editText_name2.setHint(R.string.main_renameTeams_2);
         if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
             editText_name2.setFilters(new InputFilter[]{new InputFilter.LengthFilter(LIMIT_TEAM_NAME_CHARACTERS_TO)});
         editText_name2.setText(textView_team2.getText());
@@ -309,8 +309,8 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         alertDialogBuilder.setNeutralButton(R.string.reset, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                textView_team1.setText(R.string.team1);
-                textView_team2.setText(R.string.team2);
+                textView_team1.setText(R.string.main_team1);
+                textView_team2.setText(R.string.main_team2);
             }
         });
         alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
@@ -318,14 +318,14 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
         if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
-            Toast.makeText(MainActivity.this, getString(R.string.toast_teamLength, 5), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, getString(R.string.main_toast_teamLength, 5), Toast.LENGTH_SHORT).show();
     }
 
     private void changeTeamColors(final TEAM team) {
         ColorPickerDialog.newBuilder()
                 .setDialogType(ColorPickerDialog.TYPE_PRESETS)
                 .setDialogId(team.equals(TEAM.TEAM1) ? 1 : team.equals(TEAM.TEAM2) ? 2 : 0)
-                .setDialogTitle(R.string.changeColor)
+                .setDialogTitle(R.string.main_changeColor)
                 .setColor(team.equals(TEAM.TEAM1) ? textView_team1.getCurrentTextColor() : textView_team2.getCurrentTextColor())
                 .setShowAlphaSlider(false)
                 .setAllowCustom(false)
@@ -353,11 +353,11 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
 
     private void resetTeams() {
-        textView_team1.setText(R.string.team1);
+        textView_team1.setText(R.string.main_team1);
         textView_team1.setTextColor(getResources().getColor(R.color.default_team1));
         textView_team1_points.setText("0");
         textView_team1_points.setTextColor(getResources().getColor(R.color.default_team1));
-        textView_team2.setText(R.string.team2);
+        textView_team2.setText(R.string.main_team2);
         textView_team2.setTextColor(getResources().getColor(R.color.default_team2));
         textView_team2_points.setText("0");
         textView_team2_points.setTextColor(getResources().getColor(R.color.default_team2));
@@ -368,12 +368,12 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         final int margin_dp = 25;
         final int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics());
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
-        alertDialogBuilder.setTitle(R.string.setStones);
+        alertDialogBuilder.setTitle(R.string.main_setStones);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(margin_px, 0, margin_px, 0);
 
         final EditText stonesEdit = new EditText(MainActivity.this);
-        stonesEdit.setHint(R.string.setStones);
+        stonesEdit.setHint(R.string.main_setStones);
         stonesEdit.setLayoutParams(layoutParams);
         stonesEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
         stonesEdit.setText(textView_stones.getText());
@@ -449,7 +449,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             public void run() {
                 textView_stones.setText(String.valueOf(cleanStones(stones)));
                 if (JuggerStonesApplication.CounterPreference.isInfinityMode() && stones > 0 && stones % JuggerStonesApplication.DEFAULT_INTERVAL == 0)
-                    Toast.makeText(MainActivity.this, R.string.toast_infinity, Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, R.string.main_toast_infinity, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -520,10 +520,10 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
-                JuggerStonesApplication.increaseVolume();
+                JuggerStonesApplication.increaseMusicVolume();
                 return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
-                JuggerStonesApplication.decreaseVolume();
+                JuggerStonesApplication.decreaseMusicVolume();
                 return true;
             case KeyEvent.KEYCODE_BACK:
                 finish();

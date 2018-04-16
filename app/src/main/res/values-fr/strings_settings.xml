@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="activity_settings">Paramètres</string>
     <!-- settings: game -->
-    <string name="settings_category_game">Jeu</string>
-    <string name="stoneInterval">D\'intervalle pierre</string>
-    <string name="mode">Mode de jeu</string>
-    <string name="mode_normal">Normalement (100 pièces par section)</string>
-    <string name="mode_extension">Prolongé (50 tuiles par section)</string>
-    <string name="mode_infinite">Infiniment (Seuls les pierres)</string>
-    <string name="mode_custom">Mode personnalisé</string>
-    <string name="interval_custom">Intervalle personnalisé</string>
-    <string name="reverse">Compte à rebours</string>
-    <string name="reverse_summary">Remarque: ne fonctionne pas dans l\'infini</string>
-    <string name="immediateStart">Commencer immédiatement</string>
-    <string name="pause_after_point">Pause après le point</string>
-    <string name="pause_after_gong">Pause après gong</string>
+    <string name="pref_category_game">Jeu</string>
+    <string name="pref_stoneInterval">D\'intervalle pierre</string>
+    <string name="pref_mode">Mode de jeu</string>
+    <string name="pref_mode_normal">Normalement (100 pièces par section)</string>
+    <string name="pref_mode_extension">Prolongé (50 tuiles par section)</string>
+    <string name="pref_mode_infinite">Infiniment (Seuls les pierres)</string>
+    <string name="pref_mode_custom">Mode personnalisé</string>
+    <string name="pref_interval_custom">Intervalle personnalisé</string>
+    <string name="pref_reverse">Compte à rebours</string>
+    <string name="pref_reverse_summary">Remarque: ne fonctionne pas dans l\'infini</string>
+    <string name="pref_immediateStart">Commencer immédiatement</string>
+    <string name="pref_pause_after_point">Pause après le point</string>
+    <string name="pref_pause_after_gong">Pause après gong</string>
 
     <!-- settings: sounds -->
-    <string name="settings_category_sound">Sons</string>
-    <string name="sounds_stones">Des pierres</string>
-    <string name="achievement">Réalisation</string>
-    <string name="cash_reg">Caisse</string>
-    <string name="censure">Censure</string>
-    <string name="crow">Corneille</string>
-    <string name="doh">Homere D\'oh</string>
-    <string name="drum">Tambour</string>
-    <string name="duck">Canard</string>
-    <string name="fb_notification">Facebook notification</string>
-    <string name="metal_gear">Metal gear</string>
-    <string name="pan">Pan</string>
-    <string name="stone">Pierre</string>
+    <string name="pref_category_sound">Sons</string>
+    <string name="pref_sounds_stones">Des pierres</string>
+    <string name="pref_achievement">Réalisation</string>
+    <string name="pref_cash_reg">Caisse</string>
+    <string name="pref_censure">Censure</string>
+    <string name="pref_crow">Corneille</string>
+    <string name="pref_doh">Homere D\'oh</string>
+    <string name="pref_drum">Tambour</string>
+    <string name="pref_duck">Canard</string>
+    <string name="pref_fb">Facebook notification</string>
+    <string name="pref_metal_gear">Metal gear</string>
+    <string name="pref_pan">Pan</string>
+    <string name="pref_stone">Pierre</string>
 
-    <string name="sounds_gong">Des sons de gongs</string>
-    <string name="gong">Gong</string>
-    <string name="vuvuzela">Vuvucela</string>
+    <string name="pref_sounds_gong">Des sons de gongs</string>
+    <string name="pref_gong">Gong</string>
+    <string name="pref_vuvuzela">Vuvucela</string>
 
     <!-- settings: others -->
-    <string name="settings_category_others">Autre</string>
-    <string name="version">Version: %1$s</string>
+    <string name="pref_category_others">Autre</string>
+    <string name="pref_version">Version: %1$s</string>
 </resources>

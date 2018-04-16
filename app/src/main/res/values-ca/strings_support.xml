@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="msg_support">Aquesta aplicació està programada al 100% per CristianCV, espere que siga molt profitable! \n\nS\'accepta qualsevol sugerència per a millorar(especialment les traduccions), pots posarte en contacte amb mi pulsant el botó en aquesta pantalla.</string>
-    <string name="msg_sendMessage">Enviar  missatge</string>
+    <string name="activity_support">Ajuda i contancte</string>
+    <string name="support_text">Aquesta aplicació està programada al 100% per CristianCV, espere que siga molt profitable! \n\nS\'accepta qualsevol sugerència per a millorar(especialment les traduccions), pots posarte en contacte amb mi pulsant el botó en aquesta pantalla.</string>
+    <string name="support_sendMessage">Enviar  missatge</string>
 </resources>

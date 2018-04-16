@@ -45,10 +45,10 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
     }
 
     private void setFilter() {
-        EditTextPreference editTextPreference_mode_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
-        editTextPreference_mode_custom.getEditText().setFilters(new InputFilter[]{new InputFilterMinMaxInteger(BigInteger.valueOf(0))});
-        EditTextPreference editTextPreference_interval_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
-        editTextPreference_interval_custom.getEditText().setFilters(new InputFilter[]{new InputFilterMinMaxDecimal(BigDecimal.valueOf(0))});
+        EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
+        mode_custom.getEditText().setFilters(new InputFilter[]{new InputFilterMinMaxInteger(BigInteger.valueOf(0))});
+        EditTextPreference interval_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
+        interval_custom.getEditText().setFilters(new InputFilter[]{new InputFilterMinMaxDecimal(BigDecimal.valueOf(0))});
     }
 
     private void setListener() {
@@ -73,7 +73,7 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
             }
         });
         final Preference pref_version = findPreference(JuggerStonesApplication.PREFS.VERSION.toString());
-        pref_version.setTitle(getString(R.string.version, JuggerStonesApplication.getVersion(this)));
+        pref_version.setTitle(getString(R.string.pref_version, JuggerStonesApplication.getVersion(this)));
         pref_version.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -100,27 +100,27 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
     private void validatePreferences(final String key) {
         if (key.equals(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString())) {
             long min = 1;
-            EditTextPreference editTextPreference = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
-            long value = editTextPreference.getText().trim().isEmpty() ? min : Long.parseLong(editTextPreference.getText().trim());
-            if (value == 0 || value == min) editTextPreference.setText(String.valueOf(value));
+            EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
+            long value = mode_custom.getText().trim().isEmpty() ? min : Long.parseLong(mode_custom.getText().trim());
+            if (value == 0 || value == min) mode_custom.setText(String.valueOf(value));
         }
         if (key.equals(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString())) {
             double min = 0.001;
-            EditTextPreference editTextPreference = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
-            double value = editTextPreference.getText().trim().isEmpty() ? min : Double.parseDouble(editTextPreference.getText().trim());
-            if (value == 0 || value == min) editTextPreference.setText(String.valueOf(value));
+            EditTextPreference interval_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
+            double value = interval_custom.getText().trim().isEmpty() ? min : Double.parseDouble(interval_custom.getText().trim());
+            if (value == 0 || value == min) interval_custom.setText(String.valueOf(value));
         }
     }
 
     private void updatePreferencesEnabled(final String key) {
         if (key == null || key.equals(JuggerStonesApplication.PREFS.MODE.toString())) {
-            ListPreference listPreference = (ListPreference) findPreference(JuggerStonesApplication.PREFS.MODE.toString());
-            findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString()).setEnabled(listPreference.getValue().equals("0"));
-            findPreference(JuggerStonesApplication.PREFS.REVERSE.toString()).setEnabled(!listPreference.getValue().equals("-1"));
+            ListPreference mode = (ListPreference) findPreference(JuggerStonesApplication.PREFS.MODE.toString());
+            findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString()).setEnabled(mode.getValue().equals("0"));
+            findPreference(JuggerStonesApplication.PREFS.REVERSE.toString()).setEnabled(!mode.getValue().equals("-1"));
         }
         if (key == null || key.equals(JuggerStonesApplication.PREFS.INTERVAL.toString())) {
-            ListPreference listPreference = (ListPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL.toString());
-            findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString()).setEnabled(listPreference.getValue().equals("0"));
+            ListPreference interval = (ListPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL.toString());
+            findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString()).setEnabled(interval.getValue().equals("0"));
         }
     }
 
@@ -146,32 +146,32 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
 
     private void updateSumTexts(final String key) {
         if (key == null || key.equals(JuggerStonesApplication.PREFS.MODE.toString())) {
-            ListPreference preference_mode = (ListPreference) findPreference(JuggerStonesApplication.PREFS.MODE.toString());
-            preference_mode.setSummary(preference_mode.getEntry());
+            ListPreference mode = (ListPreference) findPreference(JuggerStonesApplication.PREFS.MODE.toString());
+            mode.setSummary(mode.getEntry());
         }
         if (key == null || key.equals(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString())) {
-            EditTextPreference preference_mode_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
-            preference_mode_custom.setSummary(preference_mode_custom.getText());
+            EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
+            mode_custom.setSummary(mode_custom.getText());
         }
         if (key == null || key.equals(JuggerStonesApplication.PREFS.INTERVAL.toString())) {
-            ListPreference preference_interval = (ListPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL.toString());
-            preference_interval.setSummary(preference_interval.getEntry());
+            ListPreference interval = (ListPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL.toString());
+            interval.setSummary(interval.getEntry());
         }
         if (key == null || key.equals(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString())) {
-            EditTextPreference preference_interval_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
-            preference_interval_custom.setSummary(preference_interval_custom.getText());
+            EditTextPreference interval_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
+            interval_custom.setSummary(interval_custom.getText());
         }
         if (key == null || key.equals(JuggerStonesApplication.PREFS.SOUND_STONE.toString())) {
-            SoundPreferenceList preference_sound = (SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_STONE.toString());
-            preference_sound.setSummary(preference_sound.getEntry());
+            SoundPreferenceList sound = (SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_STONE.toString());
+            sound.setSummary(sound.getEntry());
         }
         if (key == null || key.equals(JuggerStonesApplication.PREFS.SOUND_GONG.toString())) {
-            SoundPreferenceList preference_gong = (SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_GONG.toString());
-            preference_gong.setSummary(preference_gong.getEntry());
+            SoundPreferenceList gong = (SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_GONG.toString());
+            gong.setSummary(gong.getEntry());
         }
         if (key == null || key.equals(JuggerStonesApplication.PREFS.LANGUAGE.toString())) {
-            ListPreference pref_language = (ListPreference) findPreference(JuggerStonesApplication.PREFS.LANGUAGE.toString());
-            pref_language.setSummary(pref_language.getEntry());
+            ListPreference language = (ListPreference) findPreference(JuggerStonesApplication.PREFS.LANGUAGE.toString());
+            language.setSummary(language.getEntry());
         }
     }
     //endregion
@@ -189,10 +189,10 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
-                JuggerStonesApplication.increaseVolume();
+                JuggerStonesApplication.increaseMusicVolume();
                 return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
-                JuggerStonesApplication.decreaseVolume();
+                JuggerStonesApplication.decreaseMusicVolume();
                 return true;
             case KeyEvent.KEYCODE_BACK:
                 Intent intent = new Intent(this, MainActivity.class);
