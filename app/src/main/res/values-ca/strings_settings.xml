@@ -36,7 +36,5 @@
 
     <!-- settings: others -->
     <string name="settings_category_others">Altre</string>
-    <string name="contact_title">Contacte</string>
-    <string name="contact_description">Enviar correu electrònic al desenvolupador</string>
-    <string name="playStore_description">Valoreu l\'aplicació</string>
+    <string name="version">Versió: %1$s</string>
 </resources>

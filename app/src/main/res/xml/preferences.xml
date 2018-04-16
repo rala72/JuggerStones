@@ -55,7 +55,7 @@
             android:key="sound_gong"
             android:title="@string/sounds_gong" />
     </PreferenceCategory>
-    <!-- TODO: improve settings-other category (like untis) -->
+    <!-- TO DO: improve settings-other category (like untis) -->
     <PreferenceCategory android:title="@string/settings_category_others">
         <ListPreference
             android:entries="@array/array_languages_array"
@@ -63,12 +63,10 @@
             android:key="language"
             android:title="@string/language" />
         <Preference
-            android:key="contact"
-            android:summary="@string/contact_description"
-            android:title="@string/contact_title" />
+            android:key="email"
+            android:title="@string/email" />
         <Preference
-            android:key="playStore"
-            android:summary="@string/playStore_description"
-            android:title="@string/playStore_title" />
+            android:key="version"
+            android:title="@string/version" />
     </PreferenceCategory>
 </PreferenceScreen>

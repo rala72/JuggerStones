@@ -30,7 +30,7 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
         REVERSE("reverse"), IMMEDIATE_START("immediateStart"),
         STOP_AFTER_POINT("stop_after_point"), STOP_AFTER_GONG("stop_after_gong"),
         SOUND_STONE("sound_stone"), SOUND_GONG("sound_gong"),
-        LANGUAGE("language"), CONTACT("contact"), PLAY_STORE("playStore");
+        LANGUAGE("language"), EMAIL("email"), VERSION("version");
 
         private final String text;
 

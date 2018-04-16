@@ -36,8 +36,6 @@
 
     <!-- settings: others -->
     <string name="settings_category_others">Other</string>
-    <string name="contact_title">Contact</string>
-    <string name="contact_description">Send e-mail to developer</string>
-    <string name="playStore_title" translatable="false">@string/playStore</string>
-    <string name="playStore_description">Rate the app</string>
+    <string name="email" translatable="false">E-Mail</string>
+    <string name="version">Version: %1$s</string>
 </resources>

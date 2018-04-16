@@ -64,16 +64,17 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
             }
         });
 
-        final Preference pref_contact = findPreference(JuggerStonesApplication.PREFS.CONTACT.toString());
-        pref_contact.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        final Preference pref_email = findPreference(JuggerStonesApplication.PREFS.EMAIL.toString());
+        pref_email.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 JuggerStonesApplication.sendEmail(MyPreferenceActivity.this);
                 return true;
             }
         });
-        final Preference pref_playStore = findPreference(JuggerStonesApplication.PREFS.PLAY_STORE.toString());
-        pref_playStore.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        final Preference pref_version = findPreference(JuggerStonesApplication.PREFS.VERSION.toString());
+        pref_version.setTitle(getString(R.string.version, JuggerStonesApplication.getVersion(this)));
+        pref_version.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 final String appPackageName = getPackageName();
