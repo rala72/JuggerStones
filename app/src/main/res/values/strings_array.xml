@@ -57,7 +57,9 @@
     </string-array>
 
     <string-array name="array_sounds_stone" translatable="false">
+        <item>@string/pref_stone</item>
         <item>@string/pref_achievement</item>
+        <item>@string/pref_big_drum</item>
         <item>@string/pref_cash_reg</item>
         <item>@string/pref_censure</item>
         <item>@string/pref_crow</item>
@@ -67,10 +69,13 @@
         <item>@string/pref_fb</item>
         <item>@string/pref_metal_gear</item>
         <item>@string/pref_pan</item>
-        <item>@string/pref_stone</item>
+        <item>@string/pref_snare_drum</item>
+        <item>@string/pref_telephone</item>
     </string-array>
     <string-array name="array_sounds_stone_values" translatable="false">
+        <item>stone</item>
         <item>achievement</item>
+        <item>big_drum_hit</item>
         <item>cash_reg</item>
         <item>censure</item>
         <item>crow</item>
@@ -80,15 +85,20 @@
         <item>fb</item>
         <item>metal_gear</item>
         <item>pan</item>
-        <item>stone</item>
+        <item>snare_drum</item>
+        <item>telephone</item>
     </string-array>
 
     <string-array name="array_sounds_gong" translatable="false">
         <item>@string/pref_gong</item>
+        <item>@string/pref_air_horn</item>
+        <item>@string/pref_train_whistle</item>
         <item>@string/pref_vuvuzela</item>
     </string-array>
     <string-array name="array_sounds_gong_values" translatable="false">
         <item>gong</item>
+        <item>air_horn</item>
+        <item>train_whistle</item>
         <item>vuvuzela</item>
     </string-array>
 </resources>

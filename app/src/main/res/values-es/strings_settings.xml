@@ -19,20 +19,25 @@
     <!-- settings: sounds -->
     <string name="pref_category_sound">Sonidos</string>
     <string name="pref_sounds_stones">Piedras</string>
+    <string name="pref_stone">Piedra</string>
     <string name="pref_achievement">Logro</string>
+    <string name="pref_big_drum">Bombo</string>
     <string name="pref_cash_reg">Caja registradora</string>
     <string name="pref_censure">Censura</string>
     <string name="pref_crow">Cuervo</string>
     <string name="pref_doh">D\'oh de Homer</string>
     <string name="pref_drum">Tambor</string>
-    <string name="pref_duck">pato</string>
+    <string name="pref_duck">Pato</string>
     <string name="pref_fb">Noticiacion de Facebook</string>
     <string name="pref_metal_gear">Metal gear</string>
     <string name="pref_pan">Sarten</string>
-    <string name="pref_stone">Piedra</string>
+    <string name="pref_snare_drum">Ppequeño tambor</string>
+    <string name="pref_telephone">Teléfono</string>
 
     <string name="pref_sounds_gong">Gong</string>
     <string name="pref_gong">Gong</string>
+    <string name="pref_air_horn">Bocina de aire</string>
+    <string name="pref_train_whistle">Tren silbato</string>
     <string name="pref_vuvuzela">Vuvuzela</string>
 
     <!-- settings: others -->

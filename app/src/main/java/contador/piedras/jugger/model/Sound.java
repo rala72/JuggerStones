@@ -4,8 +4,9 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
+import android.util.Log;
 
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 public class Sound {
     private String stone;
     private String gong;
@@ -15,23 +16,28 @@ public class Sound {
         this.gong = gongSound;
     }
 
-    public void playStone(Context context) {
-        play(context, stone);
+    public boolean playStone(Context context) {
+        return play(context, stone);
     }
 
-    public void playGong(Context context) {
-        play(context, gong);
+    public boolean playGong(Context context) {
+        return play(context, gong);
     }
 
-    private void play(Context context, String name) {
+    private boolean play(Context context, String name) {
         Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/raw/" + name);
-        MediaPlayer auxStone = MediaPlayer.create(context, uri);
-        auxStone.start();
-        auxStone.setOnCompletionListener(new OnCompletionListener() {
+        MediaPlayer mediaPlayer = MediaPlayer.create(context, uri);
+        if (mediaPlayer == null) {
+            Log.e(Sound.class.getSimpleName(), name + " not found.");
+            return false;
+        }
+        mediaPlayer.start();
+        mediaPlayer.setOnCompletionListener(new OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 mp.release();
             }
         });
+        return true;
     }
 }

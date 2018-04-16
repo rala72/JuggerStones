@@ -19,7 +19,9 @@
     <!-- settings: sounds -->
     <string name="pref_category_sound">Sons</string>
     <string name="pref_sounds_stones">Pedras</string>
+    <string name="pref_stone">Pedra</string>
     <string name="pref_achievement">Realização</string>
+    <string name="pref_big_drum">Bumbo</string>
     <string name="pref_cash_reg">Caixa registradora</string>
     <string name="pref_censure">Censura</string>
     <string name="pref_crow">Corvo</string>
@@ -29,10 +31,13 @@
     <string name="pref_fb">Facebook notificação</string>
     <string name="pref_metal_gear">Metal gear</string>
     <string name="pref_pan">Panela</string>
-    <string name="pref_stone">Pedra</string>
+    <string name="pref_snare_drum">Pequeno cilindro</string>
+    <string name="pref_telephone">Telefone</string>
 
     <string name="pref_sounds_gong">Gongo</string>
     <string name="pref_gong">Gong</string>
+    <string name="pref_air_horn">Buzina de ar</string>
+    <string name="pref_train_whistle">Train whistle</string>
     <string name="pref_vuvuzela">Vuvuzela</string>
 
     <!-- settings: others -->

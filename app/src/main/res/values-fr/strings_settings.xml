@@ -19,7 +19,9 @@
     <!-- settings: sounds -->
     <string name="pref_category_sound">Sons</string>
     <string name="pref_sounds_stones">Des pierres</string>
+    <string name="pref_stone">Pierre</string>
     <string name="pref_achievement">Réalisation</string>
+    <string name="pref_big_drum">Bass drum</string>
     <string name="pref_cash_reg">Caisse</string>
     <string name="pref_censure">Censure</string>
     <string name="pref_crow">Corneille</string>
@@ -29,10 +31,13 @@
     <string name="pref_fb">Facebook notification</string>
     <string name="pref_metal_gear">Metal gear</string>
     <string name="pref_pan">Pan</string>
-    <string name="pref_stone">Pierre</string>
+    <string name="pref_snare_drum">Petit tambour</string>
+    <string name="pref_telephone">Téléphone</string>
 
     <string name="pref_sounds_gong">Des sons de gongs</string>
     <string name="pref_gong">Gong</string>
+    <string name="pref_air_horn">Corne à air</string>
+    <string name="pref_train_whistle">Sifflet de train</string>
     <string name="pref_vuvuzela">Vuvuzela</string>
 
     <!-- settings: others -->

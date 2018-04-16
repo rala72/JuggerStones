@@ -19,7 +19,9 @@
     <!-- settings: sounds -->
     <string name="pref_category_sound">Klänge</string>
     <string name="pref_sounds_stones">Steine</string>
+    <string name="pref_stone">Stein</string>
     <string name="pref_achievement">Errungenschaft</string>
+    <string name="pref_big_drum">Große Trommel</string>
     <string name="pref_cash_reg">Kasse</string>
     <string name="pref_censure">Zensur</string>
     <string name="pref_crow">Krähe</string>
@@ -29,10 +31,13 @@
     <string name="pref_fb">Facebook Benachrichtigung</string>
     <string name="pref_metal_gear">Metal Gear</string>
     <string name="pref_pan">Pan</string>
-    <string name="pref_stone">Stein</string>
+    <string name="pref_snare_drum">Kleine Trommel</string>
+    <string name="pref_telephone">Telefon</string>
 
     <string name="pref_sounds_gong">Gong</string>
     <string name="pref_gong">Gong</string>
+    <string name="pref_air_horn">Lufthorn</string>
+    <string name="pref_train_whistle">Zugpfeife</string>
     <string name="pref_vuvuzela">Vuvuzela</string>
 
     <!-- settings: others -->

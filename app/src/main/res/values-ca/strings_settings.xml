@@ -19,7 +19,9 @@
     <!-- settings: sounds -->
     <string name="pref_category_sound">Sons</string>
     <string name="pref_sounds_stones">Pedres</string>
+    <string name="pref_stone">Pedra</string>
     <string name="pref_achievement">Èxit</string>
+    <string name="pref_big_drum">Bombo</string>
     <string name="pref_cash_reg">Registrador d\'efectiu</string>
     <string name="pref_censure">Censura</string>
     <string name="pref_crow">Corb</string>
@@ -29,10 +31,13 @@
     <string name="pref_fb">Notificació Facebook</string>
     <string name="pref_metal_gear">Engranatge de metal</string>
     <string name="pref_pan">Cassola</string>
-    <string name="pref_stone">Pedra</string>
+    <string name="pref_snare_drum">Petit tambor</string>
+    <string name="pref_telephone">Telèfon</string>
 
     <string name="pref_sounds_gong">Gong</string>
     <string name="pref_gong">Gong</string>
+    <string name="pref_air_horn">Botzina d\'aire</string>
+    <string name="pref_train_whistle">Tren xiulet</string>
     <string name="pref_vuvuzela">Vuvuzela</string>
 
     <!-- settings: others -->
