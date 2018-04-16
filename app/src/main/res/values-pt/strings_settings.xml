@@ -33,7 +33,7 @@
 
     <string name="pref_sounds_gong">Gongo</string>
     <string name="pref_gong">Gong</string>
-    <string name="pref_vuvuzela">Vuvucela</string>
+    <string name="pref_vuvuzela">Vuvuzela</string>
 
     <!-- settings: others -->
     <string name="pref_category_others">Outro</string>
