@@ -3,13 +3,13 @@ apply plugin: 'com.android.application'
 // apply plugin: 'me.tatarka.retrolambda' // DISABLED Java 8
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "io.rala.jugger" // "contador.piedras.jugger"
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1020009
         versionName "1.2.0"
         vectorDrawables.useSupportLibrary = true
@@ -39,8 +39,12 @@ dependencies {
     */
 
     // google
-    implementation 'com.android.support:appcompat-v7:26.1.+'
-    implementation 'com.android.support:support-v4:26.1.+'
+    ext.supportLibsVersion = "27.1.+"
+    implementation "com.android.support:appcompat-v7:$supportLibsVersion"
+    implementation "com.android.support:support-v4:$supportLibsVersion"
+    implementation "com.android.support:preference-v7:$supportLibsVersion"
+
+    // implementation 'net.xpece.android:support-preference:2.2.+'
 
     // design
     implementation 'com.jakewharton:butterknife:8.8.+'

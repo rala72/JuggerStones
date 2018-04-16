@@ -14,6 +14,8 @@ import android.view.KeyEvent;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
 
 import contador.piedras.jugger.JuggerStonesApplication;
 import contador.piedras.jugger.LocaleUtils;
@@ -38,6 +40,7 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
         setFilter();
         setListener();
         updatePreferencesEnabled(null);
+        updateLanguageText(); // has to be before sumTexts!
         updateSumTexts(null);
     }
 
@@ -118,6 +121,26 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
             ListPreference listPreference = (ListPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL.toString());
             findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString()).setEnabled(listPreference.getValue().equals("0"));
         }
+    }
+
+    private void updateLanguageText() {
+        if (LocaleUtils.getLocale().equals(Locale.ENGLISH)) return;
+        final String format = "%s (%s)";
+        final ListPreference pref_language = (ListPreference) findPreference(JuggerStonesApplication.PREFS.LANGUAGE.toString());
+        pref_language.setTitle(String.format(format, getString(R.string.language), getString(R.string.language_en)));
+        // region languageMap
+        Map<String, String> languageMap = new TreeMap<>();
+        languageMap.put(getString(R.string.language_english), getString(R.string.language_english_en));
+        languageMap.put(getString(R.string.language_catalan), getString(R.string.language_catalan_en));
+        languageMap.put(getString(R.string.language_german), getString(R.string.language_german_en));
+        languageMap.put(getString(R.string.language_spanish), getString(R.string.language_spanish_en));
+        languageMap.put(getString(R.string.language_french), getString(R.string.language_french_en));
+        languageMap.put(getString(R.string.language_portuguese), getString(R.string.language_portuguese_en));
+        // endregion
+        final String[] languages = getResources().getStringArray(R.array.array_languages_array);
+        for (int i = 0; i < languages.length; i++)
+            languages[i] = String.format(format, languages[i], languageMap.get(languages[i]));
+        pref_language.setEntries(languages);
     }
 
     private void updateSumTexts(final String key) {
