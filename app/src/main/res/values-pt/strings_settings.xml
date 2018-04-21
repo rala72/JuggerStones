@@ -5,8 +5,8 @@
     <string name="pref_category_game">Jogo</string>
     <string name="pref_stoneInterval">Iintervalo entre pedras</string>
     <string name="pref_mode">Modo de jogo</string>
-    <string name="pref_mode_normal">Normalmente (100 peças por seção)</string>
-    <string name="pref_mode_extension">Estendido (50 telas por seção)</string>
+    <string name="pref_mode_100">Normal (100 pedras)</string>
+    <string name="pref_mode_50">Curto (50 pedras)</string>
     <string name="pref_mode_infinite">Infinitamente (Only stones)</string>
     <string name="pref_mode_custom">Modo personalizado</string>
     <string name="pref_interval_custom">Intervalo personalizado</string>

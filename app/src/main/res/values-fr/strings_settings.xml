@@ -5,8 +5,8 @@
     <string name="pref_category_game">Jeu</string>
     <string name="pref_stoneInterval">D\'intervalle pierre</string>
     <string name="pref_mode">Mode de jeu</string>
-    <string name="pref_mode_normal">Normalement (100 pièces par section)</string>
-    <string name="pref_mode_extension">Prolongé (50 tuiles par section)</string>
+    <string name="pref_mode_100">Normal (100 noyaux)</string>
+    <string name="pref_mode_50">Court (50 noyaux)</string>
     <string name="pref_mode_infinite">Infiniment (Seuls les pierres)</string>
     <string name="pref_mode_custom">Mode personnalisé</string>
     <string name="pref_interval_custom">Intervalle personnalisé</string>

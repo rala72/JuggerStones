@@ -27,8 +27,8 @@
 
     <!-- settings -->
     <string-array name="array_mode_game" translatable="false">
-        <item>@string/pref_mode_normal</item>
-        <item>@string/pref_mode_extension</item>
+        <item>@string/pref_mode_100</item>
+        <item>@string/pref_mode_50</item>
         <item>@string/pref_mode_infinite</item>
         <item>@string/pref_mode_custom</item>
     </string-array>
