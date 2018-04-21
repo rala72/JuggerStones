@@ -25,10 +25,5 @@
             android:configChanges="locale"
             android:label="@string/activity_settings"
             android:screenOrientation="sensorPortrait" />
-        <activity
-            android:name=".activity.SupportActivity"
-            android:configChanges="locale"
-            android:label="@string/activity_support"
-            android:screenOrientation="sensorPortrait" />
     </application>
 </manifest>

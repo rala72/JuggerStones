@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="activity_support">Support and contact</string>
-    <string name="support_text">This application is 100% programmed CristianCV, I hope this will be very helpful! \n\nI accept any suggestions for improvement (especially in the translations), you can get in touch with me using the button on this screen.</string>
-    <string name="support_sendMessage">Send message</string>
-</resources>

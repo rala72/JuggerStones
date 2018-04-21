@@ -32,12 +32,6 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_support"
-        android:title="@string/activity_support"
-        android:visible="false"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_settings_white_24dp"
         android:title="@string/activity_settings"

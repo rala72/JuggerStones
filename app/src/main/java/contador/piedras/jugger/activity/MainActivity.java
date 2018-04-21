@@ -493,12 +493,6 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             case R.id.editStones:
                 setStones();
                 return true;
-            case R.id.action_support:
-                intent = new Intent(this, SupportActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                return true;
             case R.id.action_settings:
                 pauseTimer();
                 intent = new Intent(this, MyPreferenceActivity.class);
