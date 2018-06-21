@@ -1,4 +1,4 @@
-package contador.piedras.jugger.activity;
+package io.rala.jugger.activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -33,10 +33,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
-import contador.piedras.jugger.JuggerStonesApplication;
-import contador.piedras.jugger.LocaleUtils;
-import contador.piedras.jugger.R;
-import contador.piedras.jugger.model.CounterTask;
+import io.rala.jugger.JuggerStonesApplication;
+import io.rala.jugger.LocaleUtils;
+import io.rala.jugger.R;
+import io.rala.jugger.model.CounterTask;
 
 public class MainActivity extends AppCompatActivity implements CounterTask.CounterTaskCallback, ColorPickerDialogListener {
     private static final int LIMIT_TEAM_NAME_CHARACTERS_TO = 0;

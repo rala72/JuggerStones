@@ -1,10 +1,10 @@
-package contador.piedras.jugger.model;
+package io.rala.jugger.model;
 
 import android.content.Context;
 
 import java.util.TimerTask;
 
-import contador.piedras.jugger.JuggerStonesApplication;
+import io.rala.jugger.JuggerStonesApplication;
 
 public class CounterTask extends TimerTask {
     private Context context;

@@ -1,4 +1,4 @@
-package contador.piedras.jugger.model;
+package io.rala.jugger.model;
 
 import android.app.AlertDialog.Builder;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.preference.ListPreference;
 import android.util.AttributeSet;
 
-import contador.piedras.jugger.JuggerStonesApplication;
+import io.rala.jugger.JuggerStonesApplication;
 
 // note: values are stored as String
 public class SoundPreferenceList extends ListPreference implements OnClickListener {

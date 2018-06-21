@@ -1,4 +1,4 @@
-package contador.piedras.jugger;
+package io.rala.jugger;
 
 import android.app.Application;
 import android.content.res.Configuration;

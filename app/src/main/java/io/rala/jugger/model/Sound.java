@@ -1,4 +1,4 @@
-package contador.piedras.jugger.model;
+package io.rala.jugger.model;
 
 import android.content.Context;
 import android.media.MediaPlayer;

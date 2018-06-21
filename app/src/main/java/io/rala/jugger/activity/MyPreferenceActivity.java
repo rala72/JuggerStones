@@ -1,4 +1,4 @@
-package contador.piedras.jugger.activity;
+package io.rala.jugger.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,12 +17,12 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
-import contador.piedras.jugger.JuggerStonesApplication;
-import contador.piedras.jugger.LocaleUtils;
-import contador.piedras.jugger.R;
-import contador.piedras.jugger.model.InputFilterMinMaxDecimal;
-import contador.piedras.jugger.model.InputFilterMinMaxInteger;
-import contador.piedras.jugger.model.SoundPreferenceList;
+import io.rala.jugger.JuggerStonesApplication;
+import io.rala.jugger.LocaleUtils;
+import io.rala.jugger.R;
+import io.rala.jugger.model.InputFilterMinMaxDecimal;
+import io.rala.jugger.model.InputFilterMinMaxInteger;
+import io.rala.jugger.model.SoundPreferenceList;
 
 public class MyPreferenceActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String KEY_COUNTER = "counter";

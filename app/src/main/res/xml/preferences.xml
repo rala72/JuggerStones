@@ -42,13 +42,13 @@
             android:title="@string/pref_pause_after_gong" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pref_category_sound">
-        <contador.piedras.jugger.model.SoundPreferenceList
+        <io.rala.jugger.model.SoundPreferenceList
             android:defaultValue="stone"
             android:entries="@array/array_sounds_stone"
             android:entryValues="@array/array_sounds_stone_values"
             android:key="sound_stone"
             android:title="@string/pref_sounds_stones" />
-        <contador.piedras.jugger.model.SoundPreferenceList
+        <io.rala.jugger.model.SoundPreferenceList
             android:defaultValue="gong"
             android:entries="@array/array_sounds_gong"
             android:entryValues="@array/array_sounds_gong_values"

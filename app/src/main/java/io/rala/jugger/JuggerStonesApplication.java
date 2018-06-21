@@ -1,4 +1,4 @@
-package contador.piedras.jugger;
+package io.rala.jugger;
 
 import android.app.Application;
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.preference.PreferenceManager;
 import java.math.BigDecimal;
 import java.util.Locale;
 
-import contador.piedras.jugger.model.Sound;
+import io.rala.jugger.model.Sound;
 
 public class JuggerStonesApplication extends Application implements SharedPreferences.OnSharedPreferenceChangeListener {
 
