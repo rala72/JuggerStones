@@ -235,13 +235,13 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
 
     @OnLongClick(R.id.textView_stones)
-    protected boolean onCounterLongClick(TextView textView) {
+    protected boolean onCounterLongClick(@SuppressWarnings("unused") TextView textView) {
         setStones();
         return true;
     }
 
     @OnClick(R.id.imageView_info)
-    protected void onInfoViewClick(AppCompatImageView imageView) {
+    protected void onInfoViewClick(@SuppressWarnings("unused") AppCompatImageView imageView) {
         if (isTimerRunning()) return;
         SharedPreferences.Editor editor = JuggerStonesApplication.sharedPreferences.edit();
         editor.putString(JuggerStonesApplication.PREFS.MODE.toString(), String.valueOf(JuggerStonesApplication.CounterPreference.getPreviousMode()));
@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
 
     @OnLongClick(R.id.imageView_info)
-    protected boolean onInfoViewLongClick(AppCompatImageView imageView) {
+    protected boolean onInfoViewLongClick(@SuppressWarnings("unused") AppCompatImageView imageView) {
         if (isTimerRunning()) return false;
         if (!JuggerStonesApplication.CounterPreference.isInfinityMode()) {
             SharedPreferences.Editor editor = JuggerStonesApplication.sharedPreferences.edit();
@@ -406,7 +406,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
     //endregion
 
-    //region timer
+    //region timer & CounterTaskCallback
     protected void startTimer() {
         button_playPause.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_pause_circle));
         if (isTimerRunning()) return;
@@ -443,7 +443,6 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     @Override
     public void onStonesChanged(final long stones) {
-        final long mode = JuggerStonesApplication.CounterPreference.getMode();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

@@ -7,11 +7,11 @@ import java.util.TimerTask;
 import io.rala.jugger.JuggerStonesApplication;
 
 public class CounterTask extends TimerTask {
-    private Context context;
+    private final Context context;
+    private final long mode;
+    private final Sound sound;
+    private final CounterTaskCallback callback;
     private long stones;
-    private long mode;
-    private Sound sound;
-    private CounterTaskCallback callback;
 
     public CounterTask(Context context, long stones, long mode, Sound sound, CounterTaskCallback callback) {
         this.context = context;
@@ -23,7 +23,7 @@ public class CounterTask extends TimerTask {
 
     public void run() {
         if (stones == Long.MAX_VALUE) return;
-        stones += 1;
+        stones++;
         callback.onStonesChanged(stones);
         if (!JuggerStonesApplication.CounterPreference.isInfinityMode() && stones % mode == 0) {
             sound.playGong(context);
