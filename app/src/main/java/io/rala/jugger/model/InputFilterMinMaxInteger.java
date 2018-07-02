@@ -6,12 +6,26 @@ import android.text.Spanned;
 import java.math.BigInteger;
 
 // https://stackoverflow.com/q/14212518/2715720
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class InputFilterMinMaxInteger implements InputFilter {
     private BigInteger min = BigInteger.valueOf(Long.MIN_VALUE), max = BigInteger.valueOf(Long.MAX_VALUE);
 
+    /**
+     * @see #InputFilterMinMaxInteger(BigInteger)
+     */
+    public InputFilterMinMaxInteger(long min) {
+        this(min, Long.MAX_VALUE);
+    }
+
     public InputFilterMinMaxInteger(BigInteger min) {
         this(min, BigInteger.valueOf(Long.MAX_VALUE));
+    }
+
+    /**
+     * @see #InputFilterMinMaxInteger(BigInteger, BigInteger)
+     */
+    public InputFilterMinMaxInteger(long min, long max) {
+        this(BigInteger.valueOf(min), BigInteger.valueOf(max));
     }
 
     public InputFilterMinMaxInteger(BigInteger min, BigInteger max) {
@@ -23,16 +37,16 @@ public class InputFilterMinMaxInteger implements InputFilter {
 
     @Override
     public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-        String newVal = dest.toString().substring(0, dstart) + dest.toString().substring(dend, dest.toString().length());
-        newVal = newVal.substring(0, dstart) + source.toString() + newVal.substring(dstart, newVal.length());
+        final String newVal = dest.toString().substring(0, dstart) + source.toString().substring(start, end) + dest.toString().substring(dend, dest.toString().length());
         try {
+            if (newVal.equals("-") && min.compareTo(BigInteger.valueOf(0)) <= 0) return null;
             if (isInRange(min, max, new BigInteger(newVal))) return null;
         } catch (NumberFormatException ignored) {
         }
         return "";
     }
 
-    private boolean isInRange(BigInteger min, BigInteger max, BigInteger value) {
+    private boolean isInRange(final BigInteger min, final BigInteger max, final BigInteger value) {
         return min.compareTo(value) <= 0 && value.compareTo(max) <= 0;
     }
 }
