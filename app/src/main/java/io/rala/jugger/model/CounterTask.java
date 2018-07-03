@@ -23,9 +23,14 @@ public class CounterTask extends TimerTask {
 
     public void run() {
         if (stones == Long.MAX_VALUE) return;
-        stones++;
+        if (JuggerStonesApplication.CounterPreference.isReverse()) stones--;
+        else stones++;
+        stones %= mode * 2;
         callback.onStonesChanged(stones);
-        if (!JuggerStonesApplication.CounterPreference.isInfinityMode() && stones % mode == 0) {
+        if (JuggerStonesApplication.CounterPreference.isReverse() && stones == 0 ||
+                JuggerStonesApplication.CounterPreference.isNormalMode() && stones > 0 && stones % mode == 0) {
+            stones %= mode;
+            if (JuggerStonesApplication.CounterPreference.isReverse()) stones = JuggerStonesApplication.CounterPreference.getMode();
             sound.playGong(context);
             callback.onGongPlayed(stones);
         } else sound.playStone(context);

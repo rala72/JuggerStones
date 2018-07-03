@@ -142,6 +142,7 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
             updateSound();
     }
 
+    @SuppressWarnings({"WeakerAccess", "unused"})
     public static class CounterPreference {
         public static long getMode() {
             long mode = Long.parseLong(sharedPreferences.getString(PREFS.MODE.toString(), String.valueOf(DEFAULT_MODE)));
@@ -150,7 +151,23 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
             return mode;
         }
 
-        // toggles between infinity and other mode
+        public static long getModeMax() {
+            return isInfinityMode() ? Long.MAX_VALUE :
+                    isReverse() ? getMode() * 2 - 1 : getMode() - 1;
+        }
+
+        public static long getModeMin() {
+            return isInfinityMode() ? Long.MIN_VALUE :
+                    isReverse() ? 0 : -getMode() + 1;
+        }
+
+        public static long getModeStart() {
+            return isInfinityMode() || isNormalMode() ? 0 : getMode();
+        }
+
+        /**
+         * toggles between infinity and other mode
+         */
         public static long getPreviousMode() {
             long previous = Long.parseLong(sharedPreferences.getString(PREFS.MODE_PREVIOUS.toString(), String.valueOf(DEFAULT_MODE)));
             if (previous == getMode() || (previous != -1 && !isInfinityMode()))
@@ -159,6 +176,42 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
             return previous;
         }
 
+        /**
+         * @see #isNormalModeIgnoringReverse()
+         * @see #isInfinityMode()
+         * @see #isReverse()
+         */
+        public static boolean isNormalMode() {
+            return isNormalMode(false);
+        }
+
+        /**
+         * @see #isNormalMode()
+         * @see #isInfinityMode()
+         * @see #isReverse()
+         */
+        public static boolean isNormalModeIgnoringReverse() {
+            return isNormalMode(true);
+        }
+
+        /**
+         * use {@link #isNormalMode()} or {@link #isNormalModeIgnoringReverse()} or {@link #isReverse()} instead
+         *
+         * @see #isNormalMode()
+         * @see #isNormalModeIgnoringReverse()
+         * @see #isInfinityMode()
+         * @see #isReverse()
+         */
+        private static boolean isNormalMode(final boolean ignoreReverse) {
+            return !isInfinityMode() && (ignoreReverse || !isReverse());
+        }
+
+        /**
+         * @see #isNormalMode()
+         * @see #isNormalModeIgnoringReverse()
+         * @see #isNormalMode(boolean)
+         * @see #isReverse()
+         */
         public static boolean isInfinityMode() {
             return getMode() == -1;
         }
@@ -171,6 +224,11 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
             return interval;
         }
 
+        /**
+         * @see #isNormalMode()
+         * @see #isNormalMode(boolean)
+         * @see #isInfinityMode()
+         */
         public static boolean isReverse() {
             return !sharedPreferences.getString(PREFS.MODE.toString(), String.valueOf(DEFAULT_MODE)).equals("-1") &&
                     sharedPreferences.getBoolean(PREFS.REVERSE.toString(), false);

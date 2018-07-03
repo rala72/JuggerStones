@@ -44,7 +44,7 @@
                 android:textSize="@dimen/textSize_teamDetails"
                 app:autoSizeTextType="uniform" />
 
-            <android.support.v7.widget.AppCompatTextView
+            <io.rala.jugger.view.NumberView
                 android:id="@+id/textView_team1_points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
                 android:textSize="@dimen/textSize_teamDetails"
                 app:autoSizeTextType="uniform" />
 
-            <android.support.v7.widget.AppCompatTextView
+            <io.rala.jugger.view.NumberView
                 android:id="@+id/textView_team2_points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_minus" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <io.rala.jugger.view.NumberView
             android:id="@+id/textView_stones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

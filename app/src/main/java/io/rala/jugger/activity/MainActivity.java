@@ -37,6 +37,8 @@ import io.rala.jugger.JuggerStonesApplication;
 import io.rala.jugger.LocaleUtils;
 import io.rala.jugger.R;
 import io.rala.jugger.model.CounterTask;
+import io.rala.jugger.model.InputFilterMinMaxInteger;
+import io.rala.jugger.view.NumberView;
 
 public class MainActivity extends AppCompatActivity implements CounterTask.CounterTaskCallback, ColorPickerDialogListener {
     private static final int LIMIT_TEAM_NAME_CHARACTERS_TO = 0;
@@ -49,11 +51,11 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     @BindView(R.id.textView_team2)
     protected AppCompatTextView textView_team2;
     @BindView(R.id.textView_team1_points)
-    protected AppCompatTextView textView_team1_points;
+    protected NumberView textView_team1_points;
     @BindView(R.id.textView_team2_points)
-    protected AppCompatTextView textView_team2_points;
+    protected NumberView textView_team2_points;
     @BindView(R.id.textView_stones)
-    protected AppCompatTextView textView_stones;
+    protected NumberView textView_stones;
 
     @BindView(R.id.imageView_info)
     protected AppCompatImageView imageView_info;
@@ -78,8 +80,8 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     private void applyBundle(Intent intent) {
         if (intent == null) intent = getIntent();
-        Bundle extras = intent.getExtras();
-        final long stones = extras != null ? extras.getLong(MyPreferenceActivity.KEY_COUNTER, 0L) : 0;
+        final Bundle extras = intent.getExtras();
+        final long stones = extras != null ? extras.getLong(MyPreferenceActivity.KEY_COUNTER, JuggerStonesApplication.CounterPreference.getModeStart()) : JuggerStonesApplication.CounterPreference.getModeStart();
         final String team1 = extras != null ? extras.getString(MyPreferenceActivity.KEY_TEAM1, getResources().getString(R.string.main_team1)) : getString(R.string.main_team1);
         final String team2 = extras != null ? extras.getString(MyPreferenceActivity.KEY_TEAM2, getResources().getString(R.string.main_team2)) : getString(R.string.main_team2);
         initStonesView(stones);
@@ -98,58 +100,43 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     //region stonesView
     private void initStonesView(long l) {
-        l = cleanStones(l);
-        final long mode = JuggerStonesApplication.CounterPreference.getMode();
-        final boolean reverse = JuggerStonesApplication.CounterPreference.isReverse();
-        if (reverse) {
-            if (l == 0) l = mode;
-        } else if (l % mode == 0) l = 0;
-        textView_stones.setText(String.valueOf(l));
+        textView_stones.setNumber(cleanStones(l));
     }
 
-    private long cleanStones(long l) {
-        return cleanStones(l, false);
-    }
-
-    private long cleanStones(long l, boolean fromInput) {
-        if (JuggerStonesApplication.CounterPreference.isInfinityMode()) return l;
-        final long mode = JuggerStonesApplication.CounterPreference.getMode();
-        final boolean reverse = JuggerStonesApplication.CounterPreference.isReverse();
-        return reverse && l % mode == 0 ? mode : // entered a number % mode -> show mode instead of 0
-                reverse && !fromInput ?
-                        mode * (1 + (l / mode)) - l : // regular mode: calc next number (don't go over mode)
-                        l - mode * (l / mode); // input mode: decrease number so no redundant modes are available
+    private static long cleanStones(long l) {
+        if (JuggerStonesApplication.CounterPreference.isInfinityMode()) return l; // Math.abs()
+        if (JuggerStonesApplication.CounterPreference.getModeMax() < l || l < JuggerStonesApplication.CounterPreference.getModeMin())
+            return JuggerStonesApplication.CounterPreference.getModeStart();
+        if (JuggerStonesApplication.CounterPreference.isReverse() && l == 0)
+            return JuggerStonesApplication.CounterPreference.getMode();
+        return l;
     }
 
     /**
      * input mode
      *
-     * @see #cleanStones(long, boolean)
+     * @see #cleanStones(long) // , boolean
      */
     private void cleanStonesView() {
-        textView_stones.setText(String.valueOf(cleanStones(Long.parseLong(textView_stones.getText().toString()), true)));
+        textView_stones.setNumber(cleanStones(textView_stones.getNumberAsLong()));
     }
     //endregion
 
     //region butterKnife:listeners
     @OnClick({R.id.button_team1_increase, R.id.button_team2_increase, R.id.button_stones_increase})
     protected void onIncreaseClick(AppCompatImageButton button) {
-        long number;
         switch (button.getId()) {
             case R.id.button_team1_increase:
-                number = Long.parseLong(textView_team1_points.getText().toString());
-                textView_team1_points.setText(String.valueOf(number + 1));
+                textView_team1_points.increase(1L);
                 if (JuggerStonesApplication.CounterPreference.isStopAfterPoint()) pauseTimer();
                 break;
             case R.id.button_team2_increase:
-                number = Long.parseLong(textView_team2_points.getText().toString());
-                textView_team2_points.setText(String.valueOf(number + 1));
+                textView_team2_points.increase(1L);
                 if (JuggerStonesApplication.CounterPreference.isStopAfterPoint()) pauseTimer();
                 break;
             case R.id.button_stones_increase:
                 if (isTimerRunning()) return;
-                number = Long.parseLong(textView_stones.getText().toString());
-                textView_stones.setText(String.valueOf(number + 1));
+                if (textView_stones.getNumberAsLong() < JuggerStonesApplication.CounterPreference.getModeMax()) textView_stones.increase(1L);
                 break;
         }
     }
@@ -158,8 +145,8 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     protected boolean onIncreaseLongClick(AppCompatImageButton button) {
         if (button.getId() == R.id.button_stones_increase) {
             if (isTimerRunning()) return false;
-            if (!JuggerStonesApplication.CounterPreference.isInfinityMode() && JuggerStonesApplication.CounterPreference.isReverse()) {
-                textView_stones.setText(String.valueOf(JuggerStonesApplication.CounterPreference.getMode()));
+            if (JuggerStonesApplication.CounterPreference.isReverse()) {
+                textView_stones.setNumber(JuggerStonesApplication.CounterPreference.getMode());
                 return true;
             } // other: increase by 10..?
         }
@@ -168,40 +155,35 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     @OnClick({R.id.button_team1_decrease, R.id.button_team2_decrease, R.id.button_stones_decrease})
     protected void onDecreaseClick(AppCompatImageButton button) {
-        long number;
         switch (button.getId()) {
             case R.id.button_team1_decrease:
-                number = Long.parseLong(textView_team1_points.getText().toString());
-                if (0 < number) textView_team1_points.setText(String.valueOf(number - 1));
+                if (0 < textView_team1_points.getNumberAsLong()) textView_team1_points.decrease(1L);
                 break;
             case R.id.button_team2_decrease:
-                number = Long.parseLong(textView_team2_points.getText().toString());
-                if (0 < number) textView_team2_points.setText(String.valueOf(number - 1));
+                if (0 < textView_team2_points.getNumberAsLong()) textView_team2_points.decrease(1L);
                 break;
             case R.id.button_stones_decrease:
                 if (isTimerRunning()) return;
-                number = Long.parseLong(textView_stones.getText().toString());
-                if (0 < number) textView_stones.setText(String.valueOf(number - 1));
+                if (JuggerStonesApplication.CounterPreference.getModeMin() < textView_stones.getNumberAsLong()) textView_stones.decrease(1L);
                 break;
         }
     }
 
     @OnLongClick({R.id.button_team1_decrease, R.id.button_team2_decrease, R.id.button_stones_decrease})
     protected boolean onDecreaseLongClick(AppCompatImageButton button) {
-        long number;
         switch (button.getId()) {
             case R.id.button_team1_decrease:
-                number = Long.parseLong(textView_team1_points.getText().toString());
-                if (0 < number) textView_team1_points.setText(String.valueOf(0));
+                if (textView_team1_points.getNumberAsLong() == 0) return false;
+                textView_team1_points.setNumber(0);
                 return true;
             case R.id.button_team2_decrease:
-                number = Long.parseLong(textView_team2_points.getText().toString());
-                if (0 < number) textView_team2_points.setText(String.valueOf(0));
+                if (textView_team2_points.getNumberAsLong() == 0) return false;
+                textView_team2_points.setNumber(0);
                 return true;
             case R.id.button_stones_decrease:
                 if (isTimerRunning()) return false;
-                number = Long.parseLong(textView_stones.getText().toString());
-                if (0 < number) textView_stones.setText(String.valueOf(0));
+                if (textView_stones.getNumberAsLong() == 0) return false;
+                textView_stones.setNumber(0);
                 return true;
             default:
                 return false;
@@ -254,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     @OnLongClick(R.id.imageView_info)
     protected boolean onInfoViewLongClick(@SuppressWarnings("unused") AppCompatImageView imageView) {
         if (isTimerRunning()) return false;
-        if (!JuggerStonesApplication.CounterPreference.isInfinityMode()) {
+        if (JuggerStonesApplication.CounterPreference.isNormalModeIgnoringReverse()) {
             SharedPreferences.Editor editor = JuggerStonesApplication.sharedPreferences.edit();
             editor.putBoolean(JuggerStonesApplication.PREFS.REVERSE.toString(), !JuggerStonesApplication.CounterPreference.isReverse());
             editor.apply();
@@ -355,11 +337,11 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     private void resetTeams() {
         textView_team1.setText(R.string.main_team1);
         textView_team1.setTextColor(getResources().getColor(R.color.default_team1));
-        textView_team1_points.setText("0");
+        textView_team1_points.setNumber(0L);
         textView_team1_points.setTextColor(getResources().getColor(R.color.default_team1));
         textView_team2.setText(R.string.main_team2);
         textView_team2.setTextColor(getResources().getColor(R.color.default_team2));
-        textView_team2_points.setText("0");
+        textView_team2_points.setNumber(0L);
         textView_team2_points.setTextColor(getResources().getColor(R.color.default_team2));
     }
 
@@ -375,7 +357,8 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         final EditText stonesEdit = new EditText(MainActivity.this);
         stonesEdit.setHint(R.string.main_setStones);
         stonesEdit.setLayoutParams(layoutParams);
-        stonesEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
+        stonesEdit.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED);
+        stonesEdit.setFilters(new InputFilter[]{new InputFilterMinMaxInteger(JuggerStonesApplication.CounterPreference.getModeMin(), JuggerStonesApplication.CounterPreference.getModeMax())});
         stonesEdit.setText(textView_stones.getText());
         stonesEdit.requestFocus();
 
@@ -387,14 +370,16 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         alertDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
-                final long stones = !stonesEdit.getText().toString().isEmpty() ? Long.parseLong(stonesEdit.getText().toString()) : 0;
-                textView_stones.setText(String.valueOf(cleanStones(stones, true)));
+                final String input = stonesEdit.getText().toString();
+                final long stones = !input.isEmpty() && !input.equals("-") ?
+                        Long.parseLong(stonesEdit.getText().toString()) : JuggerStonesApplication.CounterPreference.getModeStart();
+                textView_stones.setNumber(cleanStones(stones));
             }
         });
         alertDialogBuilder.setNeutralButton(R.string.reset, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                initStonesView(0);
+                initStonesView(JuggerStonesApplication.CounterPreference.getModeStart());
             }
         });
 
@@ -410,8 +395,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     protected void startTimer() {
         button_playPause.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_pause_circle));
         if (isTimerRunning()) return;
-        long stones = Long.parseLong(textView_stones.getText().toString().trim());
-        stones = cleanStones(stones);
+        final long stones = cleanStones(textView_stones.getNumberAsLong());
         final long mode = JuggerStonesApplication.CounterPreference.getMode();
         final long interval = JuggerStonesApplication.CounterPreference.getInterval();
         final long delay = JuggerStonesApplication.CounterPreference.isImmediateStart() ? 0 : interval;
@@ -434,7 +418,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     protected void stopTimer() {
         pauseTimer();
-        initStonesView(0);
+        initStonesView(JuggerStonesApplication.CounterPreference.getModeStart());
     }
 
     protected boolean isTimerRunning() {
@@ -446,7 +430,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                textView_stones.setText(String.valueOf(cleanStones(stones)));
+                textView_stones.setNumber(cleanStones(stones));
                 if (JuggerStonesApplication.CounterPreference.isInfinityMode() && stones > 0 && stones % JuggerStonesApplication.DEFAULT_INTERVAL == 0)
                     Toast.makeText(MainActivity.this, R.string.main_toast_infinity, Toast.LENGTH_LONG).show();
             }
@@ -497,7 +481,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 intent = new Intent(this, MyPreferenceActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 Bundle bundle = new Bundle();
-                bundle.putLong(MyPreferenceActivity.KEY_COUNTER, Long.parseLong(textView_stones.getText().toString()));
+                bundle.putLong(MyPreferenceActivity.KEY_COUNTER, textView_stones.getNumberAsLong());
                 bundle.putString(MyPreferenceActivity.KEY_TEAM1, textView_team1.getText().toString());
                 bundle.putString(MyPreferenceActivity.KEY_TEAM2, textView_team2.getText().toString());
                 intent.putExtras(bundle);
