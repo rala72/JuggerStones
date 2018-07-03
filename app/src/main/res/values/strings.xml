@@ -12,4 +12,7 @@
     <string name="increase" translatable="false">+</string>
     <string name="decrease" translatable="false">-</string>
 
+    <!-- mention Vienna..? -->
+    <string name="madeWithLove" translatable="false">made with \u2764 in Austria</string>
+
 </resources>
