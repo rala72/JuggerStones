@@ -104,9 +104,11 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
 
     private static long cleanStones(long l) {
-        if (JuggerStonesApplication.CounterPreference.isInfinityMode()) return l; // Math.abs()
-        if (JuggerStonesApplication.CounterPreference.getModeMax() < l || l < JuggerStonesApplication.CounterPreference.getModeMin())
+        if (l < JuggerStonesApplication.CounterPreference.getModeMin())
             return JuggerStonesApplication.CounterPreference.getModeStart();
+        if (JuggerStonesApplication.CounterPreference.getModeMax() < l)
+            return (l %= 2 * JuggerStonesApplication.CounterPreference.getMode()) < JuggerStonesApplication.CounterPreference.getModeMax() ?
+                    l : l % JuggerStonesApplication.CounterPreference.getMode();
         if (JuggerStonesApplication.CounterPreference.isReverse() && l == 0)
             return JuggerStonesApplication.CounterPreference.getMode();
         return l;
