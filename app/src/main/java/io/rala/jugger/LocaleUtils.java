@@ -25,7 +25,7 @@ public class LocaleUtils {
 
     public static void updateConfig(ContextThemeWrapper wrapper) {
         if (sLocale != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            Configuration configuration = new Configuration();
+            final Configuration configuration = new Configuration();
             configuration.setLocale(sLocale);
             wrapper.applyOverrideConfiguration(configuration);
         }
@@ -33,10 +33,10 @@ public class LocaleUtils {
 
     public static void updateConfig(Application app, Configuration configuration) {
         if (sLocale != null && Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            //Wrapping the configuration to avoid Activity endless loop
-            Configuration config = new Configuration(configuration);
+            // Wrapping the configuration to avoid Activity endless loop
+            final Configuration config = new Configuration(configuration);
             config.locale = sLocale;
-            Resources res = app.getResources();
+            final Resources res = app.getResources();
             res.updateConfiguration(config, res.getDisplayMetrics());
         }
     }

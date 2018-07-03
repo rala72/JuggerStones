@@ -1,4 +1,4 @@
-package io.rala.jugger.model;
+package io.rala.jugger.view;
 
 import android.app.AlertDialog.Builder;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.preference.ListPreference;
 import android.util.AttributeSet;
 
 import io.rala.jugger.JuggerStonesApplication;
+import io.rala.jugger.model.Sound;
 
 // note: values are stored as String
 public class SoundPreferenceList extends ListPreference implements OnClickListener {

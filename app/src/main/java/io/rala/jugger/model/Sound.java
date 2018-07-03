@@ -25,8 +25,8 @@ public class Sound {
     }
 
     private boolean play(Context context, String name) {
-        Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/raw/" + name);
-        MediaPlayer mediaPlayer = MediaPlayer.create(context, uri);
+        final Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/raw/" + name);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(context, uri);
         if (mediaPlayer == null) {
             Log.e(Sound.class.getSimpleName(), name + " not found.");
             return false;

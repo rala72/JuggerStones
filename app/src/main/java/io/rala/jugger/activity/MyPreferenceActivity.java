@@ -11,8 +11,6 @@ import android.preference.PreferenceActivity;
 import android.text.InputFilter;
 import android.view.KeyEvent;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
@@ -22,7 +20,7 @@ import io.rala.jugger.LocaleUtils;
 import io.rala.jugger.R;
 import io.rala.jugger.model.InputFilterMinMaxDecimal;
 import io.rala.jugger.model.InputFilterMinMaxInteger;
-import io.rala.jugger.model.SoundPreferenceList;
+import io.rala.jugger.view.SoundPreferenceList;
 
 public class MyPreferenceActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String KEY_COUNTER = "counter";
@@ -46,9 +44,9 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
 
     private void setFilter() {
         EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
-        mode_custom.getEditText().setFilters(new InputFilter[]{new InputFilterMinMaxInteger(BigInteger.valueOf(0))});
+        mode_custom.getEditText().setFilters(new InputFilter[]{new InputFilterMinMaxInteger(0)});
         EditTextPreference interval_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
-        interval_custom.getEditText().setFilters(new InputFilter[]{new InputFilterMinMaxDecimal(BigDecimal.valueOf(0))});
+        interval_custom.getEditText().setFilters(new InputFilter[]{new InputFilterMinMaxDecimal(0)});
     }
 
     private void setListener() {
