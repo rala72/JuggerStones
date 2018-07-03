@@ -37,16 +37,23 @@ public class InputFilterMinMaxInteger implements InputFilter {
 
     @Override
     public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-        final String newVal = dest.toString().substring(0, dstart) + source.toString().substring(start, end) + dest.toString().substring(dend, dest.toString().length());
+        final String oldValue = dest.toString();
+        final String newValue = dest.toString().substring(0, dstart) + source.toString().substring(start, end) + dest.toString().substring(dend, dest.toString().length());
+        if (newValue.equals("-") && min.compareTo(BigInteger.valueOf(0)) <= 0) return null;
         try {
-            if (newVal.equals("-") && min.compareTo(BigInteger.valueOf(0)) <= 0) return null;
-            if (isInRange(min, max, new BigInteger(newVal))) return null;
+            if (isInRange(new BigInteger(newValue))) return null;
+            else if (isInRange(new BigInteger(oldValue))) return oldValue;
+            else if (oldValue.equals(newValue)) return min.toString();
         } catch (NumberFormatException ignored) {
         }
         return "";
     }
 
-    private boolean isInRange(final BigInteger min, final BigInteger max, final BigInteger value) {
+    private boolean isInRange(final BigInteger value) {
+        return isInRange(min, max, value);
+    }
+
+    private static boolean isInRange(final BigInteger min, final BigInteger max, final BigInteger value) {
         return min.compareTo(value) <= 0 && value.compareTo(max) <= 0;
     }
 }
