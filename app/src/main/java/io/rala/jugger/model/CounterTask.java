@@ -13,7 +13,7 @@ public class CounterTask extends TimerTask {
     private final CounterTaskCallback callback;
     private long stones;
 
-    public CounterTask(Context context, long stones, long mode, Sound sound, CounterTaskCallback callback) {
+    public CounterTask(final Context context, final long stones, final long mode, final Sound sound, final CounterTaskCallback callback) {
         this.context = context;
         this.stones = stones;
         this.mode = mode;
@@ -22,13 +22,14 @@ public class CounterTask extends TimerTask {
     }
 
     public void run() {
-        if (stones == Long.MAX_VALUE) return;
-        if (JuggerStonesApplication.CounterPreference.isReverse()) stones--;
-        else stones++;
-        stones %= mode * 2;
+        if (Math.abs(stones) >= Long.MAX_VALUE) stones = JuggerStonesApplication.CounterPreference.getModeStart();
+
+        stones += JuggerStonesApplication.CounterPreference.isReverse() ? -1 : 1;
+        if (JuggerStonesApplication.CounterPreference.isNormalModeIgnoringReverse()) stones %= mode * 2;
+
         callback.onStonesChanged(stones);
         if (JuggerStonesApplication.CounterPreference.isReverse() && stones == 0 ||
-                JuggerStonesApplication.CounterPreference.isNormalMode() && stones > 0 && stones % mode == 0) {
+                JuggerStonesApplication.CounterPreference.isNormalMode() && stones == mode) {
             stones %= mode;
             if (JuggerStonesApplication.CounterPreference.isReverse()) stones = JuggerStonesApplication.CounterPreference.getMode();
             sound.playGong(context);
