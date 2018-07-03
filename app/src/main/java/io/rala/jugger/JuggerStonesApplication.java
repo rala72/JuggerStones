@@ -151,14 +151,13 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
             return mode;
         }
 
+        public static long getModeMin() {
+            return isInfinityMode() || isReverse() ? 0 : -getMode() + 1;
+        }
+
         public static long getModeMax() {
             return isInfinityMode() ? Long.MAX_VALUE :
                     isReverse() ? getMode() * 2 - 1 : getMode() - 1;
-        }
-
-        public static long getModeMin() {
-            return isInfinityMode() ? Long.MIN_VALUE :
-                    isReverse() ? 0 : -getMode() + 1;
         }
 
         public static long getModeStart() {
