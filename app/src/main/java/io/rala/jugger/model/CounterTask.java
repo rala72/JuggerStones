@@ -16,7 +16,7 @@ public class CounterTask extends TimerTask {
     public CounterTask(final Context context, final long stones, final long mode, final Sound sound, final CounterTaskCallback callback) {
         this.context = context;
         this.stones = stones;
-        this.mode = mode;
+        this.mode = mode == 0 ? 1 : mode; // just to make sure
         this.sound = sound;
         this.callback = callback;
     }

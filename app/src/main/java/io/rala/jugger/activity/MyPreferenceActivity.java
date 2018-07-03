@@ -44,9 +44,9 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
 
     private void setFilter() {
         EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
-        mode_custom.getEditText().setFilters(new InputFilter[]{new InputFilterMinMaxInteger(0)});
+        mode_custom.getEditText().setFilters(new InputFilter[]{new InputFilterMinMaxInteger(1)});
         EditTextPreference interval_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
-        interval_custom.getEditText().setFilters(new InputFilter[]{new InputFilterMinMaxDecimal(0)});
+        interval_custom.getEditText().setFilters(new InputFilter[]{new InputFilterMinMaxDecimal(1)});
     }
 
     private void setListener() {

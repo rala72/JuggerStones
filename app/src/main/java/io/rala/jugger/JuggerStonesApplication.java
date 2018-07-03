@@ -221,7 +221,7 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
             if (interval == 0)
                 interval = new BigDecimal(sharedPreferences.getString(PREFS.INTERVAL_CUSTOM.toString(), String.valueOf(DEFAULT_INTERVAL)))
                         .multiply(BigDecimal.valueOf(1000)).longValue();
-            return interval;
+            return interval <= 0 ? 1 : interval; // just to make sure
         }
 
         /**
