@@ -22,6 +22,7 @@ import io.rala.jugger.model.InputFilterMinMaxDecimal;
 import io.rala.jugger.model.InputFilterMinMaxInteger;
 import io.rala.jugger.view.SoundPreferenceList;
 
+// TODO: migrate to PreferenceFragmentCompat
 public class MyPreferenceActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String KEY_COUNTER = "counter";
     public static final String KEY_TEAM1 = "team1";
