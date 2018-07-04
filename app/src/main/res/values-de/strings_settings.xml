@@ -5,8 +5,8 @@
     <string name="pref_category_game">Spiel</string>
     <string name="pref_stoneInterval">Steinintervall</string>
     <string name="pref_mode">Spielmodus</string>
-    <string name="pref_mode_100">Normal (100 Steine)</string>
     <string name="pref_mode_50">Kurz (50 Steine)</string>
+    <string name="pref_mode_100">Normal (100 Steine)</string>
     <string name="pref_mode_infinite">Unendlich (nur Steine)</string>
     <string name="pref_mode_custom">Benutzerdefinierter Modus</string>
     <string name="pref_interval_custom">Benutzerdefiniertes Intervall</string>

@@ -5,8 +5,8 @@
     <string name="pref_category_game">Joc</string>
     <string name="pref_stoneInterval">Interval de pedres</string>
     <string name="pref_mode">Mode de joc</string>
-    <string name="pref_mode_100">Normal (100 pedres)</string>
     <string name="pref_mode_50">Curt (50 pedres)</string>
+    <string name="pref_mode_100">Normal (100 pedres)</string>
     <string name="pref_mode_infinite">Infinitament (Solament pedres)</string>
     <string name="pref_mode_custom">Mode personalitzat</string>
     <string name="pref_interval_custom">Interval personalitzat</string>
