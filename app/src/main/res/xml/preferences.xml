@@ -69,5 +69,5 @@
             android:key="version"
             android:title="@string/pref_version" />
     </PreferenceCategory>
-    <Preference android:widgetLayout="@layout/made_with_love" />
+    <Preference android:layout="@layout/made_with_love" />
 </PreferenceScreen>
