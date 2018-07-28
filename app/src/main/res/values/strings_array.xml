@@ -3,7 +3,6 @@
     <!-- general -->
     <string-array name="array_languages_array" translatable="false">
         <item>@string/language_english</item>
-        <item>@string/language_catalan</item>
         <item>@string/language_german</item>
         <item>@string/language_spanish</item>
         <item>@string/language_french</item>
@@ -11,7 +10,6 @@
     </string-array>
     <string-array name="array_languages_array_values" translatable="false">
         <item>en</item>
-        <item>ca</item>
         <item>de</item>
         <item>es</item>
         <item>fr</item>

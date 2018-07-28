@@ -131,7 +131,6 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
         // region languageMap
         Map<String, String> languageMap = new TreeMap<>();
         languageMap.put(getString(R.string.language_english), getString(R.string.language_english_en));
-        languageMap.put(getString(R.string.language_catalan), getString(R.string.language_catalan_en));
         languageMap.put(getString(R.string.language_german), getString(R.string.language_german_en));
         languageMap.put(getString(R.string.language_spanish), getString(R.string.language_spanish_en));
         languageMap.put(getString(R.string.language_french), getString(R.string.language_french_en));
