@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:icon="@drawable/ic_group_white_24dp"
+        android:icon="@drawable/ic_group_white"
         android:title="@string/main_editTeams"
         app:showAsAction="ifRoom">
         <menu>
@@ -27,13 +27,13 @@
 
     <item
         android:id="@+id/editStones"
-        android:icon="@drawable/ic_chinese_gong_white_24dp"
+        android:icon="@drawable/ic_chinese_gong_white"
         android:title="@string/main_setStones"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_settings"
-        android:icon="@drawable/ic_settings_white_24dp"
+        android:icon="@drawable/ic_settings_white"
         android:title="@string/activity_settings"
         app:showAsAction="ifRoom" />
 
