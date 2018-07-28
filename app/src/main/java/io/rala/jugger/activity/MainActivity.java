@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.content.res.AppCompatResources;
@@ -336,6 +337,23 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         // do nothing
     }
 
+    private void flipTeams() {
+        CharSequence team1_title = textView_team1.getText();
+        ColorStateList team1_title_color = textView_team1.getTextColors();
+        long team1_points = textView_team1_points.getNumberAsLong();
+        ColorStateList team1_points_color = textView_team1_points.getTextColors();
+
+        textView_team1.setText(textView_team2.getText());
+        textView_team1.setTextColor(textView_team2.getTextColors());
+        textView_team1_points.setNumber(textView_team2_points.getNumberAsLong());
+        textView_team1_points.setTextColor(textView_team2_points.getTextColors());
+
+        textView_team2.setText(team1_title);
+        textView_team2.setTextColor(team1_title_color);
+        textView_team2_points.setNumber(team1_points);
+        textView_team2_points.setTextColor(team1_points_color);
+    }
+
     private void resetTeams() {
         textView_team1.setText(R.string.main_team1);
         textView_team1.setTextColor(getResources().getColor(R.color.default_team1));
@@ -471,6 +489,9 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 return true;
             case R.id.teams_changeColor_2:
                 changeTeamColors(TEAM.TEAM2);
+                return true;
+            case R.id.teams_changeOfEnds:
+                flipTeams();
                 return true;
             case R.id.teams_reset:
                 resetTeams();

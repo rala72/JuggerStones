@@ -10,6 +10,7 @@
     <string name="main_changeColor">Mude a cor</string>
     <string name="main_changeColor_1">Mude a cor da equipe 1</string>
     <string name="main_changeColor_2">Mude a cor da equipe 2</string>
+    <string name="main_changeOfEnds">Stron boiska</string>
     <string name="main_setStones">Colocar pedras</string>
 
     <string name="main_toast_teamLength">Por conveniência apenas as iniciais de cada equipe por favor (%1$d MAX)</string>

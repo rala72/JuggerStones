@@ -19,6 +19,10 @@
                 android:title="@string/main_changeColor_2"
                 app:showAsAction="never" />
             <item
+                android:id="@+id/teams_changeOfEnds"
+                android:title="@string/main_changeOfEnds"
+                app:showAsAction="never" />
+            <item
                 android:id="@+id/teams_reset"
                 android:title="@string/reset"
                 app:showAsAction="never" />

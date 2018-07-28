@@ -11,6 +11,7 @@
     <string name="main_changeColor">Change color</string>
     <string name="main_changeColor_1">Change team 1 color</string>
     <string name="main_changeColor_2">Change team 2 color</string>
+    <string name="main_changeOfEnds">Change of ends</string><!--Changeover-->
     <string name="main_setStones">Set stones</string>
 
     <string name="main_toast_teamLength">For convenience only the initials of each team please (%1$d MAX)</string>

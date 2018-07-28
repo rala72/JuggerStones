@@ -10,6 +10,7 @@
     <string name="main_changeColor">Changer la couleur</string>
     <string name="main_changeColor_1">Changer l\'équipe 1 couleur</string>
     <string name="main_changeColor_2">Changer l\'équipe 2 couleur</string>
+    <string name="main_changeOfEnds">Changement de côté</string>
     <string name="main_setStones">Mettre des pierres</string>
 
     <string name="main_toast_teamLength">Pour plus de commodité seulement les initiales de chaque équipe s\'il vous plaît (%1$d max)</string>
