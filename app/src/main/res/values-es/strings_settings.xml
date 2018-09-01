@@ -42,5 +42,6 @@
 
     <!-- settings: others -->
     <string name="pref_category_others">Otro</string>
+    <string name="pref_keep_display_awake">Mantener despierto pantalla</string>
     <string name="pref_version">Versión: %1$s</string>
 </resources>

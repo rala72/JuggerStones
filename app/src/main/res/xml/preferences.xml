@@ -57,6 +57,10 @@
     </PreferenceCategory>
     <!-- TO DO: improve settings-other category (like untis) -->
     <PreferenceCategory android:title="@string/pref_category_others">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="keep_display_awake"
+            android:title="@string/pref_keep_display_awake" />
         <ListPreference
             android:entries="@array/array_languages_array"
             android:entryValues="@array/array_languages_array_values"

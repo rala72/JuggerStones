@@ -42,5 +42,6 @@
 
     <!-- settings: others -->
     <string name="pref_category_others">Outro</string>
+    <string name="pref_keep_display_awake">Manter exibição acordado</string>
     <string name="pref_version">Versão: %1$s</string>
 </resources>

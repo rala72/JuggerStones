@@ -35,7 +35,8 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
         REVERSE("reverse"), IMMEDIATE_START("immediateStart"),
         STOP_AFTER_POINT("stop_after_point"), STOP_AFTER_GONG("stop_after_gong"),
         SOUND_STONE("sound_stone"), SOUND_GONG("sound_gong"),
-        LANGUAGE("language"), EMAIL("email"), VERSION("version");
+        KEEP_DISPLAY_AWAKE("keep_display_awake"), LANGUAGE("language"),
+        EMAIL("email"), VERSION("version");
 
         private final String text;
 
@@ -271,6 +272,10 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
 
         public static boolean isStopAfterGong() {
             return sharedPreferences.getBoolean(PREFS.STOP_AFTER_GONG.toString(), false);
+        }
+
+        public static boolean isKeepDisplayAwake() {
+            return sharedPreferences.getBoolean(PREFS.KEEP_DISPLAY_AWAKE.toString(), false);
         }
     }
     //endregion

@@ -80,6 +80,10 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         applyBundle(getIntent());
+        if (JuggerStonesApplication.CounterPreference.isKeepDisplayAwake()) {
+            // Toast.makeText(this, R.string.pref_keep_display_awake, Toast.LENGTH_SHORT).show();
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
     }
 
     private void applyBundle(Intent intent) {
