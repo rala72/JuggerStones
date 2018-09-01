@@ -209,10 +209,10 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     protected boolean onTeamNameLongClick(TextView textView) {
         switch (textView.getId()) {
             case R.id.textView_team1:
-                changeTeamColors(TEAM.TEAM1);
+                showChangeTeamColorsDialog(TEAM.TEAM1);
                 return true;
             case R.id.textView_team2:
-                changeTeamColors(TEAM.TEAM2);
+                showChangeTeamColorsDialog(TEAM.TEAM2);
                 return true;
             default:
                 return false;
@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     @OnLongClick(R.id.textView_stones)
     protected boolean onCounterLongClick(@SuppressWarnings("unused") TextView textView) {
-        setStones();
+        showSetStonesDialog();
         return true;
     }
 
@@ -253,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     //region dialogs
     @SuppressWarnings("ConstantConditions")
-    private void renameTeams() {
+    private void showRenameTeamsDialog() {
         final int margin_dp = 25;
         final int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics());
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
@@ -306,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             Toast.makeText(MainActivity.this, getString(R.string.main_toast_teamLength, 5), Toast.LENGTH_SHORT).show();
     }
 
-    private void changeTeamColors(final TEAM team) {
+    private void showChangeTeamColorsDialog(final TEAM team) {
         ColorPickerDialog.newBuilder()
                 .setDialogType(ColorPickerDialog.TYPE_PRESETS)
                 .setDialogId(team.equals(TEAM.TEAM1) ? 1 : team.equals(TEAM.TEAM2) ? 2 : 0)
@@ -365,8 +365,8 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         textView_team2_points.setTextColor(getResources().getColor(R.color.default_team2));
     }
 
-    private void setStones() {
         if (isTimerRunning()) return;
+    private void showSetStonesDialog() {
         final int margin_dp = 25;
         final int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics());
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
@@ -482,13 +482,13 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         Intent intent;
         switch (item.getItemId()) {
             case R.id.teams_rename:
-                renameTeams();
+                showRenameTeamsDialog();
                 return true;
             case R.id.teams_changeColor_1:
-                changeTeamColors(TEAM.TEAM1);
+                showChangeTeamColorsDialog(TEAM.TEAM1);
                 return true;
             case R.id.teams_changeColor_2:
-                changeTeamColors(TEAM.TEAM2);
+                showChangeTeamColorsDialog(TEAM.TEAM2);
                 return true;
             case R.id.teams_changeOfEnds:
                 flipTeams();
@@ -497,7 +497,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 resetTeams();
                 return true;
             case R.id.editStones:
-                setStones();
+                showSetStonesDialog();
                 return true;
             case R.id.action_settings:
                 pauseTimer();

@@ -229,8 +229,7 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
          * @see #isInfinityMode()
          */
         public static boolean isReverse() {
-            return !sharedPreferences.getString(PREFS.MODE.toString(), String.valueOf(DEFAULT_MODE)).equals("-1") &&
-                    sharedPreferences.getBoolean(PREFS.REVERSE.toString(), false);
+            return isNormalModeIgnoringReverse() && sharedPreferences.getBoolean(PREFS.REVERSE.toString(), false);
         }
 
         public static boolean isImmediateStart() {
