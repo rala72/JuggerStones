@@ -45,6 +45,6 @@ public class HistoryEntry {
 
     @Override
     public String toString() {
-        return getStones() + ": " + getTeam1() + "-" + getTeam2() + " [" + getMode() + ":" + reverse + "]";
+        return getStones() + ": " + getTeam1() + "-" + getTeam2() + " [" + getMode() + ":" + isReverse() + "]";
     }
 }

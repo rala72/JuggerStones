@@ -1,5 +1,6 @@
 package io.rala.jugger;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -23,6 +24,7 @@ public class LocaleUtils {
         return sLocale;
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     public static void updateConfig(ContextThemeWrapper wrapper) {
         if (sLocale != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             final Configuration configuration = new Configuration();
@@ -31,6 +33,7 @@ public class LocaleUtils {
         }
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     public static void updateConfig(Application app, Configuration configuration) {
         if (sLocale != null && Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
             // Wrapping the configuration to avoid Activity endless loop

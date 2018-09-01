@@ -40,7 +40,7 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
 
         private final String text;
 
-        PREFS(final String text) {
+        PREFS(String text) {
             this.text = text;
         }
 
@@ -106,7 +106,7 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
     /**
      * saves entry to history if not already in
      */
-    public static void saveToHistory(final HistoryEntry entry) {
+    public static void saveToHistory(HistoryEntry entry) {
         if (!history.contains(entry)) history.add(entry);
     }
 
@@ -231,7 +231,7 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
          * @see #isInfinityMode()
          * @see #isReverse()
          */
-        private static boolean isNormalMode(final boolean ignoreReverse) {
+        private static boolean isNormalMode(boolean ignoreReverse) {
             return !isInfinityMode() && (ignoreReverse || !isReverse());
         }
 

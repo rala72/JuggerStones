@@ -23,6 +23,7 @@ import io.rala.jugger.model.InputFilterMinMaxInteger;
 import io.rala.jugger.view.SoundPreferenceList;
 
 // TODO: migrate to PreferenceFragmentCompat
+@SuppressWarnings("deprecation")
 public class MyPreferenceActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String KEY_COUNTER = "counter";
     public static final String KEY_TEAM1 = "team1";
@@ -96,7 +97,7 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
     }
 
     //region updatePrefs
-    private void validatePreferences(final String key) {
+    private void validatePreferences(String key) {
         if (key.equals(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString())) {
             long min = 1;
             EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
@@ -111,7 +112,7 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
         }
     }
 
-    private void updatePreferencesEnabled(final String key) {
+    private void updatePreferencesEnabled(String key) {
         if (key == null || key.equals(JuggerStonesApplication.PREFS.MODE.toString())) {
             ListPreference mode = (ListPreference) findPreference(JuggerStonesApplication.PREFS.MODE.toString());
             findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString()).setEnabled(mode.getValue().equals("0"));
@@ -142,7 +143,7 @@ public class MyPreferenceActivity extends PreferenceActivity implements SharedPr
         pref_language.setEntries(languages);
     }
 
-    private void updateSumTexts(final String key) {
+    private void updateSumTexts(String key) {
         if (key == null || key.equals(JuggerStonesApplication.PREFS.MODE.toString())) {
             ListPreference mode = (ListPreference) findPreference(JuggerStonesApplication.PREFS.MODE.toString());
             mode.setSummary(mode.getEntry());

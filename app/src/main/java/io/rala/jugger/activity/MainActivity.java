@@ -277,7 +277,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             Toast.makeText(MainActivity.this, getString(R.string.main_toast_teamLength, 5), Toast.LENGTH_SHORT).show();
     }
 
-    private void showChangeTeamColorsDialog(final TEAM team) {
+    private void showChangeTeamColorsDialog(TEAM team) {
         ColorPickerDialog.newBuilder()
                 .setDialogType(ColorPickerDialog.TYPE_PRESETS)
                 .setDialogId(team.equals(TEAM.TEAM1) ? 1 : team.equals(TEAM.TEAM2) ? 2 : 0)
@@ -610,7 +610,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         //endregion
 
         //region history
-        private void applyHistoryEntry(final HistoryEntry entry) {
+        private void applyHistoryEntry(HistoryEntry entry) {
             if (entry == null) {
                 // Toast.makeText(MainActivity.this, R.string.reset, Toast.LENGTH_SHORT).show();
                 reset();
@@ -625,7 +625,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 toggleNormalModeWithReverse();
         }
 
-        private void saveHistoryEntry(final long stones, final long mode) {
+        private void saveHistoryEntry(long stones, long mode) {
             JuggerStonesApplication.saveToHistory(new HistoryEntry(getTeam1(), getTeam2(), stones, mode, JuggerStonesApplication.CounterPreference.isReverse()));
         }
 
