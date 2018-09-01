@@ -12,6 +12,7 @@
     <string name="main_changeColor_2">Cambiar el color del equipo 2</string>
     <string name="main_changeOfEnds">Cambio de campo</string>
     <string name="main_setStones">Establecer piedras</string>
+    <string name="main_lastScore">Última puntuación</string>
 
     <string name="main_toast_teamLength">Por comodidad solo las iniciales (MAX %1$d)</string>
     <string name="main_toast_infinity">ADVERTENCIA: se selecciona el modo infinito</string>

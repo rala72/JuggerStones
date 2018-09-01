@@ -38,6 +38,7 @@ import io.rala.jugger.JuggerStonesApplication;
 import io.rala.jugger.LocaleUtils;
 import io.rala.jugger.R;
 import io.rala.jugger.model.CounterTask;
+import io.rala.jugger.model.HistoryEntry;
 import io.rala.jugger.model.InputFilterMinMaxInteger;
 import io.rala.jugger.model.Team;
 import io.rala.jugger.view.NumberView;
@@ -335,7 +336,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         alertDialogBuilder.setNeutralButton(R.string.reset, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                valueHandler.setStones(JuggerStonesApplication.CounterPreference.getModeStart());
+                valueHandler.resetStones();
             }
         });
 
@@ -402,6 +403,9 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             case R.id.editStones:
                 showSetStonesDialog();
                 return true;
+            case R.id.history_lastScore:
+                valueHandler.applyHistoryEntry(JuggerStonesApplication.getLastHistoryEntry());
+                return true;
             case R.id.action_settings:
                 timerHandler.pause();
                 intent = new Intent(this, MyPreferenceActivity.class);
@@ -447,6 +451,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             final long mode = JuggerStonesApplication.CounterPreference.getMode();
             final long interval = JuggerStonesApplication.CounterPreference.getInterval();
             final long delay = JuggerStonesApplication.CounterPreference.isImmediateStart() ? 0 : interval;
+            valueHandler.saveHistoryEntry(stones, mode);
             final CounterTask counterTask = new CounterTask(MainActivity.this, stones, mode, JuggerStonesApplication.sound, MainActivity.this);
             timer = new Timer();
             timer.scheduleAtFixedRate(counterTask, delay, interval);
@@ -466,7 +471,8 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
         void stop() {
             pause();
-            valueHandler.setStones(JuggerStonesApplication.CounterPreference.getModeStart());
+            valueHandler.resetStones();
+            valueHandler.clearHistory();
         }
 
         boolean isRunning() {
@@ -474,8 +480,13 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         }
     }
 
-    @SuppressWarnings("unused")
     private class ValueHandler {
+        void reset() {
+            resetTeams();
+            resetStones();
+            // reset mode..?
+        }
+
         //region teams
         void setTeam(Team team, TEAM teamNumber) {
             if (teamNumber == null || teamNumber == TEAM.TEAM1) {
@@ -544,6 +555,10 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             textView_stones.setNumber(cleanStones(l));
         }
 
+        public void resetStones() {
+            setStones(JuggerStonesApplication.CounterPreference.getModeStart());
+        }
+
         long getStones() {
             return cleanStones(textView_stones.getNumberAsLong());
         }
@@ -570,28 +585,6 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         //endregion
 
         //region mode
-        void setModeToNormal() {
-            setModeToNormal(false);
-        }
-
-        void setModeToNormal(@SuppressWarnings("SameParameterValue") boolean ignoreReverse) {
-            if (JuggerStonesApplication.CounterPreference.isNormalMode() ||
-                    ignoreReverse && JuggerStonesApplication.CounterPreference.isNormalModeIgnoringReverse()) return;
-            if (JuggerStonesApplication.CounterPreference.isInfinityMode()) toggleNormalModeWithInfinity();
-            toggleNormalModeWithReverse();
-        }
-
-        void setModeToReverse() {
-            if (JuggerStonesApplication.CounterPreference.isReverse()) return;
-            if (JuggerStonesApplication.CounterPreference.isInfinityMode()) toggleNormalModeWithInfinity();
-            toggleNormalModeWithReverse();
-        }
-
-        void setModeToInfinity() {
-            if (JuggerStonesApplication.CounterPreference.isInfinityMode()) return;
-            toggleNormalModeWithInfinity();
-        }
-
         void toggleNormalModeWithInfinity() {
             SharedPreferences.Editor editor = JuggerStonesApplication.sharedPreferences.edit();
             editor.putString(JuggerStonesApplication.PREFS.MODE.toString(), String.valueOf(JuggerStonesApplication.CounterPreference.getPreviousMode()));
@@ -609,6 +602,31 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             editor.apply();
             updateInfoView();
             valueHandler.cleanStonesView();
+        }
+        //endregion
+
+        //region history
+        private void applyHistoryEntry(final HistoryEntry entry) {
+            if (entry == null) {
+                // Toast.makeText(MainActivity.this, R.string.reset, Toast.LENGTH_SHORT).show();
+                reset();
+                return;
+            }
+            setTeams(entry.getTeam1(), entry.getTeam2());
+            setStones(entry.getStones());
+            if (entry.getMode() != JuggerStonesApplication.CounterPreference.getMode())
+                toggleNormalModeWithInfinity();
+            if (JuggerStonesApplication.CounterPreference.isNormalModeIgnoringReverse() &&
+                    entry.isReverse() != JuggerStonesApplication.CounterPreference.isReverse())
+                toggleNormalModeWithReverse();
+        }
+
+        private void saveHistoryEntry(final long stones, final long mode) {
+            JuggerStonesApplication.saveToHistory(new HistoryEntry(getTeam1(), getTeam2(), stones, mode, JuggerStonesApplication.CounterPreference.isReverse()));
+        }
+
+        private void clearHistory() {
+            JuggerStonesApplication.clearHistory();
         }
         //endregion
     }

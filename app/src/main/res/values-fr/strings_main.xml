@@ -12,6 +12,7 @@
     <string name="main_changeColor_2">Changer l\'équipe 2 couleur</string>
     <string name="main_changeOfEnds">Changement de côté</string>
     <string name="main_setStones">Mettre des pierres</string>
+    <string name="main_lastScore">Dernier score</string>
 
     <string name="main_toast_teamLength">Pour plus de commodité seulement les initiales de chaque équipe s\'il vous plaît (%1$d max)</string>
     <string name="main_toast_infinity">ATTENTION: le mode infini est sélectionné</string>

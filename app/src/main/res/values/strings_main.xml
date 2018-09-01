@@ -13,6 +13,7 @@
     <string name="main_changeColor_2">Change team 2 color</string>
     <string name="main_changeOfEnds">Change of ends</string><!--Changeover-->
     <string name="main_setStones">Set stones</string>
+    <string name="main_lastScore">Last score</string>
 
     <string name="main_toast_teamLength">For convenience only the initials of each team please (%1$d MAX)</string>
     <string name="main_toast_infinity">WARNING: infinity mode is selected</string>

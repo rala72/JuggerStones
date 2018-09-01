@@ -36,6 +36,12 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/history_lastScore"
+        android:icon="@drawable/ic_settings_backup_restore"
+        android:title="@string/main_lastScore"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_settings_white"
         android:title="@string/activity_settings"

@@ -12,8 +12,11 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
+import io.rala.jugger.model.HistoryEntry;
 import io.rala.jugger.model.Sound;
 
 public class JuggerStonesApplication extends Application implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -21,6 +24,8 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
     public static SharedPreferences sharedPreferences;
     public static AudioManager audioManager;
     public static Sound sound;
+
+    private static final List<HistoryEntry> history = new ArrayList<>();
 
     public static final long DEFAULT_MODE = 100;
     public static final long DEFAULT_INTERVAL = 1500;
@@ -92,6 +97,30 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
 
     public static void decreaseMusicVolume() {
         audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
+    }
+    //endregion
+
+    //region history
+
+    /**
+     * saves entry to history if not already in
+     */
+    public static void saveToHistory(final HistoryEntry entry) {
+        if (!history.contains(entry)) history.add(entry);
+    }
+
+    /**
+     * @return last {@link HistoryEntry} and removes it
+     */
+    public static HistoryEntry getLastHistoryEntry() {
+        if (history.isEmpty()) return null;
+        HistoryEntry entry = history.get(history.size() - 1);
+        history.remove(history.size() - 1);
+        return entry;
+    }
+
+    public static void clearHistory() {
+        history.clear();
     }
     //endregion
 
