@@ -39,6 +39,7 @@ import io.rala.jugger.LocaleUtils;
 import io.rala.jugger.R;
 import io.rala.jugger.model.CounterTask;
 import io.rala.jugger.model.InputFilterMinMaxInteger;
+import io.rala.jugger.model.Team;
 import io.rala.jugger.view.NumberView;
 
 public class MainActivity extends AppCompatActivity implements CounterTask.CounterTaskCallback, ColorPickerDialogListener {
@@ -62,7 +63,8 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     protected AppCompatImageView imageView_info;
     //endregion
 
-    private Timer timer;
+    private final TimerHandler timerHandler = new TimerHandler();
+    private final ValueHandler valueHandler = new ValueHandler();
 
     private enum TEAM {TEAM1, TEAM2}
 
@@ -83,11 +85,10 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         if (intent == null) intent = getIntent();
         final Bundle extras = intent.getExtras();
         final long stones = extras != null ? extras.getLong(MyPreferenceActivity.KEY_COUNTER, JuggerStonesApplication.CounterPreference.getModeStart()) : JuggerStonesApplication.CounterPreference.getModeStart();
-        final String team1 = extras != null ? extras.getString(MyPreferenceActivity.KEY_TEAM1, getResources().getString(R.string.main_team1)) : getString(R.string.main_team1);
-        final String team2 = extras != null ? extras.getString(MyPreferenceActivity.KEY_TEAM2, getResources().getString(R.string.main_team2)) : getString(R.string.main_team2);
-        initStonesView(stones);
-        textView_team1.setText(team1);
-        textView_team2.setText(team2);
+        final Team team1 = extras != null ? (Team) extras.getParcelable(MyPreferenceActivity.KEY_TEAM1) : null;
+        final Team team2 = extras != null ? (Team) extras.getParcelable(MyPreferenceActivity.KEY_TEAM2) : null;
+        valueHandler.setStones(stones);
+        valueHandler.setTeams(team1, team2);
         updateInfoView();
     }
 
@@ -99,46 +100,20 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
     //endregion
 
-    //region stonesView
-    private void initStonesView(long l) {
-        textView_stones.setNumber(cleanStones(l));
-    }
-
-    private static long cleanStones(long l) {
-        if (l < JuggerStonesApplication.CounterPreference.getModeMin())
-            return JuggerStonesApplication.CounterPreference.getModeStart();
-        if (JuggerStonesApplication.CounterPreference.getModeMax() < l)
-            return (l %= 2 * JuggerStonesApplication.CounterPreference.getMode()) < JuggerStonesApplication.CounterPreference.getModeMax() ?
-                    l : l % JuggerStonesApplication.CounterPreference.getMode();
-        if (JuggerStonesApplication.CounterPreference.isReverse() && l == 0)
-            return JuggerStonesApplication.CounterPreference.getMode();
-        return l;
-    }
-
-    /**
-     * input mode
-     *
-     * @see #cleanStones(long) // , boolean
-     */
-    private void cleanStonesView() {
-        textView_stones.setNumber(cleanStones(textView_stones.getNumberAsLong()));
-    }
-    //endregion
-
     //region butterKnife:listeners
     @OnClick({R.id.button_team1_increase, R.id.button_team2_increase, R.id.button_stones_increase})
     protected void onIncreaseClick(AppCompatImageButton button) {
         switch (button.getId()) {
             case R.id.button_team1_increase:
                 textView_team1_points.increase(1L);
-                if (JuggerStonesApplication.CounterPreference.isStopAfterPoint()) pauseTimer();
+                if (JuggerStonesApplication.CounterPreference.isStopAfterPoint()) timerHandler.pause();
                 break;
             case R.id.button_team2_increase:
                 textView_team2_points.increase(1L);
-                if (JuggerStonesApplication.CounterPreference.isStopAfterPoint()) pauseTimer();
+                if (JuggerStonesApplication.CounterPreference.isStopAfterPoint()) timerHandler.pause();
                 break;
             case R.id.button_stones_increase:
-                if (isTimerRunning()) return;
+                if (timerHandler.isRunning()) return;
                 if (textView_stones.getNumberAsLong() < JuggerStonesApplication.CounterPreference.getModeMax()) textView_stones.increase(1L);
                 break;
         }
@@ -147,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     @OnLongClick(R.id.button_stones_increase)
     protected boolean onIncreaseLongClick(AppCompatImageButton button) {
         if (button.getId() == R.id.button_stones_increase) {
-            if (isTimerRunning()) return false;
+            if (timerHandler.isRunning()) return false;
             if (JuggerStonesApplication.CounterPreference.isReverse()) {
                 textView_stones.setNumber(JuggerStonesApplication.CounterPreference.getMode());
                 return true;
@@ -166,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 if (0 < textView_team2_points.getNumberAsLong()) textView_team2_points.decrease(1L);
                 break;
             case R.id.button_stones_decrease:
-                if (isTimerRunning()) return;
+                if (timerHandler.isRunning()) return;
                 if (JuggerStonesApplication.CounterPreference.getModeMin() < textView_stones.getNumberAsLong()) textView_stones.decrease(1L);
                 break;
         }
@@ -184,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 textView_team2_points.setNumber(0);
                 return true;
             case R.id.button_stones_decrease:
-                if (isTimerRunning()) return false;
+                if (timerHandler.isRunning()) return false;
                 if (textView_stones.getNumberAsLong() == 0) return false;
                 textView_stones.setNumber(0);
                 return true;
@@ -197,10 +172,10 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     protected void onPlayPauseStopClick(AppCompatImageButton button) {
         switch (button.getId()) {
             case R.id.button_playPause:
-                toggleTimer();
+                timerHandler.toggle();
                 break;
             case R.id.button_stop:
-                stopTimer();
+                timerHandler.stop();
                 break;
         }
     }
@@ -227,24 +202,15 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     @OnClick(R.id.imageView_info)
     protected void onInfoViewClick(@SuppressWarnings("unused") AppCompatImageView imageView) {
-        if (isTimerRunning()) return;
-        SharedPreferences.Editor editor = JuggerStonesApplication.sharedPreferences.edit();
-        editor.putString(JuggerStonesApplication.PREFS.MODE.toString(), String.valueOf(JuggerStonesApplication.CounterPreference.getPreviousMode()));
-        editor.putString(JuggerStonesApplication.PREFS.MODE_PREVIOUS.toString(), String.valueOf(JuggerStonesApplication.CounterPreference.getMode()));
-        editor.apply();
-        updateInfoView();
-        cleanStonesView();
+        if (timerHandler.isRunning()) return;
+        valueHandler.toggleNormalModeWithInfinity();
     }
 
     @OnLongClick(R.id.imageView_info)
     protected boolean onInfoViewLongClick(@SuppressWarnings("unused") AppCompatImageView imageView) {
-        if (isTimerRunning()) return false;
+        if (timerHandler.isRunning()) return false;
         if (JuggerStonesApplication.CounterPreference.isNormalModeIgnoringReverse()) {
-            SharedPreferences.Editor editor = JuggerStonesApplication.sharedPreferences.edit();
-            editor.putBoolean(JuggerStonesApplication.PREFS.REVERSE.toString(), !JuggerStonesApplication.CounterPreference.isReverse());
-            editor.apply();
-            updateInfoView();
-            cleanStonesView();
+            valueHandler.toggleNormalModeWithReverse();
             return true;
         }
         return false;
@@ -322,12 +288,10 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     public void onColorSelected(int dialogId, int color) {
         switch (dialogId) {
             case 1:
-                textView_team1.setTextColor(color);
-                textView_team1_points.setTextColor(color);
+                valueHandler.setTeamColor(ColorStateList.valueOf(color), TEAM.TEAM1);
                 break;
             case 2:
-                textView_team2.setTextColor(color);
-                textView_team2_points.setTextColor(color);
+                valueHandler.setTeamColor(ColorStateList.valueOf(color), TEAM.TEAM2);
                 break;
         }
     }
@@ -337,36 +301,8 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         // do nothing
     }
 
-    private void flipTeams() {
-        CharSequence team1_title = textView_team1.getText();
-        ColorStateList team1_title_color = textView_team1.getTextColors();
-        long team1_points = textView_team1_points.getNumberAsLong();
-        ColorStateList team1_points_color = textView_team1_points.getTextColors();
-
-        textView_team1.setText(textView_team2.getText());
-        textView_team1.setTextColor(textView_team2.getTextColors());
-        textView_team1_points.setNumber(textView_team2_points.getNumberAsLong());
-        textView_team1_points.setTextColor(textView_team2_points.getTextColors());
-
-        textView_team2.setText(team1_title);
-        textView_team2.setTextColor(team1_title_color);
-        textView_team2_points.setNumber(team1_points);
-        textView_team2_points.setTextColor(team1_points_color);
-    }
-
-    private void resetTeams() {
-        textView_team1.setText(R.string.main_team1);
-        textView_team1.setTextColor(getResources().getColor(R.color.default_team1));
-        textView_team1_points.setNumber(0L);
-        textView_team1_points.setTextColor(getResources().getColor(R.color.default_team1));
-        textView_team2.setText(R.string.main_team2);
-        textView_team2.setTextColor(getResources().getColor(R.color.default_team2));
-        textView_team2_points.setNumber(0L);
-        textView_team2_points.setTextColor(getResources().getColor(R.color.default_team2));
-    }
-
-        if (isTimerRunning()) return;
     private void showSetStonesDialog() {
+        if (timerHandler.isRunning()) return;
         final int margin_dp = 25;
         final int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics());
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
@@ -393,13 +329,13 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 final String input = stonesEdit.getText().toString();
                 final long stones = !input.isEmpty() && !input.equals("-") ?
                         Long.parseLong(stonesEdit.getText().toString()) : JuggerStonesApplication.CounterPreference.getModeStart();
-                textView_stones.setNumber(cleanStones(stones));
+                valueHandler.setStones(stones);
             }
         });
         alertDialogBuilder.setNeutralButton(R.string.reset, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                initStonesView(JuggerStonesApplication.CounterPreference.getModeStart());
+                valueHandler.setStones(JuggerStonesApplication.CounterPreference.getModeStart());
             }
         });
 
@@ -411,46 +347,13 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     }
     //endregion
 
-    //region timer & CounterTaskCallback
-    protected void startTimer() {
-        button_playPause.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_pause_circle));
-        if (isTimerRunning()) return;
-        final long stones = cleanStones(textView_stones.getNumberAsLong());
-        final long mode = JuggerStonesApplication.CounterPreference.getMode();
-        final long interval = JuggerStonesApplication.CounterPreference.getInterval();
-        final long delay = JuggerStonesApplication.CounterPreference.isImmediateStart() ? 0 : interval;
-        final CounterTask counterTask = new CounterTask(this, stones, mode, JuggerStonesApplication.sound, this);
-        timer = new Timer();
-        timer.scheduleAtFixedRate(counterTask, delay, interval);
-    }
-
-    protected void pauseTimer() {
-        button_playPause.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_play_circle));
-        if (!isTimerRunning()) return;
-        timer.cancel();
-        timer = null;
-    }
-
-    protected void toggleTimer() {
-        if (!isTimerRunning()) startTimer();
-        else pauseTimer();
-    }
-
-    protected void stopTimer() {
-        pauseTimer();
-        initStonesView(JuggerStonesApplication.CounterPreference.getModeStart());
-    }
-
-    protected boolean isTimerRunning() {
-        return timer != null;
-    }
-
+    //region CounterTaskCallback
     @Override
     public void onStonesChanged(final long stones) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                textView_stones.setNumber(cleanStones(stones));
+                valueHandler.setStones(stones);
                 if (JuggerStonesApplication.CounterPreference.isInfinityMode() && stones > 0 && stones % JuggerStonesApplication.DEFAULT_INTERVAL == 0)
                     Toast.makeText(MainActivity.this, R.string.main_toast_infinity, Toast.LENGTH_LONG).show();
             }
@@ -463,7 +366,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    pauseTimer();
+                    timerHandler.pause();
                 }
             });
     }
@@ -491,22 +394,22 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 showChangeTeamColorsDialog(TEAM.TEAM2);
                 return true;
             case R.id.teams_changeOfEnds:
-                flipTeams();
+                valueHandler.flipTeams();
                 return true;
             case R.id.teams_reset:
-                resetTeams();
+                valueHandler.resetTeams();
                 return true;
             case R.id.editStones:
                 showSetStonesDialog();
                 return true;
             case R.id.action_settings:
-                pauseTimer();
+                timerHandler.pause();
                 intent = new Intent(this, MyPreferenceActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 Bundle bundle = new Bundle();
                 bundle.putLong(MyPreferenceActivity.KEY_COUNTER, textView_stones.getNumberAsLong());
-                bundle.putString(MyPreferenceActivity.KEY_TEAM1, textView_team1.getText().toString());
-                bundle.putString(MyPreferenceActivity.KEY_TEAM2, textView_team2.getText().toString());
+                bundle.putParcelable(MyPreferenceActivity.KEY_TEAM1, valueHandler.getTeam1());
+                bundle.putParcelable(MyPreferenceActivity.KEY_TEAM2, valueHandler.getTeam2());
                 intent.putExtras(bundle);
                 startActivityForResult(intent, 0);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -533,4 +436,180 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         }
     }
     //endregion
+
+    private class TimerHandler {
+        private Timer timer;
+
+        void start() {
+            button_playPause.setImageDrawable(AppCompatResources.getDrawable(MainActivity.this, R.drawable.ic_pause_circle));
+            if (isRunning()) return;
+            final long stones = valueHandler.getStones();
+            final long mode = JuggerStonesApplication.CounterPreference.getMode();
+            final long interval = JuggerStonesApplication.CounterPreference.getInterval();
+            final long delay = JuggerStonesApplication.CounterPreference.isImmediateStart() ? 0 : interval;
+            final CounterTask counterTask = new CounterTask(MainActivity.this, stones, mode, JuggerStonesApplication.sound, MainActivity.this);
+            timer = new Timer();
+            timer.scheduleAtFixedRate(counterTask, delay, interval);
+        }
+
+        void pause() {
+            button_playPause.setImageDrawable(AppCompatResources.getDrawable(MainActivity.this, R.drawable.ic_play_circle));
+            if (!isRunning()) return;
+            timer.cancel();
+            timer = null;
+        }
+
+        void toggle() {
+            if (!isRunning()) start();
+            else pause();
+        }
+
+        void stop() {
+            pause();
+            valueHandler.setStones(JuggerStonesApplication.CounterPreference.getModeStart());
+        }
+
+        boolean isRunning() {
+            return timer != null;
+        }
+    }
+
+    @SuppressWarnings("unused")
+    private class ValueHandler {
+        //region teams
+        void setTeam(Team team, TEAM teamNumber) {
+            if (teamNumber == null || teamNumber == TEAM.TEAM1) {
+                if (team.getName() != null) textView_team1.setText(team.getName());
+                if (team.getNameColor() != null) textView_team1.setTextColor(team.getNameColor());
+                if (team.getPoints() != null) textView_team1_points.setNumber(team.getPoints());
+                if (team.getPointsColor() != null) textView_team1_points.setTextColor(team.getPointsColor());
+            }
+            if (teamNumber == null || teamNumber == TEAM.TEAM2) {
+                if (team.getName() != null) textView_team2.setText(team.getName());
+                if (team.getNameColor() != null) textView_team2.setTextColor(team.getNameColor());
+                if (team.getPoints() != null) textView_team2_points.setNumber(team.getPoints());
+                if (team.getPointsColor() != null) textView_team2_points.setTextColor(team.getPointsColor());
+            }
+        }
+
+        void setTeams(Team team1, Team team2) {
+            if (team1 == null && team2 == null) resetTeams();
+            else {
+                setTeam(team1, TEAM.TEAM1);
+                setTeam(team2, TEAM.TEAM2);
+            }
+        }
+
+        void setTeamColor(ColorStateList color, TEAM team) {
+            if (team == null || team == TEAM.TEAM1) {
+                if (color != null) textView_team1.setTextColor(color);
+                if (color != null) textView_team1_points.setTextColor(color);
+            }
+            if (team == null || team == TEAM.TEAM2) {
+                if (color != null) textView_team2.setTextColor(color);
+                if (color != null) textView_team2_points.setTextColor(color);
+            }
+        }
+
+        void flipTeams() {
+            setTeams(getTeam2(), getTeam1());
+        }
+
+        void resetTeams() {
+            final ColorStateList colorTeam1 = ColorStateList.valueOf(getResources().getColor(R.color.default_team1));
+            final ColorStateList colorTeam2 = ColorStateList.valueOf(getResources().getColor(R.color.default_team2));
+            setTeams(new Team(getString(R.string.main_team1), colorTeam1, 0L, colorTeam1),
+                    new Team(getString(R.string.main_team2), colorTeam2, 0L, colorTeam2));
+        }
+
+        Team getTeam1() {
+            CharSequence name = textView_team1.getText();
+            ColorStateList name_color = textView_team1.getTextColors();
+            long points = textView_team1_points.getNumberAsLong();
+            ColorStateList points_color = textView_team1_points.getTextColors();
+            return new Team(name, name_color, points, points_color);
+        }
+
+        Team getTeam2() {
+            CharSequence name = textView_team2.getText();
+            ColorStateList name_color = textView_team2.getTextColors();
+            long points = textView_team2_points.getNumberAsLong();
+            ColorStateList points_color = textView_team2_points.getTextColors();
+            return new Team(name, name_color, points, points_color);
+        }
+        //endregion
+
+        //region stones
+        void setStones(long l) {
+            textView_stones.setNumber(cleanStones(l));
+        }
+
+        long getStones() {
+            return cleanStones(textView_stones.getNumberAsLong());
+        }
+
+        /**
+         * input mode
+         *
+         * @see #cleanStones(long)
+         */
+        void cleanStonesView() {
+            textView_stones.setNumber(cleanStones(textView_stones.getNumberAsLong()));
+        }
+
+        private long cleanStones(long l) {
+            if (l < JuggerStonesApplication.CounterPreference.getModeMin())
+                return JuggerStonesApplication.CounterPreference.getModeStart();
+            if (JuggerStonesApplication.CounterPreference.getModeMax() < l)
+                return (l %= 2 * JuggerStonesApplication.CounterPreference.getMode()) < JuggerStonesApplication.CounterPreference.getModeMax() ?
+                        l : l % JuggerStonesApplication.CounterPreference.getMode();
+            if (JuggerStonesApplication.CounterPreference.isReverse() && l == 0)
+                return JuggerStonesApplication.CounterPreference.getMode();
+            return l;
+        }
+        //endregion
+
+        //region mode
+        void setModeToNormal() {
+            setModeToNormal(false);
+        }
+
+        void setModeToNormal(@SuppressWarnings("SameParameterValue") boolean ignoreReverse) {
+            if (JuggerStonesApplication.CounterPreference.isNormalMode() ||
+                    ignoreReverse && JuggerStonesApplication.CounterPreference.isNormalModeIgnoringReverse()) return;
+            if (JuggerStonesApplication.CounterPreference.isInfinityMode()) toggleNormalModeWithInfinity();
+            toggleNormalModeWithReverse();
+        }
+
+        void setModeToReverse() {
+            if (JuggerStonesApplication.CounterPreference.isReverse()) return;
+            if (JuggerStonesApplication.CounterPreference.isInfinityMode()) toggleNormalModeWithInfinity();
+            toggleNormalModeWithReverse();
+        }
+
+        void setModeToInfinity() {
+            if (JuggerStonesApplication.CounterPreference.isInfinityMode()) return;
+            toggleNormalModeWithInfinity();
+        }
+
+        void toggleNormalModeWithInfinity() {
+            SharedPreferences.Editor editor = JuggerStonesApplication.sharedPreferences.edit();
+            editor.putString(JuggerStonesApplication.PREFS.MODE.toString(), String.valueOf(JuggerStonesApplication.CounterPreference.getPreviousMode()));
+            editor.putString(JuggerStonesApplication.PREFS.MODE_PREVIOUS.toString(), String.valueOf(JuggerStonesApplication.CounterPreference.getMode()));
+            applyModeEditor(editor);
+        }
+
+        void toggleNormalModeWithReverse() {
+            SharedPreferences.Editor editor = JuggerStonesApplication.sharedPreferences.edit();
+            editor.putBoolean(JuggerStonesApplication.PREFS.REVERSE.toString(), !JuggerStonesApplication.CounterPreference.isReverse());
+            applyModeEditor(editor);
+        }
+
+        private void applyModeEditor(SharedPreferences.Editor editor) {
+            editor.apply();
+            updateInfoView();
+            valueHandler.cleanStonesView();
+        }
+        //endregion
+    }
 }
