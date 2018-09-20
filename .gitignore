@@ -1,13 +1,9 @@
-# Android - rala v160423
-# ignore all modul *.iml | because of regular auto updates
-/app/app.iml
-
-
+# Android - rala v180920
 # Built application files
 *.apk
 *.ap_
 
-# Files for the Dalvik VM
+# Files for the ART/Dalvik VM
 *.dex
 
 # Java class files
@@ -16,6 +12,8 @@
 # Generated files
 bin/
 gen/
+out/
+output.json
 
 # Gradle files
 .gradle/
@@ -30,17 +28,23 @@ proguard/
 # Log Files
 *.log
 
-# Eclipse
-.classpath
-lint.xml
-project.properties
+# Android Studio Navigation editor temp files
+.navigation/
 
-# Android Studio
-.gradle
-/local.properties
-/.idea
-#/.idea/workspace.xml
-#/.idea/libraries
-.DS_Store
-/build
-/captures
+# Android Studio captures folder
+captures/
+
+# IntelliJ
+#*.iml
+app.iml
+.idea
+
+# Keystore files
+# Uncomment the following line if you do not want to check your keystore files in.
+#*.jks
+
+# External native build folder generated in Android Studio 2.2 and later
+.externalNativeBuild
+
+# Google Services (e.g. APIs or Firebase)
+google-services.json
