@@ -1,4 +1,4 @@
-# Android - rala v180920
+# Android - rala v180921
 # Built application files
 *.apk
 *.ap_
@@ -37,6 +37,7 @@ captures/
 # IntelliJ
 #*.iml
 app.iml
+googleplaylicensing.iml
 .idea
 
 # Keystore files
