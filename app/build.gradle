@@ -42,9 +42,9 @@ dependencies {
     ext.supportLibsVersion = "27.1.+"
     implementation "com.android.support:appcompat-v7:$supportLibsVersion"
     implementation "com.android.support:support-v4:$supportLibsVersion"
-    implementation "com.android.support:preference-v7:$supportLibsVersion"
+    implementation "com.takisoft.fix:preference-v7:$supportLibsVersion"
 
-    // implementation 'net.xpece.android:support-preference:2.2.+'
+    implementation 'net.xpece.android:support-preference:2.3.+'
 
     // design
     implementation 'com.jakewharton:butterknife:8.8.+'

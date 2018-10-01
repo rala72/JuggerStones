@@ -1,12 +1,12 @@
 package io.rala.jugger.activity;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.AppCompatImageButton;
@@ -89,9 +89,9 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     private void applyBundle(Intent intent) {
         if (intent == null) intent = getIntent();
         final Bundle extras = intent.getExtras();
-        final long stones = extras != null ? extras.getLong(MyPreferenceActivity.KEY_COUNTER, JuggerStonesApplication.CounterPreference.getModeStart()) : JuggerStonesApplication.CounterPreference.getModeStart();
-        final Team team1 = extras != null ? (Team) extras.getParcelable(MyPreferenceActivity.KEY_TEAM1) : null;
-        final Team team2 = extras != null ? (Team) extras.getParcelable(MyPreferenceActivity.KEY_TEAM2) : null;
+        final long stones = extras != null ? extras.getLong(MyPreferenceFragment.KEY_COUNTER, JuggerStonesApplication.CounterPreference.getModeStart()) : JuggerStonesApplication.CounterPreference.getModeStart();
+        final Team team1 = extras != null ? (Team) extras.getParcelable(MyPreferenceFragment.KEY_TEAM1) : null;
+        final Team team2 = extras != null ? (Team) extras.getParcelable(MyPreferenceFragment.KEY_TEAM2) : null;
         valueHandler.setStones(stones);
         valueHandler.setTeams(team1, team2);
         updateInfoView();
@@ -415,9 +415,9 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 intent = new Intent(this, MyPreferenceActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 Bundle bundle = new Bundle();
-                bundle.putLong(MyPreferenceActivity.KEY_COUNTER, textView_stones.getNumberAsLong());
-                bundle.putParcelable(MyPreferenceActivity.KEY_TEAM1, valueHandler.getTeam1());
-                bundle.putParcelable(MyPreferenceActivity.KEY_TEAM2, valueHandler.getTeam2());
+                bundle.putLong(MyPreferenceFragment.KEY_COUNTER, textView_stones.getNumberAsLong());
+                bundle.putParcelable(MyPreferenceFragment.KEY_TEAM1, valueHandler.getTeam1());
+                bundle.putParcelable(MyPreferenceFragment.KEY_TEAM2, valueHandler.getTeam2());
                 intent.putExtras(bundle);
                 startActivityForResult(intent, 0);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
