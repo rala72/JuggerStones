@@ -6,14 +6,16 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
 import android.util.Log;
 
+import io.rala.jugger.JuggerStonesApplication;
+
 @SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 public class Sound {
-    private String stone;
-    private String gong;
+    private final String stone;
+    private final String gong;
 
     public Sound(String stoneSound, String gongSound) {
-        this.stone = stoneSound;
-        this.gong = gongSound;
+        this.stone = stoneSound != null ? stoneSound : JuggerStonesApplication.DEFAULT_STONE;
+        this.gong = gongSound != null ? gongSound : JuggerStonesApplication.DEFAULT_GONG;
     }
 
     public boolean playStone(Context context) {

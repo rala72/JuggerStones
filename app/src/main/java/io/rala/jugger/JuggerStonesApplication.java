@@ -29,6 +29,8 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
 
     public static final long DEFAULT_MODE = 100;
     public static final long DEFAULT_INTERVAL = 1500;
+    public static final String DEFAULT_STONE = "stone";
+    public static final String DEFAULT_GONG = "gong";
 
     public enum PREFS { // see also preference.xml // some of them are only for findPreference
         MODE("mode"), MODE_PREVIOUS("mode_previous"), MODE_CUSTOM("mode_custom"), INTERVAL("interval"), INTERVAL_CUSTOM("interval_custom"),
@@ -86,9 +88,9 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
     @SuppressWarnings("SameParameterValue")
     public static void updateSound(String soundStone, String soundGong) {
         if (soundStone == null)
-            soundStone = sharedPreferences.getString(JuggerStonesApplication.PREFS.SOUND_STONE.toString(), "stone");
+            soundStone = sharedPreferences.getString(JuggerStonesApplication.PREFS.SOUND_STONE.toString(), DEFAULT_STONE);
         if (soundGong == null)
-            soundGong = sharedPreferences.getString(JuggerStonesApplication.PREFS.SOUND_GONG.toString(), "gong");
+            soundGong = sharedPreferences.getString(JuggerStonesApplication.PREFS.SOUND_GONG.toString(), DEFAULT_GONG);
         sound = new Sound(soundStone, soundGong);
     }
 
