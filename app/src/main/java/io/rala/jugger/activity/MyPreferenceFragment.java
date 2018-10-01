@@ -96,12 +96,18 @@ public class MyPreferenceFragment extends XpPreferenceFragment implements Shared
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(JuggerStonesApplication.PREFS.SOUND_STONE.toString())) updateSoundStoneCountdown();
         validatePreferences(key);
         updatePreferencesEnabled(key);
         updateSumTexts(key);
     }
 
     //region updatePrefs
+    private void updateSoundStoneCountdown() {
+        final String value = ((SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_STONE.toString())).getValue();
+        ((SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_STONE_COUNTDOWN.toString())).setValue(value);
+    }
+
     private void validatePreferences(String key) {
         if (key.equals(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString())) {
             long min = 1;
@@ -168,6 +174,10 @@ public class MyPreferenceFragment extends XpPreferenceFragment implements Shared
         if (key == null || key.equals(JuggerStonesApplication.PREFS.SOUND_STONE.toString())) {
             SoundPreferenceList sound = (SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_STONE.toString());
             sound.setSummary(sound.getEntry());
+        }
+        if (key == null || key.equals(JuggerStonesApplication.PREFS.SOUND_STONE.toString()) || key.equals(JuggerStonesApplication.PREFS.SOUND_STONE_COUNTDOWN.toString())) {
+            SoundPreferenceList sound_countdown = (SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_STONE_COUNTDOWN.toString());
+            sound_countdown.setSummary(sound_countdown.getEntry());
         }
         if (key == null || key.equals(JuggerStonesApplication.PREFS.SOUND_GONG.toString())) {
             SoundPreferenceList gong = (SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_GONG.toString());

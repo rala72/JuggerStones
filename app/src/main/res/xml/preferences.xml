@@ -49,6 +49,12 @@
             android:key="sound_stone"
             android:title="@string/pref_sounds_stones" />
         <io.rala.jugger.view.SoundPreferenceList
+            android:defaultValue="stone"
+            android:entries="@array/array_sounds_stone"
+            android:entryValues="@array/array_sounds_stone_values"
+            android:key="sound_stone_countdown"
+            android:title="@string/pref_sounds_stones_countdown" />
+        <io.rala.jugger.view.SoundPreferenceList
             android:defaultValue="gong"
             android:entries="@array/array_sounds_gong"
             android:entryValues="@array/array_sounds_gong_values"

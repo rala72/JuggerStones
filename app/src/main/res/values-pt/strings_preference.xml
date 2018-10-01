@@ -19,6 +19,7 @@
     <!-- settings: sounds -->
     <string name="pref_category_sound">Sons</string>
     <string name="pref_sounds_stones">Pedras</string>
+    <string name="pref_sounds_stones_countdown">Últimos 10 pedras</string>
     <string name="pref_stone">Pedra</string>
     <string name="pref_achievement">Realização</string>
     <string name="pref_big_drum">Bumbo</string>

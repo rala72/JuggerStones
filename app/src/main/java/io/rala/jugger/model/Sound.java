@@ -11,15 +11,25 @@ import io.rala.jugger.JuggerStonesApplication;
 @SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 public class Sound {
     private final String stone;
+    private final String stoneCountdown;
     private final String gong;
 
-    public Sound(String stoneSound, String gongSound) {
-        this.stone = stoneSound != null ? stoneSound : JuggerStonesApplication.DEFAULT_STONE;
-        this.gong = gongSound != null ? gongSound : JuggerStonesApplication.DEFAULT_GONG;
+    public Sound(String stone, String gong) {
+        this(stone, null, gong);
+    }
+
+    public Sound(String stone, String stoneCountdown, String gong) {
+        this.stone = stone != null ? stone : JuggerStonesApplication.DEFAULT_STONE;
+        this.stoneCountdown = stoneCountdown != null ? stoneCountdown : this.stone;
+        this.gong = gong != null ? gong : JuggerStonesApplication.DEFAULT_GONG;
     }
 
     public boolean playStone(Context context) {
         return play(context, stone);
+    }
+
+    public boolean playStoneCountdown(Context context) {
+        return play(context, stoneCountdown);
     }
 
     public boolean playGong(Context context) {

@@ -19,6 +19,7 @@
     <!-- settings: sounds -->
     <string name="pref_category_sound">Sons</string>
     <string name="pref_sounds_stones">Des pierres</string>
+    <string name="pref_sounds_stones_countdown">Les 10 dernières pierres</string>
     <string name="pref_stone">Pierre</string>
     <string name="pref_achievement">Réalisation</string>
     <string name="pref_big_drum">Bass drum</string>

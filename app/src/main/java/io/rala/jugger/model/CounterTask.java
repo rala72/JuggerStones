@@ -34,7 +34,10 @@ public class CounterTask extends TimerTask {
             if (JuggerStonesApplication.CounterPreference.isReverse()) stones = JuggerStonesApplication.CounterPreference.getMode();
             sound.playGong(context);
             callback.onGongPlayed(stones);
-        } else sound.playStone(context);
+        } else {
+            if (Math.abs(mode - stones) < 10) sound.playStoneCountdown(context);
+            else sound.playStone(context);
+        }
     }
 
     public interface CounterTaskCallback {

@@ -50,7 +50,7 @@ public class SoundPreferenceList extends ListPreference {
                 public void onClick(DialogInterface dialog, int which) {
                     clickedEntryIndex = which;
                     String value = preference.getEntryValues()[which].toString();
-                    if (key.equals(JuggerStonesApplication.PREFS.SOUND_STONE.toString()))
+                    if (key.startsWith(JuggerStonesApplication.PREFS.SOUND_STONE.toString()))
                         new Sound(value, null).playStone(getContext());
                     else if (key.equals(JuggerStonesApplication.PREFS.SOUND_GONG.toString()))
                         new Sound(null, value).playGong(getContext());

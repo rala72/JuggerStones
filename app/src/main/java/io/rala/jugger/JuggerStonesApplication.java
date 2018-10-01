@@ -36,7 +36,7 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
         MODE("mode"), MODE_PREVIOUS("mode_previous"), MODE_CUSTOM("mode_custom"), INTERVAL("interval"), INTERVAL_CUSTOM("interval_custom"),
         REVERSE("reverse"), IMMEDIATE_START("immediateStart"),
         STOP_AFTER_POINT("stop_after_point"), STOP_AFTER_GONG("stop_after_gong"),
-        SOUND_STONE("sound_stone"), SOUND_GONG("sound_gong"),
+        SOUND_STONE("sound_stone"), SOUND_STONE_COUNTDOWN("sound_stone_countdown"), SOUND_GONG("sound_gong"),
         KEEP_DISPLAY_AWAKE("keep_display_awake"), LANGUAGE("language"),
         EMAIL("email"), VERSION("version");
 
@@ -82,16 +82,18 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
 
     //region sound & volume
     public static void updateSound() {
-        updateSound(null, null);
+        updateSound(null, null, null);
     }
 
     @SuppressWarnings("SameParameterValue")
-    public static void updateSound(String soundStone, String soundGong) {
-        if (soundStone == null)
-            soundStone = sharedPreferences.getString(JuggerStonesApplication.PREFS.SOUND_STONE.toString(), DEFAULT_STONE);
-        if (soundGong == null)
-            soundGong = sharedPreferences.getString(JuggerStonesApplication.PREFS.SOUND_GONG.toString(), DEFAULT_GONG);
-        sound = new Sound(soundStone, soundGong);
+    public static void updateSound(String stone, String stoneCountdown, String gong) {
+        if (stone == null)
+            stone = sharedPreferences.getString(JuggerStonesApplication.PREFS.SOUND_STONE.toString(), DEFAULT_STONE);
+        if (stoneCountdown == null)
+            stoneCountdown = sharedPreferences.getString(PREFS.SOUND_STONE_COUNTDOWN.toString(), stone);
+        if (gong == null)
+            gong = sharedPreferences.getString(JuggerStonesApplication.PREFS.SOUND_GONG.toString(), DEFAULT_GONG);
+        sound = new Sound(stone, stoneCountdown, gong);
     }
 
     public static void increaseMusicVolume() {
@@ -170,7 +172,7 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
     //region preferences
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(PREFS.SOUND_STONE.toString()) || key.equals(PREFS.SOUND_GONG.toString()))
+        if (key.startsWith(PREFS.SOUND_STONE.toString()) || key.equals(PREFS.SOUND_GONG.toString()))
             updateSound();
     }
 

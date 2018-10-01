@@ -19,6 +19,7 @@
     <!-- settings: sounds -->
     <string name="pref_category_sound">Klänge</string>
     <string name="pref_sounds_stones">Steine</string>
+    <string name="pref_sounds_stones_countdown">Letzten 10 Steine</string>
     <string name="pref_stone">Stein</string>
     <string name="pref_achievement">Errungenschaft</string>
     <string name="pref_big_drum">Große Trommel</string>
