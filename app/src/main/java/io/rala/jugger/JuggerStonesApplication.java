@@ -9,7 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.preference.PreferenceManager;
+import android.support.v7.preference.PreferenceManager;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
