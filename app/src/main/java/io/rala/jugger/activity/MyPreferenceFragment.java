@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.preference.Preference;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.view.View;
 
 import net.xpece.android.support.preference.EditTextPreference;
@@ -54,9 +55,15 @@ public class MyPreferenceFragment extends XpPreferenceFragment implements Shared
 
     private void setFilter() {
         EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
-        mode_custom.createEditText(getActivity()).setFilters(new InputFilter[]{new InputFilterMinMaxInteger(1)});
+        mode_custom.setOnEditTextCreatedListener(editText -> {
+            editText.setFilters(new InputFilter[]{new InputFilterMinMaxInteger(1)});
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+        });
         EditTextPreference interval_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
-        interval_custom.createEditText(getActivity()).setFilters(new InputFilter[]{new InputFilterMinMaxDecimal(1)});
+        interval_custom.setOnEditTextCreatedListener(editText -> {
+            editText.setFilters(new InputFilter[]{new InputFilterMinMaxDecimal(1)});
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        });
     }
 
     private void setListener() {
