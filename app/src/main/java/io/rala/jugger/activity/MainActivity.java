@@ -1,7 +1,6 @@
 package io.rala.jugger.activity;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -253,21 +252,15 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         linearLayout.addView(editText_name2);
         alertDialogBuilder.setView(linearLayout);
 
-        alertDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                String name1 = editText_name1.getText().toString().trim();
-                String name2 = editText_name2.getText().toString().trim();
-                if (!name1.isEmpty()) textView_team1.setText(name1);
-                if (!name2.isEmpty()) textView_team2.setText(name2);
-            }
+        alertDialogBuilder.setPositiveButton(android.R.string.ok, (dialog, whichButton) -> {
+            String name1 = editText_name1.getText().toString().trim();
+            String name2 = editText_name2.getText().toString().trim();
+            if (!name1.isEmpty()) textView_team1.setText(name1);
+            if (!name2.isEmpty()) textView_team2.setText(name2);
         });
-        alertDialogBuilder.setNeutralButton(R.string.reset, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                textView_team1.setText(R.string.main_team1);
-                textView_team2.setText(R.string.main_team2);
-            }
+        alertDialogBuilder.setNeutralButton(R.string.reset, (dialog, which) -> {
+            textView_team1.setText(R.string.main_team1);
+            textView_team2.setText(R.string.main_team2);
         });
         alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
         Dialog dialog = alertDialogBuilder.create();
@@ -328,21 +321,13 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         linearLayout.addView(stonesEdit);
         alertDialogBuilder.setView(linearLayout);
 
-        alertDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                final String input = stonesEdit.getText().toString();
-                final long stones = !input.isEmpty() && !input.equals("-") ?
-                        Long.parseLong(stonesEdit.getText().toString()) : JuggerStonesApplication.CounterPreference.getModeStart();
-                valueHandler.setStones(stones);
-            }
+        alertDialogBuilder.setPositiveButton(android.R.string.ok, (dialog, whichButton) -> {
+            final String input = stonesEdit.getText().toString();
+            final long stones = !input.isEmpty() && !input.equals("-") ?
+                    Long.parseLong(stonesEdit.getText().toString()) : JuggerStonesApplication.CounterPreference.getModeStart();
+            valueHandler.setStones(stones);
         });
-        alertDialogBuilder.setNeutralButton(R.string.reset, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                valueHandler.resetStones();
-            }
-        });
+        alertDialogBuilder.setNeutralButton(R.string.reset, (dialog, which) -> valueHandler.resetStones());
 
         alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
         Dialog dialog = alertDialogBuilder.create();
@@ -355,25 +340,17 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     //region CounterTaskCallback
     @Override
     public void onStonesChanged(final long stones) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                valueHandler.setStones(stones);
-                if (JuggerStonesApplication.CounterPreference.isInfinityMode() && stones > 0 && stones % JuggerStonesApplication.DEFAULT_INTERVAL == 0)
-                    Toast.makeText(MainActivity.this, R.string.main_toast_infinity, Toast.LENGTH_LONG).show();
-            }
+        runOnUiThread(() -> {
+            valueHandler.setStones(stones);
+            if (JuggerStonesApplication.CounterPreference.isInfinityMode() && stones > 0 && stones % JuggerStonesApplication.DEFAULT_INTERVAL == 0)
+                Toast.makeText(MainActivity.this, R.string.main_toast_infinity, Toast.LENGTH_LONG).show();
         });
     }
 
     @Override
     public void onGongPlayed(final long stones) {
         if (JuggerStonesApplication.CounterPreference.isStopAfterGong())
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    timerHandler.pause();
-                }
-            });
+            runOnUiThread(timerHandler::pause);
     }
     //endregion
 

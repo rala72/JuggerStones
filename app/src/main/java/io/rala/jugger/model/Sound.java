@@ -2,7 +2,6 @@ package io.rala.jugger.model;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
 import android.util.Log;
 
@@ -44,12 +43,7 @@ public class Sound {
             return false;
         }
         mediaPlayer.start();
-        mediaPlayer.setOnCompletionListener(new OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                mp.release();
-            }
-        });
+        mediaPlayer.setOnCompletionListener(MediaPlayer::release);
         return true;
     }
 }

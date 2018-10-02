@@ -63,34 +63,26 @@ public class MyPreferenceFragment extends XpPreferenceFragment implements Shared
         final ListPreference pref_language = (ListPreference) findPreference(JuggerStonesApplication.PREFS.LANGUAGE.toString());
         pref_language.setDefaultValue(LocaleUtils.DEFAULT_LOCALE.getLanguage());
         pref_language.setValue(LocaleUtils.getLocale().getLanguage());
-        pref_language.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                ((MyPreferenceActivity) getActivity()).changeLanguage(newValue.toString());
-                return true;
-            }
+        pref_language.setOnPreferenceChangeListener((preference, newValue) -> {
+            ((MyPreferenceActivity) getActivity()).changeLanguage(newValue.toString());
+            return true;
         });
 
         final Preference pref_email = findPreference(JuggerStonesApplication.PREFS.EMAIL.toString());
-        pref_email.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                JuggerStonesApplication.sendEmail(getActivity());
-                return true;
-            }
+        pref_email.setOnPreferenceClickListener(preference -> {
+            JuggerStonesApplication.sendEmail(getActivity());
+            return true;
         });
         final Preference pref_version = findPreference(JuggerStonesApplication.PREFS.VERSION.toString());
         pref_version.setTitle(getString(R.string.pref_version, JuggerStonesApplication.getVersion(getActivity())));
-        pref_version.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                final String appPackageName = getActivity().getPackageName();
-                try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-                } catch (android.content.ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
-                }
-                return true;
+        pref_version.setOnPreferenceClickListener(preference -> {
+            final String appPackageName = getActivity().getPackageName();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
             }
+            return true;
         });
     }
 

@@ -1,7 +1,6 @@
 package io.rala.jugger.view;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.ListPreference;
@@ -45,23 +44,17 @@ public class SoundPreferenceList extends ListPreference {
         protected void onPrepareDialogBuilder(AlertDialog.Builder builder) {
             // super.onPrepareDialogBuilder(builder);
             final String key = getArguments() != null ? getArguments().getString(ARG_KEY) : null;
-            builder.setSingleChoiceItems(preference.getEntries(), clickedEntryIndex, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    clickedEntryIndex = which;
-                    String value = preference.getEntryValues()[which].toString();
-                    if (key.startsWith(JuggerStonesApplication.PREFS.SOUND_STONE.toString()))
-                        new Sound(value, null).playStone(getContext());
-                    else if (key.equals(JuggerStonesApplication.PREFS.SOUND_GONG.toString()))
-                        new Sound(null, value).playGong(getContext());
-                }
+            builder.setSingleChoiceItems(preference.getEntries(), clickedEntryIndex, (dialog, which) -> {
+                clickedEntryIndex = which;
+                String value = preference.getEntryValues()[which].toString();
+                if (key.startsWith(JuggerStonesApplication.PREFS.SOUND_STONE.toString()))
+                    new Sound(value, null).playStone(getContext());
+                else if (key.equals(JuggerStonesApplication.PREFS.SOUND_GONG.toString()))
+                    new Sound(null, value).playGong(getContext());
             });
-            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    preference.setValue(preference.getEntryValues()[clickedEntryIndex].toString());
-                    dialog.dismiss();
-                }
+            builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                preference.setValue(preference.getEntryValues()[clickedEntryIndex].toString());
+                dialog.dismiss();
             });
         }
     }
