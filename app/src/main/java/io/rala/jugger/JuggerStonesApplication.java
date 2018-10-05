@@ -198,6 +198,16 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
             return isInfinityMode() || isNormalMode() ? 0 : getMode();
         }
 
+        public static boolean isStoneCountdown(long stones) {
+            return isStoneCountdown(stones, 10);
+        }
+
+        public static boolean isStoneCountdown(long stones, long limit) {
+            return !isInfinityMode()
+                    && (isNormalMode() && limit > getMode() - stones
+                    || isReverse() && limit > stones);
+        }
+
         /**
          * toggles between infinity and other mode
          */
