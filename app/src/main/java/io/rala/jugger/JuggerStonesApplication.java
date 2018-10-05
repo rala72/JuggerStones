@@ -315,7 +315,7 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
             return isStoneCountdown(stones, 10);
         }
 
-        public static boolean isStoneCountdown(long stones, long limit) {
+        public static boolean isStoneCountdown(long stones, long limit) { // TODO: make preference for 'limit' parameter
             return !isInfinityMode()
                     && (isNormalMode() && limit > getMode() - stones
                     || isReverse() && limit > stones);
