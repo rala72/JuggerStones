@@ -178,6 +178,12 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
 
     @SuppressWarnings({"WeakerAccess", "unused"})
     public static class CounterPreference {
+        /**
+         * @return current mode number
+         * @see #getModeMax()
+         * @see #getModeMin()
+         * @see #getModeStart()
+         */
         public static long getMode() {
             long mode = Long.parseLong(sharedPreferences.getString(PREFS.MODE.toString(), String.valueOf(DEFAULT_MODE)));
             if (mode == 0)
@@ -185,31 +191,42 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
             return mode;
         }
 
+        /**
+         * @return current mode min number
+         * @see #getMode()
+         * @see #getModeMax()
+         * @see #getModeStart()
+         */
         public static long getModeMin() {
             return isInfinityMode() || isReverse() ? 0 : -getMode() + 1;
         }
 
+        /**
+         * @return current mode min number
+         * @see #getMode()
+         * @see #getModeMin()
+         * @see #getModeStart()
+         */
         public static long getModeMax() {
             return isInfinityMode() ? Long.MAX_VALUE :
                     isReverse() ? getMode() * 2 - 1 : getMode() - 1;
         }
 
+        /**
+         * @return current mode start number <i>(for stop)</i>
+         * @see #getMode()
+         * @see #getModeMax()
+         * @see #getModeMin()
+         */
         public static long getModeStart() {
             return isInfinityMode() || isNormalMode() ? 0 : getMode();
         }
 
-        public static boolean isStoneCountdown(long stones) {
-            return isStoneCountdown(stones, 10);
-        }
-
-        public static boolean isStoneCountdown(long stones, long limit) {
-            return !isInfinityMode()
-                    && (isNormalMode() && limit > getMode() - stones
-                    || isReverse() && limit > stones);
-        }
-
         /**
          * toggles between infinity and other mode
+         *
+         * @return toggled mode number
+         * @see #getMode()
          */
         public static long getPreviousMode() {
             long previous = Long.parseLong(sharedPreferences.getString(PREFS.MODE_PREVIOUS.toString(), String.valueOf(DEFAULT_MODE)));
@@ -217,6 +234,17 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
                 if (isInfinityMode()) previous = DEFAULT_MODE;
                 else previous = -1;
             return previous;
+        }
+
+        /**
+         * @return interval between two stones
+         */
+        public static long getInterval() {
+            long interval = Long.parseLong(sharedPreferences.getString(PREFS.INTERVAL.toString(), String.valueOf(DEFAULT_INTERVAL)));
+            if (interval == 0)
+                interval = new BigDecimal(sharedPreferences.getString(PREFS.INTERVAL_CUSTOM.toString(), String.valueOf(DEFAULT_INTERVAL)))
+                        .multiply(BigDecimal.valueOf(1000)).longValue();
+            return interval <= 0 ? 1 : interval; // just to make sure
         }
 
         /**
@@ -252,24 +280,15 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
         /**
          * @see #isNormalMode()
          * @see #isNormalModeIgnoringReverse()
-         * @see #isNormalMode(boolean)
          * @see #isReverse()
          */
         public static boolean isInfinityMode() {
             return getMode() == -1;
         }
 
-        public static long getInterval() {
-            long interval = Long.parseLong(sharedPreferences.getString(PREFS.INTERVAL.toString(), String.valueOf(DEFAULT_INTERVAL)));
-            if (interval == 0)
-                interval = new BigDecimal(sharedPreferences.getString(PREFS.INTERVAL_CUSTOM.toString(), String.valueOf(DEFAULT_INTERVAL)))
-                        .multiply(BigDecimal.valueOf(1000)).longValue();
-            return interval <= 0 ? 1 : interval; // just to make sure
-        }
-
         /**
          * @see #isNormalMode()
-         * @see #isNormalMode(boolean)
+         * @see #isNormalModeIgnoringReverse()
          * @see #isInfinityMode()
          */
         public static boolean isReverse() {
@@ -290,6 +309,16 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
 
         public static boolean isKeepDisplayAwake() {
             return sharedPreferences.getBoolean(PREFS.KEEP_DISPLAY_AWAKE.toString(), false);
+        }
+
+        public static boolean isStoneCountdown(long stones) {
+            return isStoneCountdown(stones, 10);
+        }
+
+        public static boolean isStoneCountdown(long stones, long limit) {
+            return !isInfinityMode()
+                    && (isNormalMode() && limit > getMode() - stones
+                    || isReverse() && limit > stones);
         }
     }
     //endregion
