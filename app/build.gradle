@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "io.rala.jugger" // "contador.piedras.jugger"
@@ -40,6 +39,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.+'
 
     // TO DO [onHold]: material dialogs (support lib version mismatch) // https://github.com/afollestad/material-dialogs
-    implementation 'com.jaredrummler:colorpicker:1.0.+'
     // https://github.com/jaredrummler/ColorPicker
+    implementation 'com.jaredrummler:colorpicker:1.0.2' // don't upgrade
+    // even ':colorpicker-compat:1.0.5' uses androidx
 }
