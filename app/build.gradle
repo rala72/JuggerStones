@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "io.rala.jugger" // "contador.piedras.jugger"
         minSdkVersion 19
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1070021
         versionName "1.7.0"
         vectorDrawables.useSupportLibrary = true
@@ -27,19 +27,18 @@ android {
 
 dependencies {
     // google
-    ext.supportLibsVersion = "27.1.+"
-    implementation "com.android.support:appcompat-v7:$supportLibsVersion"
-    implementation "com.android.support:support-v4:$supportLibsVersion"
-    implementation "com.takisoft.fix:preference-v7:$supportLibsVersion"
+    ext.supportLibsVersion = '1.0.+'
+    implementation "androidx.appcompat:appcompat:$supportLibsVersion"
+    implementation "androidx.legacy:legacy-support-v4:$supportLibsVersion"
 
+    // implementation "com.takisoft.preferencex:preferencex:$supportLibsVersion"
     implementation 'net.xpece.android:support-preference:2.3.+'
 
     // design
-    implementation 'com.jakewharton:butterknife:8.8.+'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.+'
+    implementation 'com.jakewharton:butterknife:10.0.+'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.+'
 
     // TO DO [onHold]: material dialogs (support lib version mismatch) // https://github.com/afollestad/material-dialogs
     // https://github.com/jaredrummler/ColorPicker
-    implementation 'com.jaredrummler:colorpicker:1.0.2' // don't upgrade
-    // even ':colorpicker-compat:1.0.5' uses androidx
+    implementation 'com.jaredrummler:colorpicker:1.0.5'
 }

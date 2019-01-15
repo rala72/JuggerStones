@@ -26,7 +26,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="1">
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView_team1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                 android:layout_centerHorizontal="true"
                 android:rowCount="1">
 
-                <android.support.v7.widget.AppCompatImageButton
+                <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/button_team1_decrease"
                     android:layout_width="@dimen/button_increaseDecrease_size"
                     android:layout_height="@dimen/button_increaseDecrease_size"
@@ -80,7 +80,7 @@
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/ic_minus" />
 
-                <android.support.v7.widget.AppCompatImageButton
+                <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/button_team1_increase"
                     android:layout_width="@dimen/button_increaseDecrease_size"
                     android:layout_height="@dimen/button_increaseDecrease_size"
@@ -100,7 +100,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="1">
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView_team2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -143,7 +143,7 @@
                 android:layout_centerHorizontal="true"
                 android:rowCount="1">
 
-                <android.support.v7.widget.AppCompatImageButton
+                <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/button_team2_decrease"
                     android:layout_width="@dimen/button_increaseDecrease_size"
                     android:layout_height="@dimen/button_increaseDecrease_size"
@@ -154,7 +154,7 @@
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/ic_minus" />
 
-                <android.support.v7.widget.AppCompatImageButton
+                <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/button_team2_increase"
                     android:layout_width="@dimen/button_increaseDecrease_size"
                     android:layout_height="@dimen/button_increaseDecrease_size"
@@ -176,7 +176,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
 
-        <android.support.v7.widget.AppCompatImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/button_stones_decrease"
             android:layout_width="@dimen/button_increaseDecrease_size"
             android:layout_height="@dimen/button_increaseDecrease_size"
@@ -208,7 +208,7 @@
             android:textSize="@dimen/textSize_stones"
             app:autoSizeTextType="uniform" />
 
-        <android.support.v7.widget.AppCompatImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/button_stones_increase"
             android:layout_width="@dimen/button_increaseDecrease_size"
             android:layout_height="@dimen/button_increaseDecrease_size"
@@ -230,7 +230,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true">
 
-        <android.support.v7.widget.AppCompatImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/button_playPause"
             android:layout_width="@dimen/button_playStop_size"
             android:layout_height="@dimen/button_playStop_size"
@@ -251,7 +251,7 @@
             app:srcCompat="@drawable/ic_infinity"
             tools:ignore="ContentDescription" />
 
-        <android.support.v7.widget.AppCompatImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/button_stop"
             android:layout_width="@dimen/button_playStop_size"
             android:layout_height="@dimen/button_playStop_size"

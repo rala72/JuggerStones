@@ -9,13 +9,13 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.support.v7.preference.PreferenceManager;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import androidx.preference.PreferenceManager;
 import io.rala.jugger.model.HistoryEntry;
 import io.rala.jugger.model.Sound;
 

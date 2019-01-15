@@ -2,11 +2,12 @@ package io.rala.jugger.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+
+import androidx.appcompat.widget.AppCompatTextView;
 
 /**
  * this class simplifies the number handling with a {@link AppCompatTextView}

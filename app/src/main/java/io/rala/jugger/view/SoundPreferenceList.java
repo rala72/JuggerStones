@@ -2,12 +2,12 @@ package io.rala.jugger.view;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.preference.ListPreference;
-import android.support.v7.preference.ListPreferenceDialogFragmentCompat;
-import android.support.v7.preference.Preference;
 import android.util.AttributeSet;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.preference.ListPreference;
+import androidx.preference.ListPreferenceDialogFragmentCompat;
+import androidx.preference.Preference;
 import io.rala.jugger.JuggerStonesApplication;
 import io.rala.jugger.model.Sound;
 
