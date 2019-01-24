@@ -49,6 +49,8 @@ public class MyPreferenceFragment extends XpPreferenceFragment implements Shared
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getListView().setFocusable(false);
+
         setDivider(null);
         getListView().addItemDecoration(new PreferenceDividerDecoration(getContext()).drawBetweenItems(false));
     }
