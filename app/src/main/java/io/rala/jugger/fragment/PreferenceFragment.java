@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -48,9 +49,11 @@ public class PreferenceFragment extends XpPreferenceFragment implements MainActi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (JuggerStonesApp.CounterPreference.isKeepDisplayAwake())
             getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.settings));
+        ((MainActivity) getActivity()).setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -74,14 +77,18 @@ public class PreferenceFragment extends XpPreferenceFragment implements MainActi
 
     @Override
     public void onBackPressed() {
-        final long stones = getArguments() != null ?
-                getArguments().getLong(MainActivity.KEY_COUNTER, JuggerStonesApp.CounterPreference.getModeStart()) :
-                JuggerStonesApp.CounterPreference.getModeStart();
-        final Team team1 = getArguments() != null ?
-                (Team) getArguments().getParcelable(MainActivity.KEY_TEAM1) : null;
-        final Team team2 = getArguments() != null ?
-                (Team) getArguments().getParcelable(MainActivity.KEY_TEAM2) : null;
-        ((MainActivity) getActivity()).goToMainFragment(stones, team1, team2);
+        goToMainFragment();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                goToMainFragment();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void setFilter() {
@@ -227,6 +234,17 @@ public class PreferenceFragment extends XpPreferenceFragment implements MainActi
             fragment.setTargetFragment(this, 0);
             fragment.show(getFragmentManager(), DIALOG_FRAGMENT_TAG);
         } else super.onDisplayPreferenceDialog(preference);
+    }
+
+    private void goToMainFragment() {
+        final long stones = getArguments() != null ?
+                getArguments().getLong(MainActivity.KEY_COUNTER, JuggerStonesApp.CounterPreference.getModeStart()) :
+                JuggerStonesApp.CounterPreference.getModeStart();
+        final Team team1 = getArguments() != null ?
+                (Team) getArguments().getParcelable(MainActivity.KEY_TEAM1) : null;
+        final Team team2 = getArguments() != null ?
+                (Team) getArguments().getParcelable(MainActivity.KEY_TEAM2) : null;
+        ((MainActivity) getActivity()).goToMainFragment(stones, team1, team2);
     }
 
     @Override

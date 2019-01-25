@@ -77,6 +77,10 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
         if (getSupportActionBar() != null) getSupportActionBar().setTitle(title);
     }
 
+    public void setDisplayHomeAsUpEnabled(boolean showHomeAsUp) {
+        if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(showHomeAsUp);
+    }
+
     public void changeLanguage(String language) {
         LocaleUtils.setLocale(new Locale(language));
         LocaleUtils.updateConfig(getApplication(), getResources().getConfiguration());

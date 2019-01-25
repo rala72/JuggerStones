@@ -93,6 +93,7 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
         if (JuggerStonesApp.CounterPreference.isKeepDisplayAwake())
             getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.app_name));
+        ((MainActivity) getActivity()).setDisplayHomeAsUpEnabled(false);
     }
 
     @Nullable
