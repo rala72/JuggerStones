@@ -59,11 +59,51 @@ public class PreferenceFragment extends XpPreferenceFragment implements MainActi
     @Override
     public void onCreatePreferences2(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences);
-        setFilter();
-        setListener();
+        initFilter();
+        initListener();
         updatePreferencesEnabled(null);
         updateLanguageText(); // has to be before sumTexts!
         updateSumTexts(null);
+    }
+
+    private void initFilter() {
+        EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApp.PREFS.MODE_CUSTOM.toString());
+        mode_custom.setOnEditTextCreatedListener(editText -> {
+            editText.setFilters(new InputFilter[]{new InputFilterMinMaxInteger(1)});
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+        });
+        EditTextPreference interval_custom = (EditTextPreference) findPreference(JuggerStonesApp.PREFS.INTERVAL_CUSTOM.toString());
+        interval_custom.setOnEditTextCreatedListener(editText -> {
+            editText.setFilters(new InputFilter[]{new InputFilterMinMaxDecimal(1)});
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        });
+    }
+
+    private void initListener() {
+        final ListPreference pref_language = (ListPreference) findPreference(JuggerStonesApp.PREFS.LANGUAGE.toString());
+        pref_language.setDefaultValue(Locale.getDefault().getLanguage());
+        pref_language.setValue(LocaleUtils.getLocale().getLanguage());
+        pref_language.setOnPreferenceChangeListener((preference, newValue) -> {
+            ((MainActivity) getActivity()).changeLanguage(newValue.toString());
+            return true;
+        });
+
+        final Preference pref_email = findPreference(JuggerStonesApp.PREFS.EMAIL.toString());
+        pref_email.setOnPreferenceClickListener(preference -> {
+            JuggerStonesApp.sendEmail(getActivity());
+            return true;
+        });
+        final Preference pref_version = findPreference(JuggerStonesApp.PREFS.VERSION.toString());
+        pref_version.setTitle(getString(R.string.pref_version, JuggerStonesApp.getVersion(getActivity())));
+        pref_version.setOnPreferenceClickListener(preference -> {
+            final String appPackageName = getActivity().getPackageName();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
+            return true;
+        });
     }
 
     @Override
@@ -89,46 +129,6 @@ public class PreferenceFragment extends XpPreferenceFragment implements MainActi
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void setFilter() {
-        EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApp.PREFS.MODE_CUSTOM.toString());
-        mode_custom.setOnEditTextCreatedListener(editText -> {
-            editText.setFilters(new InputFilter[]{new InputFilterMinMaxInteger(1)});
-            editText.setInputType(InputType.TYPE_CLASS_NUMBER);
-        });
-        EditTextPreference interval_custom = (EditTextPreference) findPreference(JuggerStonesApp.PREFS.INTERVAL_CUSTOM.toString());
-        interval_custom.setOnEditTextCreatedListener(editText -> {
-            editText.setFilters(new InputFilter[]{new InputFilterMinMaxDecimal(1)});
-            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        });
-    }
-
-    private void setListener() {
-        final ListPreference pref_language = (ListPreference) findPreference(JuggerStonesApp.PREFS.LANGUAGE.toString());
-        pref_language.setDefaultValue(Locale.getDefault().getLanguage());
-        pref_language.setValue(LocaleUtils.getLocale().getLanguage());
-        pref_language.setOnPreferenceChangeListener((preference, newValue) -> {
-            ((MainActivity) getActivity()).changeLanguage(newValue.toString());
-            return true;
-        });
-
-        final Preference pref_email = findPreference(JuggerStonesApp.PREFS.EMAIL.toString());
-        pref_email.setOnPreferenceClickListener(preference -> {
-            JuggerStonesApp.sendEmail(getActivity());
-            return true;
-        });
-        final Preference pref_version = findPreference(JuggerStonesApp.PREFS.VERSION.toString());
-        pref_version.setTitle(getString(R.string.pref_version, JuggerStonesApp.getVersion(getActivity())));
-        pref_version.setOnPreferenceClickListener(preference -> {
-            final String appPackageName = getActivity().getPackageName();
-            try {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-            } catch (android.content.ActivityNotFoundException e) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
-            }
-            return true;
-        });
     }
 
     @Override
