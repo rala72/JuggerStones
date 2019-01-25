@@ -7,7 +7,7 @@ import android.view.KeyEvent;
 import java.util.Locale;
 
 import androidx.appcompat.app.AppCompatActivity;
-import io.rala.jugger.JuggerStonesApplication;
+import io.rala.jugger.JuggerStonesApp;
 import io.rala.jugger.LocaleUtils;
 import io.rala.jugger.R;
 
@@ -36,10 +36,10 @@ public class MyPreferenceActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
-                JuggerStonesApplication.increaseMusicVolume();
+                JuggerStonesApp.increaseMusicVolume();
                 return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
-                JuggerStonesApplication.decreaseMusicVolume();
+                JuggerStonesApp.decreaseMusicVolume();
                 return true;
             case KeyEvent.KEYCODE_BACK:
                 Intent intent = new Intent(this, MainActivity.class);

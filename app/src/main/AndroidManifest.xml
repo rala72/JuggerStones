@@ -2,7 +2,7 @@
     package="io.rala.jugger">
 
     <application
-        android:name=".JuggerStonesApplication"
+        android:name=".JuggerStonesApp"
         android:allowBackup="true"
         android:configChanges="locale"
         android:fullBackupContent="true"

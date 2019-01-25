@@ -21,7 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.Preference;
-import io.rala.jugger.JuggerStonesApplication;
+import io.rala.jugger.JuggerStonesApp;
 import io.rala.jugger.LocaleUtils;
 import io.rala.jugger.R;
 import io.rala.jugger.model.InputFilterMinMaxDecimal;
@@ -56,12 +56,12 @@ public class MyPreferenceFragment extends XpPreferenceFragment implements Shared
     }
 
     private void setFilter() {
-        EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
+        EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApp.PREFS.MODE_CUSTOM.toString());
         mode_custom.setOnEditTextCreatedListener(editText -> {
             editText.setFilters(new InputFilter[]{new InputFilterMinMaxInteger(1)});
             editText.setInputType(InputType.TYPE_CLASS_NUMBER);
         });
-        EditTextPreference interval_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
+        EditTextPreference interval_custom = (EditTextPreference) findPreference(JuggerStonesApp.PREFS.INTERVAL_CUSTOM.toString());
         interval_custom.setOnEditTextCreatedListener(editText -> {
             editText.setFilters(new InputFilter[]{new InputFilterMinMaxDecimal(1)});
             editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
@@ -69,7 +69,7 @@ public class MyPreferenceFragment extends XpPreferenceFragment implements Shared
     }
 
     private void setListener() {
-        final ListPreference pref_language = (ListPreference) findPreference(JuggerStonesApplication.PREFS.LANGUAGE.toString());
+        final ListPreference pref_language = (ListPreference) findPreference(JuggerStonesApp.PREFS.LANGUAGE.toString());
         pref_language.setDefaultValue(LocaleUtils.DEFAULT_LOCALE.getLanguage());
         pref_language.setValue(LocaleUtils.getLocale().getLanguage());
         pref_language.setOnPreferenceChangeListener((preference, newValue) -> {
@@ -77,13 +77,13 @@ public class MyPreferenceFragment extends XpPreferenceFragment implements Shared
             return true;
         });
 
-        final Preference pref_email = findPreference(JuggerStonesApplication.PREFS.EMAIL.toString());
+        final Preference pref_email = findPreference(JuggerStonesApp.PREFS.EMAIL.toString());
         pref_email.setOnPreferenceClickListener(preference -> {
-            JuggerStonesApplication.sendEmail(getActivity());
+            JuggerStonesApp.sendEmail(getActivity());
             return true;
         });
-        final Preference pref_version = findPreference(JuggerStonesApplication.PREFS.VERSION.toString());
-        pref_version.setTitle(getString(R.string.pref_version, JuggerStonesApplication.getVersion(getActivity())));
+        final Preference pref_version = findPreference(JuggerStonesApp.PREFS.VERSION.toString());
+        pref_version.setTitle(getString(R.string.pref_version, JuggerStonesApp.getVersion(getActivity())));
         pref_version.setOnPreferenceClickListener(preference -> {
             final String appPackageName = getActivity().getPackageName();
             try {
@@ -97,7 +97,7 @@ public class MyPreferenceFragment extends XpPreferenceFragment implements Shared
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(JuggerStonesApplication.PREFS.SOUND_STONE.toString())) updateSoundStoneCountdown();
+        if (key.equals(JuggerStonesApp.PREFS.SOUND_STONE.toString())) updateSoundStoneCountdown();
         validatePreferences(key);
         updatePreferencesEnabled(key);
         updateSumTexts(key);
@@ -105,41 +105,41 @@ public class MyPreferenceFragment extends XpPreferenceFragment implements Shared
 
     //region updatePrefs
     private void updateSoundStoneCountdown() {
-        final String value = ((SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_STONE.toString())).getValue();
-        ((SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_STONE_COUNTDOWN.toString())).setValue(value);
+        final String value = ((SoundPreferenceList) findPreference(JuggerStonesApp.PREFS.SOUND_STONE.toString())).getValue();
+        ((SoundPreferenceList) findPreference(JuggerStonesApp.PREFS.SOUND_STONE_COUNTDOWN.toString())).setValue(value);
     }
 
     private void validatePreferences(String key) {
-        if (key.equals(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString())) {
+        if (key.equals(JuggerStonesApp.PREFS.MODE_CUSTOM.toString())) {
             long min = 1;
-            EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
+            EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApp.PREFS.MODE_CUSTOM.toString());
             long value = mode_custom.getText().trim().isEmpty() ? min : Long.parseLong(mode_custom.getText().trim());
             if (value == 0 || value == min) mode_custom.setText(String.valueOf(value));
         }
-        if (key.equals(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString())) {
+        if (key.equals(JuggerStonesApp.PREFS.INTERVAL_CUSTOM.toString())) {
             double min = 0.001;
-            EditTextPreference interval_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
+            EditTextPreference interval_custom = (EditTextPreference) findPreference(JuggerStonesApp.PREFS.INTERVAL_CUSTOM.toString());
             double value = interval_custom.getText().trim().isEmpty() ? min : Double.parseDouble(interval_custom.getText().trim());
             if (value == 0 || value == min) interval_custom.setText(String.valueOf(value));
         }
     }
 
     private void updatePreferencesEnabled(String key) {
-        if (key == null || key.equals(JuggerStonesApplication.PREFS.MODE.toString())) {
-            ListPreference mode = (ListPreference) findPreference(JuggerStonesApplication.PREFS.MODE.toString());
-            findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString()).setEnabled(mode.getValue().equals("0"));
-            findPreference(JuggerStonesApplication.PREFS.REVERSE.toString()).setEnabled(!mode.getValue().equals("-1"));
+        if (key == null || key.equals(JuggerStonesApp.PREFS.MODE.toString())) {
+            ListPreference mode = (ListPreference) findPreference(JuggerStonesApp.PREFS.MODE.toString());
+            findPreference(JuggerStonesApp.PREFS.MODE_CUSTOM.toString()).setEnabled(mode.getValue().equals("0"));
+            findPreference(JuggerStonesApp.PREFS.REVERSE.toString()).setEnabled(!mode.getValue().equals("-1"));
         }
-        if (key == null || key.equals(JuggerStonesApplication.PREFS.INTERVAL.toString())) {
-            ListPreference interval = (ListPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL.toString());
-            findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString()).setEnabled(interval.getValue().equals("0"));
+        if (key == null || key.equals(JuggerStonesApp.PREFS.INTERVAL.toString())) {
+            ListPreference interval = (ListPreference) findPreference(JuggerStonesApp.PREFS.INTERVAL.toString());
+            findPreference(JuggerStonesApp.PREFS.INTERVAL_CUSTOM.toString()).setEnabled(interval.getValue().equals("0"));
         }
     }
 
     private void updateLanguageText() {
         if (LocaleUtils.getLocale().equals(Locale.ENGLISH)) return;
         final String format = "%s (%s)";
-        final ListPreference pref_language = (ListPreference) findPreference(JuggerStonesApplication.PREFS.LANGUAGE.toString());
+        final ListPreference pref_language = (ListPreference) findPreference(JuggerStonesApp.PREFS.LANGUAGE.toString());
         pref_language.setTitle(String.format(format, getString(R.string.language), getString(R.string.language_en)));
         // region languageMap
         Map<String, String> languageMap = new TreeMap<>();
@@ -156,36 +156,36 @@ public class MyPreferenceFragment extends XpPreferenceFragment implements Shared
     }
 
     private void updateSumTexts(String key) {
-        if (key == null || key.equals(JuggerStonesApplication.PREFS.MODE.toString())) {
-            ListPreference mode = (ListPreference) findPreference(JuggerStonesApplication.PREFS.MODE.toString());
+        if (key == null || key.equals(JuggerStonesApp.PREFS.MODE.toString())) {
+            ListPreference mode = (ListPreference) findPreference(JuggerStonesApp.PREFS.MODE.toString());
             mode.setSummary(mode.getEntry());
         }
-        if (key == null || key.equals(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString())) {
-            EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.MODE_CUSTOM.toString());
+        if (key == null || key.equals(JuggerStonesApp.PREFS.MODE_CUSTOM.toString())) {
+            EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApp.PREFS.MODE_CUSTOM.toString());
             mode_custom.setSummary(mode_custom.getText());
         }
-        if (key == null || key.equals(JuggerStonesApplication.PREFS.INTERVAL.toString())) {
-            ListPreference interval = (ListPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL.toString());
+        if (key == null || key.equals(JuggerStonesApp.PREFS.INTERVAL.toString())) {
+            ListPreference interval = (ListPreference) findPreference(JuggerStonesApp.PREFS.INTERVAL.toString());
             interval.setSummary(interval.getEntry());
         }
-        if (key == null || key.equals(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString())) {
-            EditTextPreference interval_custom = (EditTextPreference) findPreference(JuggerStonesApplication.PREFS.INTERVAL_CUSTOM.toString());
+        if (key == null || key.equals(JuggerStonesApp.PREFS.INTERVAL_CUSTOM.toString())) {
+            EditTextPreference interval_custom = (EditTextPreference) findPreference(JuggerStonesApp.PREFS.INTERVAL_CUSTOM.toString());
             interval_custom.setSummary(interval_custom.getText());
         }
-        if (key == null || key.equals(JuggerStonesApplication.PREFS.SOUND_STONE.toString())) {
-            SoundPreferenceList sound = (SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_STONE.toString());
+        if (key == null || key.equals(JuggerStonesApp.PREFS.SOUND_STONE.toString())) {
+            SoundPreferenceList sound = (SoundPreferenceList) findPreference(JuggerStonesApp.PREFS.SOUND_STONE.toString());
             sound.setSummary(sound.getEntry());
         }
-        if (key == null || key.equals(JuggerStonesApplication.PREFS.SOUND_STONE.toString()) || key.equals(JuggerStonesApplication.PREFS.SOUND_STONE_COUNTDOWN.toString())) {
-            SoundPreferenceList sound_countdown = (SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_STONE_COUNTDOWN.toString());
+        if (key == null || key.equals(JuggerStonesApp.PREFS.SOUND_STONE.toString()) || key.equals(JuggerStonesApp.PREFS.SOUND_STONE_COUNTDOWN.toString())) {
+            SoundPreferenceList sound_countdown = (SoundPreferenceList) findPreference(JuggerStonesApp.PREFS.SOUND_STONE_COUNTDOWN.toString());
             sound_countdown.setSummary(sound_countdown.getEntry());
         }
-        if (key == null || key.equals(JuggerStonesApplication.PREFS.SOUND_GONG.toString())) {
-            SoundPreferenceList gong = (SoundPreferenceList) findPreference(JuggerStonesApplication.PREFS.SOUND_GONG.toString());
+        if (key == null || key.equals(JuggerStonesApp.PREFS.SOUND_GONG.toString())) {
+            SoundPreferenceList gong = (SoundPreferenceList) findPreference(JuggerStonesApp.PREFS.SOUND_GONG.toString());
             gong.setSummary(gong.getEntry());
         }
-        if (key == null || key.equals(JuggerStonesApplication.PREFS.LANGUAGE.toString())) {
-            ListPreference language = (ListPreference) findPreference(JuggerStonesApplication.PREFS.LANGUAGE.toString());
+        if (key == null || key.equals(JuggerStonesApp.PREFS.LANGUAGE.toString())) {
+            ListPreference language = (ListPreference) findPreference(JuggerStonesApp.PREFS.LANGUAGE.toString());
             language.setSummary(language.getEntry());
         }
     }

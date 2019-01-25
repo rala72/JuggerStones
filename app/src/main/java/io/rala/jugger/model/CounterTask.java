@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.util.TimerTask;
 
-import io.rala.jugger.JuggerStonesApplication;
+import io.rala.jugger.JuggerStonesApp;
 
 public class CounterTask extends TimerTask {
     private final Context context;
@@ -22,20 +22,20 @@ public class CounterTask extends TimerTask {
     }
 
     public void run() {
-        if (Math.abs(stones) >= Long.MAX_VALUE) stones = JuggerStonesApplication.CounterPreference.getModeStart();
+        if (Math.abs(stones) >= Long.MAX_VALUE) stones = JuggerStonesApp.CounterPreference.getModeStart();
 
-        stones += JuggerStonesApplication.CounterPreference.isReverse() ? -1 : 1;
-        if (JuggerStonesApplication.CounterPreference.isNormalModeIgnoringReverse()) stones %= mode * 2;
+        stones += JuggerStonesApp.CounterPreference.isReverse() ? -1 : 1;
+        if (JuggerStonesApp.CounterPreference.isNormalModeIgnoringReverse()) stones %= mode * 2;
 
         callback.onStonesChanged(stones);
-        if (JuggerStonesApplication.CounterPreference.isReverse() && stones == 0 ||
-                JuggerStonesApplication.CounterPreference.isNormalMode() && stones == mode) {
+        if (JuggerStonesApp.CounterPreference.isReverse() && stones == 0 ||
+                JuggerStonesApp.CounterPreference.isNormalMode() && stones == mode) {
             stones %= mode;
-            if (JuggerStonesApplication.CounterPreference.isReverse()) stones = JuggerStonesApplication.CounterPreference.getMode();
+            if (JuggerStonesApp.CounterPreference.isReverse()) stones = JuggerStonesApp.CounterPreference.getMode();
             sound.playGong(context);
             callback.onGongPlayed(stones);
         } else {
-            if (JuggerStonesApplication.CounterPreference.isStoneCountdown(stones))
+            if (JuggerStonesApp.CounterPreference.isStoneCountdown(stones))
                 sound.playStoneCountdown(context);
             else sound.playStone(context);
         }

@@ -19,7 +19,7 @@ import androidx.preference.PreferenceManager;
 import io.rala.jugger.model.HistoryEntry;
 import io.rala.jugger.model.Sound;
 
-public class JuggerStonesApplication extends Application implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class JuggerStonesApp extends Application implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     public static SharedPreferences sharedPreferences;
     public static AudioManager audioManager;
@@ -88,11 +88,11 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
     @SuppressWarnings("SameParameterValue")
     public static void updateSound(String stone, String stoneCountdown, String gong) {
         if (stone == null)
-            stone = sharedPreferences.getString(JuggerStonesApplication.PREFS.SOUND_STONE.toString(), DEFAULT_STONE);
+            stone = sharedPreferences.getString(JuggerStonesApp.PREFS.SOUND_STONE.toString(), DEFAULT_STONE);
         if (stoneCountdown == null)
             stoneCountdown = sharedPreferences.getString(PREFS.SOUND_STONE_COUNTDOWN.toString(), stone);
         if (gong == null)
-            gong = sharedPreferences.getString(JuggerStonesApplication.PREFS.SOUND_GONG.toString(), DEFAULT_GONG);
+            gong = sharedPreferences.getString(JuggerStonesApp.PREFS.SOUND_GONG.toString(), DEFAULT_GONG);
         sound = new Sound(stone, stoneCountdown, gong);
     }
 
@@ -163,7 +163,7 @@ public class JuggerStonesApplication extends Application implements SharedPrefer
         //noinspection SpellCheckingInspection
         intent.setData(Uri.parse("mailto:"));
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{context.getString(R.string.email_current)});
-        intent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.app_name) + JuggerStonesApplication.getVersionForEmail(context));
+        intent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.app_name) + JuggerStonesApp.getVersionForEmail(context));
         intent.putExtra(Intent.EXTRA_TEXT, "");
         context.startActivity(intent);
     }

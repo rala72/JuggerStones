@@ -5,7 +5,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
 
-import io.rala.jugger.JuggerStonesApplication;
+import io.rala.jugger.JuggerStonesApp;
 
 @SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 public class Sound {
@@ -18,9 +18,9 @@ public class Sound {
     }
 
     public Sound(String stone, String stoneCountdown, String gong) {
-        this.stone = stone != null ? stone : JuggerStonesApplication.DEFAULT_STONE;
+        this.stone = stone != null ? stone : JuggerStonesApp.DEFAULT_STONE;
         this.stoneCountdown = stoneCountdown != null ? stoneCountdown : this.stone;
-        this.gong = gong != null ? gong : JuggerStonesApplication.DEFAULT_GONG;
+        this.gong = gong != null ? gong : JuggerStonesApp.DEFAULT_GONG;
     }
 
     public boolean playStone(Context context) {

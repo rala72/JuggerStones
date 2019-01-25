@@ -8,7 +8,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.preference.ListPreference;
 import androidx.preference.ListPreferenceDialogFragmentCompat;
 import androidx.preference.Preference;
-import io.rala.jugger.JuggerStonesApplication;
+import io.rala.jugger.JuggerStonesApp;
 import io.rala.jugger.model.Sound;
 
 // note: values are stored as String
@@ -47,9 +47,9 @@ public class SoundPreferenceList extends ListPreference {
             builder.setSingleChoiceItems(preference.getEntries(), clickedEntryIndex, (dialog, which) -> {
                 clickedEntryIndex = which;
                 String value = preference.getEntryValues()[which].toString();
-                if (key.startsWith(JuggerStonesApplication.PREFS.SOUND_STONE.toString()))
+                if (key.startsWith(JuggerStonesApp.PREFS.SOUND_STONE.toString()))
                     new Sound(value, null).playStone(getContext());
-                else if (key.equals(JuggerStonesApplication.PREFS.SOUND_GONG.toString()))
+                else if (key.equals(JuggerStonesApp.PREFS.SOUND_GONG.toString()))
                     new Sound(null, value).playGong(getContext());
             });
             builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
