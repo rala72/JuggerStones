@@ -1,4 +1,4 @@
-package io.rala.jugger.activity;
+package io.rala.jugger.fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.util.TypedValue;
-import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -23,18 +25,20 @@ import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
 
 import java.util.Timer;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
 import io.rala.jugger.JuggerStonesApp;
-import io.rala.jugger.LocaleUtils;
+import io.rala.jugger.MainActivity;
 import io.rala.jugger.R;
 import io.rala.jugger.model.CounterTask;
 import io.rala.jugger.model.HistoryEntry;
@@ -42,7 +46,7 @@ import io.rala.jugger.model.InputFilterMinMaxInteger;
 import io.rala.jugger.model.Team;
 import io.rala.jugger.view.NumberView;
 
-public class MainActivity extends AppCompatActivity implements CounterTask.CounterTaskCallback, ColorPickerDialogListener {
+public class MainFragment extends Fragment implements CounterTask.CounterTaskCallback, ColorPickerDialogListener {
     private static final int LIMIT_TEAM_NAME_CHARACTERS_TO = 0;
 
     //region butterKnife
@@ -68,29 +72,46 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
 
     private enum TEAM {TEAM1, TEAM2}
 
-    public MainActivity() {
-        LocaleUtils.updateConfig(this);
+    public MainFragment() {
+    }
+
+    public static MainFragment newInstance(long stones, Team team1, Team team2) {
+        MainFragment fragment = new MainFragment();
+        Bundle bundle = new Bundle();
+        bundle.putLong(MainActivity.KEY_COUNTER, stones);
+        bundle.putParcelable(MainActivity.KEY_TEAM1, team1);
+        bundle.putParcelable(MainActivity.KEY_TEAM2, team2);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     //region onCreate
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        applyBundle(getIntent());
-        if (JuggerStonesApp.CounterPreference.isKeepDisplayAwake()) {
-            // Toast.makeText(this, R.string.pref_keep_display_awake, Toast.LENGTH_SHORT).show();
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
+        setHasOptionsMenu(true);
+        if (JuggerStonesApp.CounterPreference.isKeepDisplayAwake())
+            getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.app_name));
     }
 
-    private void applyBundle(Intent intent) {
-        if (intent == null) intent = getIntent();
-        final Bundle extras = intent.getExtras();
-        final long stones = extras != null ? extras.getLong(MyPreferenceFragment.KEY_COUNTER, JuggerStonesApp.CounterPreference.getModeStart()) : JuggerStonesApp.CounterPreference.getModeStart();
-        final Team team1 = extras != null ? (Team) extras.getParcelable(MyPreferenceFragment.KEY_TEAM1) : null;
-        final Team team2 = extras != null ? (Team) extras.getParcelable(MyPreferenceFragment.KEY_TEAM2) : null;
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.fragment_main, container, false);
+        ButterKnife.bind(this, view);
+        applyArguments();
+        return view;
+    }
+
+    private void applyArguments() {
+        final long stones = getArguments() != null ?
+                getArguments().getLong(MainActivity.KEY_COUNTER, JuggerStonesApp.CounterPreference.getModeStart()) :
+                JuggerStonesApp.CounterPreference.getModeStart();
+        final Team team1 = getArguments() != null ?
+                (Team) getArguments().getParcelable(MainActivity.KEY_TEAM1) : null;
+        final Team team2 = getArguments() != null ?
+                (Team) getArguments().getParcelable(MainActivity.KEY_TEAM2) : null;
         valueHandler.setStones(stones);
         valueHandler.setTeams(team1, team2);
         updateInfoView();
@@ -100,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         final int resId = JuggerStonesApp.CounterPreference.isInfinityMode() ?
                 R.drawable.ic_infinity : JuggerStonesApp.CounterPreference.isReverse() ?
                 R.drawable.ic_sort_descending : R.drawable.ic_sort_ascending_modified;
-        imageView_info.setImageDrawable(AppCompatResources.getDrawable(this, resId));
+        imageView_info.setImageDrawable(AppCompatResources.getDrawable(getContext(), resId));
     }
     //endregion
 
@@ -226,12 +247,12 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     private void showRenameTeamsDialog() {
         final int margin_dp = 25;
         final int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics());
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
         alertDialogBuilder.setTitle(R.string.main_renameTeams);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(margin_px, 0, margin_px, 0);
 
-        final EditText editText_name1 = new EditText(MainActivity.this);
+        final EditText editText_name1 = new EditText(getContext());
         editText_name1.setLayoutParams(layoutParams);
         editText_name1.setHint(R.string.main_renameTeams_1);
         if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
@@ -239,14 +260,14 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         editText_name1.setText(textView_team1.getText());
         editText_name1.requestFocus();
 
-        final EditText editText_name2 = new EditText(MainActivity.this);
+        final EditText editText_name2 = new EditText(getContext());
         editText_name2.setLayoutParams(layoutParams);
         editText_name2.setHint(R.string.main_renameTeams_2);
         if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
             editText_name2.setFilters(new InputFilter[]{new InputFilter.LengthFilter(LIMIT_TEAM_NAME_CHARACTERS_TO)});
         editText_name2.setText(textView_team2.getText());
 
-        LinearLayout linearLayout = new LinearLayout(this);
+        LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.addView(editText_name1);
         linearLayout.addView(editText_name2);
@@ -267,7 +288,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
         if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
-            Toast.makeText(MainActivity.this, getString(R.string.main_toast_teamLength, 5), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.main_toast_teamLength, 5), Toast.LENGTH_SHORT).show();
     }
 
     private void showChangeTeamColorsDialog(TEAM team) {
@@ -279,7 +300,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 .setShowAlphaSlider(false)
                 .setAllowCustom(false)
                 .setSelectedButtonText(android.R.string.ok)
-                .show(this);
+                .show(getActivity());
     }
 
     @Override
@@ -303,12 +324,12 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         if (timerHandler.isRunning()) return;
         final int margin_dp = 25;
         final int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics());
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
         alertDialogBuilder.setTitle(R.string.main_setStones);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(margin_px, 0, margin_px, 0);
 
-        final EditText stonesEdit = new EditText(MainActivity.this);
+        final EditText stonesEdit = new EditText(getContext());
         stonesEdit.setHint(R.string.main_setStones);
         stonesEdit.setLayoutParams(layoutParams);
         stonesEdit.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED);
@@ -316,7 +337,7 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         stonesEdit.setText(textView_stones.getText());
         stonesEdit.requestFocus();
 
-        LinearLayout linearLayout = new LinearLayout(this);
+        LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.addView(stonesEdit);
         alertDialogBuilder.setView(linearLayout);
@@ -340,26 +361,26 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
     //region CounterTaskCallback
     @Override
     public void onStonesChanged(final long stones) {
-        runOnUiThread(() -> {
+        getActivity().runOnUiThread(() -> {
             valueHandler.setStones(stones);
             if (JuggerStonesApp.CounterPreference.isInfinityMode() && stones > 0 && stones % JuggerStonesApp.DEFAULT_INTERVAL == 0)
-                Toast.makeText(MainActivity.this, R.string.main_toast_infinity, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.main_toast_infinity, Toast.LENGTH_LONG).show();
         });
     }
 
     @Override
     public void onGongPlayed(final long stones) {
         if (JuggerStonesApp.CounterPreference.isStopAfterGong())
-            runOnUiThread(timerHandler::pause);
+            getActivity().runOnUiThread(timerHandler::pause);
     }
     //endregion
 
     //region @Override
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
         inflater.inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -389,35 +410,12 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
                 return true;
             case R.id.action_settings:
                 timerHandler.pause();
-                intent = new Intent(this, MyPreferenceActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                Bundle bundle = new Bundle();
-                bundle.putLong(MyPreferenceFragment.KEY_COUNTER, textView_stones.getNumberAsLong());
-                bundle.putParcelable(MyPreferenceFragment.KEY_TEAM1, valueHandler.getTeam1());
-                bundle.putParcelable(MyPreferenceFragment.KEY_TEAM2, valueHandler.getTeam2());
-                intent.putExtras(bundle);
-                startActivityForResult(intent, 0);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                ((MainActivity) getActivity())
+                        .goToPreferenceFragment(textView_stones.getNumberAsLong(),
+                                valueHandler.getTeam1(), valueHandler.getTeam2());
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_VOLUME_UP:
-                JuggerStonesApp.increaseMusicVolume();
-                return true;
-            case KeyEvent.KEYCODE_VOLUME_DOWN:
-                JuggerStonesApp.decreaseMusicVolume();
-                return true;
-            case KeyEvent.KEYCODE_BACK:
-                finish();
-                return true;
-            default:
-                return true;
         }
     }
     //endregion
@@ -426,20 +424,20 @@ public class MainActivity extends AppCompatActivity implements CounterTask.Count
         private Timer timer;
 
         void start() {
-            button_playPause.setImageDrawable(AppCompatResources.getDrawable(MainActivity.this, R.drawable.ic_pause_circle));
+            button_playPause.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.ic_pause_circle));
             if (isRunning()) return;
             final long stones = valueHandler.getStones();
             final long mode = JuggerStonesApp.CounterPreference.getMode();
             final long interval = JuggerStonesApp.CounterPreference.getInterval();
             final long delay = JuggerStonesApp.CounterPreference.isImmediateStart() ? 0 : interval;
             valueHandler.saveHistoryEntry(stones, mode);
-            final CounterTask counterTask = new CounterTask(MainActivity.this, stones, mode, JuggerStonesApp.sound, MainActivity.this);
+            final CounterTask counterTask = new CounterTask(getContext(), stones, mode, JuggerStonesApp.sound, MainFragment.this);
             timer = new Timer();
             timer.scheduleAtFixedRate(counterTask, delay, interval);
         }
 
         void pause() {
-            button_playPause.setImageDrawable(AppCompatResources.getDrawable(MainActivity.this, R.drawable.ic_play_circle));
+            button_playPause.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.ic_play_circle));
             if (!isRunning()) return;
             timer.cancel();
             timer = null;

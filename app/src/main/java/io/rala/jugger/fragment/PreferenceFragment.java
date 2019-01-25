@@ -1,4 +1,4 @@
-package io.rala.jugger.activity;
+package io.rala.jugger.fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.view.View;
+import android.view.WindowManager;
 
 import net.xpece.android.support.preference.EditTextPreference;
 import net.xpece.android.support.preference.ListPreference;
@@ -23,17 +24,33 @@ import androidx.fragment.app.DialogFragment;
 import androidx.preference.Preference;
 import io.rala.jugger.JuggerStonesApp;
 import io.rala.jugger.LocaleUtils;
+import io.rala.jugger.MainActivity;
 import io.rala.jugger.R;
 import io.rala.jugger.model.InputFilterMinMaxDecimal;
 import io.rala.jugger.model.InputFilterMinMaxInteger;
+import io.rala.jugger.model.Team;
 import io.rala.jugger.view.SoundPreferenceList;
 
-public class MyPreferenceFragment extends XpPreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
-    public static final String KEY_COUNTER = "counter";
-    public static final String KEY_TEAM1 = "team1";
-    public static final String KEY_TEAM2 = "team2";
+public class PreferenceFragment extends XpPreferenceFragment implements MainActivity.OnBackPressedListener, SharedPreferences.OnSharedPreferenceChangeListener {
+    public PreferenceFragment() {
+    }
 
-    public MyPreferenceFragment() {
+    public static PreferenceFragment newInstance(long stones, Team team1, Team team2) {
+        PreferenceFragment fragment = new PreferenceFragment();
+        Bundle bundle = new Bundle();
+        bundle.putLong(MainActivity.KEY_COUNTER, stones);
+        bundle.putParcelable(MainActivity.KEY_TEAM1, team1);
+        bundle.putParcelable(MainActivity.KEY_TEAM2, team2);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (JuggerStonesApp.CounterPreference.isKeepDisplayAwake())
+            getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.settings));
     }
 
     @Override
@@ -55,6 +72,18 @@ public class MyPreferenceFragment extends XpPreferenceFragment implements Shared
         getListView().addItemDecoration(new PreferenceDividerDecoration(getContext()).drawBetweenItems(false));
     }
 
+    @Override
+    public void onBackPressed() {
+        final long stones = getArguments() != null ?
+                getArguments().getLong(MainActivity.KEY_COUNTER, JuggerStonesApp.CounterPreference.getModeStart()) :
+                JuggerStonesApp.CounterPreference.getModeStart();
+        final Team team1 = getArguments() != null ?
+                (Team) getArguments().getParcelable(MainActivity.KEY_TEAM1) : null;
+        final Team team2 = getArguments() != null ?
+                (Team) getArguments().getParcelable(MainActivity.KEY_TEAM2) : null;
+        ((MainActivity) getActivity()).goToMainFragment(stones, team1, team2);
+    }
+
     private void setFilter() {
         EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApp.PREFS.MODE_CUSTOM.toString());
         mode_custom.setOnEditTextCreatedListener(editText -> {
@@ -70,10 +99,10 @@ public class MyPreferenceFragment extends XpPreferenceFragment implements Shared
 
     private void setListener() {
         final ListPreference pref_language = (ListPreference) findPreference(JuggerStonesApp.PREFS.LANGUAGE.toString());
-        pref_language.setDefaultValue(LocaleUtils.DEFAULT_LOCALE.getLanguage());
+        pref_language.setDefaultValue(Locale.getDefault().getLanguage());
         pref_language.setValue(LocaleUtils.getLocale().getLanguage());
         pref_language.setOnPreferenceChangeListener((preference, newValue) -> {
-            ((MyPreferenceActivity) getActivity()).changeLanguage(newValue.toString());
+            ((MainActivity) getActivity()).changeLanguage(newValue.toString());
             return true;
         });
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="activity_settings">Ajustes</string>
+    <string name="settings">Ajustes</string>
     <!-- settings: game -->
     <string name="pref_category_game">Juego</string>
     <string name="pref_stoneInterval">Intervalo entre piedras</string>

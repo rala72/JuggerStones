@@ -11,7 +11,7 @@ import java.util.Locale;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class LocaleUtils {
-    public static final Locale DEFAULT_LOCALE = Locale.getDefault();
+    // public static final Locale DEFAULT_LOCALE = Locale.getDefault();
     // https://stackoverflow.com/a/36922319/2715720
     private static Locale sLocale = Locale.getDefault();
 
