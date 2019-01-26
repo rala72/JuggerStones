@@ -94,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
         finish();
     }
 
+    // region goTo
+    // direct pass bundle..?
     private void goToMainFragment() {
         goToFragment(new MainFragment());
     }
@@ -112,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
         fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
         fragmentTransaction.replace(R.id.container, fragment).commit();
     }
+    // endregion
 
     public interface OnBackPressedListener {
         void onBackPressed();
