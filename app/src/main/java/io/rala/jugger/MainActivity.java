@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
             final long stones = extras.getLong(MainActivity.KEY_COUNTER);
             final Team team1 = extras.getParcelable(MainActivity.KEY_TEAM1);
             final Team team2 = extras.getParcelable(MainActivity.KEY_TEAM2);
-            goToPreferenceFragment(stones, team1, team2);
+            goToPreferenceFragment(stones, team1, team2, false);
         } else goToMainFragment();
     }
 
@@ -97,21 +97,29 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
     // region goTo
     // direct pass bundle..?
     private void goToMainFragment() {
-        goToFragment(new MainFragment());
+        goToFragment(new MainFragment(), null);
     }
 
     public void goToMainFragment(long stones, Team team1, Team team2) {
-        goToFragment(MainFragment.newInstance(stones, team1, team2));
+        goToFragment(MainFragment.newInstance(stones, team1, team2), true);
     }
 
     public void goToPreferenceFragment(long stones, Team team1, Team team2) {
-        goToFragment(PreferenceFragment.newInstance(stones, team1, team2));
+        goToPreferenceFragment(stones, team1, team2, true);
     }
 
-    private void goToFragment(Fragment fragment) {
+    public void goToPreferenceFragment(long stones, Team team1, Team team2, boolean animation) {
+        goToFragment(PreferenceFragment.newInstance(stones, team1, team2), animation ? false : null);
+    }
+
+    private void goToFragment(Fragment fragment, Boolean animationRightToLeft) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.disallowAddToBackStack();
-        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+        if (animationRightToLeft != null)
+            if (animationRightToLeft)
+                fragmentTransaction.setCustomAnimations(R.anim.left_to_right_in, R.anim.left_to_right_out);
+            else
+                fragmentTransaction.setCustomAnimations(R.anim.right_to_left_in, R.anim.right_to_left_out);
         fragmentTransaction.replace(R.id.container, fragment).commit();
     }
     // endregion
