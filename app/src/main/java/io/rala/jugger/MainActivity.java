@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
         setContentView(R.layout.activity_main);
 
         Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            final long stones = extras.getLong(MainActivity.KEY_COUNTER, JuggerStonesApp.CounterPreference.getModeStart());
+        if (extras != null && extras.containsKey(MainActivity.KEY_COUNTER)) {
+            final long stones = extras.getLong(MainActivity.KEY_COUNTER);
             final Team team1 = extras.getParcelable(MainActivity.KEY_TEAM1);
             final Team team2 = extras.getParcelable(MainActivity.KEY_TEAM2);
             goToPreferenceFragment(stones, team1, team2);
