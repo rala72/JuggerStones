@@ -72,9 +72,6 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
 
     private enum TEAM {TEAM1, TEAM2}
 
-    public MainFragment() {
-    }
-
     public static MainFragment newInstance(long stones, Team team1, Team team2) {
         MainFragment fragment = new MainFragment();
         Bundle bundle = new Bundle();

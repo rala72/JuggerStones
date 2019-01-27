@@ -33,9 +33,6 @@ import io.rala.jugger.model.Team;
 import io.rala.jugger.view.SoundPreferenceList;
 
 public class PreferenceFragment extends XpPreferenceFragment implements MainActivity.OnBackPressedListener, SharedPreferences.OnSharedPreferenceChangeListener {
-    public PreferenceFragment() {
-    }
-
     public static PreferenceFragment newInstance(long stones, Team team1, Team team2) {
         PreferenceFragment fragment = new PreferenceFragment();
         Bundle bundle = new Bundle();
