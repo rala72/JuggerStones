@@ -29,7 +29,7 @@ public class CounterTask extends TimerTask {
 
         callback.onStonesChanged(stones);
         if (JuggerStonesApp.CounterPreference.isReverse() && stones == 0 ||
-                JuggerStonesApp.CounterPreference.isNormalMode() && stones == mode) {
+            JuggerStonesApp.CounterPreference.isNormalMode() && stones == mode) {
             stones %= mode;
             if (JuggerStonesApp.CounterPreference.isReverse()) stones = JuggerStonesApp.CounterPreference.getMode();
             sound.playGong(context);

@@ -35,15 +35,15 @@ public class InputFilterMinMaxDecimal implements InputFilter {
 
     public InputFilterMinMaxDecimal(BigDecimal min, BigDecimal max) {
         this.min = min.compareTo(this.min) >= 0 && min.compareTo(max) <= 0 ? min : // min < max
-                max.compareTo(this.min) > 0 && max.compareTo(min) > 0 ? max : this.min; // max < min
+            max.compareTo(this.min) > 0 && max.compareTo(min) > 0 ? max : this.min; // max < min
         this.max = max.compareTo(this.max) <= 0 && min.compareTo(max) <= 0 ? max : // min < max
-                min.compareTo(this.max) > 0 && max.compareTo(min) > 0 ? min : this.max; // max < min
+            min.compareTo(this.max) > 0 && max.compareTo(min) > 0 ? min : this.max; // max < min
     }
 
     @Override
     public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
         final String oldValue = dest.toString();
-        final String newValue = dest.toString().substring(0, dstart) + source.toString().substring(start, end) + dest.toString().substring(dend, dest.toString().length());
+        final String newValue = dest.toString().substring(0, dstart) + source.toString().substring(start, end) + dest.toString().substring(dend);
         if (newValue.equals("-") && min.compareTo(BigDecimal.valueOf(0)) <= 0 || newValue.matches("0[.,]?") && min.toString().startsWith("0")) return null;
         try {
             if (isInRange(new BigDecimal(newValue))) return null;

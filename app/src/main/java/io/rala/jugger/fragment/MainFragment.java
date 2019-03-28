@@ -104,12 +104,12 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
 
     private void applyArguments() {
         final long stones = getArguments() != null ?
-                getArguments().getLong(MainActivity.KEY_COUNTER, JuggerStonesApp.CounterPreference.getModeStart()) :
-                JuggerStonesApp.CounterPreference.getModeStart();
+            getArguments().getLong(MainActivity.KEY_COUNTER, JuggerStonesApp.CounterPreference.getModeStart()) :
+            JuggerStonesApp.CounterPreference.getModeStart();
         final Team team1 = getArguments() != null ?
-                (Team) getArguments().getParcelable(MainActivity.KEY_TEAM1) : null;
+            (Team) getArguments().getParcelable(MainActivity.KEY_TEAM1) : null;
         final Team team2 = getArguments() != null ?
-                (Team) getArguments().getParcelable(MainActivity.KEY_TEAM2) : null;
+            (Team) getArguments().getParcelable(MainActivity.KEY_TEAM2) : null;
         valueHandler.setStones(stones);
         valueHandler.setTeams(team1, team2);
         updateInfoView();
@@ -117,8 +117,8 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
 
     private void updateInfoView() {
         final int resId = JuggerStonesApp.CounterPreference.isInfinityMode() ?
-                R.drawable.ic_infinity : JuggerStonesApp.CounterPreference.isReverse() ?
-                R.drawable.ic_sort_descending : R.drawable.ic_sort_ascending_modified;
+            R.drawable.ic_infinity : JuggerStonesApp.CounterPreference.isReverse() ?
+            R.drawable.ic_sort_descending : R.drawable.ic_sort_ascending_modified;
         imageView_info.setImageDrawable(AppCompatResources.getDrawable(getContext(), resId));
     }
     //endregion
@@ -291,14 +291,14 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
 
     private void showChangeTeamColorsDialog(TEAM team) {
         ColorPickerDialog.newBuilder()
-                .setDialogType(ColorPickerDialog.TYPE_PRESETS)
-                .setDialogId(team.equals(TEAM.TEAM1) ? 1 : team.equals(TEAM.TEAM2) ? 2 : 0)
-                .setDialogTitle(R.string.main_changeColor)
-                .setColor(team.equals(TEAM.TEAM1) ? textView_team1.getCurrentTextColor() : textView_team2.getCurrentTextColor())
-                .setShowAlphaSlider(false)
-                .setAllowCustom(false)
-                .setSelectedButtonText(android.R.string.ok)
-                .show(getActivity());
+            .setDialogType(ColorPickerDialog.TYPE_PRESETS)
+            .setDialogId(team.equals(TEAM.TEAM1) ? 1 : team.equals(TEAM.TEAM2) ? 2 : 0)
+            .setDialogTitle(R.string.main_changeColor)
+            .setColor(team.equals(TEAM.TEAM1) ? textView_team1.getCurrentTextColor() : textView_team2.getCurrentTextColor())
+            .setShowAlphaSlider(false)
+            .setAllowCustom(false)
+            .setSelectedButtonText(android.R.string.ok)
+            .show(getActivity());
     }
 
     @Override
@@ -343,7 +343,7 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
         alertDialogBuilder.setPositiveButton(android.R.string.ok, (dialog, whichButton) -> {
             final String input = stonesEdit.getText().toString();
             final long stones = !input.isEmpty() && !input.equals("-") ?
-                    Long.parseLong(stonesEdit.getText().toString()) : JuggerStonesApp.CounterPreference.getModeStart();
+                Long.parseLong(stonesEdit.getText().toString()) : JuggerStonesApp.CounterPreference.getModeStart();
             valueHandler.setStones(stones);
         });
         alertDialogBuilder.setNeutralButton(R.string.reset, (dialog, which) -> valueHandler.resetStones());
@@ -409,8 +409,8 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
             case R.id.action_settings:
                 timerHandler.pause();
                 ((MainActivity) getActivity())
-                        .goToPreferenceFragment(textView_stones.getNumberAsLong(),
-                                valueHandler.getTeam1(), valueHandler.getTeam2());
+                    .goToPreferenceFragment(textView_stones.getNumberAsLong(),
+                        valueHandler.getTeam1(), valueHandler.getTeam2());
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -507,7 +507,7 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
             final ColorStateList colorTeam1 = ColorStateList.valueOf(getResources().getColor(R.color.default_team1));
             final ColorStateList colorTeam2 = ColorStateList.valueOf(getResources().getColor(R.color.default_team2));
             setTeams(new Team(getString(R.string.main_team1), colorTeam1, 0L, colorTeam1),
-                    new Team(getString(R.string.main_team2), colorTeam2, 0L, colorTeam2));
+                new Team(getString(R.string.main_team2), colorTeam2, 0L, colorTeam2));
         }
 
         Team getTeam1() {
@@ -554,7 +554,7 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
                 return JuggerStonesApp.CounterPreference.getModeStart();
             if (JuggerStonesApp.CounterPreference.getModeMax() < l)
                 return (l %= 2 * JuggerStonesApp.CounterPreference.getMode()) < JuggerStonesApp.CounterPreference.getModeMax() ?
-                        l : l % JuggerStonesApp.CounterPreference.getMode();
+                    l : l % JuggerStonesApp.CounterPreference.getMode();
             if (JuggerStonesApp.CounterPreference.isReverse() && l == 0)
                 return JuggerStonesApp.CounterPreference.getMode();
             return l;
@@ -594,7 +594,7 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
             if (entry.getMode() != JuggerStonesApp.CounterPreference.getMode())
                 toggleNormalModeWithInfinity();
             if (JuggerStonesApp.CounterPreference.isNormalModeIgnoringReverse() &&
-                    entry.isReverse() != JuggerStonesApp.CounterPreference.isReverse())
+                entry.isReverse() != JuggerStonesApp.CounterPreference.isReverse())
                 toggleNormalModeWithReverse();
         }
 

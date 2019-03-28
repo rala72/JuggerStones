@@ -40,7 +40,7 @@ public class HistoryEntry {
         if (!(obj instanceof HistoryEntry)) return false;
         HistoryEntry entry = (HistoryEntry) obj;
         return team1.equals(entry.getTeam1()) && team2.equals(entry.getTeam2()) &&
-                stones == entry.getStones() && mode == entry.getMode();
+            stones == entry.getStones() && mode == entry.getMode();
     }
 
     @Override

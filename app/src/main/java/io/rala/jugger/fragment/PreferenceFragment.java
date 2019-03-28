@@ -235,12 +235,12 @@ public class PreferenceFragment extends XpPreferenceFragment implements MainActi
 
     private void goToMainFragment() {
         final long stones = getArguments() != null ?
-                getArguments().getLong(MainActivity.KEY_COUNTER, JuggerStonesApp.CounterPreference.getModeStart()) :
-                JuggerStonesApp.CounterPreference.getModeStart();
+            getArguments().getLong(MainActivity.KEY_COUNTER, JuggerStonesApp.CounterPreference.getModeStart()) :
+            JuggerStonesApp.CounterPreference.getModeStart();
         final Team team1 = getArguments() != null ?
-                (Team) getArguments().getParcelable(MainActivity.KEY_TEAM1) : null;
+            (Team) getArguments().getParcelable(MainActivity.KEY_TEAM1) : null;
         final Team team2 = getArguments() != null ?
-                (Team) getArguments().getParcelable(MainActivity.KEY_TEAM2) : null;
+            (Team) getArguments().getParcelable(MainActivity.KEY_TEAM2) : null;
         ((MainActivity) getActivity()).goToMainFragment(stones, team1, team2);
     }
 

@@ -209,7 +209,7 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
          */
         public static long getModeMax() {
             return isInfinityMode() ? Long.MAX_VALUE :
-                    isReverse() ? getMode() * 2 - 1 : getMode() - 1;
+                isReverse() ? getMode() * 2 - 1 : getMode() - 1;
         }
 
         /**
@@ -243,7 +243,7 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
             long interval = Long.parseLong(sharedPreferences.getString(PREFS.INTERVAL.toString(), String.valueOf(DEFAULT_INTERVAL)));
             if (interval == 0)
                 interval = new BigDecimal(sharedPreferences.getString(PREFS.INTERVAL_CUSTOM.toString(), String.valueOf(DEFAULT_INTERVAL)))
-                        .multiply(BigDecimal.valueOf(1000)).longValue();
+                    .multiply(BigDecimal.valueOf(1000)).longValue();
             return interval <= 0 ? 1 : interval; // just to make sure
         }
 
@@ -317,8 +317,8 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
 
         public static boolean isStoneCountdown(long stones, long limit) { // TODO: make preference for 'limit' parameter
             return !isInfinityMode()
-                    && (isNormalMode() && limit > getMode() - stones
-                    || isReverse() && limit > stones);
+                && (isNormalMode() && limit > getMode() - stones
+                || isReverse() && limit > stones);
         }
     }
     //endregion
