@@ -5,13 +5,13 @@ This is a simple Android app to count especially stones and points for Jugger.
 ### JuggerStones _(Original App)_
 The _original_ app is developed by Cristian Cañadas Vacas.<br>
 Here is the PlayStore link of the original version:<br>
-https://play.google.com/store/apps/details?id=contador.piedras.jugger<br>
+<https://play.google.com/store/apps/details?id=contador.piedras.jugger><br>
 and the GitHub link:<br>
-https://github.com/Diphendara/JuggerStones
+<https://github.com/Diphendara/JuggerStones>
 
 ### JuggerStones+
 Here is the PlayStore link of my adapted version:<br>
-https://play.google.com/store/apps/details?id=io.rala.jugger
+<https://play.google.com/store/apps/details?id=io.rala.jugger>
 
 ## Differences
 I made some **changes** and **fixes** to the _original_ app.<br>
