@@ -22,13 +22,13 @@ Here is a list of some changes:
     - team names have default values _(was empty)_
     - team colors are changeable _(new feature!)_
     - show current mode _(new feature!)_
-    - added icons to ActionBar for easier access _(improvment!)_
-    - improved short and long clicks _(improvment and new feature!)_
+    - added icons to ActionBar for easier access _(improvement!)_
+    - improved short and long clicks _(improvement and new feature!)_
 - settings
     - custom game mode _(new feature!)_
     - custom interval _(new feature!)_
     - count backwards _(new feature!)_
     - immediate start (after pressing play) _(new feature!)_
-    - added sounds and optimized included sounds _(improvment!)_
-    - 'Others' section improved _(improvment!)_
+    - added sounds and optimized included sounds _(improvement!)_
+    - 'Others' section improved _(improvement!)_
 - ...
