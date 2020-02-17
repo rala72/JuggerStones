@@ -1,5 +1,7 @@
 package io.rala.jugger.model;
 
+import androidx.annotation.NonNull;
+
 public class HistoryEntry {
     private final Team team1;
     private final Team team2;
@@ -43,6 +45,7 @@ public class HistoryEntry {
             stones == entry.getStones() && mode == entry.getMode();
     }
 
+    @NonNull
     @Override
     public String toString() {
         return getStones() + ": " + getTeam1() + "-" + getTeam2() + " [" + getMode() + ":" + isReverse() + "]";

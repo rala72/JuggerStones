@@ -48,9 +48,9 @@ public class PreferenceFragment extends XpPreferenceFragment implements MainActi
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         if (JuggerStonesApp.CounterPreference.isKeepDisplayAwake())
-            getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.settings));
-        ((MainActivity) getActivity()).setDisplayHomeAsUpEnabled(true);
+            requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        ((MainActivity) requireActivity()).setActionBarTitle(getString(R.string.settings));
+        ((MainActivity) requireActivity()).setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -81,19 +81,19 @@ public class PreferenceFragment extends XpPreferenceFragment implements MainActi
         pref_language.setDefaultValue(Locale.getDefault().getLanguage());
         pref_language.setValue(LocaleUtils.getLocale().getLanguage());
         pref_language.setOnPreferenceChangeListener((preference, newValue) -> {
-            ((MainActivity) getActivity()).changeLanguage(newValue.toString());
+            ((MainActivity) requireActivity()).changeLanguage(newValue.toString());
             return true;
         });
 
         final Preference pref_email = findPreference(JuggerStonesApp.PREFS.EMAIL.toString());
         pref_email.setOnPreferenceClickListener(preference -> {
-            JuggerStonesApp.sendEmail(getActivity());
+            JuggerStonesApp.sendEmail(requireContext());
             return true;
         });
         final Preference pref_version = findPreference(JuggerStonesApp.PREFS.VERSION.toString());
-        pref_version.setTitle(getString(R.string.pref_version, JuggerStonesApp.getVersion(getActivity())));
+        pref_version.setTitle(getString(R.string.pref_version, JuggerStonesApp.getVersion(requireContext())));
         pref_version.setOnPreferenceClickListener(preference -> {
-            final String appPackageName = getActivity().getPackageName();
+            final String appPackageName = requireActivity().getPackageName();
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
             } catch (android.content.ActivityNotFoundException e) {
@@ -109,7 +109,7 @@ public class PreferenceFragment extends XpPreferenceFragment implements MainActi
         getListView().setFocusable(false);
 
         setDivider(null);
-        getListView().addItemDecoration(new PreferenceDividerDecoration(getContext()).drawBetweenItems(false));
+        getListView().addItemDecoration(new PreferenceDividerDecoration(requireContext()).drawBetweenItems(false));
     }
 
     @Override
@@ -119,13 +119,11 @@ public class PreferenceFragment extends XpPreferenceFragment implements MainActi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                goToMainFragment();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            goToMainFragment();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -146,12 +144,14 @@ public class PreferenceFragment extends XpPreferenceFragment implements MainActi
         if (key.equals(JuggerStonesApp.PREFS.MODE_CUSTOM.toString())) {
             long min = 1;
             EditTextPreference mode_custom = (EditTextPreference) findPreference(JuggerStonesApp.PREFS.MODE_CUSTOM.toString());
+            if (mode_custom.getText() == null) mode_custom.setText("");
             long value = mode_custom.getText().trim().isEmpty() ? min : Long.parseLong(mode_custom.getText().trim());
             if (value == 0 || value == min) mode_custom.setText(String.valueOf(value));
         }
         if (key.equals(JuggerStonesApp.PREFS.INTERVAL_CUSTOM.toString())) {
             double min = 0.001;
             EditTextPreference interval_custom = (EditTextPreference) findPreference(JuggerStonesApp.PREFS.INTERVAL_CUSTOM.toString());
+            if (interval_custom.getText() == null) interval_custom.setText("");
             double value = interval_custom.getText().trim().isEmpty() ? min : Double.parseDouble(interval_custom.getText().trim());
             if (value == 0 || value == min) interval_custom.setText(String.valueOf(value));
         }
@@ -160,12 +160,12 @@ public class PreferenceFragment extends XpPreferenceFragment implements MainActi
     private void updatePreferencesEnabled(String key) {
         if (key == null || key.equals(JuggerStonesApp.PREFS.MODE.toString())) {
             ListPreference mode = (ListPreference) findPreference(JuggerStonesApp.PREFS.MODE.toString());
-            findPreference(JuggerStonesApp.PREFS.MODE_CUSTOM.toString()).setEnabled(mode.getValue().equals("0"));
-            findPreference(JuggerStonesApp.PREFS.REVERSE.toString()).setEnabled(!mode.getValue().equals("-1"));
+            findPreference(JuggerStonesApp.PREFS.MODE_CUSTOM.toString()).setEnabled("0".equals(mode.getValue()));
+            findPreference(JuggerStonesApp.PREFS.REVERSE.toString()).setEnabled(!"-1".equals(mode.getValue()));
         }
         if (key == null || key.equals(JuggerStonesApp.PREFS.INTERVAL.toString())) {
             ListPreference interval = (ListPreference) findPreference(JuggerStonesApp.PREFS.INTERVAL.toString());
-            findPreference(JuggerStonesApp.PREFS.INTERVAL_CUSTOM.toString()).setEnabled(interval.getValue().equals("0"));
+            findPreference(JuggerStonesApp.PREFS.INTERVAL_CUSTOM.toString()).setEnabled("0".equals(interval.getValue()));
         }
     }
 
@@ -229,7 +229,7 @@ public class PreferenceFragment extends XpPreferenceFragment implements MainActi
         if (preference instanceof SoundPreferenceList) {
             DialogFragment fragment = SoundPreferenceList.SoundPreferenceListFragment.newInstance(preference);
             fragment.setTargetFragment(this, 0);
-            fragment.show(getFragmentManager(), DIALOG_FRAGMENT_TAG);
+            fragment.show(requireFragmentManager(), DIALOG_FRAGMENT_TAG);
         } else super.onDisplayPreferenceDialog(preference);
     }
 
@@ -241,7 +241,7 @@ public class PreferenceFragment extends XpPreferenceFragment implements MainActi
             (Team) getArguments().getParcelable(MainActivity.KEY_TEAM1) : null;
         final Team team2 = getArguments() != null ?
             (Team) getArguments().getParcelable(MainActivity.KEY_TEAM2) : null;
-        ((MainActivity) getActivity()).goToMainFragment(stones, team1, team2);
+        ((MainActivity) requireActivity()).goToMainFragment(stones, team1, team2);
     }
 
     @Override

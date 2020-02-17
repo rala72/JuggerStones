@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 import io.rala.jugger.model.HistoryEntry;
 import io.rala.jugger.model.Sound;
@@ -46,6 +47,7 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
             this.text = text;
         }
 
+        @NonNull
         @Override
         public String toString() {
             return text;
@@ -73,7 +75,7 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
     private void changeLanguageIfNotDefault() {
         final String language_default = Locale.getDefault().getLanguage();
         final String language_pref = sharedPreferences.getString(PREFS.LANGUAGE.toString(), language_default);
-        if (!language_pref.equals(new Locale(language_default).getLanguage())) {
+        if (!new Locale(language_default).getLanguage().equals(language_pref)) {
             LocaleUtils.setLocale(new Locale(language_pref));
             LocaleUtils.updateConfig(this, getResources().getConfiguration());
         }
@@ -160,7 +162,6 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
 
     public static void sendEmail(Context context) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
-        //noinspection SpellCheckingInspection
         intent.setData(Uri.parse("mailto:"));
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{context.getString(R.string.email_current)});
         intent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.app_name) + JuggerStonesApp.getVersionForEmail(context));

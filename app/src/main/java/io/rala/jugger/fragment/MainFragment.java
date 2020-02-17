@@ -46,6 +46,7 @@ import io.rala.jugger.model.InputFilterMinMaxInteger;
 import io.rala.jugger.model.Team;
 import io.rala.jugger.view.NumberView;
 
+@SuppressWarnings("unused")
 public class MainFragment extends Fragment implements CounterTask.CounterTaskCallback, ColorPickerDialogListener {
     private static final int LIMIT_TEAM_NAME_CHARACTERS_TO = 0;
 
@@ -88,9 +89,9 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         if (JuggerStonesApp.CounterPreference.isKeepDisplayAwake())
-            getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.app_name));
-        ((MainActivity) getActivity()).setDisplayHomeAsUpEnabled(false);
+            requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        ((MainActivity) requireActivity()).setActionBarTitle(getString(R.string.app_name));
+        ((MainActivity) requireActivity()).setDisplayHomeAsUpEnabled(false);
     }
 
     @Nullable
@@ -119,7 +120,7 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
         final int resId = JuggerStonesApp.CounterPreference.isInfinityMode() ?
             R.drawable.ic_infinity : JuggerStonesApp.CounterPreference.isReverse() ?
             R.drawable.ic_sort_descending : R.drawable.ic_sort_ascending_modified;
-        imageView_info.setImageDrawable(AppCompatResources.getDrawable(getContext(), resId));
+        imageView_info.setImageDrawable(AppCompatResources.getDrawable(requireContext(), resId));
     }
     //endregion
 
@@ -298,7 +299,7 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
             .setShowAlphaSlider(false)
             .setAllowCustom(false)
             .setSelectedButtonText(android.R.string.ok)
-            .show(getActivity());
+            .show(requireActivity());
     }
 
     @Override
@@ -322,7 +323,7 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
         if (timerHandler.isRunning()) return;
         final int margin_dp = 25;
         final int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics());
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(requireContext());
         alertDialogBuilder.setTitle(R.string.main_setStones);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(margin_px, 0, margin_px, 0);
@@ -359,17 +360,18 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
     //region CounterTaskCallback
     @Override
     public void onStonesChanged(final long stones) {
-        getActivity().runOnUiThread(() -> {
+        requireActivity().runOnUiThread(() -> {
             valueHandler.setStones(stones);
-            if (JuggerStonesApp.CounterPreference.isInfinityMode() && stones > 0 && stones % JuggerStonesApp.DEFAULT_INTERVAL == 0)
-                Toast.makeText(getContext(), R.string.main_toast_infinity, Toast.LENGTH_LONG).show();
+            if (JuggerStonesApp.CounterPreference.isInfinityMode() &&
+                0 < stones && stones % JuggerStonesApp.DEFAULT_INTERVAL == 0)
+                Toast.makeText(requireContext(), R.string.main_toast_infinity, Toast.LENGTH_LONG).show();
         });
     }
 
     @Override
     public void onGongPlayed(final long stones) {
         if (JuggerStonesApp.CounterPreference.isStopAfterGong())
-            getActivity().runOnUiThread(timerHandler::pause);
+            requireActivity().runOnUiThread(timerHandler::pause);
     }
     //endregion
 
@@ -408,7 +410,7 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
                 return true;
             case R.id.action_settings:
                 timerHandler.pause();
-                ((MainActivity) getActivity())
+                ((MainActivity) requireActivity())
                     .goToPreferenceFragment(textView_stones.getNumberAsLong(),
                         valueHandler.getTeam1(), valueHandler.getTeam2());
                 return true;
@@ -422,7 +424,7 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
         private Timer timer;
 
         void start() {
-            button_playPause.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.ic_pause_circle));
+            button_playPause.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_pause_circle));
             if (isRunning()) return;
             final long stones = valueHandler.getStones();
             final long mode = JuggerStonesApp.CounterPreference.getMode();
@@ -435,7 +437,7 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
         }
 
         void pause() {
-            button_playPause.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.ic_play_circle));
+            button_playPause.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_play_circle));
             if (!isRunning()) return;
             timer.cancel();
             timer = null;
@@ -532,7 +534,7 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
             textView_stones.setNumber(cleanStones(l));
         }
 
-        public void resetStones() {
+        void resetStones() {
             setStones(JuggerStonesApp.CounterPreference.getModeStart());
         }
 

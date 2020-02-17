@@ -46,6 +46,7 @@ public class SoundPreferenceList extends ListPreference {
             final String key = getArguments() != null ? getArguments().getString(ARG_KEY) : null;
             builder.setSingleChoiceItems(preference.getEntries(), clickedEntryIndex, (dialog, which) -> {
                 clickedEntryIndex = which;
+                if (key == null) return;
                 String value = preference.getEntryValues()[which].toString();
                 if (key.startsWith(JuggerStonesApp.PREFS.SOUND_STONE.toString()))
                     new Sound(value, null).playStone(getContext());

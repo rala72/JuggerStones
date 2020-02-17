@@ -4,6 +4,8 @@ import android.content.res.ColorStateList;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 public class Team implements Parcelable {
     private final CharSequence name;
     private final ColorStateList nameColor;
@@ -52,9 +54,10 @@ public class Team implements Parcelable {
         return pointsColor;
     }
 
+    @NonNull
     @Override
     public String toString() {
-        return name + ":" + points;
+        return getName() + ":" + getPoints();
     }
 
     @Override
