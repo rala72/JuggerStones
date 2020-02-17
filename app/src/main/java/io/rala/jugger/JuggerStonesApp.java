@@ -186,9 +186,9 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
          * @see #getModeStart()
          */
         public static long getMode() {
-            long mode = Long.parseLong(sharedPreferences.getString(PREFS.MODE.toString(), String.valueOf(DEFAULT_MODE)));
+            long mode = getLongFromString(PREFS.MODE, DEFAULT_MODE);
             if (mode == 0)
-                mode = Long.parseLong(sharedPreferences.getString(PREFS.MODE_CUSTOM.toString(), String.valueOf(DEFAULT_MODE)));
+                mode = getLongFromString(PREFS.MODE_CUSTOM, DEFAULT_MODE);
             return mode;
         }
 
@@ -230,7 +230,7 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
          * @see #getMode()
          */
         public static long getPreviousMode() {
-            long previous = Long.parseLong(sharedPreferences.getString(PREFS.MODE_PREVIOUS.toString(), String.valueOf(DEFAULT_MODE)));
+            long previous = getLongFromString(PREFS.MODE_PREVIOUS, DEFAULT_MODE);
             if (previous == getMode() || (previous != -1 && !isInfinityMode()))
                 if (isInfinityMode()) previous = DEFAULT_MODE;
                 else previous = -1;
@@ -241,7 +241,7 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
          * @return interval between two stones
          */
         public static long getInterval() {
-            long interval = Long.parseLong(sharedPreferences.getString(PREFS.INTERVAL.toString(), String.valueOf(DEFAULT_INTERVAL)));
+            long interval = getLongFromString(PREFS.INTERVAL, DEFAULT_INTERVAL);
             if (interval == 0)
                 interval = new BigDecimal(sharedPreferences.getString(PREFS.INTERVAL_CUSTOM.toString(), String.valueOf(DEFAULT_INTERVAL)))
                     .multiply(BigDecimal.valueOf(1000)).longValue();
@@ -320,6 +320,11 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
             return !isInfinityMode()
                 && (isNormalMode() && limit > getMode() - stones
                 || isReverse() && limit > stones);
+        }
+
+        private static long getLongFromString(PREFS pref, long defaultValue) {
+            String string = sharedPreferences.getString(PREFS.MODE_PREVIOUS.toString(), String.valueOf(defaultValue));
+            return string == null ? defaultValue : Long.parseLong(string);
         }
     }
     //endregion
