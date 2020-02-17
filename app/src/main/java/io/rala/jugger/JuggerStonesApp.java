@@ -346,7 +346,7 @@ public class JuggerStonesApp extends Application
 
         private static long getLongFromString(PREFS pref, long defaultValue) {
             String string = sharedPreferences.getString(
-                PREFS.MODE_PREVIOUS.toString(), String.valueOf(defaultValue)
+                pref.toString(), String.valueOf(defaultValue)
             );
             return string == null ? defaultValue : Long.parseLong(string);
         }
