@@ -24,7 +24,9 @@ public class Team implements Parcelable {
         }
     };
 
-    public Team(CharSequence name, ColorStateList nameColor, Long points, ColorStateList pointsColor) {
+    public Team(
+        CharSequence name, ColorStateList nameColor, Long points, ColorStateList pointsColor
+    ) {
         this.name = name;
         this.nameColor = nameColor;
         this.points = points;

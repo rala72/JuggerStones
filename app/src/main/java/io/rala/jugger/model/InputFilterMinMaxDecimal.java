@@ -9,11 +9,13 @@ import java.math.BigDecimal;
 
 /**
  * <b>warning</b><br>
- * this filter allows min value in '0.' range but if just '0.' is entered the value may not as expected
+ * this filter allows min value in '0.' range
+ * but if just '0.' is entered the value may not as expected
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class InputFilterMinMaxDecimal implements InputFilter {
-    private BigDecimal min = BigDecimal.valueOf(-Double.MAX_VALUE), max = BigDecimal.valueOf(Double.MAX_VALUE);
+    private BigDecimal min = BigDecimal.valueOf(-Double.MAX_VALUE),
+        max = BigDecimal.valueOf(Double.MAX_VALUE);
 
     /**
      * @see #InputFilterMinMaxDecimal(BigDecimal)
@@ -41,10 +43,14 @@ public class InputFilterMinMaxDecimal implements InputFilter {
     }
 
     @Override
-    public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+    public CharSequence filter(CharSequence source, int start, int end,
+                               Spanned dest, int dstart, int dend) {
         final String oldValue = dest.toString();
-        final String newValue = dest.toString().substring(0, dstart) + source.toString().substring(start, end) + dest.toString().substring(dend);
-        if (newValue.equals("-") && min.compareTo(BigDecimal.valueOf(0)) <= 0 || newValue.matches("0[.,]?") && min.toString().startsWith("0")) return null;
+        final String newValue = dest.toString().substring(0, dstart) +
+            source.toString().substring(start, end) + dest.toString().substring(dend);
+        if (newValue.equals("-") && min.compareTo(BigDecimal.valueOf(0)) <= 0 ||
+            newValue.matches("0[.,]?") && min.toString().startsWith("0"))
+            return null;
         try {
             if (isInRange(new BigDecimal(newValue))) return null;
             else if (isInRange(new BigDecimal(oldValue))) return oldValue;
@@ -58,7 +64,9 @@ public class InputFilterMinMaxDecimal implements InputFilter {
         return isInRange(min, max, value);
     }
 
-    private static boolean isInRange(final BigDecimal min, final BigDecimal max, final BigDecimal value) {
+    private static boolean isInRange(
+        final BigDecimal min, final BigDecimal max, final BigDecimal value
+    ) {
         return min.compareTo(value) <= 0 && value.compareTo(max) <= 0;
     }
 }

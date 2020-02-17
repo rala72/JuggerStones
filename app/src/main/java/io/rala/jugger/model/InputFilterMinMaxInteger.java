@@ -8,7 +8,8 @@ import java.math.BigInteger;
 // https://stackoverflow.com/q/14212518/2715720
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class InputFilterMinMaxInteger implements InputFilter {
-    private BigInteger min = BigInteger.valueOf(Long.MIN_VALUE), max = BigInteger.valueOf(Long.MAX_VALUE);
+    private BigInteger min = BigInteger.valueOf(Long.MIN_VALUE),
+        max = BigInteger.valueOf(Long.MAX_VALUE);
 
     /**
      * @see #InputFilterMinMaxInteger(BigInteger)
@@ -36,9 +37,11 @@ public class InputFilterMinMaxInteger implements InputFilter {
     }
 
     @Override
-    public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+    public CharSequence filter(CharSequence source, int start, int end,
+                               Spanned dest, int dstart, int dend) {
         final String oldValue = dest.toString();
-        final String newValue = dest.toString().substring(0, dstart) + source.toString().substring(start, end) + dest.toString().substring(dend);
+        final String newValue = dest.toString().substring(0, dstart) +
+            source.toString().substring(start, end) + dest.toString().substring(dend);
         if (newValue.equals("-") && min.compareTo(BigInteger.valueOf(0)) <= 0) return null;
         try {
             if (isInRange(new BigInteger(newValue))) return null;
@@ -53,7 +56,9 @@ public class InputFilterMinMaxInteger implements InputFilter {
         return isInRange(min, max, value);
     }
 
-    private static boolean isInRange(final BigInteger min, final BigInteger max, final BigInteger value) {
+    private static boolean isInRange(
+        final BigInteger min, final BigInteger max, final BigInteger value
+    ) {
         return min.compareTo(value) <= 0 && value.compareTo(max) <= 0;
     }
 }

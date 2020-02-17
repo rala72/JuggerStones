@@ -78,7 +78,8 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
     }
 
     public void setDisplayHomeAsUpEnabled(boolean showHomeAsUp) {
-        if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(showHomeAsUp);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(showHomeAsUp);
     }
 
     public void changeLanguage(String language) {
@@ -109,7 +110,9 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
     }
 
     public void goToPreferenceFragment(long stones, Team team1, Team team2, boolean animation) {
-        goToFragment(PreferenceFragment.newInstance(stones, team1, team2), animation ? false : null);
+        goToFragment(PreferenceFragment.newInstance(stones, team1, team2),
+            animation ? false : null
+        );
     }
 
     private void goToFragment(Fragment fragment, Boolean animationRightToLeft) {
@@ -117,9 +120,13 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
         fragmentTransaction.disallowAddToBackStack();
         if (animationRightToLeft != null)
             if (animationRightToLeft)
-                fragmentTransaction.setCustomAnimations(R.anim.left_to_right_in, R.anim.left_to_right_out);
+                fragmentTransaction.setCustomAnimations(
+                    R.anim.left_to_right_in, R.anim.left_to_right_out
+                );
             else
-                fragmentTransaction.setCustomAnimations(R.anim.right_to_left_in, R.anim.right_to_left_out);
+                fragmentTransaction.setCustomAnimations(
+                    R.anim.right_to_left_in, R.anim.right_to_left_out
+                );
         fragmentTransaction.replace(R.id.container, fragment).commit();
     }
     // endregion

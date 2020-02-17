@@ -47,7 +47,8 @@ import io.rala.jugger.model.Team;
 import io.rala.jugger.view.NumberView;
 
 @SuppressWarnings("unused")
-public class MainFragment extends Fragment implements CounterTask.CounterTaskCallback, ColorPickerDialogListener {
+public class MainFragment extends Fragment
+    implements CounterTask.CounterTaskCallback, ColorPickerDialogListener {
     private static final int LIMIT_TEAM_NAME_CHARACTERS_TO = 0;
 
     //region butterKnife
@@ -96,7 +97,11 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(
+        @NonNull LayoutInflater inflater,
+        @Nullable ViewGroup container,
+        @Nullable Bundle savedInstanceState
+    ) {
         final View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
         applyArguments();
@@ -105,8 +110,9 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
 
     private void applyArguments() {
         final long stones = getArguments() != null ?
-            getArguments().getLong(MainActivity.KEY_COUNTER, JuggerStonesApp.CounterPreference.getModeStart()) :
-            JuggerStonesApp.CounterPreference.getModeStart();
+            getArguments().getLong(
+                MainActivity.KEY_COUNTER, JuggerStonesApp.CounterPreference.getModeStart()
+            ) : JuggerStonesApp.CounterPreference.getModeStart();
         final Team team1 = getArguments() != null ?
             (Team) getArguments().getParcelable(MainActivity.KEY_TEAM1) : null;
         final Team team2 = getArguments() != null ?
@@ -138,7 +144,9 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
                 break;
             case R.id.button_stones_increase:
                 if (timerHandler.isRunning()) return;
-                if (textView_stones.getNumberAsLong() < JuggerStonesApp.CounterPreference.getModeMax()) textView_stones.increase(1L);
+                if (textView_stones.getNumberAsLong() <
+                    JuggerStonesApp.CounterPreference.getModeMax())
+                    textView_stones.increase(1L);
                 break;
         }
     }
@@ -159,19 +167,26 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
     protected void onDecreaseClick(AppCompatImageButton button) {
         switch (button.getId()) {
             case R.id.button_team1_decrease:
-                if (0 < textView_team1_points.getNumberAsLong()) textView_team1_points.decrease(1L);
+                if (0 < textView_team1_points.getNumberAsLong())
+                    textView_team1_points.decrease(1L);
                 break;
             case R.id.button_team2_decrease:
-                if (0 < textView_team2_points.getNumberAsLong()) textView_team2_points.decrease(1L);
+                if (0 < textView_team2_points.getNumberAsLong())
+                    textView_team2_points.decrease(1L);
                 break;
             case R.id.button_stones_decrease:
                 if (timerHandler.isRunning()) return;
-                if (JuggerStonesApp.CounterPreference.getModeMin() < textView_stones.getNumberAsLong()) textView_stones.decrease(1L);
+                if (JuggerStonesApp.CounterPreference.getModeMin() <
+                    textView_stones.getNumberAsLong()) textView_stones.decrease(1L);
                 break;
         }
     }
 
-    @OnLongClick({R.id.button_team1_decrease, R.id.button_team2_decrease, R.id.button_stones_decrease})
+    @OnLongClick({
+        R.id.button_team1_decrease,
+        R.id.button_team2_decrease,
+        R.id.button_stones_decrease
+    })
     protected boolean onDecreaseLongClick(AppCompatImageButton button) {
         switch (button.getId()) {
             case R.id.button_team1_decrease:
@@ -231,7 +246,9 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
     }
 
     @OnLongClick(R.id.imageView_info)
-    protected boolean onInfoViewLongClick(@SuppressWarnings("unused") AppCompatImageView imageView) {
+    protected boolean onInfoViewLongClick(
+        @SuppressWarnings("unused") AppCompatImageView imageView
+    ) {
         if (timerHandler.isRunning()) return false;
         if (JuggerStonesApp.CounterPreference.isNormalModeIgnoringReverse()) {
             valueHandler.toggleNormalModeWithReverse();
@@ -245,17 +262,25 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
     @SuppressWarnings("ConstantConditions")
     private void showRenameTeamsDialog() {
         final int margin_dp = 25;
-        final int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics());
+        final int margin_px = (int) TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics()
+        );
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
         alertDialogBuilder.setTitle(R.string.main_renameTeams);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams layoutParams =
+            new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+            );
         layoutParams.setMargins(margin_px, 0, margin_px, 0);
 
         final EditText editText_name1 = new EditText(getContext());
         editText_name1.setLayoutParams(layoutParams);
         editText_name1.setHint(R.string.main_renameTeams_1);
         if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
-            editText_name1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(LIMIT_TEAM_NAME_CHARACTERS_TO)});
+            editText_name1.setFilters(new InputFilter[]{
+                new InputFilter.LengthFilter(LIMIT_TEAM_NAME_CHARACTERS_TO)
+            });
         editText_name1.setText(textView_team1.getText());
         editText_name1.requestFocus();
 
@@ -263,7 +288,9 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
         editText_name2.setLayoutParams(layoutParams);
         editText_name2.setHint(R.string.main_renameTeams_2);
         if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
-            editText_name2.setFilters(new InputFilter[]{new InputFilter.LengthFilter(LIMIT_TEAM_NAME_CHARACTERS_TO)});
+            editText_name2.setFilters(new InputFilter[]{
+                new InputFilter.LengthFilter(LIMIT_TEAM_NAME_CHARACTERS_TO)
+            });
         editText_name2.setText(textView_team2.getText());
 
         LinearLayout linearLayout = new LinearLayout(getContext());
@@ -287,15 +314,22 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
         if (LIMIT_TEAM_NAME_CHARACTERS_TO > 0)
-            Toast.makeText(getContext(), getString(R.string.main_toast_teamLength, 5), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),
+                getString(R.string.main_toast_teamLength, 5),
+                Toast.LENGTH_SHORT
+            ).show();
     }
 
     private void showChangeTeamColorsDialog(TEAM team) {
         ColorPickerDialog.newBuilder()
             .setDialogType(ColorPickerDialog.TYPE_PRESETS)
-            .setDialogId(team.equals(TEAM.TEAM1) ? 1 : team.equals(TEAM.TEAM2) ? 2 : 0)
+            .setDialogId(team.equals(TEAM.TEAM1) ?
+                1 : team.equals(TEAM.TEAM2) ? 2 : 0
+            )
             .setDialogTitle(R.string.main_changeColor)
-            .setColor(team.equals(TEAM.TEAM1) ? textView_team1.getCurrentTextColor() : textView_team2.getCurrentTextColor())
+            .setColor(team.equals(TEAM.TEAM1) ?
+                textView_team1.getCurrentTextColor() : textView_team2.getCurrentTextColor()
+            )
             .setShowAlphaSlider(false)
             .setAllowCustom(false)
             .setSelectedButtonText(android.R.string.ok)
@@ -322,17 +356,28 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
     private void showSetStonesDialog() {
         if (timerHandler.isRunning()) return;
         final int margin_dp = 25;
-        final int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics());
+        final int margin_px = (int) TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, margin_dp, getResources().getDisplayMetrics()
+        );
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(requireContext());
         alertDialogBuilder.setTitle(R.string.main_setStones);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams layoutParams =
+            new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+            );
         layoutParams.setMargins(margin_px, 0, margin_px, 0);
 
         final EditText stonesEdit = new EditText(getContext());
         stonesEdit.setHint(R.string.main_setStones);
         stonesEdit.setLayoutParams(layoutParams);
         stonesEdit.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED);
-        stonesEdit.setFilters(new InputFilter[]{new InputFilterMinMaxInteger(JuggerStonesApp.CounterPreference.getModeMin(), JuggerStonesApp.CounterPreference.getModeMax())});
+        stonesEdit.setFilters(new InputFilter[]{
+            new InputFilterMinMaxInteger(
+                JuggerStonesApp.CounterPreference.getModeMin(),
+                JuggerStonesApp.CounterPreference.getModeMax()
+            )
+        });
         stonesEdit.setText(textView_stones.getText());
         stonesEdit.requestFocus();
 
@@ -344,10 +389,13 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
         alertDialogBuilder.setPositiveButton(android.R.string.ok, (dialog, whichButton) -> {
             final String input = stonesEdit.getText().toString();
             final long stones = !input.isEmpty() && !input.equals("-") ?
-                Long.parseLong(stonesEdit.getText().toString()) : JuggerStonesApp.CounterPreference.getModeStart();
+                Long.parseLong(stonesEdit.getText().toString()) :
+                JuggerStonesApp.CounterPreference.getModeStart();
             valueHandler.setStones(stones);
         });
-        alertDialogBuilder.setNeutralButton(R.string.reset, (dialog, which) -> valueHandler.resetStones());
+        alertDialogBuilder.setNeutralButton(R.string.reset,
+            (dialog, which) -> valueHandler.resetStones()
+        );
 
         alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
         Dialog dialog = alertDialogBuilder.create();
@@ -364,7 +412,10 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
             valueHandler.setStones(stones);
             if (JuggerStonesApp.CounterPreference.isInfinityMode() &&
                 0 < stones && stones % JuggerStonesApp.DEFAULT_INTERVAL == 0)
-                Toast.makeText(requireContext(), R.string.main_toast_infinity, Toast.LENGTH_LONG).show();
+                Toast.makeText(requireContext(),
+                    R.string.main_toast_infinity,
+                    Toast.LENGTH_LONG
+                ).show();
         });
     }
 
@@ -424,20 +475,27 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
         private Timer timer;
 
         void start() {
-            button_playPause.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_pause_circle));
+            button_playPause.setImageDrawable(
+                AppCompatResources.getDrawable(requireContext(),
+                    R.drawable.ic_pause_circle)
+            );
             if (isRunning()) return;
             final long stones = valueHandler.getStones();
             final long mode = JuggerStonesApp.CounterPreference.getMode();
             final long interval = JuggerStonesApp.CounterPreference.getInterval();
             final long delay = JuggerStonesApp.CounterPreference.isImmediateStart() ? 0 : interval;
             valueHandler.saveHistoryEntry(stones, mode);
-            final CounterTask counterTask = new CounterTask(getContext(), stones, mode, JuggerStonesApp.sound, MainFragment.this);
+            final CounterTask counterTask = new CounterTask(getContext(),
+                stones, mode, JuggerStonesApp.sound, MainFragment.this
+            );
             timer = new Timer();
             timer.scheduleAtFixedRate(counterTask, delay, interval);
         }
 
         void pause() {
-            button_playPause.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_play_circle));
+            button_playPause.setImageDrawable(
+                AppCompatResources.getDrawable(requireContext(), R.drawable.ic_play_circle)
+            );
             if (!isRunning()) return;
             timer.cancel();
             timer = null;
@@ -469,16 +527,24 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
         //region teams
         void setTeam(Team team, TEAM teamNumber) {
             if (teamNumber == null || teamNumber == TEAM.TEAM1) {
-                if (team.getName() != null) textView_team1.setText(team.getName());
-                if (team.getNameColor() != null) textView_team1.setTextColor(team.getNameColor());
-                if (team.getPoints() != null) textView_team1_points.setNumber(team.getPoints());
-                if (team.getPointsColor() != null) textView_team1_points.setTextColor(team.getPointsColor());
+                if (team.getName() != null)
+                    textView_team1.setText(team.getName());
+                if (team.getNameColor() != null)
+                    textView_team1.setTextColor(team.getNameColor());
+                if (team.getPoints() != null)
+                    textView_team1_points.setNumber(team.getPoints());
+                if (team.getPointsColor() != null)
+                    textView_team1_points.setTextColor(team.getPointsColor());
             }
             if (teamNumber == null || teamNumber == TEAM.TEAM2) {
-                if (team.getName() != null) textView_team2.setText(team.getName());
-                if (team.getNameColor() != null) textView_team2.setTextColor(team.getNameColor());
-                if (team.getPoints() != null) textView_team2_points.setNumber(team.getPoints());
-                if (team.getPointsColor() != null) textView_team2_points.setTextColor(team.getPointsColor());
+                if (team.getName() != null)
+                    textView_team2.setText(team.getName());
+                if (team.getNameColor() != null)
+                    textView_team2.setTextColor(team.getNameColor());
+                if (team.getPoints() != null)
+                    textView_team2_points.setNumber(team.getPoints());
+                if (team.getPointsColor() != null)
+                    textView_team2_points.setTextColor(team.getPointsColor());
             }
         }
 
@@ -506,8 +572,12 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
         }
 
         void resetTeams() {
-            final ColorStateList colorTeam1 = ColorStateList.valueOf(getResources().getColor(R.color.default_team1));
-            final ColorStateList colorTeam2 = ColorStateList.valueOf(getResources().getColor(R.color.default_team2));
+            final ColorStateList colorTeam1 = ColorStateList.valueOf(
+                getResources().getColor(R.color.default_team1)
+            );
+            final ColorStateList colorTeam2 = ColorStateList.valueOf(
+                getResources().getColor(R.color.default_team2)
+            );
             setTeams(new Team(getString(R.string.main_team1), colorTeam1, 0L, colorTeam1),
                 new Team(getString(R.string.main_team2), colorTeam2, 0L, colorTeam2));
         }
@@ -555,8 +625,9 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
             if (l < JuggerStonesApp.CounterPreference.getModeMin())
                 return JuggerStonesApp.CounterPreference.getModeStart();
             if (JuggerStonesApp.CounterPreference.getModeMax() < l)
-                return (l %= 2 * JuggerStonesApp.CounterPreference.getMode()) < JuggerStonesApp.CounterPreference.getModeMax() ?
-                    l : l % JuggerStonesApp.CounterPreference.getMode();
+                return (l %= 2 * JuggerStonesApp.CounterPreference.getMode()) <
+                    JuggerStonesApp.CounterPreference.getModeMax() ? l :
+                    l % JuggerStonesApp.CounterPreference.getMode();
             if (JuggerStonesApp.CounterPreference.isReverse() && l == 0)
                 return JuggerStonesApp.CounterPreference.getMode();
             return l;
@@ -566,14 +637,23 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
         //region mode
         void toggleNormalModeWithInfinity() {
             SharedPreferences.Editor editor = JuggerStonesApp.sharedPreferences.edit();
-            editor.putString(JuggerStonesApp.PREFS.MODE.toString(), String.valueOf(JuggerStonesApp.CounterPreference.getPreviousMode()));
-            editor.putString(JuggerStonesApp.PREFS.MODE_PREVIOUS.toString(), String.valueOf(JuggerStonesApp.CounterPreference.getMode()));
+            editor.putString(
+                JuggerStonesApp.PREFS.MODE.toString(),
+                String.valueOf(JuggerStonesApp.CounterPreference.getPreviousMode())
+            );
+            editor.putString(
+                JuggerStonesApp.PREFS.MODE_PREVIOUS.toString(),
+                String.valueOf(JuggerStonesApp.CounterPreference.getMode())
+            );
             applyModeEditor(editor);
         }
 
         void toggleNormalModeWithReverse() {
             SharedPreferences.Editor editor = JuggerStonesApp.sharedPreferences.edit();
-            editor.putBoolean(JuggerStonesApp.PREFS.REVERSE.toString(), !JuggerStonesApp.CounterPreference.isReverse());
+            editor.putBoolean(
+                JuggerStonesApp.PREFS.REVERSE.toString(),
+                !JuggerStonesApp.CounterPreference.isReverse()
+            );
             applyModeEditor(editor);
         }
 
@@ -601,7 +681,12 @@ public class MainFragment extends Fragment implements CounterTask.CounterTaskCal
         }
 
         private void saveHistoryEntry(long stones, long mode) {
-            JuggerStonesApp.saveToHistory(new HistoryEntry(getTeam1(), getTeam2(), stones, mode, JuggerStonesApp.CounterPreference.isReverse()));
+            JuggerStonesApp.saveToHistory(
+                new HistoryEntry(
+                    getTeam1(), getTeam2(), stones, mode,
+                    JuggerStonesApp.CounterPreference.isReverse()
+                )
+            );
         }
 
         private void clearHistory() {

@@ -20,7 +20,8 @@ import androidx.preference.PreferenceManager;
 import io.rala.jugger.model.HistoryEntry;
 import io.rala.jugger.model.Sound;
 
-public class JuggerStonesApp extends Application implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class JuggerStonesApp extends Application
+    implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     public static SharedPreferences sharedPreferences;
     public static AudioManager audioManager;
@@ -34,10 +35,13 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
     public static final String DEFAULT_GONG = "gong";
 
     public enum PREFS { // see also preference.xml // some of them are only for findPreference
-        MODE("mode"), MODE_PREVIOUS("mode_previous"), MODE_CUSTOM("mode_custom"), INTERVAL("interval"), INTERVAL_CUSTOM("interval_custom"),
+        MODE("mode"), MODE_PREVIOUS("mode_previous"),
+        MODE_CUSTOM("mode_custom"),
+        INTERVAL("interval"), INTERVAL_CUSTOM("interval_custom"),
         REVERSE("reverse"), IMMEDIATE_START("immediateStart"),
         STOP_AFTER_POINT("stop_after_point"), STOP_AFTER_GONG("stop_after_gong"),
-        SOUND_STONE("sound_stone"), SOUND_STONE_COUNTDOWN("sound_stone_countdown"), SOUND_GONG("sound_gong"),
+        SOUND_STONE("sound_stone"), SOUND_STONE_COUNTDOWN("sound_stone_countdown"),
+        SOUND_GONG("sound_gong"),
         KEEP_DISPLAY_AWAKE("keep_display_awake"), LANGUAGE("language"),
         EMAIL("email"), VERSION("version");
 
@@ -74,7 +78,8 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
 
     private void changeLanguageIfNotDefault() {
         final String language_default = Locale.getDefault().getLanguage();
-        final String language_pref = sharedPreferences.getString(PREFS.LANGUAGE.toString(), language_default);
+        final String language_pref =
+            sharedPreferences.getString(PREFS.LANGUAGE.toString(), language_default);
         if (!new Locale(language_default).getLanguage().equals(language_pref)) {
             LocaleUtils.setLocale(new Locale(language_pref));
             LocaleUtils.updateConfig(this, getResources().getConfiguration());
@@ -90,20 +95,26 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
     @SuppressWarnings("SameParameterValue")
     public static void updateSound(String stone, String stoneCountdown, String gong) {
         if (stone == null)
-            stone = sharedPreferences.getString(JuggerStonesApp.PREFS.SOUND_STONE.toString(), DEFAULT_STONE);
+            stone = sharedPreferences.getString(PREFS.SOUND_STONE.toString(), DEFAULT_STONE);
         if (stoneCountdown == null)
-            stoneCountdown = sharedPreferences.getString(PREFS.SOUND_STONE_COUNTDOWN.toString(), stone);
+            stoneCountdown = sharedPreferences.getString(
+                PREFS.SOUND_STONE_COUNTDOWN.toString(), stone
+            );
         if (gong == null)
-            gong = sharedPreferences.getString(JuggerStonesApp.PREFS.SOUND_GONG.toString(), DEFAULT_GONG);
+            gong = sharedPreferences.getString(PREFS.SOUND_GONG.toString(), DEFAULT_GONG);
         sound = new Sound(stone, stoneCountdown, gong);
     }
 
     public static void increaseMusicVolume() {
-        audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
+        audioManager.adjustStreamVolume(
+            AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI
+        );
     }
 
     public static void decreaseMusicVolume() {
-        audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
+        audioManager.adjustStreamVolume(
+            AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI
+        );
     }
     //endregion
 
@@ -134,7 +145,8 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
     //region version & email
     public static String getVersion(Context context) {
         try {
-            PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            PackageInfo pInfo =
+                context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             return pInfo.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             return null;
@@ -143,7 +155,8 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
 
     public static String getVersionCode(Context context) {
         try {
-            PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            PackageInfo pInfo =
+                context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             return String.valueOf(pInfo.versionCode);
         } catch (PackageManager.NameNotFoundException e) {
             return null;
@@ -163,8 +176,12 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
     public static void sendEmail(Context context) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{context.getString(R.string.email_current)});
-        intent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.app_name) + JuggerStonesApp.getVersionForEmail(context));
+        intent.putExtra(Intent.EXTRA_EMAIL,
+            new String[]{context.getString(R.string.email_current)}
+        );
+        intent.putExtra(Intent.EXTRA_SUBJECT,
+            context.getString(R.string.app_name) + JuggerStonesApp.getVersionForEmail(context)
+        );
         intent.putExtra(Intent.EXTRA_TEXT, "");
         context.startActivity(intent);
     }
@@ -173,7 +190,8 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
     //region preferences
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.startsWith(PREFS.SOUND_STONE.toString()) || key.equals(PREFS.SOUND_GONG.toString()))
+        if (key.startsWith(PREFS.SOUND_STONE.toString()) ||
+            key.equals(PREFS.SOUND_GONG.toString()))
             updateSound();
     }
 
@@ -243,8 +261,11 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
         public static long getInterval() {
             long interval = getLongFromString(PREFS.INTERVAL, DEFAULT_INTERVAL);
             if (interval == 0)
-                interval = new BigDecimal(sharedPreferences.getString(PREFS.INTERVAL_CUSTOM.toString(), String.valueOf(DEFAULT_INTERVAL)))
-                    .multiply(BigDecimal.valueOf(1000)).longValue();
+                interval = new BigDecimal(
+                    sharedPreferences.getString(
+                        PREFS.INTERVAL_CUSTOM.toString(), String.valueOf(DEFAULT_INTERVAL)
+                    )
+                ).multiply(BigDecimal.valueOf(1000)).longValue();
             return interval <= 0 ? 1 : interval; // just to make sure
         }
 
@@ -267,7 +288,8 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
         }
 
         /**
-         * use {@link #isNormalMode()} or {@link #isNormalModeIgnoringReverse()} or {@link #isReverse()} instead
+         * use {@link #isNormalMode()} or {@link #isNormalModeIgnoringReverse()}
+         * or {@link #isReverse()} instead
          *
          * @see #isNormalMode()
          * @see #isNormalModeIgnoringReverse()
@@ -293,7 +315,8 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
          * @see #isInfinityMode()
          */
         public static boolean isReverse() {
-            return isNormalModeIgnoringReverse() && sharedPreferences.getBoolean(PREFS.REVERSE.toString(), false);
+            return isNormalModeIgnoringReverse() &&
+                sharedPreferences.getBoolean(PREFS.REVERSE.toString(), false);
         }
 
         public static boolean isImmediateStart() {
@@ -316,14 +339,17 @@ public class JuggerStonesApp extends Application implements SharedPreferences.On
             return isStoneCountdown(stones, 10);
         }
 
-        public static boolean isStoneCountdown(long stones, long limit) { // TODO: make preference for 'limit' parameter
+        public static boolean isStoneCountdown(long stones, long limit) {
+            // TODO: make preference for 'limit' parameter
             return !isInfinityMode()
                 && (isNormalMode() && limit > getMode() - stones
                 || isReverse() && limit > stones);
         }
 
         private static long getLongFromString(PREFS pref, long defaultValue) {
-            String string = sharedPreferences.getString(PREFS.MODE_PREVIOUS.toString(), String.valueOf(defaultValue));
+            String string = sharedPreferences.getString(
+                PREFS.MODE_PREVIOUS.toString(), String.valueOf(defaultValue)
+            );
             return string == null ? defaultValue : Long.parseLong(string);
         }
     }
