@@ -46,7 +46,7 @@ import io.rala.jugger.model.InputFilterMinMaxInteger;
 import io.rala.jugger.model.Team;
 import io.rala.jugger.view.NumberView;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class MainFragment extends Fragment
     implements CounterTask.CounterTaskCallback, ColorPickerDialogListener {
     private static final int LIMIT_TEAM_NAME_CHARACTERS_TO = 0;
@@ -234,21 +234,19 @@ public class MainFragment extends Fragment
     }
 
     @OnLongClick(R.id.textView_stones)
-    protected boolean onCounterLongClick(@SuppressWarnings("unused") TextView textView) {
+    protected boolean onCounterLongClick() {
         showSetStonesDialog();
         return true;
     }
 
     @OnClick(R.id.imageView_info)
-    protected void onInfoViewClick(@SuppressWarnings("unused") AppCompatImageView imageView) {
+    protected void onInfoViewClick() {
         if (timerHandler.isRunning()) return;
         valueHandler.toggleNormalModeWithInfinity();
     }
 
     @OnLongClick(R.id.imageView_info)
-    protected boolean onInfoViewLongClick(
-        @SuppressWarnings("unused") AppCompatImageView imageView
-    ) {
+    protected boolean onInfoViewLongClick() {
         if (timerHandler.isRunning()) return false;
         if (JuggerStonesApp.CounterPreference.isNormalModeIgnoringReverse()) {
             valueHandler.toggleNormalModeWithReverse();
