@@ -130,6 +130,51 @@ public class MainFragment extends Fragment
     }
     //endregion
 
+    //region options menu
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.main, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.teams_rename:
+                showRenameTeamsDialog();
+                return true;
+            case R.id.teams_changeColor_1:
+                showChangeTeamColorsDialog(TEAM.TEAM1);
+                return true;
+            case R.id.teams_changeColor_2:
+                showChangeTeamColorsDialog(TEAM.TEAM2);
+                return true;
+            case R.id.teams_changeOfEnds:
+                valueHandler.flipTeams();
+                return true;
+            case R.id.teams_reset:
+                valueHandler.resetTeams();
+                return true;
+            case R.id.editStones:
+                showSetStonesDialog();
+                return true;
+            case R.id.history_lastScore:
+                valueHandler.applyHistoryEntry(JuggerStonesApp.getLastHistoryEntry());
+                return true;
+            case R.id.action_settings:
+                timerHandler.pause();
+                ((MainActivity) requireActivity())
+                    .goToPreferenceFragment(textView_stones.getNumberAsLong(),
+                        valueHandler.getTeam1(), valueHandler.getTeam2());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    //endregion
+
     //region butterKnife:listeners
     @OnClick({R.id.button_team1_increase, R.id.button_team2_increase, R.id.button_stones_increase})
     protected void onIncreaseClick(AppCompatImageButton button) {
@@ -421,51 +466,6 @@ public class MainFragment extends Fragment
     public void onGongPlayed(final long stones) {
         if (JuggerStonesApp.CounterPreference.isStopAfterGong())
             requireActivity().runOnUiThread(timerHandler::pause);
-    }
-    //endregion
-
-    //region @Override
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // super.onCreateOptionsMenu(menu, inflater);
-        menu.clear();
-        inflater.inflate(R.menu.main, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent;
-        switch (item.getItemId()) {
-            case R.id.teams_rename:
-                showRenameTeamsDialog();
-                return true;
-            case R.id.teams_changeColor_1:
-                showChangeTeamColorsDialog(TEAM.TEAM1);
-                return true;
-            case R.id.teams_changeColor_2:
-                showChangeTeamColorsDialog(TEAM.TEAM2);
-                return true;
-            case R.id.teams_changeOfEnds:
-                valueHandler.flipTeams();
-                return true;
-            case R.id.teams_reset:
-                valueHandler.resetTeams();
-                return true;
-            case R.id.editStones:
-                showSetStonesDialog();
-                return true;
-            case R.id.history_lastScore:
-                valueHandler.applyHistoryEntry(JuggerStonesApp.getLastHistoryEntry());
-                return true;
-            case R.id.action_settings:
-                timerHandler.pause();
-                ((MainActivity) requireActivity())
-                    .goToPreferenceFragment(textView_stones.getNumberAsLong(),
-                        valueHandler.getTeam1(), valueHandler.getTeam2());
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
     //endregion
 
