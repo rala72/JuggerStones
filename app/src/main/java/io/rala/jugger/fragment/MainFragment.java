@@ -451,7 +451,8 @@ public class MainFragment extends Fragment
     //region CounterTaskCallback
     @Override
     public void onStonesChanged(final long stones) {
-        requireActivity().runOnUiThread(() -> {
+        if (getActivity() == null) return;
+        getActivity().runOnUiThread(() -> {
             valueHandler.setStones(stones);
             if (JuggerStonesApp.CounterPreference.isInfinityMode() &&
                 0 < stones && stones % JuggerStonesApp.DEFAULT_INTERVAL == 0)
@@ -464,8 +465,9 @@ public class MainFragment extends Fragment
 
     @Override
     public void onGongPlayed(final long stones) {
+        if (getActivity() == null) return;
         if (JuggerStonesApp.CounterPreference.isStopAfterGong())
-            requireActivity().runOnUiThread(timerHandler::pause);
+            getActivity().runOnUiThread(timerHandler::pause);
     }
     //endregion
 
