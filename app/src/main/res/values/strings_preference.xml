@@ -14,7 +14,7 @@
     <string name="pref_reverse_summary">Note: does not work on Infinite mode</string>
     <string name="pref_immediateStart">Start immediately</string>
     <string name="pref_pause_after_point">Pause after point</string>
-    <string name="pref_pause_after_gong">Pause after Gong</string>
+    <string name="pref_pause_after_gong">Pause after gong</string>
 
     <!-- settings: sounds -->
     <string name="pref_category_sound">Sounds</string>
