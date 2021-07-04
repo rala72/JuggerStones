@@ -31,9 +31,8 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.+'
 
     // google
-    ext.supportLibsVersion = '1.0.+'
-    implementation "androidx.appcompat:appcompat:$supportLibsVersion"
-    implementation "androidx.legacy:legacy-support-v4:$supportLibsVersion"
+    implementation "androidx.appcompat:appcompat:1.3.+"
+    implementation "androidx.legacy:legacy-support-v4:1.0.+"
 
     // implementation "com.takisoft.preferencex:preferencex:$supportLibsVersion"
     implementation 'net.xpece.android:support-preference:2.3.+'
