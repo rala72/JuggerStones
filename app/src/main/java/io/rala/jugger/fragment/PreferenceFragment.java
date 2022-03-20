@@ -280,7 +280,7 @@ public class PreferenceFragment extends XpPreferenceFragment
                 SoundPreferenceList.SoundPreferenceListFragment
                     .newInstance(preference);
             fragment.setTargetFragment(this, 0);
-            fragment.show(getChildFragmentManager(), DIALOG_FRAGMENT_TAG);
+            fragment.show(getParentFragmentManager(), DIALOG_FRAGMENT_TAG);
         } else super.onDisplayPreferenceDialog(preference);
     }
 
