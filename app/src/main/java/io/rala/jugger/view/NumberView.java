@@ -15,6 +15,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 @SuppressWarnings("unused")
 public class NumberView extends AppCompatTextView {
     // TO DO: implement min and max
+    // TO DO: implement increaseOne and decreaseOne
 
     // region constructor
     public NumberView(Context context) {

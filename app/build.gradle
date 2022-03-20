@@ -12,6 +12,10 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -36,10 +40,6 @@ dependencies {
 
     // implementation "com.takisoft.preferencex:preferencex:$supportLibsVersion"
     implementation 'net.xpece.android:support-preference:3.0.+'
-
-    // design
-    implementation 'com.jakewharton:butterknife:10.2.+'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.+'
 
     // TO DO [onHold]: material dialogs (support lib version mismatch) // https://github.com/afollestad/material-dialogs
     // https://github.com/jaredrummler/ColorPicker

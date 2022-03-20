@@ -1,7 +1,6 @@
 package io.rala.jugger.fragment;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jaredrummler.android.colorpicker.ColorPickerDialog;
@@ -29,45 +27,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnLongClick;
 import io.rala.jugger.JuggerStonesApp;
 import io.rala.jugger.MainActivity;
 import io.rala.jugger.R;
+import io.rala.jugger.databinding.FragmentMainBinding;
 import io.rala.jugger.model.CounterTask;
 import io.rala.jugger.model.HistoryEntry;
 import io.rala.jugger.model.InputFilterMinMaxInteger;
 import io.rala.jugger.model.Team;
-import io.rala.jugger.view.NumberView;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class MainFragment extends Fragment
     implements CounterTask.CounterTaskCallback, ColorPickerDialogListener {
     private static final int LIMIT_TEAM_NAME_CHARACTERS_TO = 0;
 
-    //region butterKnife
-    @BindView(R.id.button_playPause)
-    protected AppCompatImageButton button_playPause;
-    @BindView(R.id.textView_team1)
-    protected AppCompatTextView textView_team1;
-    @BindView(R.id.textView_team2)
-    protected AppCompatTextView textView_team2;
-    @BindView(R.id.textView_team1_points)
-    protected NumberView textView_team1_points;
-    @BindView(R.id.textView_team2_points)
-    protected NumberView textView_team2_points;
-    @BindView(R.id.textView_stones)
-    protected NumberView textView_stones;
-
-    @BindView(R.id.imageView_info)
-    protected AppCompatImageView imageView_info;
-    //endregion
+    private FragmentMainBinding binding;
 
     private final TimerHandler timerHandler = new TimerHandler();
     private final ValueHandler valueHandler = new ValueHandler();
@@ -102,10 +77,94 @@ public class MainFragment extends Fragment
         @Nullable ViewGroup container,
         @Nullable Bundle savedInstanceState
     ) {
-        final View view = inflater.inflate(R.layout.fragment_main, container, false);
-        ButterKnife.bind(this, view);
+        binding = FragmentMainBinding.inflate(LayoutInflater.from(getContext()), container, false);
         applyArguments();
-        return view;
+
+        binding.buttonTeam1Increase.setOnClickListener(v -> {
+            binding.textViewTeam1Points.increase(1L);
+            if (JuggerStonesApp.CounterPreference.isStopAfterPoint()) timerHandler.pause();
+        });
+        binding.buttonTeam2Increase.setOnClickListener(v -> {
+            binding.textViewTeam2Points.increase(1L);
+            if (JuggerStonesApp.CounterPreference.isStopAfterPoint()) timerHandler.pause();
+        });
+        binding.buttonStonesIncrease.setOnClickListener(v -> {
+            if (timerHandler.isRunning()) return;
+            if (binding.textViewStones.getNumberAsLong() <
+                JuggerStonesApp.CounterPreference.getModeMax())
+                binding.textViewStones.increase(1L);
+        });
+        binding.buttonStonesIncrease.setOnLongClickListener(v -> {
+            if (timerHandler.isRunning()) return false;
+            if (JuggerStonesApp.CounterPreference.isReverse()) {
+                binding.textViewStones.setNumber(JuggerStonesApp.CounterPreference.getMode());
+                return true;
+            } // other: increase by 10..?
+            return false;
+        });
+
+        binding.buttonTeam1Decrease.setOnClickListener(v -> {
+            if (0 < binding.textViewTeam1Points.getNumberAsLong())
+                binding.textViewTeam1Points.decrease(1L);
+        });
+        binding.buttonTeam2Decrease.setOnClickListener(v -> {
+            if (0 < binding.textViewTeam2Points.getNumberAsLong())
+                binding.textViewTeam2Points.decrease(1L);
+        });
+        binding.buttonStonesDecrease.setOnClickListener(v -> {
+            if (timerHandler.isRunning()) return;
+            if (JuggerStonesApp.CounterPreference.getModeMin() <
+                binding.textViewStones.getNumberAsLong()) binding.textViewStones.decrease(1L);
+        });
+        binding.buttonTeam1Decrease.setOnLongClickListener(v -> {
+            if (binding.textViewTeam1Points.getNumberAsLong() == 0) return false;
+            binding.textViewTeam1Points.setNumber(0);
+            return true;
+        });
+        binding.buttonTeam2Decrease.setOnLongClickListener(v -> {
+            if (binding.textViewTeam2Points.getNumberAsLong() == 0) return false;
+            binding.textViewTeam2Points.setNumber(0);
+            return true;
+        });
+        binding.buttonStonesDecrease.setOnLongClickListener(v -> {
+            if (timerHandler.isRunning()) return false;
+            if (binding.textViewStones.getNumberAsLong() == 0) return false;
+            binding.textViewStones.setNumber(0);
+            return true;
+        });
+
+        binding.buttonPlayPause.setOnClickListener(v -> timerHandler.toggle());
+        binding.buttonStop.setOnClickListener(v -> timerHandler.stop());
+
+        binding.textViewTeam1.setOnLongClickListener(v -> {
+            showChangeTeamColorsDialog(TEAM.TEAM1);
+            return true;
+        });
+        binding.textViewTeam2.setOnLongClickListener(v -> {
+            showChangeTeamColorsDialog(TEAM.TEAM2);
+            return true;
+        });
+
+        binding.textViewStones.setOnLongClickListener(v -> {
+            showSetStonesDialog();
+            return true;
+        });
+
+        binding.imageViewInfo.setOnClickListener(v -> {
+            if (timerHandler.isRunning()) return;
+            valueHandler.toggleNormalModeWithInfinity();
+        });
+
+        binding.imageViewInfo.setOnLongClickListener(v -> {
+            if (timerHandler.isRunning()) return false;
+            if (JuggerStonesApp.CounterPreference.isNormalModeIgnoringReverse()) {
+                valueHandler.toggleNormalModeWithReverse();
+                return true;
+            }
+            return false;
+        });
+
+        return binding.getRoot();
     }
 
     private void applyArguments() {
@@ -126,7 +185,7 @@ public class MainFragment extends Fragment
         final int resId = JuggerStonesApp.CounterPreference.isInfinityMode() ?
             R.drawable.ic_infinity : JuggerStonesApp.CounterPreference.isReverse() ?
             R.drawable.ic_sort_descending : R.drawable.ic_sort_ascending_modified;
-        imageView_info.setImageDrawable(AppCompatResources.getDrawable(requireContext(), resId));
+        binding.imageViewInfo.setImageDrawable(AppCompatResources.getDrawable(requireContext(), resId));
     }
     //endregion
 
@@ -140,7 +199,6 @@ public class MainFragment extends Fragment
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent;
         switch (item.getItemId()) {
             case R.id.teams_rename:
                 showRenameTeamsDialog();
@@ -166,138 +224,12 @@ public class MainFragment extends Fragment
             case R.id.action_settings:
                 timerHandler.pause();
                 ((MainActivity) requireActivity())
-                    .goToPreferenceFragment(textView_stones.getNumberAsLong(),
+                    .goToPreferenceFragment(binding.textViewStones.getNumberAsLong(),
                         valueHandler.getTeam1(), valueHandler.getTeam2());
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-    //endregion
-
-    //region butterKnife:listeners
-    @OnClick({R.id.button_team1_increase, R.id.button_team2_increase, R.id.button_stones_increase})
-    protected void onIncreaseClick(AppCompatImageButton button) {
-        switch (button.getId()) {
-            case R.id.button_team1_increase:
-                textView_team1_points.increase(1L);
-                if (JuggerStonesApp.CounterPreference.isStopAfterPoint()) timerHandler.pause();
-                break;
-            case R.id.button_team2_increase:
-                textView_team2_points.increase(1L);
-                if (JuggerStonesApp.CounterPreference.isStopAfterPoint()) timerHandler.pause();
-                break;
-            case R.id.button_stones_increase:
-                if (timerHandler.isRunning()) return;
-                if (textView_stones.getNumberAsLong() <
-                    JuggerStonesApp.CounterPreference.getModeMax())
-                    textView_stones.increase(1L);
-                break;
-        }
-    }
-
-    @OnLongClick(R.id.button_stones_increase)
-    protected boolean onIncreaseLongClick(AppCompatImageButton button) {
-        if (button.getId() == R.id.button_stones_increase) {
-            if (timerHandler.isRunning()) return false;
-            if (JuggerStonesApp.CounterPreference.isReverse()) {
-                textView_stones.setNumber(JuggerStonesApp.CounterPreference.getMode());
-                return true;
-            } // other: increase by 10..?
-        }
-        return false;
-    }
-
-    @OnClick({R.id.button_team1_decrease, R.id.button_team2_decrease, R.id.button_stones_decrease})
-    protected void onDecreaseClick(AppCompatImageButton button) {
-        switch (button.getId()) {
-            case R.id.button_team1_decrease:
-                if (0 < textView_team1_points.getNumberAsLong())
-                    textView_team1_points.decrease(1L);
-                break;
-            case R.id.button_team2_decrease:
-                if (0 < textView_team2_points.getNumberAsLong())
-                    textView_team2_points.decrease(1L);
-                break;
-            case R.id.button_stones_decrease:
-                if (timerHandler.isRunning()) return;
-                if (JuggerStonesApp.CounterPreference.getModeMin() <
-                    textView_stones.getNumberAsLong()) textView_stones.decrease(1L);
-                break;
-        }
-    }
-
-    @OnLongClick({
-        R.id.button_team1_decrease,
-        R.id.button_team2_decrease,
-        R.id.button_stones_decrease
-    })
-    protected boolean onDecreaseLongClick(AppCompatImageButton button) {
-        switch (button.getId()) {
-            case R.id.button_team1_decrease:
-                if (textView_team1_points.getNumberAsLong() == 0) return false;
-                textView_team1_points.setNumber(0);
-                return true;
-            case R.id.button_team2_decrease:
-                if (textView_team2_points.getNumberAsLong() == 0) return false;
-                textView_team2_points.setNumber(0);
-                return true;
-            case R.id.button_stones_decrease:
-                if (timerHandler.isRunning()) return false;
-                if (textView_stones.getNumberAsLong() == 0) return false;
-                textView_stones.setNumber(0);
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    @OnClick({R.id.button_playPause, R.id.button_stop})
-    protected void onPlayPauseStopClick(AppCompatImageButton button) {
-        switch (button.getId()) {
-            case R.id.button_playPause:
-                timerHandler.toggle();
-                break;
-            case R.id.button_stop:
-                timerHandler.stop();
-                break;
-        }
-    }
-
-    @OnLongClick({R.id.textView_team1, R.id.textView_team2})
-    protected boolean onTeamNameLongClick(TextView textView) {
-        switch (textView.getId()) {
-            case R.id.textView_team1:
-                showChangeTeamColorsDialog(TEAM.TEAM1);
-                return true;
-            case R.id.textView_team2:
-                showChangeTeamColorsDialog(TEAM.TEAM2);
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    @OnLongClick(R.id.textView_stones)
-    protected boolean onCounterLongClick() {
-        showSetStonesDialog();
-        return true;
-    }
-
-    @OnClick(R.id.imageView_info)
-    protected void onInfoViewClick() {
-        if (timerHandler.isRunning()) return;
-        valueHandler.toggleNormalModeWithInfinity();
-    }
-
-    @OnLongClick(R.id.imageView_info)
-    protected boolean onInfoViewLongClick() {
-        if (timerHandler.isRunning()) return false;
-        if (JuggerStonesApp.CounterPreference.isNormalModeIgnoringReverse()) {
-            valueHandler.toggleNormalModeWithReverse();
-            return true;
-        }
-        return false;
     }
     //endregion
 
@@ -324,7 +256,7 @@ public class MainFragment extends Fragment
             editText_name1.setFilters(new InputFilter[]{
                 new InputFilter.LengthFilter(LIMIT_TEAM_NAME_CHARACTERS_TO)
             });
-        editText_name1.setText(textView_team1.getText());
+        editText_name1.setText(binding.textViewTeam1.getText());
         editText_name1.requestFocus();
 
         final EditText editText_name2 = new EditText(getContext());
@@ -334,7 +266,7 @@ public class MainFragment extends Fragment
             editText_name2.setFilters(new InputFilter[]{
                 new InputFilter.LengthFilter(LIMIT_TEAM_NAME_CHARACTERS_TO)
             });
-        editText_name2.setText(textView_team2.getText());
+        editText_name2.setText(binding.textViewTeam2.getText());
 
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -345,12 +277,12 @@ public class MainFragment extends Fragment
         alertDialogBuilder.setPositiveButton(android.R.string.ok, (dialog, whichButton) -> {
             String name1 = editText_name1.getText().toString().trim();
             String name2 = editText_name2.getText().toString().trim();
-            if (!name1.isEmpty()) textView_team1.setText(name1);
-            if (!name2.isEmpty()) textView_team2.setText(name2);
+            if (!name1.isEmpty()) binding.textViewTeam1.setText(name1);
+            if (!name2.isEmpty()) binding.textViewTeam2.setText(name2);
         });
         alertDialogBuilder.setNeutralButton(R.string.reset, (dialog, which) -> {
-            textView_team1.setText(R.string.main_team1);
-            textView_team2.setText(R.string.main_team2);
+            binding.textViewTeam1.setText(R.string.main_team1);
+            binding.textViewTeam2.setText(R.string.main_team2);
         });
         alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
         Dialog dialog = alertDialogBuilder.create();
@@ -371,7 +303,7 @@ public class MainFragment extends Fragment
             )
             .setDialogTitle(R.string.main_changeColor)
             .setColor(team.equals(TEAM.TEAM1) ?
-                textView_team1.getCurrentTextColor() : textView_team2.getCurrentTextColor()
+                binding.textViewTeam1.getCurrentTextColor() : binding.textViewTeam2.getCurrentTextColor()
             )
             .setShowAlphaSlider(false)
             .setAllowCustom(false)
@@ -421,7 +353,7 @@ public class MainFragment extends Fragment
                 JuggerStonesApp.CounterPreference.getModeMax()
             )
         });
-        stonesEdit.setText(textView_stones.getText());
+        stonesEdit.setText(binding.textViewStones.getText());
         stonesEdit.requestFocus();
 
         LinearLayout linearLayout = new LinearLayout(getContext());
@@ -442,7 +374,6 @@ public class MainFragment extends Fragment
 
         alertDialogBuilder.setNegativeButton(android.R.string.cancel, null);
         Dialog dialog = alertDialogBuilder.create();
-        //noinspection ConstantConditions // why!?
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
     }
@@ -475,7 +406,7 @@ public class MainFragment extends Fragment
         private Timer timer;
 
         void start() {
-            button_playPause.setImageDrawable(
+            binding.buttonPlayPause.setImageDrawable(
                 AppCompatResources.getDrawable(requireContext(),
                     R.drawable.ic_pause_circle)
             );
@@ -493,7 +424,7 @@ public class MainFragment extends Fragment
         }
 
         void pause() {
-            button_playPause.setImageDrawable(
+            binding.buttonPlayPause.setImageDrawable(
                 AppCompatResources.getDrawable(requireContext(), R.drawable.ic_play_circle)
             );
             if (!isRunning()) return;
@@ -528,23 +459,23 @@ public class MainFragment extends Fragment
         void setTeam(Team team, TEAM teamNumber) {
             if (teamNumber == null || teamNumber == TEAM.TEAM1) {
                 if (team.getName() != null)
-                    textView_team1.setText(team.getName());
+                    binding.textViewTeam1.setText(team.getName());
                 if (team.getNameColor() != null)
-                    textView_team1.setTextColor(team.getNameColor());
+                    binding.textViewTeam1.setTextColor(team.getNameColor());
                 if (team.getPoints() != null)
-                    textView_team1_points.setNumber(team.getPoints());
+                    binding.textViewTeam1Points.setNumber(team.getPoints());
                 if (team.getPointsColor() != null)
-                    textView_team1_points.setTextColor(team.getPointsColor());
+                    binding.textViewTeam1Points.setTextColor(team.getPointsColor());
             }
             if (teamNumber == null || teamNumber == TEAM.TEAM2) {
                 if (team.getName() != null)
-                    textView_team2.setText(team.getName());
+                    binding.textViewTeam2.setText(team.getName());
                 if (team.getNameColor() != null)
-                    textView_team2.setTextColor(team.getNameColor());
+                    binding.textViewTeam2.setTextColor(team.getNameColor());
                 if (team.getPoints() != null)
-                    textView_team2_points.setNumber(team.getPoints());
+                    binding.textViewTeam2Points.setNumber(team.getPoints());
                 if (team.getPointsColor() != null)
-                    textView_team2_points.setTextColor(team.getPointsColor());
+                    binding.textViewTeam2Points.setTextColor(team.getPointsColor());
             }
         }
 
@@ -558,12 +489,12 @@ public class MainFragment extends Fragment
 
         void setTeamColor(ColorStateList color, TEAM team) {
             if (team == null || team == TEAM.TEAM1) {
-                if (color != null) textView_team1.setTextColor(color);
-                if (color != null) textView_team1_points.setTextColor(color);
+                if (color != null) binding.textViewTeam1.setTextColor(color);
+                if (color != null) binding.textViewTeam1Points.setTextColor(color);
             }
             if (team == null || team == TEAM.TEAM2) {
-                if (color != null) textView_team2.setTextColor(color);
-                if (color != null) textView_team2_points.setTextColor(color);
+                if (color != null) binding.textViewTeam2.setTextColor(color);
+                if (color != null) binding.textViewTeam2Points.setTextColor(color);
             }
         }
 
@@ -583,25 +514,25 @@ public class MainFragment extends Fragment
         }
 
         Team getTeam1() {
-            CharSequence name = textView_team1.getText();
-            ColorStateList name_color = textView_team1.getTextColors();
-            long points = textView_team1_points.getNumberAsLong();
-            ColorStateList points_color = textView_team1_points.getTextColors();
+            CharSequence name = binding.textViewTeam1.getText();
+            ColorStateList name_color = binding.textViewTeam1.getTextColors();
+            long points = binding.textViewTeam1Points.getNumberAsLong();
+            ColorStateList points_color = binding.textViewTeam1Points.getTextColors();
             return new Team(name, name_color, points, points_color);
         }
 
         Team getTeam2() {
-            CharSequence name = textView_team2.getText();
-            ColorStateList name_color = textView_team2.getTextColors();
-            long points = textView_team2_points.getNumberAsLong();
-            ColorStateList points_color = textView_team2_points.getTextColors();
+            CharSequence name = binding.textViewTeam2.getText();
+            ColorStateList name_color = binding.textViewTeam2.getTextColors();
+            long points = binding.textViewTeam2Points.getNumberAsLong();
+            ColorStateList points_color = binding.textViewTeam2Points.getTextColors();
             return new Team(name, name_color, points, points_color);
         }
         //endregion
 
         //region stones
         void setStones(long l) {
-            textView_stones.setNumber(cleanStones(l));
+            binding.textViewStones.setNumber(cleanStones(l));
         }
 
         void resetStones() {
@@ -609,7 +540,7 @@ public class MainFragment extends Fragment
         }
 
         long getStones() {
-            return cleanStones(textView_stones.getNumberAsLong());
+            return cleanStones(binding.textViewStones.getNumberAsLong());
         }
 
         /**
@@ -618,7 +549,7 @@ public class MainFragment extends Fragment
          * @see #cleanStones(long)
          */
         void cleanStonesView() {
-            textView_stones.setNumber(cleanStones(textView_stones.getNumberAsLong()));
+            binding.textViewStones.setNumber(cleanStones(binding.textViewStones.getNumberAsLong()));
         }
 
         private long cleanStones(long l) {
