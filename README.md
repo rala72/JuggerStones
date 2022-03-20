@@ -1,5 +1,5 @@
 # JuggerStones+
-This is a simple Android app to count especially stones and points for Jugger.
+This is a simple Android app to count stones and points for Jugger.
 
 ## Apps
 ### JuggerStones _(Original App)_
@@ -29,6 +29,7 @@ Here is a list of some changes:
     - custom interval _(new feature!)_
     - count backwards _(new feature!)_
     - immediate start (after pressing play) _(new feature!)_
+    - play gong after point _(new feature!)_
     - added sounds and optimized included sounds _(improvement!)_
     - 'Others' section improved _(improvement!)_
 - ...
