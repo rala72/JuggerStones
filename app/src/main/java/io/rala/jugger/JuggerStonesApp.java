@@ -40,7 +40,7 @@ public class JuggerStonesApp extends Application
         INTERVAL("interval"), INTERVAL_CUSTOM("interval_custom"),
         REVERSE("reverse"), IMMEDIATE_START("immediateStart"),
         GONG_AFTER_POINT("gong_after_point"),
-        STOP_AFTER_POINT("stop_after_point"), STOP_AFTER_GONG("stop_after_gong"),
+        PAUSE_AFTER_POINT("stop_after_point"), PAUSE_AFTER_GONG("stop_after_gong"),
         SOUND_STONE("sound_stone"), SOUND_STONE_COUNTDOWN("sound_stone_countdown"),
         SOUND_GONG("sound_gong"),
         KEEP_DISPLAY_AWAKE("keep_display_awake"), LANGUAGE("language"),
@@ -329,12 +329,12 @@ public class JuggerStonesApp extends Application
             return sharedPreferences.getBoolean(PREFS.GONG_AFTER_POINT.toString(), false);
         }
 
-        public static boolean isStopAfterPoint() {
-            return sharedPreferences.getBoolean(PREFS.STOP_AFTER_POINT.toString(), false);
+        public static boolean isPauseAfterPoint() {
+            return sharedPreferences.getBoolean(PREFS.PAUSE_AFTER_POINT.toString(), false);
         }
 
-        public static boolean isStopAfterGong() {
-            return sharedPreferences.getBoolean(PREFS.STOP_AFTER_GONG.toString(), false);
+        public static boolean isPauseAfterGong() {
+            return sharedPreferences.getBoolean(PREFS.PAUSE_AFTER_GONG.toString(), false);
         }
 
         public static boolean isKeepDisplayAwake() {

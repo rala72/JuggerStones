@@ -83,14 +83,14 @@ public class MainFragment extends Fragment
         binding.buttonTeam1Increase.setOnClickListener(v -> {
             boolean wasRunning = timerHandler.isRunning();
             binding.textViewTeam1Points.increase(1L);
-            if (JuggerStonesApp.CounterPreference.isStopAfterPoint()) timerHandler.pause();
+            if (JuggerStonesApp.CounterPreference.isPauseAfterPoint()) timerHandler.pause();
             if (wasRunning && JuggerStonesApp.CounterPreference.isGongAfterPoint())
                 JuggerStonesApp.sound.playGong(getContext());
         });
         binding.buttonTeam2Increase.setOnClickListener(v -> {
             boolean wasRunning = timerHandler.isRunning();
             binding.textViewTeam2Points.increase(1L);
-            if (JuggerStonesApp.CounterPreference.isStopAfterPoint()) timerHandler.pause();
+            if (JuggerStonesApp.CounterPreference.isPauseAfterPoint()) timerHandler.pause();
             if (wasRunning && JuggerStonesApp.CounterPreference.isGongAfterPoint())
                 JuggerStonesApp.sound.playGong(getContext());
         });
@@ -403,7 +403,7 @@ public class MainFragment extends Fragment
     @Override
     public void onGongPlayed(final long stones) {
         if (getActivity() == null) return;
-        if (JuggerStonesApp.CounterPreference.isStopAfterGong())
+        if (JuggerStonesApp.CounterPreference.isPauseAfterGong())
             getActivity().runOnUiThread(timerHandler::pause);
     }
     //endregion
