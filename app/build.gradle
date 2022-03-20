@@ -4,11 +4,11 @@ android {
     compileSdkVersion 31
 
     defaultConfig {
-        applicationId "io.rala.jugger" // "contador.piedras.jugger"
+        applicationId "io.rala.jugger"
         minSdkVersion 19
         targetSdkVersion 31
-        versionCode 1070230
-        versionName "1.7.2"
+        versionCode 1080030
+        versionName "1.8.0"
         vectorDrawables.useSupportLibrary = true
     }
 
