@@ -81,12 +81,18 @@ public class MainFragment extends Fragment
         applyArguments();
 
         binding.buttonTeam1Increase.setOnClickListener(v -> {
+            boolean wasRunning = timerHandler.isRunning();
             binding.textViewTeam1Points.increase(1L);
             if (JuggerStonesApp.CounterPreference.isStopAfterPoint()) timerHandler.pause();
+            if (wasRunning && JuggerStonesApp.CounterPreference.isGongAfterPoint())
+                JuggerStonesApp.sound.playGong(getContext());
         });
         binding.buttonTeam2Increase.setOnClickListener(v -> {
+            boolean wasRunning = timerHandler.isRunning();
             binding.textViewTeam2Points.increase(1L);
             if (JuggerStonesApp.CounterPreference.isStopAfterPoint()) timerHandler.pause();
+            if (wasRunning && JuggerStonesApp.CounterPreference.isGongAfterPoint())
+                JuggerStonesApp.sound.playGong(getContext());
         });
         binding.buttonStonesIncrease.setOnClickListener(v -> {
             if (timerHandler.isRunning()) return;

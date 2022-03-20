@@ -13,6 +13,7 @@
     <string name="pref_reverse">Rückwärts zählen</string>
     <string name="pref_reverse_summary">Achtung: funktioniert nicht im Unendlich-Modus</string>
     <string name="pref_immediateStart">Sofort starten</string>
+    <string name="pref_gong_after_point">Gong nach Punkt</string>
     <string name="pref_pause_after_point">Pausiere nach Punkt</string>
     <string name="pref_pause_after_gong">Pausiere nach Gong</string>
 

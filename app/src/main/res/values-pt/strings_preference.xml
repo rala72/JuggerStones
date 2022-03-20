@@ -13,6 +13,7 @@
     <string name="pref_reverse">Contagem regressiva</string>
     <string name="pref_reverse_summary">Nota: não funciona em Infinity</string>
     <string name="pref_immediateStart">Começar imediatamente</string>
+    <string name="pref_gong_after_point">Gongo após ponto</string>
     <string name="pref_pause_after_point">Pausa após o ponto</string>
     <string name="pref_pause_after_gong">Pausa após gong</string>
 

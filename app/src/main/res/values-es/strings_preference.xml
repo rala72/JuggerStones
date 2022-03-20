@@ -13,6 +13,7 @@
     <string name="pref_reverse">La cuenta atrás</string>
     <string name="pref_reverse_summary">Nota: no funciona en infinity modo</string>
     <string name="pref_immediateStart">Comenzar de inmediato</string>
+    <string name="pref_gong_after_point">Gong después del punto</string>
     <string name="pref_pause_after_point">Pausa después del punto</string>
     <string name="pref_pause_after_gong">Hacer una pausa después gong</string>
 

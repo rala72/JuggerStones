@@ -39,6 +39,7 @@ public class JuggerStonesApp extends Application
         MODE_CUSTOM("mode_custom"),
         INTERVAL("interval"), INTERVAL_CUSTOM("interval_custom"),
         REVERSE("reverse"), IMMEDIATE_START("immediateStart"),
+        GONG_AFTER_POINT("gong_after_point"),
         STOP_AFTER_POINT("stop_after_point"), STOP_AFTER_GONG("stop_after_gong"),
         SOUND_STONE("sound_stone"), SOUND_STONE_COUNTDOWN("sound_stone_countdown"),
         SOUND_GONG("sound_gong"),
@@ -322,6 +323,10 @@ public class JuggerStonesApp extends Application
 
         public static boolean isImmediateStart() {
             return sharedPreferences.getBoolean(PREFS.IMMEDIATE_START.toString(), false);
+        }
+
+        public static boolean isGongAfterPoint() {
+            return sharedPreferences.getBoolean(PREFS.GONG_AFTER_POINT.toString(), false);
         }
 
         public static boolean isStopAfterPoint() {

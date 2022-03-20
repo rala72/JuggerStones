@@ -13,6 +13,7 @@
     <string name="pref_reverse">Compte à rebours</string>
     <string name="pref_reverse_summary">Remarque: ne fonctionne pas dans l\'infini</string>
     <string name="pref_immediateStart">Commencer immédiatement</string>
+    <string name="pref_gong_after_point">Gong après le point</string>
     <string name="pref_pause_after_point">Pause après le point</string>
     <string name="pref_pause_after_gong">Pause après gong</string>
 
