@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     namespace 'io.rala.jugger'
-    compileSdkVersion 31
+    compileSdk 34
 
     defaultConfig {
         applicationId "io.rala.jugger"
         minSdkVersion 19
-        targetSdkVersion 31
+        targetSdkVersion 34
         versionCode 1080032
         versionName "1.8.0"
         vectorDrawables.useSupportLibrary = true
@@ -32,17 +32,17 @@ android {
 
 dependencies {
     // retroLambda
-    implementation 'com.annimon:stream:1.1.+'
-    implementation 'org.apache.commons:commons-lang3:3.+'
+    implementation 'com.annimon:stream:1.2.2'
+    implementation 'org.apache.commons:commons-lang3:3.13.0'
 
     // google
-    implementation "androidx.appcompat:appcompat:1.4.+"
-    implementation "androidx.legacy:legacy-support-v4:1.0.+"
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
 
     // implementation "com.takisoft.preferencex:preferencex:$supportLibsVersion"
-    implementation 'net.xpece.android:support-preference:3.0.+'
+    implementation 'net.xpece.android:support-preference:3.0.0'
 
     // TO DO [onHold]: material dialogs (support lib version mismatch) // https://github.com/afollestad/material-dialogs
     // https://github.com/jaredrummler/ColorPicker
-    implementation 'com.jaredrummler:colorpicker:1.0.5'
+    implementation 'com.jaredrummler:colorpicker:1.1.0'
 }
