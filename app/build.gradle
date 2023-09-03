@@ -8,7 +8,7 @@ android {
         applicationId "io.rala.jugger"
         minSdkVersion 19
         targetSdkVersion 34
-        versionCode 1080032
+        versionCode 1080033
         versionName "1.8.0"
         vectorDrawables.useSupportLibrary = true
     }
