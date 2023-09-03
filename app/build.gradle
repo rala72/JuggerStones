@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace 'io.rala.jugger'
     compileSdkVersion 31
 
     defaultConfig {
