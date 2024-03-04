@@ -16,7 +16,6 @@
     <string name="pref_gong_after_point">Gong después del punto</string>
     <string name="pref_pause_after_point">Pausa después del punto</string>
     <string name="pref_pause_after_gong">Hacer una pausa después gong</string>
-
     <!-- settings: sounds -->
     <string name="pref_category_sound">Sonidos</string>
     <string name="pref_sounds_stones">Piedras</string>
@@ -35,13 +34,11 @@
     <string name="pref_pan">Sarten</string>
     <string name="pref_snare_drum">Ppequeño tambor</string>
     <string name="pref_telephone">Teléfono</string>
-
     <string name="pref_sounds_gong">Gong</string>
     <string name="pref_gong">Gong</string>
     <string name="pref_air_horn">Bocina de aire</string>
     <string name="pref_train_whistle">Tren silbato</string>
     <string name="pref_vuvuzela">Vuvuzela</string>
-
     <!-- settings: others -->
     <string name="pref_category_others">Otro</string>
     <string name="pref_keep_display_awake">Mantener despierto pantalla</string>
