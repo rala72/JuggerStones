@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- TO DO [onHold]: make team number as parameter? -->
     <string name="main_zero">0</string>
     <string name="main_team1">Team 1</string>
     <string name="main_team2">Team 2</string>
@@ -11,9 +12,9 @@
     <string name="main_changeColor_1">Team 1 Farbe ändern</string>
     <string name="main_changeColor_2">Team 2 Farbe ändern</string>
     <string name="main_changeOfEnds">Seitenwechsel</string>
+    <!--Changeover-->
     <string name="main_setStones">Steine ändern</string>
     <string name="main_lastScore">Letzter Spielstand</string>
-
     <string name="main_toast_teamLength">Der Einfachheit halber nur die Anfangsbuchstaben der einzelnen Teams bitte (%1$d MAX)</string>
     <string name="main_toast_infinity">ACHTUNG: Endlos-Modus ist ausgewählt!</string>
 </resources>
