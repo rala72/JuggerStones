@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- TO DO [onHold]: make team number as parameter? -->
     <string name="main_zero">0</string>
     <string name="main_team1">Equipe 1</string>
     <string name="main_team2">Equipe 2</string>
@@ -11,9 +12,9 @@
     <string name="main_changeColor_1">Mude a cor da equipe 1</string>
     <string name="main_changeColor_2">Mude a cor da equipe 2</string>
     <string name="main_changeOfEnds">Stron boiska</string>
+    <!--Changeover-->
     <string name="main_setStones">Colocar pedras</string>
     <string name="main_lastScore">Última Score</string>
-
     <string name="main_toast_teamLength">Por conveniência apenas as iniciais de cada equipe por favor (%1$d MAX)</string>
     <string name="main_toast_infinity">AVISO: o modo infinito está selecionado</string>
 </resources>
