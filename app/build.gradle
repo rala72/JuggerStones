@@ -33,7 +33,7 @@ android {
 dependencies {
     // retroLambda
     implementation 'com.annimon:stream:1.2.2'
-    implementation 'org.apache.commons:commons-lang3:3.13.0'
+    implementation 'org.apache.commons:commons-lang3:3.14.0'
 
     // google
     implementation 'androidx.appcompat:appcompat:1.6.1'
