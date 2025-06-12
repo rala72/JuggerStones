@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
@@ -72,7 +73,7 @@ public class JuggerStonesApp extends Application
 
     //region changeLanguage
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         LocaleUtils.updateConfig(this, newConfig);
     }
@@ -191,8 +192,8 @@ public class JuggerStonesApp extends Application
     //region preferences
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.startsWith(PREFS.SOUND_STONE.toString()) ||
-            key.equals(PREFS.SOUND_GONG.toString()))
+        if (key != null && key.startsWith(PREFS.SOUND_STONE.toString()) ||
+            Objects.equals(key, PREFS.SOUND_GONG.toString()))
             updateSound();
     }
 

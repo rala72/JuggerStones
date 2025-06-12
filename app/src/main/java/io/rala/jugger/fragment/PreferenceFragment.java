@@ -17,6 +17,7 @@ import net.xpece.android.support.preference.XpPreferenceFragment;
 
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 
 import androidx.annotation.NonNull;
@@ -146,7 +147,7 @@ public class PreferenceFragment extends XpPreferenceFragment
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(JuggerStonesApp.PREFS.SOUND_STONE.toString())) updateSoundStoneCountdown();
+        if (Objects.equals(key, JuggerStonesApp.PREFS.SOUND_STONE.toString())) updateSoundStoneCountdown();
         validatePreferences(key);
         updatePreferencesEnabled(key);
         updateSumTexts(key);

@@ -1,5 +1,6 @@
 package io.rala.jugger.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -27,6 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import io.rala.jugger.JuggerStonesApp;
 import io.rala.jugger.MainActivity;
@@ -39,7 +41,7 @@ import io.rala.jugger.model.Team;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class MainFragment extends Fragment
-    implements CounterTask.CounterTaskCallback, ColorPickerDialogListener {
+    implements MenuProvider, CounterTask.CounterTaskCallback, ColorPickerDialogListener {
     private static final int LIMIT_TEAM_NAME_CHARACTERS_TO = 0;
 
     private FragmentMainBinding binding;
@@ -63,7 +65,7 @@ public class MainFragment extends Fragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+        requireActivity().addMenuProvider(this, this);
         if (JuggerStonesApp.CounterPreference.isKeepDisplayAwake())
             requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         ((MainActivity) requireActivity()).setActionBarTitle(getString(R.string.app_name));
@@ -197,15 +199,15 @@ public class MainFragment extends Fragment
 
     //region options menu
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // super.onCreateOptionsMenu(menu, inflater);
+    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
         menu.clear();
-        inflater.inflate(R.menu.main, menu);
+        menuInflater.inflate(R.menu.main, menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+    @SuppressLint("NonConstantResourceId")
+    public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
             case R.id.teams_rename:
                 showRenameTeamsDialog();
                 return true;
@@ -234,7 +236,7 @@ public class MainFragment extends Fragment
                         valueHandler.getTeam1(), valueHandler.getTeam2());
                 return true;
             default:
-                return super.onOptionsItemSelected(item);
+                return false;
         }
     }
     //endregion
