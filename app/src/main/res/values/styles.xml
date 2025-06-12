@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Application theme. -->
     <style name="AppBaseTheme" parent="Theme.AppCompat">
@@ -7,6 +7,10 @@
         <!-- Default icon tint for preferences. -->
         <item name="asp_preferenceIconTint">?colorAccent</item>
         <item name="asp_preferenceDialogIconTint">?asp_preferenceIconTint</item>
+
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
     <style name="AppTheme" parent="AppBaseTheme" />

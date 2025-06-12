@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     namespace 'io.rala.jugger'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "io.rala.jugger"
-        minSdkVersion 19
-        targetSdkVersion 34
+        minSdkVersion 21
+        targetSdkVersion 35
         versionCode 1080033
         versionName "1.8.0"
         vectorDrawables.useSupportLibrary = true
@@ -31,12 +31,21 @@ android {
 }
 
 dependencies {
+    constraints { // are there better ways? https://stackoverflow.com/a/75298544/2715720
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
+            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+        }
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
+            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+        }
+    }
+
     // retroLambda
     implementation 'com.annimon:stream:1.2.2'
     implementation 'org.apache.commons:commons-lang3:3.14.0'
 
     // google
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // implementation "com.takisoft.preferencex:preferencex:$supportLibsVersion"
