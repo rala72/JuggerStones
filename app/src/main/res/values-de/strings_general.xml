@@ -7,17 +7,15 @@
     <string name="language_spanish">Spanisch</string>
     <string name="language_french">Französisch</string>
     <string name="language_portuguese">Portugiesisch</string>
-
+    <!-- languages_en -->
     <!-- colors -->
     <string name="color_gray">Grau</string>
     <string name="color_green">Grün</string>
     <string name="color_red">Rot</string>
     <string name="color_yellow">Gelb</string>
-
     <!-- error -->
     <string name="error">Fehler</string>
     <string name="error_version_loading_failed">Version konnte nicht geladen werden.</string>
-
     <!-- other -->
     <string name="reset">Zurücksetzen</string>
     <string name="up_improvements">Die nächsten Verbesserungen: Kann hinzuzufügen und notieren individuelle sounds</string>
