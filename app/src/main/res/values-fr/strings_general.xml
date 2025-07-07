@@ -7,17 +7,15 @@
     <string name="language_spanish">Espagnol</string>
     <string name="language_french">Français</string>
     <string name="language_portuguese">Portugais</string>
-
+    <!-- languages_en -->
     <!-- colors -->
     <string name="color_gray">Gris</string>
     <string name="color_green">Vert</string>
     <string name="color_red">Rouge</string>
     <string name="color_yellow">Jaune</string>
-
     <!-- error -->
     <string name="error">Erreur</string>
     <string name="error_version_loading_failed">La version n\'a pas pu être chargée.</string>
-
     <!-- other -->
     <string name="reset">Réinitialiser</string>
     <string name="up_improvements">Améliorations à venir: -Pouvez ajouter et enregistrer des sons personnalisés</string>
