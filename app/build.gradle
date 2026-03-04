@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     namespace 'io.rala.jugger'
-    compileSdk 35
+    compileSdkVersion 35
 
     defaultConfig {
         applicationId "io.rala.jugger"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 35
         versionCode 1080134
         versionName "1.8.1"
@@ -20,7 +20,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
         }
     }
 
@@ -32,17 +32,17 @@ android {
 
 dependencies {
     constraints { // are there better ways? https://stackoverflow.com/a/75298544/2715720
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.2.10") {
             because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
         }
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.2.10") {
             because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
         }
     }
 
     // retroLambda
     implementation 'com.annimon:stream:1.2.2'
-    implementation 'org.apache.commons:commons-lang3:3.14.0'
+    implementation 'org.apache.commons:commons-lang3:3.20.0'
 
     // google
     implementation 'androidx.appcompat:appcompat:1.7.1'
