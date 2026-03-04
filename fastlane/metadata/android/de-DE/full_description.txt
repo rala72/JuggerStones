@@ -1,0 +1,19 @@
+Tool für die Punktezählung in Jugger - einfach und schnell zu bedienen
+- Teams umbenennen, Farben ändern
+- Abstand zwischen den Steinen ändern
+- Spielart ändern (100, 50, unendlich Steine oder benutzerdefiniert)
+- Sound nach Hälfte oder ganzen Spiels (optional)
+- Klang der Steine und des Gongs sind anpassbar
+- ...
+
+Versteckte Funktionen (im Hauptbildschirm):
+- Lange drücken auf den Teamnamen, um die Farbe zu ändern
+- Lange drücken auf die Steine, um sie zu bearbeiten
+- Lange drücken auf minus/plus Button bei den Steinen, um sie zurückzusetzen
+- Kurz drücken auf den Spielmodus, um zwischen aufwärts / abwärts zählen zu wechseln
+- Lang drücken auf den Spielmodus, um zwischen Spielmodi zu wechseln
+
+Mein Code:
+https://github.com/rala72/JuggerStones
+
+Bitte bewerten ;)

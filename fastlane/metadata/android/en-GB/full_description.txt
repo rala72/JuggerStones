@@ -1,0 +1,19 @@
+Jugger scoring tool - easy and quick to use
+- rename teams, change colors
+- change the distance between the stones
+- change the game mode (100, 50, infinite stones or custom)
+- Sound after half or whole game (optional)
+- Sound of the stones and the gong are customizable
+- ...
+
+Hidden features (in main screen):
+- Long press on Team name to change color
+- Long press on stones to edit them
+- Long press on minus/plus button on stones to reset them
+- Short press on game mode to switch between counting up / down
+- Long press on game mode to switch between game modes
+
+my code:
+https://github.com/rala72/JuggerStones
+
+Please leave a review ;)

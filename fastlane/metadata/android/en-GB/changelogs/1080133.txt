@@ -1,0 +1,4 @@
+Version 1.8.1 / 1.8.0
+- necessary adaptions for Android 16
+- option to play gong after point (if active)
+- small improvements

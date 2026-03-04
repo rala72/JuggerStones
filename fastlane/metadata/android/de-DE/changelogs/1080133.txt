@@ -1,0 +1,4 @@
+Version 1.8.1 / 1.8.0
+- notwendige Anpassungen für Android 16
+- Option um Gong nach Punkt zu spielen (wenn aktiv)
+- kleine Verbesserungen
